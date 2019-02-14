@@ -13,15 +13,26 @@
 
 - Contacto <graciaj9988@gmail.com> <caromamusic@gmail.com>
 
-### Programado con 🛠️
+### Recursos  🛠️
 
-- [Eclipse](https://www.eclipse.org/) - IDE utilizado para Java.
+- [Eclipse](https://www.eclipse.org/) - IDE utilizado para Java y Javadoc.
 - [NetBeans](https://netbeans.org/) - IDE utilizado para Java.
 - [Atom](https://atom.io/) - IDE utilizado para Markdown.
-- [Día](https://dia-installer.de/index.html.es) - Utilizado para la creación de diagramas.
-- [PHPMyAdmin](https://www.phpmyadmin.net/) - Utilizado para la creación y pruebas de Bases de Datos.
+- [Día](https://dia-installer.de/index.html.es) - Creación de diagramas.
+- [PHPMyAdmin](https://www.phpmyadmin.net/) - Creación y pruebas de Bases de Datos.
+- [Git](https://git-scm.com/downloads) - Control de versiones en Github.
+- [Github](https://github.com) - Plataforma de desarrollo donde se almacenan las versiones.
 
 ---
+
+### Tecnologías  ⚡
+ - Java
+ - SQL
+ - UML 
+
+---
+
+
 
 
 # <b>Contenidos</b>
