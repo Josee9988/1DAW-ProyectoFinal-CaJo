@@ -28,10 +28,14 @@
 ### Tecnologías  ⚡
  - Java
  - SQL
- - UML 
+ - UML
 
 ---
 
+### Comunicación del equipo ❄😎❄
+ - [Slack](https://proyectocj.slack.com) - Comunicación general
+ - [Trello](https://trello.com/b/9YDrUbGJ/proyecto) - Tareas y fases del proyecto.
+---
 
 
 
