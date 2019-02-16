@@ -9,9 +9,11 @@
 
 - El proyecto está realizado por [@Josee9988](https://github.com/Josee9988), y [@Wanikoko](https://github.com/Wanikoko)
 
-
+---
 
 - Contacto <graciaj9988@gmail.com> <caromamusic@gmail.com>
+
+---
 
 ### Recursos  🛠️
 
