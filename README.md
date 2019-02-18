@@ -43,6 +43,9 @@
 
 # <b>Contenidos</b>
 
-(A ESPERA DE HACER LAS COSAS)
+ - [Enunciados](Enunciado.pdf)
+ - [Diagramas de casos de uso](/Diagramas/Diagrama%2de%20casos%20de%20uso)
+ - [Diagramas de casos de uso](/Diagramas/Diagrama%2de%20clases)
+ - [Analisis](/Analisis)
 
 <i>Hecho con ❤️ por [@Josee9988](https://github.com/Josee9988)</i> y [@Wanikoko](https://github.com/Wanikoko)
