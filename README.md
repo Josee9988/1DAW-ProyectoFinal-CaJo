@@ -45,7 +45,7 @@
 
  - [Enunciados](Enunciado.pdf)
  - [Diagramas de casos de uso](/Diagramas/Diagrama%20de%20casos%20de%20uso)
- - [Diagramas de casos de uso](/Diagramas/Diagrama%20de%20clases)
+ - [Diagramas de clase](/Diagramas/Diagrama%20de%20clases)
  - [Analisis](/Analisis)
 
 <i>Hecho con ❤️ por [@Josee9988](https://github.com/Josee9988)</i> y [@Wanikoko](https://github.com/Wanikoko)
