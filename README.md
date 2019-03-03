@@ -48,11 +48,11 @@
 
 - [Bases de Datos](/Bases%20de%20datos/)
 
-  - [DDL SQL](/Bases%20de%20datos/)
+  - [DDL SQL](/Bases%20de%20datos/DDL)
 
   - [Diseño Lógico](/Bases%20de%20datos/Diseño%20lógico)
 
-  - [Modelo Conseptual](/Bases%20de%20datos/Modelo%20Conceptual)
+  - [Modelo Conseptual](/Bases%20de%20datos/Modelo%20conceptual)
 
 - [Diagramas](/Bases%20de%20datos/DDL)
 
