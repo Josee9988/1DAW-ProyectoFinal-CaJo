@@ -1,5 +1,5 @@
-<b>Proyecto Final 1º DAW CIPFPBATOI</b>
-===========================
+# **Proyecto Final 1º DAW CIPFPBATOI**
+
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 [![wercker status](https://app.wercker.com/status/9e0bc54c43f48d220aec684fffb2b110/s/master "wercker status")](https://app.wercker.com/project/byKey/9e0bc54c43f48d220ac684fffb2b110)
 
@@ -15,7 +15,7 @@
 
 ---
 
-### Recursos  🛠️
+## Recursos  🛠️
 
 - [Eclipse](https://www.eclipse.org/) - IDE utilizado para Java y Javadoc.
 - [NetBeans](https://netbeans.org/) - IDE utilizado para Java.
@@ -27,7 +27,7 @@
 
 ---
 
-### Tecnologías  ⚡
+## Tecnologías  ⚡
 
 - Java
 - SQL
@@ -35,17 +35,26 @@
 
 ---
 
-### Comunicación del equipo ❄😎❄
+## Comunicación del equipo ❄😎❄
 
-- [Slack](https://proyectocj.slack.com) - Comunicación general 
-- [Trello](https://trello.com/b/9YDrUbGJ/proyecto) - Tareas y fases del proyecto. 
+- [Slack](https://proyectocj.slack.com) - Comunicación general
+- [Trello](https://trello.com/b/9YDrUbGJ/proyecto) - Tareas y fases del proyecto.
 
 ---
 
-# <b>Contenidos</b>
+## **Contenidos**
 
 - [Enunciados](Enunciado.pdf)
-- [Diagramas](/Diagramas/)
+
+- [Bases de Datos](/Bases%20de%20datos/)
+
+  - [DDL SQL](/Bases%20de%20datos/)
+
+  - [Diseño Lógico](/Bases%20de%20datos/Diseño%20lógico)
+
+  - [Modelo Conseptual](/Bases%20de%20datos/Modelo%20Conceptual)
+
+- [Diagramas](/Bases%20de%20datos/DDL)
 
   - [Diagramas de casos de uso](/Diagramas/Diagrama%20de%20casos%20de%20uso)
 
@@ -56,4 +65,6 @@
 
 - [Analisis](/Analisis)
 
-<i>Hecho con ❤️ por [@Josee9988](https://github.com/Josee9988)</i> y [@Wanikoko](https://github.com/Wanikoko)
+---
+
+*Hecho con ❤️ por [@Josee9988](https://github.com/Josee9988) y [@Wanikoko](https://github.com/Wanikoko)*
