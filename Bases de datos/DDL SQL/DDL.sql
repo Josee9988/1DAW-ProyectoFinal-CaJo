@@ -1,8 +1,24 @@
-CREATE DATABASE IF NOT EXISTS m_ProyectoInventarioJoseCarlos;
+-- ************************************************************************
+-- * CREACION DE TABLAS PROYECTO 1ºDAW JOSE GRACIA Y CARLOS ROBLES 2018-19*
+-- ************************************************************************
+ 
+ 
+ /**                                                                            
+  * Descripción: SQL que crea todas las tablas necesarias para el proyecto.
+  * Información detallada: Se crean todas las tablas necesarias para el funcionamiento del proyecto de 1ºDAW 2018-2019. (https://github.com/Josee9988/1DAW-ProyectoFinal-CaJo)
+  * @author  Jose Gracia
+  * @version 1.0 Jose Gracia 03/03/2019
+  * @since   0.5
+  * @return          No tiene parámetro de salida
+  */
+
+
+-- creamos la base de datos; ponemos el prefijo m_ por necesidades del centro y poderlo ejecutar en equipos del aula
+CREATE DATABASE IF NOT EXISTS m_inventariojc;
 
 
 -- usar base de datos proyecto
-USE m_ProyectoInventarioJoseCarlos;
+USE m_inventariojc;
 
 
 
@@ -102,6 +118,7 @@ CREATE TABLE IF NOT EXISTS Proveedores(
     PagWeb VARCHAR(50) NOT NULL,
     CorreoElectronico VARCHAR(50) NOT NULL,
     Contacto VARCHAR(50) NOT NULL,
+PRIMARY KEY(Codigo)
 );
 
 
@@ -124,7 +141,7 @@ CREATE TABLE IF NOT EXISTS LineaPedido(
     FechaPedido DATE NOT NULL,
     Cantidad INT NOT NULL,
 PRIMARY KEY(Codigo_pedido),
-FOREIGN KEY(Codigo_pedido) REFERENCES(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -138,7 +155,7 @@ CREATE TABLE IF NOT EXISTS MaterialInformatico(
     baja boolean NOT NULL,
     MotivoBaja VARCHAR(50),
     Precio DECIMAL NOT NULL,
-    MotivoPeticion VARCHAR(128)
+    MotivoPeticion VARCHAR(128) NOT NULL,
 PRIMARY KEY(Codigo)
 );
 
@@ -147,7 +164,7 @@ PRIMARY KEY(Codigo)
 CREATE TABLE IF NOT EXISTS MaterialInventariable(
     Codigo_material Char(9) NOT NULL,
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -155,7 +172,7 @@ FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CA
 CREATE TABLE IF NOT EXISTS MaterialNoInventariable(
     Codigo_material Char(9) NOT NULL,
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -166,7 +183,7 @@ CREATE TABLE IF NOT EXISTS Software(
     Licencia VARCHAR(50) NOT NULL,
     Caducidad DATE NOT NULL,
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -176,7 +193,7 @@ CREATE TABLE IF NOT EXISTS Hardware(
     UnidadesDisponibles INT NOT NULL,
     AnyoAdquisicion INT NOT NULL,
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -195,7 +212,7 @@ CREATE TABLE IF NOT EXISTS Sobremesa(
     Disquetera VARCHAR(50) NOT NULL,
     Conectividad VARCHAR(128) NOT NULL,
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -214,7 +231,7 @@ CREATE TABLE IF NOT EXISTS Portatil(
     Conectividad VARCHAR(128) NOT NULL,
 
 PRIMARY KEY(Codigo_material),
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -254,7 +271,7 @@ PRIMARY KEY(Codigo)
 CREATE TABLE IF NOT EXISTS Tiene(
     Codigo_pedido CHAR(9) NOT NULL,
     Codigo_material CHAR(9) NOT NULL,
-PRIMARY KEY(Codigo_pedido),--alt codigo_material
+PRIMARY KEY(Codigo_pedido), /*alt codigo_material*/
 FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -265,17 +282,17 @@ FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CA
 
 
 /* ##### INDEX ##### */
-CREATE UNIQUE INDEX dnipersona ON Persona(DNI);
-CREATE UNIQUE INDEX codmensajes ON Mensajes(Codigo);
-CREATE UNIQUE INDEX codubicacion ON Ubicacion(Codigo);
-CREATE UNIQUE INDEX codincidencia ON Incidencia(Codigo);
-CREATE UNIQUE INDEX codpedido ON Pedido(Codigo);
-CREATE UNIQUE INDEX codlineapedido ON LineaPedido(Codigo);
-CREATE UNIQUE INDEX codproveedores ON Proveedores(Codigo);
-CREATE UNIQUE INDEX codmaterial ON MaterialInformatico(Codigo);
-CREATE UNIQUE INDEX codpeticion ON PeticionCompras(Codigo);
-CREATE UNIQUE INDEX codgestionmaterial ON GestionMaterial(Codigo);
-CREATE UNIQUE INDEX codgestioncompras ON GestionCompras(Codigo);
+CREATE INDEX dnipersona ON Persona(DNI);
+CREATE INDEX codmensajes ON Mensajes(Codigo);
+CREATE INDEX codubicacion ON Ubicacion(Codigo);
+CREATE INDEX codincidencia ON Incidencia(Codigo);
+CREATE INDEX codpedido ON Pedidos(Codigo);
+CREATE INDEX codlineapedido ON LineaPedido(Codigo_pedido);
+CREATE INDEX codproveedores ON Proveedores(Codigo);
+CREATE INDEX codmaterial ON MaterialInformatico(Codigo);
+CREATE INDEX codpeticion ON PeticionCompras(Codigo);
+CREATE INDEX codgestionmaterial ON GestionMaterial(Codigo);
+CREATE INDEX codgestioncompras ON GestionCompras(Codigo);
 
 
 
