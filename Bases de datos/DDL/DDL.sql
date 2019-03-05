@@ -134,13 +134,14 @@ FOREIGN KEY(Codigo_prov) REFERENCES Proveedores(Codigo) ON UPDATE CASCADE ON DEL
 
 -- LINEA PEDIDO
 CREATE TABLE IF NOT EXISTS LineaPedido(
+    Codigo_linea CHAR(9) NOT NULL,
     Codigo_pedido CHAR(9) NOT NULL,
     NumeroPedido INT NOT NULL,
     Fecha DATE NOT NULL,
     Articulo VARCHAR(50) NOT NULL,
     FechaPedido DATE NOT NULL,
     Cantidad INT NOT NULL,
-PRIMARY KEY(Codigo_pedido),
+PRIMARY KEY(Codigo_pedido,Codigo_linea),
 FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -270,8 +271,10 @@ PRIMARY KEY(Codigo)
 -- TIENE
 CREATE TABLE IF NOT EXISTS Tiene(
     Codigo_pedido CHAR(9) NOT NULL,
-    Codigo_material CHAR(9) NOT NULL,
-PRIMARY KEY(Codigo_pedido), /*alt codigo_material*/
+    Codigo_linea CHAR(9) NOT NULL,
+    Codigo_material CHAR(9) NOT NULL UNIQUE,
+PRIMARY KEY(Codigo_pedido, Codigo_linea),
+FOREIGN KEY(Codigo_linea) REFERENCES LinePedido(Codigo_linea) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
