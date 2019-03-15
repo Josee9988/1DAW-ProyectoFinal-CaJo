@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS LineaPedido(
     Articulo VARCHAR(50) NOT NULL,
     FechaPedido DATE NOT NULL,
     Cantidad INT NOT NULL,
-PRIMARY KEY(Codigo_pedido,Codigo_linea),
+PRIMARY KEY(Codigo_linea, Codigo_pedido),
 FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -270,13 +270,13 @@ PRIMARY KEY(Codigo)
 
 -- TIENE
 CREATE TABLE IF NOT EXISTS Tiene(
-    Codigo_pedido CHAR(9) NOT NULL,
-    Codigo_linea CHAR(9) NOT NULL,
-    Codigo_material CHAR(9) NOT NULL UNIQUE,
-PRIMARY KEY(Codigo_pedido, Codigo_linea),
-FOREIGN KEY(Codigo_linea) REFERENCES LinePedido(Codigo_linea) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY(Codigo_pedido) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY(Codigo_material) REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
+    Codigo_pedidos CHAR(9) NOT NULL,
+    Codigo_lineas CHAR(9) NOT NULL,
+    Codigo_materials CHAR(9) NOT NULL UNIQUE,
+PRIMARY KEY(Codigo_pedidos, Codigo_lineas),
+FOREIGN KEY(Codigo_pedidos) REFERENCES Pedidos(Codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(Codigo_lineas) REFERENCES LineaPedido(Codigo_linea) ON UPDATE CASCADE ON DELETE CASCADE,
+CONSTRAINT codigomaterials_unique FOREIGN KEY (Codigo_materials)REFERENCES MaterialInformatico(Codigo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 /* ##### FIN CREACIÓN DE TABLAS ##### */
