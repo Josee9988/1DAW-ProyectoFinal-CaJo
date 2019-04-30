@@ -1,6 +1,3 @@
-import MaterialInventariable;
-import MaterialNoInventariable;
-
 public abstract class Materialinformatico
 
 {

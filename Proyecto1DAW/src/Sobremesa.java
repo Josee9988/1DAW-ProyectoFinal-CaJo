@@ -1,5 +1,3 @@
-import Hardware;
-
 public class Sobremesa extends Hardware
 {
     /** Attributes */

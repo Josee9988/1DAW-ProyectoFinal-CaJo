@@ -1,5 +1,3 @@
-import JefesDepartamento;
-
 public class Persona
 
 {

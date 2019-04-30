@@ -1,5 +1,3 @@
-import Persona;
-
 public class Administradores extends Persona
 {
     /**

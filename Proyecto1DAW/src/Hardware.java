@@ -1,5 +1,3 @@
-import MaterialInventariable;
-
 public class Hardware extends MaterialInventariable
 {
     /** Attributes */

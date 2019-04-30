@@ -1,5 +1,3 @@
-import MaterialInventariable;
-
 public class Software extends MaterialInventariable
 {
     /** Attributes */

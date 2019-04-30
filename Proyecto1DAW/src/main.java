@@ -13,9 +13,9 @@ public class main extends Application {
 	public void start(Stage primaryStage) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/view/ui2.fxml"));
+			root = FXMLLoader.load(this.getClass().getResource("/view/ui2.fxml"));
 			primaryStage.setScene(new Scene(root));
-			Image icon = new Image(getClass().getResourceAsStream("/jc-favicon.png"));
+			Image icon = new Image(this.getClass().getResourceAsStream("/jc-favicon.png"));
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("Componentes");
 			primaryStage.show();

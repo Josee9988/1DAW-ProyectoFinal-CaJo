@@ -1,5 +1,3 @@
-import Proveedores;
-
 public class Proveedores
 
 {

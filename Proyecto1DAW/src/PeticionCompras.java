@@ -1,6 +1,3 @@
-import Persona;
-import PeticionCompras;
-
 public class PeticionCompras
 
 {

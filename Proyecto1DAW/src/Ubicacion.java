@@ -1,5 +1,3 @@
-import Ubicacion;
-
 public class Ubicacion
 
 {
