@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consultar_controller.consultar_ubicaciones">
+   <children>
+      <Label layoutX="358.0" layoutY="25.0" text="Consultar Ubicaciones">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="919.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.26338768005371" text="ID" />
+          <TableColumn fx:id="nombre" prefWidth="216.73661041259766" text="Nombre" />
+            <TableColumn fx:id="descripcion" prefWidth="314.62054443359375" text="Descripcion" />
+            <TableColumn fx:id="edificio" prefWidth="166.47320556640625" text="Edificio" />
+            <TableColumn fx:id="planta" prefWidth="143.0" text="Planta" />
+        </columns>
+      </TableView>
+      <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+   </children>
+</Pane>

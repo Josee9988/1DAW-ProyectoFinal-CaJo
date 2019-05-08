@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consultar_controller.consultar_mensajes">
+   <children>
+      <Label layoutX="358.0" layoutY="25.0" text="Consultar Mensajes">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="919.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="90.45685958862305" text="ID" />
+          <TableColumn fx:id="asunto" prefWidth="207.16708374023438" text="Asunto" />
+            <TableColumn fx:id="cuerpo" prefWidth="480.8328857421875" text="Cuerpo" />
+            <TableColumn fx:id="fecha" prefWidth="136.9053955078125" text="Fecha" />
+        </columns>
+      </TableView>
+      <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+   </children>
+</Pane>
