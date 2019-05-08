@@ -56,7 +56,7 @@ public class Login_Controller {
 	private TextField area2;
 
 	public Login_Controller() throws IOException {
-
+		
 		this.users = bdController.getInstance();
 
 		this.profesor = new Stage();
@@ -64,11 +64,10 @@ public class Login_Controller {
 		this.matenimiento = new Stage();
 		this.admin = new Stage();
 
-		this.fxmlLoaderProfesor = new FXMLLoader(this.getClass().getResource("/view/home_prof_page.fxml"));
-		this.fxmlLoaderJefeDepartamento = new FXMLLoader(this.getClass().getResource("/view/home_jefe_page.fxml"));
-		this.fxmlLoaderMantenimiento = new FXMLLoader(
-				this.getClass().getResource("/view/home_mantenimiento_page.fxml"));
-		this.fxmlLoaderAdmin = new FXMLLoader(this.getClass().getResource("/view/home_admin_page.fxml"));
+		this.fxmlLoaderProfesor = new FXMLLoader(getClass().getResource("/view/home_prof_page.fxml"));
+		this.fxmlLoaderJefeDepartamento = new FXMLLoader(getClass().getResource("/view/home_jefe_page.fxml"));
+		this.fxmlLoaderMantenimiento = new FXMLLoader(getClass().getResource("/view/home_mantenimiento_page.fxml"));
+		this.fxmlLoaderAdmin = new FXMLLoader(getClass().getResource("/view/home_admin_page.fxml"));
 
 		this.root1 = (Parent) this.fxmlLoaderProfesor.load();
 		this.root2 = (Parent) this.fxmlLoaderJefeDepartamento.load();
@@ -84,38 +83,38 @@ public class Login_Controller {
 		this.scene2 = new Scene(this.root2);
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
-
+	
 	}
 
 	@FXML
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException {
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
-			switch (this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText())) {
+			switch (users.ComprobarExistencia(this.user.getText(), this.passwordField.getText())) {
 			case 1:
 				this.controllerProfesor.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
+						users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
 				this.profesor.setScene(this.scene1);
 				this.profesor.show();
 				break;
 			case 2:
 				this.controllerJefeDepartamento.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
+						users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
 				this.jefe_departamento.setScene(this.scene2);
 				this.jefe_departamento.show();
 				break;
 			case 3:
 				this.controllerMantenimiento.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
+						users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
 				this.matenimiento.setScene(this.scene3);
 				this.matenimiento.show();
 				break;
 			case 4:
 				this.controllerAdmin.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
+						users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
 				this.admin.setScene(this.scene4);
 				this.admin.show();
 				break;
@@ -124,7 +123,7 @@ public class Login_Controller {
 				break;
 			}
 		} else {
-			this.resultadoIncorrecto();
+			resultadoIncorrecto();
 		}
 	}
 

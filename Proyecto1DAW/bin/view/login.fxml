@@ -6,22 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_controller.Login_Controller">
    <children>
       <Button fx:id="iniciar" layoutX="160.0" layoutY="267.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="27.0" prefWidth="183.0" text="Iniciar" />
-      <Label fx:id="login" layoutX="207.0" layoutY="37.0" prefHeight="35.0" prefWidth="90.0" text="LOGIN" textAlignment="CENTER">
+      <Label fx:id="login" ellipsisString="" layoutX="182.0" layoutY="40.0" prefHeight="35.0" prefWidth="183.0" text="LOGIN" textAlignment="CENTER">
          <font>
             <Font size="29.0" />
          </font>
