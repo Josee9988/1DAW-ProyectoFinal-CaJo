@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.sql.Date;
 import java.sql.SQLException;

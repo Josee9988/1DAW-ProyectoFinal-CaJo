@@ -1,10 +1,9 @@
-package administrador_controller;
+package controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Controller.bdController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

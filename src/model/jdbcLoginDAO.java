@@ -307,8 +307,8 @@ public class jdbcLoginDAO implements loginDAO {
 		try {
 			// establecemos la conexión con DriverManager.getConnection
 			Conexion = DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/m_usuarios?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC",
-					"root", "1234");
+					"jdbc:mysql://127.0.0.1:3306/m_proyectodaw?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC",
+					"m", "1234");
 		} catch (SQLException e) {
 			System.out.println(e.toString());
 		}

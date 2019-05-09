@@ -1,10 +1,9 @@
-package consultar_controller;
+package controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Controller.bdController;
 import dto.incidenciaDTO;
 import dto.proveedorDTO;
 import javafx.fxml.FXML;

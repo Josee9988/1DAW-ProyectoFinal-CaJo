@@ -1,13 +1,8 @@
-package login_controller;
+package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import Controller.bdController;
-import home_controller.Home_Admin_Controller;
-import home_controller.Home_Jefe_Controller;
-import home_controller.Home_Mantenimiento_Controller;
-import home_controller.Home_Prof_Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

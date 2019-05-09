@@ -1,4 +1,4 @@
-package consultar_controller;
+package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Controller.bdController;
 import dto.incidenciaDTO;
 
 public class consultar_incidencias {

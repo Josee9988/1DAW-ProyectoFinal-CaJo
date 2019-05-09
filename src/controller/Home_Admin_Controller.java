@@ -1,64 +1,76 @@
-package home_controller;
+package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import acerca_controller.acercaDe_controller;
-import administrador_controller.proveedores_controller;
-import consultar_controller.consultar_incidencias;
-import consultar_controller.consultar_mensajes;
-import consultar_controller.consultar_proveedores;
-import incidencia_controller.incidencia_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import mensajes_controller.mensajes;
 
-public class Home_Jefe_Controller {
-	
+public class Home_Admin_Controller {
+
 	private Date date;
 	private int rol_number;
-	
+	private Stage usuarios;
 	private Stage incidenciaCrear;
 	private Stage incidenciaConsultar;
 	private Stage proveedorAdmin;
 	private Stage proveedorConsultar;
+	private Stage incidenciasAdmin;
 	private Stage acercaDe;
 	private Stage mensajesConsultar;
 	private Stage mensajesCrear;
+	private Stage ubicacionesConsultar;
+	private Stage ubicacionesAdmin;
+	private FXMLLoader fxmlLoaderAdministrarUsuarios;
 	private FXMLLoader fxmlLoaderCrearIncidencia;
 	private FXMLLoader fxmlLoaderConsultarIncidencias;
 	private FXMLLoader fxmlLoaderAdministrarProveedores;
 	private FXMLLoader fxmlLoaderConsultarProveedores;
+	private FXMLLoader fxmlLoaderAdministrarIncidencias;
 	private FXMLLoader fxmlLoaderAcerca;
 	private FXMLLoader fxmlLoaderConsultarMensajes;
 	private FXMLLoader fxmlLoaderCrearMensajes;
+	private FXMLLoader fxmlLoaderConsultarUbicaciones;
+	private FXMLLoader fxmlLoaderAdministrarUbicaciones;
+	private Parent root1;
 	private Parent root2;
 	private Parent root3;
 	private Parent root4;
 	private Parent root5;
 	private Parent root6;
+	private Parent root7;
 	private Parent root8;
 	private Parent root9;
+	private Parent root10;
+	private Parent root11;
+	private usuarios_controller controllerUsuarios;
 	private incidencia_Controller controllerIncidencias;
 	private consultar_incidencias controllerConsularIncidencias;
 	private proveedores_controller controllerProveedores;
 	private consultar_proveedores controllerConsultarProveedores;
 	private acercaDe_controller controllerInformacion;
-	private mensajes controllerCrearMensajes;
+	private administrar_incidencias controllerAdministrarIncidencias;
 	private consultar_mensajes controllerConsultarMensajes;
+	private mensajes controllerCrearMensajes;
+	private consultar_ubicaciones controllerConsultarUbicaciones;
+	private administrar_ubicaciones controllerAdministrarUbicaciones;
+	private Scene scene1;
 	private Scene scene2;
 	private Scene scene3;
 	private Scene scene4;
 	private Scene scene5;
 	private Scene scene6;
+	private Scene scene7;
 	private Scene scene8;
 	private Scene scene9;
+	private Scene scene10;
+	private Scene scene11;
 
 	@FXML
 	private TextField nombre;
@@ -67,32 +79,47 @@ public class Home_Jefe_Controller {
 	@FXML
 	private TextField fecha;
 
-	public Home_Jefe_Controller() throws IOException {
+	public Home_Admin_Controller() throws IOException {
 		
+		this.usuarios = new Stage();
 		this.incidenciaCrear = new Stage();
 		this.proveedorAdmin = new Stage();
+		this.incidenciasAdmin = new Stage();
 		this.acercaDe = new Stage();
 		this.mensajesCrear = new Stage();
+		this.ubicacionesAdmin = new Stage();
 
+		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(getClass().getResource("/view/users_admin.fxml"));
 		this.fxmlLoaderCrearIncidencia = new FXMLLoader(getClass().getResource("/view/incidencia.fxml"));
 		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(getClass().getResource("/view/proveedores_admin.fxml"));
+		this.fxmlLoaderAdministrarIncidencias = new FXMLLoader(getClass().getResource("/view/incidencias_admin.fxml"));
 		this.fxmlLoaderAcerca = new FXMLLoader(getClass().getResource("/view/acerca_de.fxml"));
 		this.fxmlLoaderCrearMensajes = new FXMLLoader(getClass().getResource("/view/mensajes.fxml"));
+		this.fxmlLoaderAdministrarUbicaciones = new FXMLLoader(getClass().getResource("/view/ubicaciones_admin.fxml"));
 
+		this.root1 = (Parent) this.fxmlLoaderAdministrarUsuarios.load();
 		this.root2 = (Parent) this.fxmlLoaderCrearIncidencia.load();
 		this.root4 = (Parent) this.fxmlLoaderAdministrarProveedores.load();
 		this.root6 = (Parent) this.fxmlLoaderAcerca.load();
+		this.root7 = (Parent) this.fxmlLoaderAdministrarIncidencias.load();
 		this.root9 = (Parent) this.fxmlLoaderCrearMensajes.load();
+		this.root11 = (Parent) this.fxmlLoaderAdministrarUbicaciones.load();
 
+		this.controllerUsuarios = this.fxmlLoaderAdministrarUsuarios.<usuarios_controller>getController();
 		this.controllerIncidencias = this.fxmlLoaderCrearIncidencia.<incidencia_Controller>getController();
 		this.controllerProveedores = this.fxmlLoaderAdministrarProveedores.<proveedores_controller>getController();
-		this.controllerCrearMensajes = this.fxmlLoaderCrearMensajes.<mensajes>getController();
 		this.controllerInformacion = this.fxmlLoaderAcerca.<acercaDe_controller>getController();
+		this.controllerAdministrarIncidencias = this.fxmlLoaderAdministrarIncidencias.<administrar_incidencias>getController();
+		this.controllerCrearMensajes = this.fxmlLoaderCrearMensajes.<mensajes>getController();
+		this.controllerAdministrarUbicaciones = this.fxmlLoaderAdministrarUbicaciones.<administrar_ubicaciones>getController();
 			
+		this.scene1 = new Scene(this.root1);
 		this.scene2 = new Scene(this.root2);
 		this.scene4 = new Scene(this.root4);
 		this.scene6 = new Scene(this.root6);
+		this.scene7 = new Scene(this.root7);
 		this.scene9 = new Scene(this.root9);
+		this.scene11 = new Scene(this.root11);
 
 	}
 
@@ -102,9 +129,16 @@ public class Home_Jefe_Controller {
 		this.rol_name.setEditable(false);
 		this.fecha.setEditable(false);
 		this.nombre.setText(nombreCompleto);
-		this.rol_name.setText("Jefe de Departamento");
+		this.rol_name.setText("Administrador");
 		this.fecha.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
 		this.rol_number = rol;
+	}
+
+	@FXML
+	public void administrarUsuarios() throws IOException {
+		this.controllerUsuarios.inicializar(this.nombre.getText());
+		this.usuarios.setScene(this.scene1);
+		this.usuarios.show();
 	}
 
 	@FXML
@@ -153,6 +187,13 @@ public class Home_Jefe_Controller {
 	}
 	
 	@FXML
+	public void administrarIncidencias() throws IOException, SQLException {
+		this.controllerAdministrarIncidencias.inicializar(this.nombre.getText());
+		this.incidenciasAdmin.setScene(this.scene7);
+		this.incidenciasAdmin.show();
+	}
+	
+	@FXML
 	public void consultarMensajes() throws IOException, SQLException {
 		this.mensajesConsultar = new Stage();
 		this.fxmlLoaderConsultarMensajes = new FXMLLoader(getClass().getResource("/view/consultarMensajes.fxml"));
@@ -170,5 +211,24 @@ public class Home_Jefe_Controller {
 		this.mensajesCrear.setScene(this.scene9);
 		this.mensajesCrear.show();
 	}
-
+	
+	@FXML
+	public void consultarUbicaciones() throws IOException, SQLException {
+		this.ubicacionesConsultar = new Stage();
+		this.fxmlLoaderConsultarUbicaciones = new FXMLLoader(getClass().getResource("/view/consultarUbicaciones.fxml"));
+		this.root10 = (Parent) this.fxmlLoaderConsultarUbicaciones.load();
+		this.controllerConsultarUbicaciones = this.fxmlLoaderConsultarUbicaciones.<consultar_ubicaciones>getController();
+		this.scene10 = new Scene(this.root10);
+		this.controllerConsultarUbicaciones.inicializar(this.nombre.getText());
+		this.ubicacionesConsultar.setScene(this.scene10);
+		this.ubicacionesConsultar.show();
+	}
+	
+	@FXML
+	public void administrarUbicaciones() throws IOException, SQLException {
+		this.controllerAdministrarUbicaciones.inicializar(this.nombre.getText());
+		this.ubicacionesAdmin.setScene(this.scene11);
+		this.ubicacionesAdmin.show();
+	}
+	
 }

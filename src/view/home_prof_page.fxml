@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home_controller.Home_Prof_Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Prof_Controller">
    <children>
       <Button fx:id="crearIncidencias" layoutX="244.0" layoutY="139.0" mnemonicParsing="false" onAction="#crearIncidencia" text="Crear Incidencia" />
       <Button fx:id="consultarIncidencias" layoutX="226.0" layoutY="185.0" mnemonicParsing="false" onAction="#consultarIncidencia" text="Consultar Incidencias" />

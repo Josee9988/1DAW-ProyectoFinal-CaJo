@@ -1,10 +1,9 @@
-package mensajes_controller;
+package controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Controller.bdController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 

@@ -1,6 +1,6 @@
--- ************************************************************************
--- * CREACION DE TABLAS PROYECTO 1ºDAW JOSE GRACIA Y CARLOS ROBLES 2018-19*
--- ************************************************************************
+-- *************************************************************************
+-- * CREACION DE TABLAS PROYECTO 1ºDAW JOSE GRACIA Y CARLOS ROBLES 2018-19 *
+-- *************************************************************************
  
  
  /**                                                                            
@@ -13,8 +13,9 @@
   */
 
 
-CREATE DATABASE IF NOT EXISTS proyectodaw;
-USE proyectodaw;
+CREATE DATABASE IF NOT EXISTS m_proyectodaw;
+
+USE m_proyectodaw;
 
 
 DROP TABLE IF EXISTS `incidencias`;
@@ -61,7 +62,6 @@ CREATE TABLE `proveedores` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
-
 DROP TABLE IF EXISTS `ubicaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -88,18 +88,13 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `apellidos` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `telefono` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
-  `direccion` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `direccion` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `usuarios`
---
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'roblito','123456789',1,'Carlos','Robles','537458857','Av Ibi Juan'),(3,'Jefe','1234',4,'Borja','Perez','2464756','Av 18554'),(5,'pepe','1234',2,'Jose','LL','687676','avg'),(6,'luis','1234',3,'Jose','LL','687676','avg'),(8,'carlos','1234',4,'Jose','LL','687676','avg'),(9,'juan','1234',2,'Jose','LL','687676','avg'),(10,'jose','1234',3,'Jose','LL','687676','avg'),(11,'toni','1234',4,'Jose','LL','687676','avg'),(18,'edu','1234',3,'Eduardo','Paya','3475879346','Av Juan Carlos');
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*	INSERT INTO FIRST USER ROOT AS AN ADMIN	*/
+INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
+VALUES ("root", "1234", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");

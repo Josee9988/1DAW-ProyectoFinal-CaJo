@@ -1,22 +1,16 @@
-package home_controller;
+package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import acerca_controller.acercaDe_controller;
-import administrador_controller.administrar_incidencias;
-import consultar_controller.consultar_incidencias;
-import consultar_controller.consultar_mensajes;
-import incidencia_controller.incidencia_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import mensajes_controller.mensajes;
 
 public class Home_Mantenimiento_Controller {
 
