@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home_controller.Home_Prof_Controller">
+   <children>
+      <Button fx:id="crearIncidencias" layoutX="244.0" layoutY="139.0" mnemonicParsing="false" onAction="#crearIncidencia" text="Crear Incidencia" />
+      <Button fx:id="consultarIncidencias" layoutX="226.0" layoutY="185.0" mnemonicParsing="false" onAction="#consultarIncidencia" text="Consultar Incidencias" />
+      <Button fx:id="consultarProveedores" layoutX="222.0" layoutY="232.0" mnemonicParsing="false" onAction="#consultarProveedor" text="Consultar Proveedores" />
+      <Label layoutX="188.0" layoutY="58.0" text="Menu de opciones">
+         <font>
+            <Font name="Tamil Sangam MN" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="484.0" layoutY="14.0" text="Bienvenido/a" />
+      <TextField fx:id="username" layoutX="469.0" layoutY="38.0" prefHeight="40.0" prefWidth="111.0" />
+      <TextField fx:id="rol_name" layoutX="469.0" layoutY="122.0" prefHeight="40.0" prefWidth="111.0" />
+      <Label layoutX="484.0" layoutY="98.0" text="Rol:" />
+      <TextField fx:id="fecha" layoutX="469.0" layoutY="206.0" prefHeight="40.0" prefWidth="111.0" />
+      <Label layoutX="484.0" layoutY="182.0" text="Fecha:" />
+      <Button fx:id="informacion" layoutX="21.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
+      <ImageView fitHeight="53.0" fitWidth="62.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Documents/Logos%20Spotify/WaniLogo2.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="mensajeConsulta" layoutX="231.0" layoutY="327.0" mnemonicParsing="false" onAction="#consultarMensajes" text="Consultar Mensajes" />
+      <Button fx:id="mensajeCrear" layoutX="248.0" layoutY="279.0" mnemonicParsing="false" onAction="#crearMensaje" text="Crear Mensaje" />
+   </children>
+</Pane>

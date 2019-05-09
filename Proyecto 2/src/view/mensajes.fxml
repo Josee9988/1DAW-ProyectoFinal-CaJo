@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mensajes">
+   <children>
+      <Label layoutX="216.0" layoutY="33.0" text="Crear Mensaje">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="resultado" layoutX="436.0" layoutY="23.0" prefHeight="32.0" prefWidth="139.0" />
+      <TextField fx:id="cuerpo" layoutX="24.0" layoutY="124.0" prefHeight="116.0" prefWidth="552.0" promptText="cuerpo" />
+      <TextField fx:id="asunto" layoutX="24.0" layoutY="79.0" prefHeight="32.0" prefWidth="552.0" promptText="asunto" />
+      <TextField fx:id="fecha" layoutX="24.0" layoutY="255.0" prefHeight="42.0" prefWidth="552.0" promptText="Fecha (dd/mm/aa)" />
+      <Button fx:id="crear" layoutX="243.0" layoutY="312.0" mnemonicParsing="false" onAction="#crearMensaje" prefHeight="42.0" prefWidth="114.0" text="Crear" />
+   </children>
+</Pane>
