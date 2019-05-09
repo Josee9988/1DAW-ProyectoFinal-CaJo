@@ -9,10 +9,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
    <children>
-      <Button fx:id="iniciar" layoutX="160.0" layoutY="267.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="27.0" prefWidth="183.0" text="Iniciar" />
-      <Label fx:id="login" ellipsisString="" layoutX="175.0" layoutY="34.0" prefHeight="45.0" prefWidth="138.0" text="LOGIN" textAlignment="CENTER">
+      <Button fx:id="iniciar" layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="61.0" prefWidth="191.0" style="-fx-background-color: #41EAC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" text="Iniciar" textAlignment="CENTER">
          <font>
-            <Font size="38.0" />
+            <Font name="Ubuntu" size="14.0" />
+         </font></Button>
+      <Label fx:id="login" ellipsisString="" layoutX="73.0" layoutY="24.0" prefHeight="51.0" prefWidth="349.0" text="Inicio de sesión" textAlignment="CENTER">
+         <font>
+            <Font name="FreeSans Bold" size="45.0" />
          </font>
          <effect>
             <Lighting>
@@ -25,13 +28,27 @@
             </Lighting>
          </effect>
       </Label>
-      <TextField fx:id="user" layoutX="168.0" layoutY="126.0" promptText="Usuario" />
-      <PasswordField fx:id="passwordField" layoutX="168.0" layoutY="170.0" promptText="Contraseña" />
+      <TextField fx:id="user" layoutX="149.0" layoutY="126.0" prefHeight="27.0" prefWidth="191.0" promptText="Usuario" style="-fx-border-color: #BEBFC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" />
+      <PasswordField fx:id="passwordField" layoutX="149.0" layoutY="170.0" prefHeight="27.0" prefWidth="191.0" promptText="Contraseña" style="-fx-border-color: #BEBFC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" />
       <TextField fx:id="area2" layoutX="345.0" layoutY="128.0" prefHeight="71.0" prefWidth="119.0" />
-      <ImageView fitHeight="85.0" fitWidth="62.0" layoutX="14.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="85.0" fitWidth="62.0" layoutX="11.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/view/jc-favicon.png" />
          </image>
       </ImageView>
+      <Pane layoutY="299.0" prefHeight="55.0" prefWidth="503.0" style="-fx-background-color: #BEBFC1; -fx-border-radius: 3px;">
+         <children>
+            <Text layoutX="26.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proyecto 1DAW" wrappingWidth="119.0">
+               <font>
+                  <Font name="Ubuntu Bold Italic" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="305.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jose Gracia &amp; Carlos Robles">
+               <font>
+                  <Font name="Ubuntu Bold Italic" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </Pane>
