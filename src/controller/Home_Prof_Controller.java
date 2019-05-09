@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Home_Prof_Controller {
@@ -53,6 +54,7 @@ public class Home_Prof_Controller {
 	private TextField rol_name;
 	@FXML
 	private TextField fecha;
+	private Image icon;
 
 	public Home_Prof_Controller() throws IOException {
 		this.incidencia = new Stage();
@@ -74,6 +76,7 @@ public class Home_Prof_Controller {
 		this.scene1 = new Scene(this.rootCrearIncidencia);
 		this.scene5 = new Scene(this.rootCrearMensaje);
 		this.scene4 = new Scene(this.acerca);
+		this.icon = null;
 	}
 
 	public void recibirParametros(String nombreCompleto, int rol) {
@@ -141,6 +144,9 @@ public class Home_Prof_Controller {
 	private void acercaDe() {
 		this.controllerInformacion.inicializar();
 		this.acercaDe.setScene(this.scene4);
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); //decimos dónde está el icono
+		acercaDe.getIcons().add(icon); //agregamos el icono
+		acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.acercaDe.show();
 	}
 }
