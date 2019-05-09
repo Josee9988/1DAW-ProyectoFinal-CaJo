@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Home_Admin_Controller {
@@ -71,6 +72,7 @@ public class Home_Admin_Controller {
 	private Scene scene9;
 	private Scene scene10;
 	private Scene scene11;
+	private Image icon;
 
 	@FXML
 	private TextField nombre;
@@ -120,6 +122,7 @@ public class Home_Admin_Controller {
 		this.scene7 = new Scene(this.root7);
 		this.scene9 = new Scene(this.root9);
 		this.scene11 = new Scene(this.root11);
+		this.icon = null;
 
 	}
 
@@ -183,6 +186,9 @@ public class Home_Admin_Controller {
 	public void acercaDe() throws IOException, SQLException {
 		this.controllerInformacion.inicializar();
 		this.acercaDe.setScene(this.scene6);
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); //decimos dónde está el icono
+		acercaDe.getIcons().add(icon); //agregamos el icono
+		acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.acercaDe.show();
 	}
 	
