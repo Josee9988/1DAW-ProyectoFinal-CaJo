@@ -23,7 +23,7 @@ public class Principal extends Application {
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setResizable(false);
 			primaryStage.setOpacity(0.85);
-			root.getStylesheets().add("view/loginstyles.css");
+			// root.getStylesheets().add("view/loginstyles.css");
 
 			Image icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 			primaryStage.getIcons().add(icon);

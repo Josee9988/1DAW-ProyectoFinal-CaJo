@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -7,12 +9,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="503.0" stylesheets="@/view/loginstyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
    <children>
-      <Button fx:id="iniciar" layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="61.0" prefWidth="191.0" style="-fx-background-color: #41EAC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" text="Iniciar" textAlignment="CENTER">
+      <Button id="inicio" fx:id="iniciar" layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="61.0" prefWidth="191.0" style="-fx-background-color: #41EAC1; -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-insets: 5px;" stylesheets="@loginstyles.css" text="Iniciar" textAlignment="CENTER">
          <font>
             <Font name="Ubuntu" size="14.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></Button>
       <Label fx:id="login" ellipsisString="" layoutX="73.0" layoutY="24.0" prefHeight="51.0" prefWidth="349.0" text="Inicio de sesión" textAlignment="CENTER">
          <font>
             <Font name="FreeSans Bold" size="45.0" />
@@ -30,7 +35,7 @@
       </Label>
       <TextField fx:id="user" layoutX="149.0" layoutY="126.0" prefHeight="27.0" prefWidth="191.0" promptText="Usuario" style="-fx-border-color: #BEBFC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" />
       <PasswordField fx:id="passwordField" layoutX="149.0" layoutY="170.0" prefHeight="27.0" prefWidth="191.0" promptText="Contraseña" style="-fx-border-color: #BEBFC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" />
-      <TextField fx:id="area2" layoutX="345.0" layoutY="128.0" prefHeight="71.0" prefWidth="119.0" />
+      <TextField fx:id="area2" layoutX="345.0" layoutY="128.0" prefHeight="71.0" prefWidth="119.0" style="-fx-border-radius: 6px; -fx-background-radius: 6px;" />
       <ImageView fitHeight="85.0" fitWidth="62.0" layoutX="11.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/view/jc-favicon.png" />

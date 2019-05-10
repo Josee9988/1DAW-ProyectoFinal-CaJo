@@ -98,3 +98,8 @@ CREATE TABLE `usuarios` (
 /*	INSERT INTO FIRST USER ROOT AS AN ADMIN	*/
 INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
 VALUES ("root", "1234", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");
+
+
+/*  WAITING FOR ENCRIPTION  */ 
+/*INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
+VALUES ("root", "e01064882b3febf97916c7df6e33b4b2", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");*/
