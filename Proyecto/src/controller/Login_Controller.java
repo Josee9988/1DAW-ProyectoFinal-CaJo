@@ -58,10 +58,11 @@ public class Login_Controller {
 	private PasswordField passwordField;
 	@FXML
 	private TextField area2;
+	@FXML
+	private javafx.scene.control.Button iniciar; // botón iniciar del login
 
 	private Image icon;
 	private Stage stage;
-	private javafx.scene.control.Button iniciar; // botón iniciar del login
 	private crypto_controller crypto;
 
 	public Login_Controller() throws IOException {
@@ -179,14 +180,14 @@ public class Login_Controller {
 								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.admin.setScene(this.scene4);
 
-				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-				// está el icono
-				this.admin.getIcons().add(this.icon); // agregamos el icono
-				this.admin.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
-				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
-				// botón "iniciar"
-				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); //decimos dónde está el icono
+				this.admin.getIcons().add(this.icon); //agregamos el icono
+				this.admin.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+				//cogemos la escena que tenemos y la cerramos en el momento que se activa el botón "iniciar"
+
+				this.stage = (Stage) this.iniciar.getScene().getWindow(); //seleccionamos la escena actual
+				this.stage.close(); //cerramos la ventana actual para pasar a la siguiente
+
 				this.admin.show();
 				break;
 

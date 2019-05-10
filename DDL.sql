@@ -1,6 +1,6 @@
--- *************************************************************************
--- * CREACION DE TABLAS PROYECTO 1ºDAW JOSE GRACIA Y CARLOS ROBLES 2018-19 *
--- *************************************************************************
+/* *************************************************************************
+   * CREACION DE TABLAS PROYECTO 1ºDAW JOSE GRACIA Y CARLOS ROBLES 2018-19 *
+   ************************************************************************* */
  
  
  /**                                                                            
@@ -82,8 +82,8 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` char(9) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` char(9) COLLATE utf8mb4_general_ci NOT NULL,
+  `user` char(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` char(32) COLLATE utf8mb4_general_ci NOT NULL,
   `rol` int(11) NOT NULL,
   `nombre` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `apellidos` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -95,11 +95,10 @@ CREATE TABLE `usuarios` (
 
 
 
+
+/*INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
+VALUES ("root", "1234", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");*/
+
 /*	INSERT INTO FIRST USER ROOT AS AN ADMIN	*/
 INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
-VALUES ("root", "1234", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");
-
-
-/*  WAITING FOR ENCRIPTION  */ 
-/*INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
-VALUES ("root", "e01064882b3febf97916c7df6e33b4b2", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");*/
+VALUES ("root", "e01064882b3febf97916c7df6e33b4b2", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");

@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
    <children>
-      <Button fx:id="iniciar" layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="61.0" prefWidth="191.0" style="-fx-background-color: #41EAC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" text="Iniciar" textAlignment="CENTER">
+      <Button fx:id="iniciar" layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="61.0" prefWidth="191.0" style="-fx-background-color: #41EAC1; -fx-background-radius: 6px; -fx-border-radius: 6px;" stylesheets="@loginstyles.css" text="Iniciar" textAlignment="CENTER">
          <font>
             <Font name="Ubuntu" size="14.0" />
          </font></Button>

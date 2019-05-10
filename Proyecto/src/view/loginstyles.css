@@ -1,4 +1,9 @@
-iniciar:hover{
-	-fx-background-color:  #41EAC1;
+#iniciar:hover{
+	-fx-background-color: #41EAC1;
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+}
+
+#iniciar:pressed{
+	-fx-background-color: red;
+	-fx-effect: dropshadow(three-pass-box, grey, 40, 0, 0, 0);
 }
