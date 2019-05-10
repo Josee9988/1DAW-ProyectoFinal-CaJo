@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.incidenciaDTO;
+import dto.usuarioDTO;
 
 public class jdbcIncidenciasDAO implements incidenciasDAO {
 
@@ -36,13 +37,13 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return resultado;
 	}
 
-	public ArrayList<incidenciaDTO> leerIncidencias(String nombreCompleto, int rol) throws SQLException {
+	public ArrayList<incidenciaDTO> leerIncidencias(usuarioDTO u) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
-		if(rol == 1 || rol == 2) {
-			this.ps = this.connect.prepareStatement("select * from incidencias");
-		}else {
+		if(u.getRol() == 1 || u.getRol() == 2) {
 			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");	
-			this.ps.setString(1,nombreCompleto);
+			this.ps.setString(1,u.getUser());
+		}else {
+			this.ps = this.connect.prepareStatement("select * from incidencias");
 		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {

@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import dto.incidenciaDTO;
+import dto.usuarioDTO;
 
 public class consultar_incidencias {
 
@@ -59,7 +60,7 @@ public class consultar_incidencias {
 		this.categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
-		this.tabla.getItems().addAll(this.bdincidencias.leerIncidencias(nombreCompleto,this.rol_number));
+		this.tabla.getItems().addAll(this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(),this.rol_number)));
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
