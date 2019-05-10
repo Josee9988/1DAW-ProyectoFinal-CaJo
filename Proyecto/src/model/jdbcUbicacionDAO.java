@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia_Berenguer, Carlos_Robles
+ * @version May 10, 2019
+ * @param args Recibe los datos del programa
+ */
 package model;
 
 import java.sql.Connection;
@@ -8,8 +13,8 @@ import java.util.ArrayList;
 
 import dto.ubicacionDTO;
 
-public class jdbcUbicacionDAO implements ubicacionDAO{
-	
+public class jdbcUbicacionDAO implements ubicacionDAO {
+
 	private Connection connect;
 	private PreparedStatement ps;
 	private ResultSet rs;
@@ -23,7 +28,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		this.rs.close();
 		this.connect.close();
 	}
-	
+
+	@Override
 	public void agregarUbicacion(ubicacionDTO u) throws SQLException {
 		this.ps = this.connect
 				.prepareStatement("insert into ubicaciones(nombre,descripcion,edificio,planta) values (?,?,?,?)");
@@ -33,7 +39,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		this.ps.setString(4, u.getPlanta());
 		this.ps.executeUpdate();
 	}
-	
+
+	@Override
 	public boolean modificarUbicacion(int id, String valor, String campo) throws SQLException {
 		boolean resultado = false;
 		switch (campo) {
@@ -59,7 +66,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		}
 		return resultado;
 	}
-	
+
+	@Override
 	public boolean eliminarUbicacion(ubicacionDTO u) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("delete from ubicaciones where id = ?");
@@ -71,7 +79,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		}
 		return resultado;
 	}
-	
+
+	@Override
 	public ArrayList<ubicacionDTO> leerUbicaciones() throws SQLException {
 		ArrayList<ubicacionDTO> aux = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from ubicaciones");
@@ -82,7 +91,6 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		}
 		return aux;
 	}
-	
 
 	public ArrayList<ubicacionDTO> leerNombresUbicaciones() throws SQLException {
 		ArrayList<ubicacionDTO> aux = new ArrayList<>();
@@ -94,6 +102,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		return aux;
 	}
 
+	@Override
 	public int obtnerIdUbicacion(String nombre) throws SQLException {
 		this.ps = this.connect.prepareStatement("select id from ubicaciones where nombre = ?");
 		this.ps.setString(1, nombre);

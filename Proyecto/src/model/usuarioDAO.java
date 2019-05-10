@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia_Berenguer, Carlos_Robles
+ * @version May 10, 2019
+ * @param args Recibe los datos del programa
+ */
 package model;
 
 import java.sql.SQLException;
@@ -7,9 +12,13 @@ import dto.incidenciaDTO;
 import dto.usuarioDTO;
 
 public interface usuarioDAO {
-	public int comprobarUsuario(usuarioDTO user) throws SQLException;
-	public void crearUsuario(usuarioDTO user) throws SQLException;
-	public boolean modificarUsuario(usuarioDTO user) throws SQLException;
-	public String devolverNombre(usuarioDTO user) throws SQLException;
-	public ArrayList<incidenciaDTO> leerIncidencias() throws SQLException;
+	int comprobarUsuario(usuarioDTO user) throws SQLException;
+
+	void crearUsuario(usuarioDTO user) throws SQLException;
+
+	boolean modificarUsuario(usuarioDTO user) throws SQLException;
+
+	String devolverNombre(usuarioDTO user) throws SQLException;
+
+	ArrayList<incidenciaDTO> leerIncidencias() throws SQLException;
 }

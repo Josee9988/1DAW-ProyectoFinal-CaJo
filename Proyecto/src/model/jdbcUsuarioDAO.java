@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia_Berenguer, Carlos_Robles
+ * @version May 10, 2019
+ * @param args Recibe los datos del programa
+ */
 package model;
 
 import java.sql.Connection;
@@ -38,6 +43,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return rol;
 	}
 
+	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
@@ -51,6 +57,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.executeUpdate();
 	}
 
+	@Override
 	public boolean modificarUsuario(usuarioDTO user) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("update usuarios set rol = ? where user = ?");
@@ -64,6 +71,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return resultado;
 	}
 
+	@Override
 	public String devolverNombre(usuarioDTO user) throws SQLException {
 		String nombre = "";
 		String apellidos = "";
@@ -78,6 +86,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return nombre.concat(" ").concat(apellidos);
 	}
 
+	@Override
 	public ArrayList<incidenciaDTO> leerIncidencias() throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from incidencias");
@@ -90,6 +99,5 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		}
 		return incidencias;
 	}
-
 
 }
