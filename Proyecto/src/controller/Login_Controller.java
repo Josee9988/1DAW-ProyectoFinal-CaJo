@@ -49,10 +49,6 @@ public class Login_Controller {
 	private Scene scene2;
 	private Scene scene3;
 	private Scene scene4;
-	private Image icon;
-	private Stage stage;
-	private javafx.scene.control.Button iniciar; // botón iniciar del login
-	private crypto_controller crypto;
 
 	@FXML
 	private TextField user;
@@ -62,6 +58,11 @@ public class Login_Controller {
 	private PasswordField passwordField;
 	@FXML
 	private TextField area2;
+
+	private Image icon;
+	private Stage stage;
+	private javafx.scene.control.Button iniciar; // botón iniciar del login
+	private crypto_controller crypto;
 
 	public Login_Controller() throws IOException {
 
@@ -100,18 +101,22 @@ public class Login_Controller {
 
 	@FXML
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
-			NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
+
 		// vemos si están vacios los campos o no.
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
 			// encriptamos el texto que ha escrito el usuario
 			passwordencriptada = this.crypto.encrypt(this.passwordField.getText());
 			switch (this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada))) {
-			case 1:
+
+
+
+			case 1: //profesor
 				this.controllerProfesor.recibirParametros(
-						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(
-								new usuarioDTO(this.user.getText(), this.passwordField.getText())));
+								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.profesor.setScene(this.scene1);
 
 				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
@@ -124,15 +129,18 @@ public class Login_Controller {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.profesor.show();
 				break;
-			case 2:
+
+
+
+			case 2: //jefedepartamento
 				this.controllerJefeDepartamento.recibirParametros(
-						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(
-								new usuarioDTO(this.user.getText(), this.passwordField.getText())));
+								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.jefe_departamento.setScene(this.scene2);
 
 				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-																									// está el icono
+				// está el icono
 				this.jefe_departamento.getIcons().add(this.icon); // agregamos el icono
 				this.jefe_departamento.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
@@ -141,15 +149,18 @@ public class Login_Controller {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.jefe_departamento.show();
 				break;
-			case 3:
+
+
+
+			case 3: //mantenimiento
 				this.controllerMantenimiento.recibirParametros(
-						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(
-								new usuarioDTO(this.user.getText(), this.passwordField.getText())));
+								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.mantenimiento.setScene(this.scene3);
-				this.mantenimiento.setScene(this.scene3);
+
 				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-																									// está el icono
+				// está el icono
 				this.mantenimiento.getIcons().add(this.icon); // agregamos el icono
 				this.mantenimiento.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
@@ -158,12 +169,16 @@ public class Login_Controller {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.mantenimiento.show();
 				break;
-			case 4:
+
+
+
+			case 4: //admin
 				this.controllerAdmin.recibirParametros(
-						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(
-								new usuarioDTO(this.user.getText(), this.passwordField.getText())));
+								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.admin.setScene(this.scene4);
+
 				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
 				// está el icono
 				this.admin.getIcons().add(this.icon); // agregamos el icono
@@ -174,6 +189,9 @@ public class Login_Controller {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.admin.show();
 				break;
+
+
+
 			default:
 				this.area2.setText("No encontrado");
 				break;
