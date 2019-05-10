@@ -13,45 +13,29 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Home_Jefe_Controller {
-	
+
 	private Date date;
 	private int rol_number;
-	
-	private Stage incidenciaCrear;
-	private Stage incidenciaConsultar;
-	private Stage proveedorAdmin;
-	private Stage proveedorConsultar;
+
+	private Stage incidencias;
+	private Stage proveedores;
+	private Stage mensajes;
 	private Stage acercaDe;
-	private Stage mensajesConsultar;
-	private Stage mensajesCrear;
-	private FXMLLoader fxmlLoaderCrearIncidencia;
-	private FXMLLoader fxmlLoaderConsultarIncidencias;
+	private FXMLLoader fxmlLoaderAdministrarIncidencias;
 	private FXMLLoader fxmlLoaderAdministrarProveedores;
-	private FXMLLoader fxmlLoaderConsultarProveedores;
-	private FXMLLoader fxmlLoaderAcerca;
 	private FXMLLoader fxmlLoaderConsultarMensajes;
-	private FXMLLoader fxmlLoaderCrearMensajes;
+	private FXMLLoader fxmlLoaderAcerca;
+	private Parent root1;
 	private Parent root2;
 	private Parent root3;
 	private Parent root4;
-	private Parent root5;
-	private Parent root6;
-	private Parent root8;
-	private Parent root9;
-//	private incidencia_Controller controllerIncidencias;
-//	private consultar_incidencias controllerConsularIncidencias;
-//	private proveedores_controller controllerProveedores;
-//	private consultar_proveedores controllerConsultarProveedores;
-//	private acercaDe_controller controllerInformacion;
-//	private mensajes controllerCrearMensajes;
-//	private consultar_mensajes controllerConsultarMensajes;
+	private consultar_incidencias controllerIncidencias;
+	private consultar_proveedores controllerProveedores;
+	private consultar_mensajes controllerMensajes;
+	private Scene scene1;
 	private Scene scene2;
 	private Scene scene3;
 	private Scene scene4;
-	private Scene scene5;
-	private Scene scene6;
-	private Scene scene8;
-	private Scene scene9;
 
 	@FXML
 	private TextField nombre;
@@ -61,31 +45,32 @@ public class Home_Jefe_Controller {
 	private TextField fecha;
 
 	public Home_Jefe_Controller() throws IOException {
-		
-		this.incidenciaCrear = new Stage();
-		this.proveedorAdmin = new Stage();
+
+		this.incidencias = new Stage();
+		this.proveedores = new Stage();
+		this.mensajes = new Stage();
 		this.acercaDe = new Stage();
-		this.mensajesCrear = new Stage();
 
-		this.fxmlLoaderCrearIncidencia = new FXMLLoader(getClass().getResource("/view/incidencia.fxml"));
-		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(getClass().getResource("/view/proveedores_admin.fxml"));
+		this.fxmlLoaderAdministrarIncidencias = new FXMLLoader(
+				getClass().getResource("/view/consultarIncidencias.fxml"));
+		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(
+				getClass().getResource("/view/consultarProveedores.fxml"));
+		this.fxmlLoaderConsultarMensajes = new FXMLLoader(getClass().getResource("/view/consultarMensajes.fxml"));
 		this.fxmlLoaderAcerca = new FXMLLoader(getClass().getResource("/view/acerca_de.fxml"));
-		this.fxmlLoaderCrearMensajes = new FXMLLoader(getClass().getResource("/view/mensajes.fxml"));
 
-		this.root2 = (Parent) this.fxmlLoaderCrearIncidencia.load();
-		this.root4 = (Parent) this.fxmlLoaderAdministrarProveedores.load();
-		this.root6 = (Parent) this.fxmlLoaderAcerca.load();
-		this.root9 = (Parent) this.fxmlLoaderCrearMensajes.load();
-//
-//		this.controllerIncidencias = this.fxmlLoaderCrearIncidencia.<incidencia_Controller>getController();
-//		this.controllerProveedores = this.fxmlLoaderAdministrarProveedores.<proveedores_controller>getController();
-//		this.controllerCrearMensajes = this.fxmlLoaderCrearMensajes.<mensajes>getController();
-//		this.controllerInformacion = this.fxmlLoaderAcerca.<acercaDe_controller>getController();
-//			
+		this.root1 = (Parent) this.fxmlLoaderAdministrarIncidencias.load();
+		this.root2 = (Parent) this.fxmlLoaderAdministrarProveedores.load();
+		this.root3 = (Parent) this.fxmlLoaderConsultarMensajes.load();
+		this.root4 = (Parent) this.fxmlLoaderAcerca.load();
+
+		this.controllerIncidencias = this.fxmlLoaderAdministrarIncidencias.<consultar_incidencias>getController();
+		this.controllerProveedores = this.fxmlLoaderAdministrarProveedores.<consultar_proveedores>getController();
+		this.controllerMensajes = this.fxmlLoaderConsultarMensajes.<consultar_mensajes>getController();
+
+		this.scene1 = new Scene(this.root1);
 		this.scene2 = new Scene(this.root2);
+		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
-		this.scene6 = new Scene(this.root6);
-		this.scene9 = new Scene(this.root9);
 
 	}
 
@@ -101,23 +86,30 @@ public class Home_Jefe_Controller {
 	}
 
 	@FXML
-	public void administrarProveedores() {
-		
+	public void administrarProveedores() throws SQLException {
+		this.controllerProveedores.inicializar(this.nombre.getText());
+		this.proveedores.setScene(this.scene1);
+		this.proveedores.show();
 	}
-	
+
 	@FXML
-	public void administrarIncidencias() {
-		
+	public void administrarIncidencias() throws SQLException {
+		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
+		this.incidencias.setScene(this.scene2);
+		this.incidencias.show();
 	}
-	
+
 	@FXML
-	public void administrarMensajes() {
-		
+	public void administrarMensajes() throws SQLException {
+		this.controllerMensajes.inicializar(this.nombre.getText());
+		this.mensajes.setScene(this.scene3);
+		this.mensajes.show();
 	}
-	
+
 	@FXML
 	public void acercaDe() {
-		
+		this.acercaDe.setScene(this.scene4);
+		this.acercaDe.show();
 	}
 
 }

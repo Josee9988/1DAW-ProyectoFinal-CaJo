@@ -16,36 +16,25 @@ public class Home_Prof_Controller {
 
 	private Date date;
 	private int rol_number;
-	private Stage incidencia;
-	private Stage incidenciaProfe;
-	private Stage proveedor;
-	private Stage mensajeCrear;
-	private Stage mensajeConsultar;
+	private Stage incidencias;
+	private Stage proveedores;
+	private Stage mensajes;
 	private Stage acercaDe;
-	private FXMLLoader fxmlLoadercrearIncidencia;
-	private FXMLLoader fxmlLoaderconsultarIncidencia;
-	private FXMLLoader fxmlLoaderconsultarProveedor;
-	private FXMLLoader fxmlLoaderCrearMensaje;
-	private FXMLLoader fxmlLoaderConsultarMensajes;
+	private FXMLLoader fxmlLoaderAdministrarIncidencia;
+	private FXMLLoader fxmlLoaderAdministrarProveedores;
+	private FXMLLoader fxmlLoaderAdministrarMensajes;
 	private FXMLLoader fxmlLoaderAcerca;
-	private Parent rootCrearIncidencia;
-	private Parent rootConsultarIncidencia;
-	private Parent rootConsultarProveedor;
-	private Parent rootCrearMensaje;
-	private Parent rootConsultarMensajes;
-	private Parent acerca;
-//	private incidencia_Controller controllerIncidencia;
-//	private consultar_incidencias controllerConsulta;
-//	private consultar_proveedores controllerProveedor;
-//	private mensajes controllerCrearMensaje;
-//	private consultar_mensajes controllerConsultarMensajes;
-//	private acercaDe_controller controllerInformacion;
+	private Parent rootAdministrarIncidencia;
+	private Parent rootAdministrarProveedores;
+	private Parent rootAdministrarMensajes;
+	private Parent rootAcerca;
+	private consultar_incidencias controllerIncidencia;
+	private consultar_proveedores controllerProveedores;
+	private consultar_mensajes controllerMensajes;
 	private Scene scene1;
 	private Scene scene2;
 	private Scene scene3;
 	private Scene scene4;
-	private Scene scene5;
-	private Scene scene6;
 
 	@FXML
 	private TextField username;
@@ -55,25 +44,29 @@ public class Home_Prof_Controller {
 	private TextField fecha;
 
 	public Home_Prof_Controller() throws IOException {
-		this.incidencia = new Stage();
-		this.mensajeCrear = new Stage();
+		this.incidencias = new Stage();
+		this.proveedores = new Stage();
+		this.mensajes = new Stage();
 		this.acercaDe = new Stage();
 		
-		this.fxmlLoadercrearIncidencia = new FXMLLoader(getClass().getResource("/view/incidencia.fxml"));
-		this.fxmlLoaderCrearMensaje = new FXMLLoader(getClass().getResource("/view/mensajes.fxml"));
+		this.fxmlLoaderAdministrarIncidencia = new FXMLLoader(getClass().getResource("/view/consultarIncidencias.fxml"));
+		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(getClass().getResource("/view/consultarProveedores.fxml"));
+		this.fxmlLoaderAdministrarMensajes = new FXMLLoader(getClass().getResource("/view/consultarMensajes.fxml"));
 		this.fxmlLoaderAcerca = new FXMLLoader(getClass().getResource("/view/acerca_de.fxml"));
 		
-		this.rootCrearIncidencia = (Parent) this.fxmlLoadercrearIncidencia.load();
-		this.rootCrearMensaje = (Parent) this.fxmlLoaderCrearMensaje.load();
-		this.acerca = (Parent) this.fxmlLoaderAcerca.load();
+		this.rootAdministrarIncidencia = (Parent) this.fxmlLoaderAdministrarIncidencia.load();
+		this.rootAdministrarProveedores = (Parent) this.fxmlLoaderAdministrarProveedores.load();
+		this.rootAdministrarMensajes = (Parent) this.fxmlLoaderAdministrarMensajes.load();
+		this.rootAcerca = (Parent) this.fxmlLoaderAcerca.load();
 		
-//		this.controllerIncidencia = this.fxmlLoadercrearIncidencia.<incidencia_Controller>getController();
-//		this.controllerCrearMensaje = this.fxmlLoaderCrearMensaje.<mensajes>getController();
-//		this.controllerInformacion = this.fxmlLoaderAcerca.<acercaDe_controller>getController();
+		this.controllerIncidencia = this.fxmlLoaderAdministrarIncidencia.<consultar_incidencias>getController();
+		this.controllerProveedores = this.fxmlLoaderAdministrarProveedores.<consultar_proveedores>getController();
+		this.controllerMensajes = this.fxmlLoaderAdministrarMensajes.<consultar_mensajes>getController();
 		
-		this.scene1 = new Scene(this.rootCrearIncidencia);
-		this.scene5 = new Scene(this.rootCrearMensaje);
-		this.scene4 = new Scene(this.acerca);
+		this.scene1 = new Scene(this.rootAdministrarIncidencia);
+		this.scene2 = new Scene(this.rootAdministrarProveedores);
+		this.scene3 = new Scene(this.rootAdministrarMensajes);
+		this.scene4 = new Scene(this.rootAcerca);
 	}
 
 	public void recibirParametros(String nombreCompleto, int rol) {
@@ -88,22 +81,29 @@ public class Home_Prof_Controller {
 	}
 	
 	@FXML
-	public void administrarIncidencias() {
-		
+	public void administrarIncidencias() throws SQLException {
+		this.controllerIncidencia.inicializar(this.username.getText(),this.rol_number);
+		this.incidencias.setScene(this.scene1);
+		this.incidencias.show();
 	}
 	
 	@FXML
-	public void consultarProveedores() {
-		
+	public void consultarProveedores() throws SQLException {
+		this.controllerProveedores.inicializar(this.username.getText());
+		this.proveedores.setScene(this.scene2);
+		this.proveedores.show();
 	}
 	
 	@FXML
-	public void administrarMensajes() {
-		
+	public void administrarMensajes() throws SQLException {
+		this.controllerMensajes.inicializar(this.username.getText());
+		this.mensajes.setScene(this.scene3);
+		this.mensajes.show();
 	}
 
 	@FXML
-	public void acercaDe() {
-		
+	public void acercaDe() throws SQLException {
+		this.acercaDe.setScene(this.scene4);
+		this.acercaDe.show();
 	}
 }
