@@ -1,18 +1,13 @@
-/**
- * @author Jose_Gracia_Berenguer, Carlos_Robles
- * @version May 10, 2019
- * @param args Recibe los datos del programa
- */
 package dto;
 
 public class proveedorDTO {
-
+	
 	private int id;
 	private String nombre;
 	private String contacto;
 	private String direccion;
 	private int valoracion;
-
+	
 	public proveedorDTO() {
 		this.id = 0;
 		this.nombre = "";
@@ -20,7 +15,7 @@ public class proveedorDTO {
 		this.direccion = "";
 		this.valoracion = 0;
 	}
-
+	
 	public proveedorDTO(int id) {
 		this.id = id;
 		this.nombre = "";
@@ -28,7 +23,7 @@ public class proveedorDTO {
 		this.direccion = "";
 		this.valoracion = 0;
 	}
-
+	
 	public proveedorDTO(int id, String nombre, String contacto, String direccion, int valoracion) {
 		this.id = id;
 		this.nombre = nombre;
@@ -36,7 +31,7 @@ public class proveedorDTO {
 		this.direccion = direccion;
 		this.valoracion = valoracion;
 	}
-
+	
 	public proveedorDTO(String nombre, String contacto, String direccion, int valoracion) {
 		this.id = 0;
 		this.nombre = nombre;
@@ -44,19 +39,19 @@ public class proveedorDTO {
 		this.direccion = direccion;
 		this.valoracion = valoracion;
 	}
-
+	
 	public proveedorDTO(proveedorDTO p) {
-		this(p.id, p.nombre, p.contacto, p.direccion, p.valoracion);
+		this(p.id,p.nombre,p.contacto,p.direccion,p.valoracion);
 	}
-
+	
 	public proveedorDTO clonar() {
 		return new proveedorDTO(this);
 	}
-
+	
 	@Override
 	public String toString() {
-		return "proveedorDTO [id=" + this.id + ", nombre=" + this.nombre + ", contacto=" + this.contacto
-				+ ", direccion=" + this.direccion + ", valoracion=" + this.valoracion + "]";
+		return "proveedorDTO [id=" + id + ", nombre=" + nombre + ", contacto=" + contacto + ", direccion=" + direccion
+				+ ", valoracion=" + valoracion + "]";
 	}
 
 	public void visualizar() {
@@ -64,7 +59,7 @@ public class proveedorDTO {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
@@ -72,7 +67,7 @@ public class proveedorDTO {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
@@ -80,7 +75,7 @@ public class proveedorDTO {
 	}
 
 	public String getContacto() {
-		return this.contacto;
+		return contacto;
 	}
 
 	public void setContacto(String contacto) {
@@ -88,7 +83,7 @@ public class proveedorDTO {
 	}
 
 	public String getDireccion() {
-		return this.direccion;
+		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
@@ -96,7 +91,7 @@ public class proveedorDTO {
 	}
 
 	public int getValoracion() {
-		return this.valoracion;
+		return valoracion;
 	}
 
 	public void setValoracion(int valoracion) {

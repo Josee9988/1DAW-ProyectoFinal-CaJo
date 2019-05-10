@@ -1,8 +1,3 @@
-/**
- * @author Jose_Gracia_Berenguer, Carlos_Robles
- * @version May 10, 2019
- * @param args Recibe los datos del programa
- */
 package model;
 
 import java.sql.SQLException;
@@ -11,13 +6,9 @@ import java.util.ArrayList;
 import dto.ubicacionDTO;
 
 public interface ubicacionDAO {
-	void agregarUbicacion(ubicacionDTO u) throws SQLException;
-
-	boolean modificarUbicacion(int id, String valor, String campo) throws SQLException;
-
-	boolean eliminarUbicacion(ubicacionDTO u) throws SQLException;
-
-	ArrayList<ubicacionDTO> leerUbicaciones() throws SQLException;
-
-	int obtnerIdUbicacion(String nombre) throws SQLException;
+	public void agregarUbicacion(ubicacionDTO u) throws SQLException;
+	public boolean modificarUbicacion(int id, String valor, String campo) throws SQLException;
+	public boolean eliminarUbicacion(ubicacionDTO u) throws SQLException;
+	public ArrayList<ubicacionDTO> leerUbicaciones() throws SQLException;
+	public int obtnerIdUbicacion(String nombre) throws SQLException;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_usuarios">
+   <children>
+      <Label layoutX="358.0" layoutY="25.0" text="Consultar Usuarios">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="912.0">
+        <columns>
+       	 <TableColumn fx:id="id" prefWidth="60.01005935668945" text="ID" />
+          <TableColumn fx:id="usuario" prefWidth="102.01005935668945" text="Usuario" />
+          <TableColumn fx:id="password" prefWidth="190.9899597167969" text="Password" />
+            <TableColumn fx:id="rol" prefWidth="62.70709228515625" text="Rol" />
+            <TableColumn fx:id="nombre" prefWidth="154.29287719726562" text="Nombre" />
+            <TableColumn fx:id="apellidos" prefWidth="109.30902099609375" text="Apellidos" />
+            <TableColumn fx:id="telefono" minWidth="0.0" prefWidth="118.82220458984375" text="Telefono" />
+            <TableColumn fx:id="direccion" minWidth="4.1995849609375" prefWidth="113.30926513671875" text="Direccion" />
+        </columns>
+      </TableView>
+      <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button layoutX="21.0" layoutY="528.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="36.0" prefWidth="272.0" text="Agregar usuario" />
+      <Button layoutX="335.0" layoutY="528.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="272.0" text="Modificar usuario" />
+      <Button layoutX="656.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="36.0" prefWidth="274.0" text="Eliminar usuario" />
+   </children>
+</Pane>

@@ -1,8 +1,3 @@
-/**
- * @author Jose_Gracia_Berenguer, Carlos_Robles
- * @version May 10, 2019
- * @param args Recibe los datos del programa
- */
 package controller;
 
 import java.sql.SQLException;
@@ -16,10 +11,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.jdbcProveedoresDAO;
 
 public class consultar_proveedores {
 	
 	private Date date;
+	private jdbcProveedoresDAO bdproveedores;
 	
 	@FXML
 	private TableView<proveedorDTO> tabla;
@@ -40,6 +37,7 @@ public class consultar_proveedores {
 	
 	public consultar_proveedores() {
 		this.tabla = new TableView<proveedorDTO>();
+		this.bdproveedores = new jdbcProveedoresDAO();
 	}
 	
 	public void inicializar(String nombreCompleto) throws SQLException {
@@ -48,12 +46,27 @@ public class consultar_proveedores {
 		this.contacto.setCellValueFactory(new PropertyValueFactory<>("Contacto"));
 		this.direccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
 		this.valoracion.setCellValueFactory(new PropertyValueFactory<>("Valoracion"));	
-		this.tabla.getItems().addAll(bdController.getInstance().leerProveedores());
+		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
+	}
+	
+	@FXML
+	public void agregarProveedor() {
+		
+	}
+	
+	@FXML
+	public void modificarProveedor() {
+		
+	}
+	
+	@FXML
+	public void eliminarProveedor() {
+		
 	}
 
 }

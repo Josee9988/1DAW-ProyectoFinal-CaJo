@@ -1,11 +1,8 @@
-/**
- * @author Jose_Gracia_Berenguer, Carlos_Robles
- * @version May 10, 2019
- * @param args Recibe los datos del programa
- */
 package dto;
 
 public class usuarioDTO {
+	
+	private int id;
 	private String user;
 	private String password;
 	private int rol;
@@ -13,8 +10,9 @@ public class usuarioDTO {
 	private String apellidos;
 	private String telefono;
 	private String direccion;
-
+	
 	public usuarioDTO() {
+		this.id = 0;
 		this.user = "";
 		this.password = "";
 		this.rol = 0;
@@ -23,8 +21,9 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-
+	
 	public usuarioDTO(String user) {
+		this.id = 0;
 		this.user = user;
 		this.password = "";
 		this.rol = 0;
@@ -33,8 +32,9 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-
+	
 	public usuarioDTO(String user, int rol) {
+		this.id = 0;
 		this.user = user;
 		this.password = "";
 		this.rol = rol;
@@ -43,8 +43,9 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-
+	
 	public usuarioDTO(String user, String password) {
+		this.id = 0;
 		this.user = user;
 		this.password = password;
 		this.rol = 0;
@@ -53,9 +54,22 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-
+	
 	public usuarioDTO(String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
+		this.id = 0;
+		this.user = user;
+		this.password = password;
+		this.rol = rol;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.direccion = direccion;
+	}
+	
+	public usuarioDTO(int id, String user, String password, int rol, String nombre, String apellidos, String telefono,
+			String direccion) {
+		this.id = id;
 		this.user = user;
 		this.password = password;
 		this.rol = rol;
@@ -66,26 +80,25 @@ public class usuarioDTO {
 	}
 
 	public usuarioDTO(usuarioDTO u) {
-		this(u.user, u.password, u.rol, u.nombre, u.apellidos, u.telefono, u.direccion);
+		this(u.user,u.password,u.rol,u.nombre,u.apellidos,u.telefono,u.direccion);
 	}
-
+	
 	public usuarioDTO clonar() {
 		return new usuarioDTO(this);
 	}
-
+	
 	public void visualizar() {
 		System.out.println(this.toString());
 	}
-
+	
 	@Override
 	public String toString() {
-		return "usuarioDTO [user=" + this.user + ", password=" + this.password + ", rol=" + this.rol + ", nombre="
-				+ this.nombre + ", apellidos=" + this.apellidos + ", telefono=" + this.telefono + ", direccion="
-				+ this.direccion + "]";
+		return "usuarioDTO [id=" + id + ",user=" + user + ", password=" + password + ", rol=" + rol + ", nombre="
+				+ nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direccion=" + direccion + "]";
 	}
 
 	public String getUser() {
-		return this.user;
+		return user;
 	}
 
 	public void setUser(String user) {
@@ -93,7 +106,7 @@ public class usuarioDTO {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -101,7 +114,7 @@ public class usuarioDTO {
 	}
 
 	public int getRol() {
-		return this.rol;
+		return rol;
 	}
 
 	public void setRol(int rol) {
@@ -109,7 +122,7 @@ public class usuarioDTO {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
@@ -117,7 +130,7 @@ public class usuarioDTO {
 	}
 
 	public String getApellidos() {
-		return this.apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
@@ -125,7 +138,7 @@ public class usuarioDTO {
 	}
 
 	public String getTelefono() {
-		return this.telefono;
+		return telefono;
 	}
 
 	public void setTelefono(String telefono) {
@@ -133,11 +146,19 @@ public class usuarioDTO {
 	}
 
 	public String getDireccion() {
-		return this.direccion;
+		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

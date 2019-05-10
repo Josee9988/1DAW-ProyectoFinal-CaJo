@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_ubicaciones">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_ubicaciones">
    <children>
       <Label layoutX="358.0" layoutY="25.0" text="Consultar Ubicaciones">
          <font>
@@ -23,5 +23,8 @@
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#agregarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Agregar ubicacion" />
+      <Button layoutX="338.0" layoutY="546.0" mnemonicParsing="false" onAction="#modificarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Modificar ubicacion" />
+      <Button layoutX="651.0" layoutY="546.0" mnemonicParsing="false" onAction="#eliminarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Eliminar ubicacion" />
    </children>
 </Pane>

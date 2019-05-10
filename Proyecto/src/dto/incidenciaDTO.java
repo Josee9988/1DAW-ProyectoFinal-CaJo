@@ -1,24 +1,19 @@
-/**
- * @author Jose_Gracia_Berenguer, Carlos_Robles
- * @version May 10, 2019
- * @param args Recibe los datos del programa
- */
 package dto;
 
 import java.sql.Date;
 
 public class incidenciaDTO {
-
+	
 	private int id;
 	private String usuario;
-	private String descripcion;
+	private String descripcion; 
 	private String elemento;
-	private String ubicacion;
-	private Date fecha;
-	private String urgencia;
+	private String ubicacion; 
+	private Date fecha; 
+	private String urgencia; 
 	private String categoria;
 	private String materiales;
-
+	
 	public incidenciaDTO() {
 		this.id = 0;
 		this.usuario = "";
@@ -30,7 +25,7 @@ public class incidenciaDTO {
 		this.categoria = "";
 		this.materiales = "";
 	}
-
+	
 	public incidenciaDTO(int id) {
 		this.id = id;
 		this.usuario = "";
@@ -42,7 +37,7 @@ public class incidenciaDTO {
 		this.categoria = "";
 		this.materiales = "";
 	}
-
+	
 	public incidenciaDTO(int id, String urgencia) {
 		this.id = id;
 		this.usuario = "";
@@ -54,7 +49,7 @@ public class incidenciaDTO {
 		this.categoria = "";
 		this.materiales = "";
 	}
-
+	
 	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion) {
 		this.id = id;
 		this.usuario = usuario;
@@ -66,7 +61,7 @@ public class incidenciaDTO {
 		this.categoria = "";
 		this.materiales = "";
 	}
-
+	
 	public incidenciaDTO(String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
 			String urgencia, String categoria, String materiales) {
 		this.id = 0;
@@ -79,8 +74,8 @@ public class incidenciaDTO {
 		this.categoria = categoria;
 		this.materiales = materiales;
 	}
-
-	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
+	
+	public incidenciaDTO(int id,String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
 			String urgencia, String categoria, String materiales) {
 		this.id = id;
 		this.usuario = usuario;
@@ -92,17 +87,17 @@ public class incidenciaDTO {
 		this.categoria = categoria;
 		this.materiales = materiales;
 	}
-
+	
 	public incidenciaDTO(incidenciaDTO i) {
-		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.fecha, i.urgencia, i.categoria, i.materiales);
+		this(i.id,i.usuario,i.descripcion,i.elemento,i.ubicacion,i.fecha,i.urgencia,i.categoria,i.materiales);
 	}
-
+	
 	public incidenciaDTO clonar() {
 		return new incidenciaDTO(this);
 	}
-
+	
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
@@ -110,7 +105,7 @@ public class incidenciaDTO {
 	}
 
 	public String getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
@@ -118,7 +113,7 @@ public class incidenciaDTO {
 	}
 
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
@@ -126,7 +121,7 @@ public class incidenciaDTO {
 	}
 
 	public String getElemento() {
-		return this.elemento;
+		return elemento;
 	}
 
 	public void setElemento(String elemento) {
@@ -134,7 +129,7 @@ public class incidenciaDTO {
 	}
 
 	public String getUbicacion() {
-		return this.ubicacion;
+		return ubicacion;
 	}
 
 	public void setUbicacion(String ubicacion) {
@@ -142,7 +137,7 @@ public class incidenciaDTO {
 	}
 
 	public Date getFecha() {
-		return this.fecha;
+		return fecha;
 	}
 
 	public void setFecha(Date fecha) {
@@ -150,7 +145,7 @@ public class incidenciaDTO {
 	}
 
 	public String getUrgencia() {
-		return this.urgencia;
+		return urgencia;
 	}
 
 	public void setUrgencia(String urgencia) {
@@ -158,7 +153,7 @@ public class incidenciaDTO {
 	}
 
 	public String getCategoria() {
-		return this.categoria;
+		return categoria;
 	}
 
 	public void setCategoria(String categoria) {
@@ -166,7 +161,7 @@ public class incidenciaDTO {
 	}
 
 	public String getMateriales() {
-		return this.materiales;
+		return materiales;
 	}
 
 	public void setMateriales(String materiales) {
@@ -175,14 +170,13 @@ public class incidenciaDTO {
 
 	@Override
 	public String toString() {
-		return "incidenciaDTO [id=" + this.id + ",usuario=" + this.usuario + ", descripcion=" + this.descripcion
-				+ ", elemento=" + this.elemento + ", ubicacion=" + this.ubicacion + ", fecha=" + this.fecha
-				+ ", urgencia=" + this.urgencia + ", categoria=" + this.categoria + ", materiales=" + this.materiales
-				+ "]";
+		return "incidenciaDTO [id=" + id + ",usuario=" + usuario + ", descripcion=" + descripcion + ", elemento=" + elemento
+				+ ", ubicacion=" + ubicacion + ", fecha=" + fecha + ", urgencia=" + urgencia + ", categoria="
+				+ categoria + ", materiales=" + materiales + "]";
 	}
-
+	
 	public void visualizar() {
 		System.out.println(this.toString());
 	}
-
+	
 }
