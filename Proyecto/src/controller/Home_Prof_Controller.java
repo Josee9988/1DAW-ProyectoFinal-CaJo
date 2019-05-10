@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Home_Prof_Controller {
@@ -35,12 +34,12 @@ public class Home_Prof_Controller {
 	private Parent rootCrearMensaje;
 	private Parent rootConsultarMensajes;
 	private Parent acerca;
-	private incidencia_Controller controllerIncidencia;
-	private consultar_incidencias controllerConsulta;
-	private consultar_proveedores controllerProveedor;
-	private mensajes controllerCrearMensaje;
-	private consultar_mensajes controllerConsultarMensajes;
-	private acercaDe_controller controllerInformacion;
+//	private incidencia_Controller controllerIncidencia;
+//	private consultar_incidencias controllerConsulta;
+//	private consultar_proveedores controllerProveedor;
+//	private mensajes controllerCrearMensaje;
+//	private consultar_mensajes controllerConsultarMensajes;
+//	private acercaDe_controller controllerInformacion;
 	private Scene scene1;
 	private Scene scene2;
 	private Scene scene3;
@@ -54,7 +53,6 @@ public class Home_Prof_Controller {
 	private TextField rol_name;
 	@FXML
 	private TextField fecha;
-	private Image icon;
 
 	public Home_Prof_Controller() throws IOException {
 		this.incidencia = new Stage();
@@ -69,14 +67,13 @@ public class Home_Prof_Controller {
 		this.rootCrearMensaje = (Parent) this.fxmlLoaderCrearMensaje.load();
 		this.acerca = (Parent) this.fxmlLoaderAcerca.load();
 		
-		this.controllerIncidencia = this.fxmlLoadercrearIncidencia.<incidencia_Controller>getController();
-		this.controllerCrearMensaje = this.fxmlLoaderCrearMensaje.<mensajes>getController();
-		this.controllerInformacion = this.fxmlLoaderAcerca.<acercaDe_controller>getController();
+//		this.controllerIncidencia = this.fxmlLoadercrearIncidencia.<incidencia_Controller>getController();
+//		this.controllerCrearMensaje = this.fxmlLoaderCrearMensaje.<mensajes>getController();
+//		this.controllerInformacion = this.fxmlLoaderAcerca.<acercaDe_controller>getController();
 		
 		this.scene1 = new Scene(this.rootCrearIncidencia);
 		this.scene5 = new Scene(this.rootCrearMensaje);
 		this.scene4 = new Scene(this.acerca);
-		this.icon = null;
 	}
 
 	public void recibirParametros(String nombreCompleto, int rol) {
@@ -89,64 +86,24 @@ public class Home_Prof_Controller {
 		this.fecha.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
 		this.rol_number = rol;
 	}
-
+	
 	@FXML
-	private void crearIncidencia() throws IOException, SQLException {
-		this.controllerIncidencia.inicializar(this.username.getText(), this.rol_number);
-		this.incidencia.setScene(this.scene1);
-		this.incidencia.show();
-	}
-
-	@FXML
-	private void consultarIncidencia() throws IOException, SQLException {
-		this.incidenciaProfe = new Stage();
-		this.fxmlLoaderconsultarIncidencia = new FXMLLoader(getClass().getResource("/view/consultarIncidencias.fxml"));
-		this.rootConsultarIncidencia = (Parent) this.fxmlLoaderconsultarIncidencia.load();
-		this.controllerConsulta = this.fxmlLoaderconsultarIncidencia.<consultar_incidencias>getController();
-		this.scene2 = new Scene(this.rootConsultarIncidencia);
-		this.controllerConsulta.inicializar(this.username.getText(), this.rol_number);
-		this.incidenciaProfe.setScene(this.scene2);
-		this.incidenciaProfe.show();
-	}
-
-	@FXML
-	private void consultarProveedor() throws IOException, SQLException {
-		this.proveedor = new Stage();
-		this.fxmlLoaderconsultarProveedor = new FXMLLoader(getClass().getResource("/view/consultarProveedores.fxml"));
-		this.rootConsultarProveedor = (Parent) this.fxmlLoaderconsultarProveedor.load();
-		this.controllerProveedor = this.fxmlLoaderconsultarProveedor.<consultar_proveedores>getController();
-		this.scene3 = new Scene(this.rootConsultarProveedor);
-		this.controllerProveedor.inicializar(this.username.getText());
-		this.proveedor.setScene(this.scene3);
-		this.proveedor.show();
+	public void administrarIncidencias() {
+		
 	}
 	
 	@FXML
-	private void crearMensaje() throws IOException, SQLException {
-		this.controllerCrearMensaje.inicializar();
-		this.mensajeCrear.setScene(this.scene5);
-		this.mensajeCrear.show();
+	public void consultarProveedores() {
+		
 	}
 	
 	@FXML
-	private void consultarMensajes() throws IOException, SQLException {
-		this.mensajeConsultar = new Stage();
-		this.fxmlLoaderConsultarMensajes = new FXMLLoader(getClass().getResource("/view/consultarMensajes.fxml"));
-		this.rootConsultarMensajes = (Parent) this.fxmlLoaderConsultarMensajes.load();
-		this.controllerConsultarMensajes = this.fxmlLoaderConsultarMensajes.<consultar_mensajes>getController();
-		this.scene6 = new Scene(this.rootConsultarMensajes);
-		this.controllerConsultarMensajes.inicializar(this.username.getText());
-		this.mensajeConsultar.setScene(this.scene6);
-		this.mensajeConsultar.show();
+	public void administrarMensajes() {
+		
 	}
 
 	@FXML
-	private void acercaDe() {
-		this.controllerInformacion.inicializar();
-		this.acercaDe.setScene(this.scene4);
-		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); //decimos dónde está el icono
-		acercaDe.getIcons().add(icon); //agregamos el icono
-		acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
-		this.acercaDe.show();
+	public void acercaDe() {
+		
 	}
 }

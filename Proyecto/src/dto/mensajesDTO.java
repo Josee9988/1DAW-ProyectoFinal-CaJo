@@ -7,6 +7,7 @@ public class mensajesDTO {
 	private int id;
 	private String asunto;
 	private String cuerpo;
+	private int incidencia;
 	private Date fecha;
 	
 	public mensajesDTO() {
@@ -30,6 +31,14 @@ public class mensajesDTO {
 		this.fecha = fecha;
 	}
 	
+	public mensajesDTO(int id, String asunto, String cuerpo, int incidencia, Date fecha) {
+		this.id = id;
+		this.asunto = asunto;
+		this.cuerpo = cuerpo;
+		this.incidencia = incidencia;
+		this.fecha = fecha;
+	}
+
 	public mensajesDTO(mensajesDTO m) {
 		this(m.id,m.asunto,m.cuerpo,m.fecha);
 	}
@@ -40,7 +49,7 @@ public class mensajesDTO {
 
 	@Override
 	public String toString() {
-		return "mensajesDTO [id=" + id + ", asunto=" + asunto + ", cuerpo=" + cuerpo + ", fecha=" + fecha + "]";
+		return "mensajesDTO [id=" + id + ", asunto=" + asunto + ", cuerpo=" + cuerpo + ", incidencia=" + incidencia + " fecha=" + fecha + "]";
 	}
 	
 	public void visualizar() {
@@ -69,6 +78,14 @@ public class mensajesDTO {
 
 	public void setCuerpo(String cuerpo) {
 		this.cuerpo = cuerpo;
+	}
+
+	public int getIncidencia() {
+		return incidencia;
+	}
+
+	public void setIncidencia(int incidencia) {
+		this.incidencia = incidencia;
 	}
 
 	public Date getFecha() {

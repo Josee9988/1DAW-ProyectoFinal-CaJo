@@ -9,9 +9,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Prof_Controller">
    <children>
-      <Button fx:id="crearIncidencias" layoutX="244.0" layoutY="139.0" mnemonicParsing="false" onAction="#crearIncidencia" text="Crear Incidencia" />
-      <Button fx:id="consultarIncidencias" layoutX="226.0" layoutY="185.0" mnemonicParsing="false" onAction="#consultarIncidencia" text="Consultar Incidencias" />
-      <Button fx:id="consultarProveedores" layoutX="222.0" layoutY="232.0" mnemonicParsing="false" onAction="#consultarProveedor" text="Consultar Proveedores" />
+      <Button fx:id="incidenciasAdmin" layoutX="79.0" layoutY="142.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="338.0" text="Mis incidencias" />
+      <Button fx:id="proveedoresConsult" layoutX="79.0" layoutY="193.0" mnemonicParsing="false" onAction="#consultarProveedores" prefHeight="27.0" prefWidth="338.0" text="Consultar Proveedores" />
       <Label layoutX="188.0" layoutY="58.0" text="Menu de opciones">
          <font>
             <Font name="Tamil Sangam MN" size="29.0" />
@@ -29,7 +28,6 @@
             <Image url="@../../../../Documents/Logos%20Spotify/WaniLogo2.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="mensajeConsulta" layoutX="231.0" layoutY="327.0" mnemonicParsing="false" onAction="#consultarMensajes" text="Consultar Mensajes" />
-      <Button fx:id="mensajeCrear" layoutX="248.0" layoutY="279.0" mnemonicParsing="false" onAction="#crearMensaje" text="Crear Mensaje" />
+      <Button fx:id="mismensajes" layoutX="79.0" layoutY="246.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="338.0" text="Mis mensajes" />
    </children>
 </Pane>

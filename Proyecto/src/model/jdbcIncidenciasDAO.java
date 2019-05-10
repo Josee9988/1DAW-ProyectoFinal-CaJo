@@ -36,9 +36,14 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return resultado;
 	}
 
-	public ArrayList<incidenciaDTO> leerIncidencias() throws SQLException {
+	public ArrayList<incidenciaDTO> leerIncidencias(String nombreCompleto, int rol) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
-		this.ps = this.connect.prepareStatement("select * from incidencias");
+		if(rol == 1 || rol == 2) {
+			this.ps = this.connect.prepareStatement("select * from incidencias");
+		}else {
+			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");	
+			this.ps.setString(1,nombreCompleto);
+		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			incidencias.add(new incidenciaDTO(this.rs.getInt("id_incidencia"), this.rs.getString("usuario"),

@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import dto.incidenciaDTO;
 import dto.usuarioDTO;
 
 public class jdbcUsuarioDAO implements usuarioDAO {
@@ -26,7 +24,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	@Override
-	public int comprobarUsuario(usuarioDTO user) throws SQLException {
+	public int comprobarExistencia(usuarioDTO user) throws SQLException {
 		int rol = 0;
 		this.ps = this.connect.prepareStatement("select * from usuarios where user = ? and password = ?");
 		this.ps.setString(1, user.getUser());
@@ -77,19 +75,15 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		}
 		return nombre.concat(" ").concat(apellidos);
 	}
-
-	public ArrayList<incidenciaDTO> leerIncidencias() throws SQLException {
-		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
-		this.ps = this.connect.prepareStatement("select * from incidencias");
+	
+	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException {
+		ArrayList<usuarioDTO> usuarios = new ArrayList<usuarioDTO>();
+		this.ps = this.connect.prepareStatement("select * from usuarios");	
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-			incidencias.add(new incidenciaDTO(this.rs.getInt("id_incidencia"), this.rs.getString("usuario"),
-					this.rs.getString("descripcion"), this.rs.getString("elemento"), this.rs.getString("ubicacion"),
-					this.rs.getDate("fecha"), this.rs.getString("urgencia"), this.rs.getString("categoria"),
-					this.rs.getString("materiales")));
+			usuarios.add(new usuarioDTO(this.rs.getInt("id"),this.rs.getString("user"),this.rs.getString("password"),this.rs.getInt("rol"),this.rs.getString("nombre"),this.rs.getString("apellidos"),this.rs.getString("direccion"),this.rs.getString("telefono")));
 		}
-		return incidencias;
+		return usuarios;
 	}
-
 
 }

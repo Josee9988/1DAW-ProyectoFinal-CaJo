@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import dto.usuarioDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.jdbcUsuarioDAO;
 
 public class Login_Controller {
 
-	private bdController users;
+	private jdbcUsuarioDAO users;
 
 	private Stage profesor;
 	private Stage jefe_departamento;
@@ -52,7 +54,7 @@ public class Login_Controller {
 
 	public Login_Controller() throws IOException {
 
-		this.users = bdController.getInstance();
+		this.users = new jdbcUsuarioDAO();
 
 		this.profesor = new Stage();
 		this.jefe_departamento = new Stage();
@@ -81,36 +83,36 @@ public class Login_Controller {
 		this.scene4 = new Scene(this.root4);
 
 	}
-
+ 
 	@FXML
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException {
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
-			switch (this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText())) {
+			switch (this.users.comprobarExistencia(new usuarioDTO(user.getText(), this.passwordField.getText()))) {
 			case 1:
 				this.controllerProfesor.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.comprobarExistencia(new usuarioDTO(user.getText(), this.passwordField.getText())));
 				this.profesor.setScene(this.scene1);
 				this.profesor.show();
 				break;
 			case 2:
 				this.controllerJefeDepartamento.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.comprobarExistencia(new usuarioDTO(user.getText(), this.passwordField.getText())));
 				this.jefe_departamento.setScene(this.scene2);
 				this.jefe_departamento.show();
 				break;
 			case 3:
 				this.controllerMantenimiento.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.comprobarExistencia(new usuarioDTO(user.getText(), this.passwordField.getText())));
 				this.matenimiento.setScene(this.scene3);
 				this.matenimiento.show();
 				break;
 			case 4:
 				this.controllerAdmin.recibirParametros(
-						this.users.NombreApellidos(this.user.getText(), this.passwordField.getText()),
-						this.users.ComprobarExistencia(this.user.getText(), this.passwordField.getText()));
+						this.users.devolverNombre(new usuarioDTO(this.user.getText(), this.passwordField.getText())),
+						this.users.comprobarExistencia(new usuarioDTO(user.getText(), this.passwordField.getText())));
 				this.admin.setScene(this.scene4);
 				this.admin.show();
 				break;

@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_proveedores">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_proveedores">
    <children>
       <Label layoutX="358.0" layoutY="25.0" text="Consultar Proveedores">
          <font>
@@ -23,5 +23,8 @@
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button layoutX="17.0" layoutY="533.0" mnemonicParsing="false" onAction="#agregarProveedor" prefHeight="33.0" prefWidth="275.0" text="Agregar proveedor" />
+      <Button layoutX="316.0" layoutY="533.0" mnemonicParsing="false" onAction="#modificarProveedor" prefHeight="33.0" prefWidth="298.0" text="Modificar proveedor" />
+      <Button layoutX="639.0" layoutY="533.0" mnemonicParsing="false" onAction="#eliminarProveedor" prefHeight="33.0" prefWidth="298.0" text="Eliminar proveedor" />
    </children>
 </Pane>

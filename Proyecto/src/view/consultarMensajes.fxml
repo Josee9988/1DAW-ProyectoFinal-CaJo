@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_mensajes">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="358.0" layoutY="25.0" text="Consultar Mensajes">
          <font>
@@ -15,12 +15,16 @@
       <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="919.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="90.45685958862305" text="ID" />
-          <TableColumn fx:id="asunto" prefWidth="207.16708374023438" text="Asunto" />
-            <TableColumn fx:id="cuerpo" prefWidth="480.8328857421875" text="Cuerpo" />
-            <TableColumn fx:id="fecha" prefWidth="136.9053955078125" text="Fecha" />
+          <TableColumn fx:id="asunto" prefWidth="100.47843170166016" text="Asunto" />
+            <TableColumn fx:id="cuerpo" prefWidth="428.5774230957031" text="Cuerpo" />
+            <TableColumn fx:id="incidencia" minWidth="0.0" prefWidth="144.34893798828125" text="Incidencia" />
+            <TableColumn fx:id="fecha" prefWidth="152.65106201171875" text="Fecha" />
         </columns>
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button layoutX="17.0" layoutY="526.0" mnemonicParsing="false" onAction="#agregarMensaje" prefHeight="38.0" prefWidth="255.0" text="Agregar mensaje" />
+      <Button layoutX="316.0" layoutY="526.0" mnemonicParsing="false" onAction="#modificarMensaje" prefHeight="38.0" prefWidth="291.0" text="Modificar mensaje" />
+      <Button layoutX="646.0" layoutY="527.0" mnemonicParsing="false" onAction="#eliminarMensaje" prefHeight="38.0" prefWidth="291.0" text="Eliminar mensaje" />
    </children>
 </Pane>

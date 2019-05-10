@@ -1,6 +1,8 @@
 package dto;
 
 public class usuarioDTO {
+	
+	private int id;
 	private String user;
 	private String password;
 	private int rol;
@@ -10,6 +12,7 @@ public class usuarioDTO {
 	private String direccion;
 	
 	public usuarioDTO() {
+		this.id = 0;
 		this.user = "";
 		this.password = "";
 		this.rol = 0;
@@ -20,6 +23,7 @@ public class usuarioDTO {
 	}
 	
 	public usuarioDTO(String user) {
+		this.id = 0;
 		this.user = user;
 		this.password = "";
 		this.rol = 0;
@@ -30,6 +34,7 @@ public class usuarioDTO {
 	}
 	
 	public usuarioDTO(String user, int rol) {
+		this.id = 0;
 		this.user = user;
 		this.password = "";
 		this.rol = rol;
@@ -40,6 +45,7 @@ public class usuarioDTO {
 	}
 	
 	public usuarioDTO(String user, String password) {
+		this.id = 0;
 		this.user = user;
 		this.password = password;
 		this.rol = 0;
@@ -51,6 +57,7 @@ public class usuarioDTO {
 	
 	public usuarioDTO(String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
+		this.id = 0;
 		this.user = user;
 		this.password = password;
 		this.rol = rol;
@@ -60,6 +67,18 @@ public class usuarioDTO {
 		this.direccion = direccion;
 	}
 	
+	public usuarioDTO(int id, String user, String password, int rol, String nombre, String apellidos, String telefono,
+			String direccion) {
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.rol = rol;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.direccion = direccion;
+	}
+
 	public usuarioDTO(usuarioDTO u) {
 		this(u.user,u.password,u.rol,u.nombre,u.apellidos,u.telefono,u.direccion);
 	}
@@ -74,7 +93,7 @@ public class usuarioDTO {
 	
 	@Override
 	public String toString() {
-		return "usuarioDTO [user=" + user + ", password=" + password + ", rol=" + rol + ", nombre="
+		return "usuarioDTO [id=" + id + ",user=" + user + ", password=" + password + ", rol=" + rol + ", nombre="
 				+ nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direccion=" + direccion + "]";
 	}
 
@@ -132,6 +151,14 @@ public class usuarioDTO {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
