@@ -1,9 +1,12 @@
-#iniciar:hover{
-	-fx-background-color: #41EAC1;
+.button{
+	-fx-background-radius: 6px;
+	-fx-border-radius: 6px;
+}
+
+.button:hover{
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 }
 
-#iniciar:pressed{
-	-fx-background-color: red;
+.button:pressed{
 	-fx-effect: dropshadow(three-pass-box, grey, 40, 0, 0, 0);
 }

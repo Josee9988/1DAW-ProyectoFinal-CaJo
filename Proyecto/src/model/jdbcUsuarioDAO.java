@@ -115,4 +115,12 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return usuarios;
 	}
 
+	@Override
+	public void eliminarUsuario(int id) throws SQLException {
+		this.ps = this.connect.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+		this.ps.setInt(1, id);
+		this.ps.executeUpdate();
+		this.ps.close();
+	}
+
 }

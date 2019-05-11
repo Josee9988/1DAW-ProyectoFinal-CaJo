@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Prof_Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Prof_Controller">
    <children>
       <Button fx:id="incidenciasAdmin" layoutX="79.0" layoutY="142.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="338.0" text="Mis incidencias" />
       <Button fx:id="proveedoresConsult" layoutX="79.0" layoutY="193.0" mnemonicParsing="false" onAction="#consultarProveedores" prefHeight="27.0" prefWidth="338.0" text="Consultar Proveedores" />

@@ -54,17 +54,21 @@ public class consultar_usuarios {
 	@FXML
 	private TextField fecha_encabezado;
 	usuarioDTO usuarioSelected;
-	int idselected = -1;
+	int idselected;
+	String nombreCompleto;
 
 	public consultar_usuarios() {
 		this.tabla = new TableView<>();
 		this.bdusuarios = new jdbcUsuarioDAO();
 		this.usuarioSelected = new usuarioDTO();
+		this.idselected = -1;
+		this.nombreCompleto = "";
 
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -125,10 +129,14 @@ public class consultar_usuarios {
 		}
 		//System.out.println(this.usuarioSelected.toString());
 		this.bdusuarios.modificarUsuario(this.usuarioSelected);
+		this.tabla.getItems().clear(); //borramos todos los datos
+		this.inicializar(this.nombreCompleto);
 	}
 
 	@FXML
-	public void eliminarUsuario() { // boton eliminar
+	public void eliminarUsuario() throws SQLException { // boton eliminar
+		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); //lo eliminamos en la bd
+		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); //lo eliminamos en la tabla
 
 	}
 

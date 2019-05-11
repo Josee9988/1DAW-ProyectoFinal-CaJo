@@ -22,5 +22,7 @@ public interface usuarioDAO {
 
 	void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
+	void eliminarUsuario(int id) throws SQLException;
+
 	String devolverNombre(usuarioDTO user) throws SQLException;
 }
