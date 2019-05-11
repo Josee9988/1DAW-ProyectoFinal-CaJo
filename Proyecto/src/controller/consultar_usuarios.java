@@ -5,9 +5,15 @@
  */
 package controller;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import dto.usuarioDTO;
 import javafx.fxml.FXML;
@@ -50,9 +56,9 @@ public class consultar_usuarios {
 		this.bdusuarios = new jdbcUsuarioDAO();
 	}
 
-	public void inicializar(String nombreCompleto) throws SQLException {
+	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-		this.usuario.setCellValueFactory(new PropertyValueFactory<>("Usuario"));
+		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
 		this.rol.setCellValueFactory(new PropertyValueFactory<>("Rol"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));

@@ -6,9 +6,15 @@
 package controller;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,7 +89,7 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
-	public void administrarUsuarios() throws SQLException, IOException {
+	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
 		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(this.getClass().getResource("/view/consultarUsuarios.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderAdministrarUsuarios.load();

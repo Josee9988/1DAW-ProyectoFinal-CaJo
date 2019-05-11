@@ -5,12 +5,19 @@
  */
 package model;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import controller.crypto_controller;
 import dto.usuarioDTO;
 
 public class jdbcUsuarioDAO implements usuarioDAO {
@@ -18,9 +25,11 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	private Connection connect;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	private crypto_controller crypto;
 
 	public jdbcUsuarioDAO() {
 		this.connect = Conexion.getInstance().conectar();
+		this.crypto = new crypto_controller();
 	}
 
 	public void cerrarBD() throws SQLException {
@@ -85,12 +94,12 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return nombre.concat(" ").concat(apellidos);
 	}
 
-	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException {
+	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-			usuarios.add(new usuarioDTO(this.rs.getInt("id"),this.rs.getString("user"),this.rs.getString("password"),this.rs.getInt("rol"),this.rs.getString("nombre"),this.rs.getString("apellidos"),this.rs.getString("direccion"),this.rs.getString("telefono")));
+			usuarios.add(new usuarioDTO(this.rs.getInt("id"),this.rs.getString("user"),this.crypto.decrypt(this.rs.getString("password")),this.rs.getInt("rol"),this.rs.getString("nombre"),this.rs.getString("apellidos"),this.rs.getString("direccion"),this.rs.getString("telefono")));
 		}
 		return usuarios;
 	}
