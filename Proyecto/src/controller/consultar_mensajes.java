@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package controller;
 
 import java.sql.SQLException;
@@ -13,10 +18,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.jdbcMensajesDAO;
 
 public class consultar_mensajes {
-	
+
 	private Date date;
 	private jdbcMensajesDAO bdmensajes;
-	
+
 	@FXML
 	private TableView<mensajesDTO> tabla;
 	@FXML
@@ -33,12 +38,12 @@ public class consultar_mensajes {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
-	
+
 	public consultar_mensajes() {
-		this.tabla = new TableView<mensajesDTO>();
+		this.tabla = new TableView<>();
 		this.bdmensajes = new jdbcMensajesDAO();
 	}
-	
+
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.asunto.setCellValueFactory(new PropertyValueFactory<>("Asunto"));
@@ -48,24 +53,24 @@ public class consultar_mensajes {
 		this.tabla.getItems().addAll(this.bdmensajes.leerMensajes());
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
-		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
+		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
 	}
-	
+
 	@FXML
 	public void agregarMensaje() {
-		
+
 	}
-	
+
 	@FXML
 	public void modificarMensaje() {
-		
+
 	}
-	
+
 	@FXML
 	public void eliminarMensaje() {
-		
+
 	}
-	
+
 }

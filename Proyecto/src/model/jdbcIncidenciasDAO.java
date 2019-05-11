@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package model;
 
 import java.sql.Connection;
@@ -25,6 +30,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.connect.close();
 	}
 
+	@Override
 	public boolean eliminarIncidencia(incidenciaDTO i) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("delete from incidencias where id_incidencia = ?");
@@ -37,10 +43,11 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return resultado;
 	}
 
+	@Override
 	public ArrayList<incidenciaDTO> leerIncidencias(usuarioDTO u) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
 		if(u.getRol() == 1 || u.getRol() == 2) {
-			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");	
+			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");
 			this.ps.setString(1,u.getUser());
 		}else {
 			this.ps = this.connect.prepareStatement("select * from incidencias");
@@ -55,6 +62,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return incidencias;
 	}
 
+	@Override
 	public boolean modificarIncidencia(incidenciaDTO i) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("update incidencias set urgencia = ? where id_incidencia = ?");
@@ -68,6 +76,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return resultado;
 	}
 
+	@Override
 	public void crearIncidencia(incidenciaDTO i) throws SQLException {
 		this.ps = this.connect.prepareStatement(
 				"insert into incidencias(usuario,descripcion,elemento,ubicacion,fecha,urgencia,categoria,materiales) values(?,?,?,?,?,?,?,?)");

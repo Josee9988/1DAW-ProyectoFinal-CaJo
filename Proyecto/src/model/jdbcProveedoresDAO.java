@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package model;
 
 import java.sql.Connection;
@@ -23,7 +28,8 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		this.rs.close();
 		this.connect.close();
 	}
-	
+
+	@Override
 	public boolean eliminarProveedor(proveedorDTO p) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("delete from proveedores where id = ?");
@@ -36,6 +42,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		return resultado;
 	}
 
+	@Override
 	public ArrayList<proveedorDTO> leerProveedores() throws SQLException {
 		ArrayList<proveedorDTO> proveedores = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from proveedores");
@@ -47,6 +54,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		return proveedores;
 	}
 
+	@Override
 	public void agregarProveedor(proveedorDTO p) throws SQLException {
 		this.ps = this.connect
 				.prepareStatement("insert into proveedores(nombre,contacto,direccion,valoracion) values (?,?,?,?)");
@@ -57,6 +65,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		this.ps.executeUpdate();
 	}
 
+	@Override
 	public boolean modificarProveedor(int id, String valor, String campo) throws SQLException {
 		boolean resultado = false;
 		switch (campo) {

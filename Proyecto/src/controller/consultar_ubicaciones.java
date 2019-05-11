@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package controller;
 
 import java.sql.SQLException;
@@ -13,10 +18,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.jdbcUbicacionDAO;
 
 public class consultar_ubicaciones {
-	
+
 	private Date date;
 	private jdbcUbicacionDAO bdubicaciones;
-	
+
 	@FXML
 	private TableView<ubicacionDTO> tabla;
 	@FXML
@@ -33,12 +38,12 @@ public class consultar_ubicaciones {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
-	
+
 	public consultar_ubicaciones() {
-		this.tabla = new TableView<ubicacionDTO>();
+		this.tabla = new TableView<>();
 		this.bdubicaciones = new jdbcUbicacionDAO();
 	}
-	
+
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -48,24 +53,24 @@ public class consultar_ubicaciones {
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
-		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
+		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
 	}
-	
+
 	@FXML
 	public void agregarUbicacion() {
-		
+
 	}
-	
+
 	@FXML
 	public void modificarUbicacion() {
-		
+
 	}
-	
+
 	@FXML
 	public void eliminarUbicacion() {
-		
+
 	}
-	
+
 }

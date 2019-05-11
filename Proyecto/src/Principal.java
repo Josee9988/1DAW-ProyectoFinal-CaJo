@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -16,9 +21,7 @@ public class Principal extends Application {
 			root = FXMLLoader.load(this.getClass().getResource("/view/login.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setResizable(false);
-			primaryStage.setOpacity(0.95);
-			// root.getStylesheets().add("view/loginstyles.css");
-
+			primaryStage.setOpacity(0.90);
 			Image icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("Proyecto Jose Carlos");

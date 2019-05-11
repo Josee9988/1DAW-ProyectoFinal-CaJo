@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package controller;
 
 import java.io.IOException;
@@ -10,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Home_Jefe_Controller {
@@ -44,6 +50,9 @@ public class Home_Jefe_Controller {
 	@FXML
 	private TextField fecha;
 
+	private Image icon;
+	private Stage stage;
+
 	public Home_Jefe_Controller() throws IOException {
 
 		this.incidencias = new Stage();
@@ -52,11 +61,11 @@ public class Home_Jefe_Controller {
 		this.acercaDe = new Stage();
 
 		this.fxmlLoaderAdministrarIncidencias = new FXMLLoader(
-				getClass().getResource("/view/consultarIncidencias.fxml"));
+				this.getClass().getResource("/view/consultarIncidencias.fxml"));
 		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(
-				getClass().getResource("/view/consultarProveedores.fxml"));
-		this.fxmlLoaderConsultarMensajes = new FXMLLoader(getClass().getResource("/view/consultarMensajes.fxml"));
-		this.fxmlLoaderAcerca = new FXMLLoader(getClass().getResource("/view/acerca_de.fxml"));
+				this.getClass().getResource("/view/consultarProveedores.fxml"));
+		this.fxmlLoaderConsultarMensajes = new FXMLLoader(this.getClass().getResource("/view/consultarMensajes.fxml"));
+		this.fxmlLoaderAcerca = new FXMLLoader(this.getClass().getResource("/view/acerca_de.fxml"));
 
 		this.root1 = (Parent) this.fxmlLoaderAdministrarIncidencias.load();
 		this.root2 = (Parent) this.fxmlLoaderAdministrarProveedores.load();
@@ -71,6 +80,8 @@ public class Home_Jefe_Controller {
 		this.scene2 = new Scene(this.root2);
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
+		this.stage = null;
 
 	}
 
@@ -81,7 +92,7 @@ public class Home_Jefe_Controller {
 		this.fecha.setEditable(false);
 		this.nombre.setText(nombreCompleto);
 		this.rol_name.setText("Jefe de Departamento");
-		this.fecha.setText(new SimpleDateFormat("dd-MM-yyyy").format(date));
+		this.fecha.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.rol_number = rol;
 	}
 
@@ -89,6 +100,8 @@ public class Home_Jefe_Controller {
 	public void administrarProveedores() throws SQLException {
 		this.controllerProveedores.inicializar(this.nombre.getText());
 		this.proveedores.setScene(this.scene1);
+		this.proveedores.getIcons().add(this.icon); //agregamos el icono
+		this.proveedores.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.proveedores.show();
 	}
 
@@ -96,6 +109,8 @@ public class Home_Jefe_Controller {
 	public void administrarIncidencias() throws SQLException {
 		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene2);
+		this.incidencias.getIcons().add(this.icon); //agregamos el icono
+		this.incidencias.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.incidencias.show();
 	}
 
@@ -103,12 +118,16 @@ public class Home_Jefe_Controller {
 	public void administrarMensajes() throws SQLException {
 		this.controllerMensajes.inicializar(this.nombre.getText());
 		this.mensajes.setScene(this.scene3);
+		this.mensajes.getIcons().add(this.icon); //agregamos el icono
+		this.mensajes.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.mensajes.show();
 	}
 
 	@FXML
 	public void acercaDe() {
 		this.acercaDe.setScene(this.scene4);
+		this.acercaDe.getIcons().add(this.icon); //agregamos el icono
+		this.acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
 		this.acercaDe.show();
 	}
 

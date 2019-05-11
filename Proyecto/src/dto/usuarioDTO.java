@@ -1,7 +1,12 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package dto;
 
 public class usuarioDTO {
-	
+
 	private int id;
 	private String user;
 	private String password;
@@ -10,7 +15,7 @@ public class usuarioDTO {
 	private String apellidos;
 	private String telefono;
 	private String direccion;
-	
+
 	public usuarioDTO() {
 		this.id = 0;
 		this.user = "";
@@ -21,7 +26,7 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-	
+
 	public usuarioDTO(String user) {
 		this.id = 0;
 		this.user = user;
@@ -32,7 +37,7 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-	
+
 	public usuarioDTO(String user, int rol) {
 		this.id = 0;
 		this.user = user;
@@ -43,7 +48,7 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-	
+
 	public usuarioDTO(String user, String password) {
 		this.id = 0;
 		this.user = user;
@@ -54,7 +59,7 @@ public class usuarioDTO {
 		this.telefono = "";
 		this.direccion = "";
 	}
-	
+
 	public usuarioDTO(String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
 		this.id = 0;
@@ -66,7 +71,7 @@ public class usuarioDTO {
 		this.telefono = telefono;
 		this.direccion = direccion;
 	}
-	
+
 	public usuarioDTO(int id, String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
 		this.id = id;
@@ -82,23 +87,23 @@ public class usuarioDTO {
 	public usuarioDTO(usuarioDTO u) {
 		this(u.user,u.password,u.rol,u.nombre,u.apellidos,u.telefono,u.direccion);
 	}
-	
+
 	public usuarioDTO clonar() {
 		return new usuarioDTO(this);
 	}
-	
+
 	public void visualizar() {
 		System.out.println(this.toString());
 	}
-	
+
 	@Override
 	public String toString() {
-		return "usuarioDTO [id=" + id + ",user=" + user + ", password=" + password + ", rol=" + rol + ", nombre="
-				+ nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direccion=" + direccion + "]";
+		return "usuarioDTO [id=" + this.id + ",user=" + this.user + ", password=" + this.password + ", rol=" + this.rol + ", nombre="
+				+ this.nombre + ", apellidos=" + this.apellidos + ", telefono=" + this.telefono + ", direccion=" + this.direccion + "]";
 	}
 
 	public String getUser() {
-		return user;
+		return this.user;
 	}
 
 	public void setUser(String user) {
@@ -106,7 +111,7 @@ public class usuarioDTO {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -114,7 +119,7 @@ public class usuarioDTO {
 	}
 
 	public int getRol() {
-		return rol;
+		return this.rol;
 	}
 
 	public void setRol(int rol) {
@@ -122,7 +127,7 @@ public class usuarioDTO {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public void setNombre(String nombre) {
@@ -130,7 +135,7 @@ public class usuarioDTO {
 	}
 
 	public String getApellidos() {
-		return apellidos;
+		return this.apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
@@ -138,7 +143,7 @@ public class usuarioDTO {
 	}
 
 	public String getTelefono() {
-		return telefono;
+		return this.telefono;
 	}
 
 	public void setTelefono(String telefono) {
@@ -146,7 +151,7 @@ public class usuarioDTO {
 	}
 
 	public String getDireccion() {
-		return direccion;
+		return this.direccion;
 	}
 
 	public void setDireccion(String direccion) {
@@ -154,11 +159,11 @@ public class usuarioDTO {
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 }

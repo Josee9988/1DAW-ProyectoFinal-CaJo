@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 11, 2019
+ * @param args Recibe los datos del programa
+ */
 package controller;
 
 import java.io.IOException;
@@ -18,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcUsuarioDAO;
 
@@ -57,7 +63,7 @@ public class Login_Controller {
 	@FXML
 	private PasswordField passwordField;
 	@FXML
-	private TextField area2;
+	private Text area2;
 	@FXML
 	private javafx.scene.control.Button iniciar; // botón iniciar del login
 
@@ -94,7 +100,8 @@ public class Login_Controller {
 		this.scene2 = new Scene(this.root2);
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
-		this.icon = null;
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // ruta icono
+
 		this.stage = null;
 		this.crypto = new crypto_controller();
 
@@ -120,10 +127,9 @@ public class Login_Controller {
 								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.profesor.setScene(this.scene1);
 
-				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-				// está el icono
+
 				this.profesor.getIcons().add(this.icon); // agregamos el icono
-				this.profesor.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+				this.profesor.setTitle("Menú de Profesor"); // ponemos el título de la ventana
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
@@ -140,10 +146,9 @@ public class Login_Controller {
 								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.jefe_departamento.setScene(this.scene2);
 
-				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-				// está el icono
+
 				this.jefe_departamento.getIcons().add(this.icon); // agregamos el icono
-				this.jefe_departamento.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+				this.jefe_departamento.setTitle("Menú de Jefe de Departamento"); // ponemos el título de la ventana
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
@@ -160,10 +165,9 @@ public class Login_Controller {
 								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.mantenimiento.setScene(this.scene3);
 
-				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // decimos dónde
-				// está el icono
+
 				this.mantenimiento.getIcons().add(this.icon); // agregamos el icono
-				this.mantenimiento.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+				this.mantenimiento.setTitle("Menú de Mantenimiento"); // ponemos el título de la ventana
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
@@ -180,9 +184,8 @@ public class Login_Controller {
 								new usuarioDTO(this.user.getText(), passwordencriptada)));
 				this.admin.setScene(this.scene4);
 
-				this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); //decimos dónde está el icono
 				this.admin.getIcons().add(this.icon); //agregamos el icono
-				this.admin.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+				this.admin.setTitle("Menú de Administrador"); //ponemos el título de la ventana
 				//cogemos la escena que tenemos y la cerramos en el momento que se activa el botón "iniciar"
 
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); //seleccionamos la escena actual
@@ -201,6 +204,7 @@ public class Login_Controller {
 			this.resultadoIncorrecto();
 		}
 	}
+
 
 	public void resultadoIncorrecto() {
 		this.area2.setText("Campo(s) vacios");
