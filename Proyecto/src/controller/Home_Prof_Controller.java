@@ -50,7 +50,7 @@ public class Home_Prof_Controller {
 	private TextField fecha;
 
 	private Image icon;
-	private Stage stage;
+	//private Stage stage;
 
 	public Home_Prof_Controller() throws IOException {
 		this.incidencias = new Stage();
@@ -81,7 +81,7 @@ public class Home_Prof_Controller {
 		this.scene4 = new Scene(this.rootAcerca);
 
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		this.stage = null;
+		//this.stage = null;
 	}
 
 	public void recibirParametros(String nombreCompleto, int rol) {
@@ -127,6 +127,7 @@ public class Home_Prof_Controller {
 		this.acercaDe.setScene(this.scene4);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
 		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.acercaDe.setResizable(false);
 		this.acercaDe.show();
 	}
 }

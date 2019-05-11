@@ -109,7 +109,7 @@ public class Login_Controller {
 
 	@FXML
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
-			NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
 
 		// vemos si están vacios los campos o no.
@@ -130,6 +130,7 @@ public class Login_Controller {
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.profesor.setResizable(false);
 				this.profesor.show();
 				break;
 
@@ -145,6 +146,7 @@ public class Login_Controller {
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.jefe_departamento.setResizable(false);
 				this.jefe_departamento.show();
 				break;
 
@@ -160,6 +162,7 @@ public class Login_Controller {
 				// botón "iniciar"
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.mantenimiento.setResizable(false);
 				this.mantenimiento.show();
 				break;
 
@@ -176,7 +179,7 @@ public class Login_Controller {
 
 				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-
+				this.admin.setResizable(false);
 				this.admin.show();
 				break;
 

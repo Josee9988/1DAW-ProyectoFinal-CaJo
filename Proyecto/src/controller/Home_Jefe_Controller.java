@@ -128,6 +128,7 @@ public class Home_Jefe_Controller {
 		this.acercaDe.setScene(this.scene4);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
 		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.acercaDe.setResizable(false);
 		this.acercaDe.show();
 	}
 

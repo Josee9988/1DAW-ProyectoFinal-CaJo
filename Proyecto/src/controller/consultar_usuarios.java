@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -17,12 +18,17 @@ import javax.crypto.NoSuchPaddingException;
 
 import dto.usuarioDTO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import model.jdbcUsuarioDAO;
 
@@ -53,6 +59,17 @@ public class consultar_usuarios {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+
+	private Stage agregar_usuarios;
+	private Parent root1;
+	private Scene scene1;
+	private FXMLLoader fxmlLoaderagregar_usuarios;
+	private agregar_usuarios controller_agregar_usuarios;
+	private Image icon;
+
+	private jdbcUsuarioDAO dbusuario;
+
+
 	usuarioDTO usuarioSelected;
 	int idselected;
 	String nombreCompleto;
@@ -63,12 +80,16 @@ public class consultar_usuarios {
 		this.usuarioSelected = new usuarioDTO();
 		this.idselected = -1;
 		this.nombreCompleto = "";
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
+		this.dbusuario = new jdbcUsuarioDAO();
+
 
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
+
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -98,8 +119,30 @@ public class consultar_usuarios {
 
 	}
 
+	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.dbusuario.crearUsuario(user);//lo agrega en la base de datos
+		this.tabla.getItems().clear(); //borramos todos los datos
+		this.inicializar(this.nombreCompleto);
+
+
+	}
+
 	@FXML
-	public void agregarUsuario() { // boton agregar
+	public void agregarUsuario() throws IOException { // boton agregar
+		//creamos la escena
+		this.agregar_usuarios = new Stage();
+		this.fxmlLoaderagregar_usuarios = new FXMLLoader(
+				this.getClass().getResource("/view/agregarUser.fxml"));
+		this.root1 = (Parent) this.fxmlLoaderagregar_usuarios.load();
+		this.controller_agregar_usuarios = this.fxmlLoaderagregar_usuarios.<agregar_usuarios>getController();
+		this.scene1 = new Scene(this.root1);
+		this.controller_agregar_usuarios.inicializar(); //llamamos al método inicializar
+		this.agregar_usuarios.setScene(this.scene1);
+		this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
+		this.agregar_usuarios.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_usuarios.show();
+
+
 	}
 
 	@FXML
@@ -128,10 +171,17 @@ public class consultar_usuarios {
 			this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 		}
 		//System.out.println(this.usuarioSelected.toString());
+
+
+		this.idselected = -1;
 		this.bdusuarios.modificarUsuario(this.usuarioSelected);
+		this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); //borramos todos los datos
 		this.inicializar(this.nombreCompleto);
+
 	}
+
+
 
 	@FXML
 	public void eliminarUsuario() throws SQLException { // boton eliminar

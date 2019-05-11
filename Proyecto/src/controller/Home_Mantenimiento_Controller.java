@@ -110,6 +110,7 @@ public class Home_Mantenimiento_Controller {
 		this.acercaDe.setScene(this.scene3);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
 		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.acercaDe.setResizable(false);
 		this.acercaDe.show();
 	}
 

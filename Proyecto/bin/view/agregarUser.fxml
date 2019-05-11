@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.agregar_usuarios">
+   <children>
+      <Text layoutX="182.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Usuario" wrappingWidth="237.5869140625">
+         <font>
+            <Font name="Ubuntu Bold" size="29.0" />
+         </font>
+      </Text>
+      <Label layoutX="82.0" layoutY="105.0" text="Usuario" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="257.0" layoutY="105.0" text="Contraseña" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="98.0" layoutY="304.0" text="Rol" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="447.0" layoutY="105.0" text="Nombre" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="200.0" text="Apellidos" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="437.0" layoutY="200.0" text="Telefono" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="200.0" text="Dirección" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usuario" layoutX="64.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="usuario" />
+      <TextField fx:id="password" layoutX="253.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="password" />
+      <TextField fx:id="nombre" layoutX="437.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="nombre" />
+      <TextField fx:id="direccion" layoutX="64.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="dirección" />
+      <TextField fx:id="apellidos" layoutX="254.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="apellidos" />
+      <TextField fx:id="telefono" layoutX="430.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="telefono" />
+      <ComboBox fx:id="rol" layoutX="64.0" layoutY="339.0" prefHeight="25.0" prefWidth="93.0" stylesheets="@buttonhover.css" />
+      <Button fx:id="agregarusuario" layoutX="264.0" layoutY="304.0" mnemonicParsing="false" onAction="#agregarusuario" prefHeight="59.0" prefWidth="269.0" style="-fx-background-color: #5781af;" text="Agregar usuario">
+         <font>
+            <Font name="Ubuntu Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

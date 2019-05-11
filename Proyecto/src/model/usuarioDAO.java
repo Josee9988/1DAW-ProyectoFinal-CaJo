@@ -18,7 +18,7 @@ import dto.usuarioDTO;
 public interface usuarioDAO {
 	int comprobarExistencia(usuarioDTO user) throws SQLException;
 
-	void crearUsuario(usuarioDTO user) throws SQLException;
+	void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 	void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
