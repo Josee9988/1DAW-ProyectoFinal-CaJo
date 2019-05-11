@@ -45,7 +45,7 @@ public class mensajesDTO {
 	}
 
 	public mensajesDTO(mensajesDTO m) {
-		this(m.id,m.asunto,m.cuerpo,m.fecha);
+		this(m.id, m.asunto, m.cuerpo, m.fecha);
 	}
 
 	public mensajesDTO clonar() {
@@ -54,7 +54,8 @@ public class mensajesDTO {
 
 	@Override
 	public String toString() {
-		return "mensajesDTO [id=" + this.id + ", asunto=" + this.asunto + ", cuerpo=" + this.cuerpo + ", incidencia=" + this.incidencia + " fecha=" + this.fecha + "]";
+		return "mensajesDTO [id=" + this.id + ", asunto=" + this.asunto + ", cuerpo=" + this.cuerpo + ", incidencia="
+				+ this.incidencia + " fecha=" + this.fecha + "]";
 	}
 
 	public void visualizar() {

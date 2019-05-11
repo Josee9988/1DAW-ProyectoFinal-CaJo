@@ -4,6 +4,7 @@
  * @param args Recibe los datos del programa
  */
 package controller;
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +54,7 @@ public class consultar_incidencias {
 		this.bdincidencias = new jdbcIncidenciasDAO();
 	}
 
-	public void inicializar(String nombreCompleto,int rol) throws SQLException {
+	public void inicializar(String nombreCompleto, int rol) throws SQLException {
 		this.rol_number = rol;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("Usuario"));
@@ -64,7 +65,8 @@ public class consultar_incidencias {
 		this.categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
-		this.tabla.getItems().addAll(this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(),this.rol_number)));
+		this.tabla.getItems().addAll(
+				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));

@@ -8,6 +8,7 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 public class Conexion {
 
 	private static Conexion instance;
@@ -27,7 +28,6 @@ public class Conexion {
 	public void cerrarConexion() throws SQLException {
 		this.connect.close();
 	}
-
 
 	public Connection conectar() {
 		Connection Conexion = null;

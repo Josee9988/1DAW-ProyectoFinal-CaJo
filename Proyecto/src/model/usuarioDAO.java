@@ -5,13 +5,22 @@
  */
 package model;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import dto.usuarioDTO;
 
 public interface usuarioDAO {
 	int comprobarExistencia(usuarioDTO user) throws SQLException;
+
 	void crearUsuario(usuarioDTO user) throws SQLException;
-	boolean modificarUsuario(usuarioDTO user) throws SQLException;
+
+	void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+
 	String devolverNombre(usuarioDTO user) throws SQLException;
 }

@@ -54,7 +54,7 @@ public class ubicacionDTO {
 	}
 
 	public ubicacionDTO(ubicacionDTO u) {
-		this(u.id,u.nombre,u.descripcion,u.edificio,u.planta);
+		this(u.id, u.nombre, u.descripcion, u.edificio, u.planta);
 	}
 
 	public ubicacionDTO clonar() {
@@ -63,8 +63,8 @@ public class ubicacionDTO {
 
 	@Override
 	public String toString() {
-		return "ubicacionDTO [id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", edificio="
-				+ this.edificio + ", planta=" + this.planta + "]";
+		return "ubicacionDTO [id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion
+				+ ", edificio=" + this.edificio + ", planta=" + this.planta + "]";
 	}
 
 	public void visualizar() {

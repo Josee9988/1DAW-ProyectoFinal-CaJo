@@ -18,9 +18,12 @@ import javax.crypto.NoSuchPaddingException;
 import dto.usuarioDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 import model.jdbcUsuarioDAO;
 
 public class consultar_usuarios {
@@ -50,13 +53,18 @@ public class consultar_usuarios {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+	usuarioDTO usuarioSelected;
+	int idselected = -1;
 
 	public consultar_usuarios() {
 		this.tabla = new TableView<>();
 		this.bdusuarios = new jdbcUsuarioDAO();
+		this.usuarioSelected = new usuarioDTO();
+
 	}
 
-	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -71,21 +79,148 @@ public class consultar_usuarios {
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
+
+		this.tabla.setEditable(true);// hacemos la tabla entera editable
+
+		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y
+		// nunca va a ser relevante a la hora de modificar un usuario
+		this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.password.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.rol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		this.nombre.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.apellidos.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.telefono.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.direccion.setCellFactory(TextFieldTableCell.forTableColumn());
+
 	}
 
 	@FXML
-	public void agregarUsuario() {
+	public void agregarUsuario() { // boton agregar
+	}
+
+	@FXML
+	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+		// Si un valor no se ha modificado cogerá el que estaba en la fila.
+		this.usuarioSelected.setId(this.idselected); // id no cambiará
+		if (this.usuarioSelected.getUser().equals("")) {
+			this.usuarioSelected.setUser(this.tabla.getSelectionModel().getSelectedItem().getUser());
+		}
+		if (this.usuarioSelected.getPassword().equals("")) {
+			this.usuarioSelected.setPassword(this.tabla.getSelectionModel().getSelectedItem().getPassword());
+		}
+		if (this.usuarioSelected.getRol() == 0) {
+			this.usuarioSelected.setRol(this.tabla.getSelectionModel().getSelectedItem().getRol());
+		}
+		if (this.usuarioSelected.getNombre().equals("")) {
+			this.usuarioSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
+		}
+		if (this.usuarioSelected.getApellidos().equals("")) {
+			this.usuarioSelected.setApellidos(this.tabla.getSelectionModel().getSelectedItem().getApellidos());
+		}
+		if (this.usuarioSelected.getTelefono().equals("")) {
+			this.usuarioSelected.setTelefono(this.tabla.getSelectionModel().getSelectedItem().getTelefono());
+		}
+		if (this.usuarioSelected.getDireccion().equals("")) {
+			this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
+		}
+		//System.out.println(this.usuarioSelected.toString());
+		this.bdusuarios.modificarUsuario(this.usuarioSelected);
+	}
+
+	@FXML
+	public void eliminarUsuario() { // boton eliminar
+
+	}
+
+	// ######################### MODIFICACIONES #########################
+	@FXML
+	public void editModificarUsuario(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setUser(edditedCell.getNewValue().toString());
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setUser(edditedCell.getNewValue().toString());
+			}
+		}
 
 	}
 
 	@FXML
-	public void modificarUsuario() {
+	public void editModificarPass(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setPassword(edditedCell.getNewValue().toString());
 
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setPassword(edditedCell.getNewValue().toString());
+			}
+		}
 	}
 
 	@FXML
-	public void eliminarUsuario() {
+	public void editModificarRol(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setRol((int) edditedCell.getNewValue());
 
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setRol((int) edditedCell.getNewValue());
+			}
+		}
+	}
+
+	@FXML
+	public void editModificarNombre(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setNombre(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setNombre(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editModificarApellidos(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setApellidos(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setApellidos(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editModificarTelefono(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setTelefono(edditedCell.getNewValue().toString());
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setTelefono(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editModificarDireccion(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.usuarioSelected.setDireccion(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.usuarioSelected.setDireccion(edditedCell.getNewValue().toString());
+			}
+		}
 	}
 
 }

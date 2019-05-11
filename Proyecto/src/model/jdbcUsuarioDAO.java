@@ -66,17 +66,24 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	@Override
-	public boolean modificarUsuario(usuarioDTO user) throws SQLException {
+	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		boolean resultado;
-		this.ps = this.connect.prepareStatement("update usuarios set rol = ? where user = ?");
-		this.ps.setInt(1, user.getRol());
-		this.ps.setString(2, user.getUser());
-		if (this.ps.executeUpdate() == 1) {
-			resultado = true;
-		} else {
-			resultado = false;
-		}
-		return resultado;
+		user.setPassword(this.crypto.encrypt(user.getPassword()));
+		this.ps = this.connect.prepareStatement(
+				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
+
+		this.ps.setString(1, user.getUser());
+		this.ps.setString(2, user.getPassword());
+		this.ps.setInt(3, user.getRol());
+		this.ps.setString(4, user.getNombre());
+		this.ps.setString(5, user.getApellidos());
+		this.ps.setString(6, user.getTelefono());
+		this.ps.setString(7, user.getDireccion());
+		this.ps.setInt(8, user.getId());
+
+		this.ps.executeUpdate();
+		this.ps.close();
 	}
 
 	@Override
@@ -94,12 +101,16 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return nombre.concat(" ").concat(apellidos);
 	}
 
-	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-			usuarios.add(new usuarioDTO(this.rs.getInt("id"),this.rs.getString("user"),this.crypto.decrypt(this.rs.getString("password")),this.rs.getInt("rol"),this.rs.getString("nombre"),this.rs.getString("apellidos"),this.rs.getString("direccion"),this.rs.getString("telefono")));
+			usuarios.add(new usuarioDTO(this.rs.getInt("id"), this.rs.getString("user"),
+					this.crypto.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
+					this.rs.getString("nombre"), this.rs.getString("apellidos"), this.rs.getString("telefono"),
+					this.rs.getString("direccion")));
 		}
 		return usuarios;
 	}

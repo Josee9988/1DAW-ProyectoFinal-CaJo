@@ -80,7 +80,7 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
-	public incidenciaDTO(int id,String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
+	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
 			String urgencia, String categoria, String materiales) {
 		this.id = id;
 		this.usuario = usuario;
@@ -94,7 +94,7 @@ public class incidenciaDTO {
 	}
 
 	public incidenciaDTO(incidenciaDTO i) {
-		this(i.id,i.usuario,i.descripcion,i.elemento,i.ubicacion,i.fecha,i.urgencia,i.categoria,i.materiales);
+		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.fecha, i.urgencia, i.categoria, i.materiales);
 	}
 
 	public incidenciaDTO clonar() {
@@ -175,9 +175,10 @@ public class incidenciaDTO {
 
 	@Override
 	public String toString() {
-		return "incidenciaDTO [id=" + this.id + ",usuario=" + this.usuario + ", descripcion=" + this.descripcion + ", elemento=" + this.elemento
-				+ ", ubicacion=" + this.ubicacion + ", fecha=" + this.fecha + ", urgencia=" + this.urgencia + ", categoria="
-				+ this.categoria + ", materiales=" + this.materiales + "]";
+		return "incidenciaDTO [id=" + this.id + ",usuario=" + this.usuario + ", descripcion=" + this.descripcion
+				+ ", elemento=" + this.elemento + ", ubicacion=" + this.ubicacion + ", fecha=" + this.fecha
+				+ ", urgencia=" + this.urgencia + ", categoria=" + this.categoria + ", materiales=" + this.materiales
+				+ "]";
 	}
 
 	public void visualizar() {

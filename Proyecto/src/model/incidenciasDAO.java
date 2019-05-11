@@ -13,7 +13,10 @@ import dto.usuarioDTO;
 
 public interface incidenciasDAO {
 	boolean eliminarIncidencia(incidenciaDTO i) throws SQLException;
+
 	ArrayList<incidenciaDTO> leerIncidencias(usuarioDTO u) throws SQLException;
+
 	boolean modificarIncidencia(incidenciaDTO i) throws SQLException;
+
 	void crearIncidencia(incidenciaDTO i) throws SQLException;
 }

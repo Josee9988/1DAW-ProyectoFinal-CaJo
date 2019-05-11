@@ -46,7 +46,7 @@ public class proveedorDTO {
 	}
 
 	public proveedorDTO(proveedorDTO p) {
-		this(p.id,p.nombre,p.contacto,p.direccion,p.valoracion);
+		this(p.id, p.nombre, p.contacto, p.direccion, p.valoracion);
 	}
 
 	public proveedorDTO clonar() {
@@ -55,8 +55,8 @@ public class proveedorDTO {
 
 	@Override
 	public String toString() {
-		return "proveedorDTO [id=" + this.id + ", nombre=" + this.nombre + ", contacto=" + this.contacto + ", direccion=" + this.direccion
-				+ ", valoracion=" + this.valoracion + "]";
+		return "proveedorDTO [id=" + this.id + ", nombre=" + this.nombre + ", contacto=" + this.contacto
+				+ ", direccion=" + this.direccion + ", valoracion=" + this.valoracion + "]";
 	}
 
 	public void visualizar() {

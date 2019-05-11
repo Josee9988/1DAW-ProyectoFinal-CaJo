@@ -13,6 +13,7 @@ import dto.mensajesDTO;
 public interface mensajesDAO {
 
 	ArrayList<mensajesDTO> leerMensajes() throws SQLException;
+
 	void crearMensaje(mensajesDTO m) throws SQLException;
 
 }

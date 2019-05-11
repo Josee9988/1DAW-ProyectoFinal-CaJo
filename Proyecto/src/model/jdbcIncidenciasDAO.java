@@ -46,10 +46,10 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	@Override
 	public ArrayList<incidenciaDTO> leerIncidencias(usuarioDTO u) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
-		if(u.getRol() == 1 || u.getRol() == 2) {
+		if (u.getRol() == 1 || u.getRol() == 2) {
 			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");
-			this.ps.setString(1,u.getUser());
-		}else {
+			this.ps.setString(1, u.getUser());
+		} else {
 			this.ps = this.connect.prepareStatement("select * from incidencias");
 		}
 		this.rs = this.ps.executeQuery();

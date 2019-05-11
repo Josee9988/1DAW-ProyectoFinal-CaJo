@@ -15,13 +15,13 @@
       <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="912.0">
         <columns>
        	 <TableColumn fx:id="id" prefWidth="60.01005935668945" text="ID" />
-          <TableColumn fx:id="usuario" prefWidth="102.01005935668945" text="Usuario" />
-          <TableColumn fx:id="password" prefWidth="190.9899597167969" text="Password" />
-            <TableColumn fx:id="rol" prefWidth="62.70709228515625" text="Rol" />
-            <TableColumn fx:id="nombre" prefWidth="154.29287719726562" text="Nombre" />
-            <TableColumn fx:id="apellidos" prefWidth="109.30902099609375" text="Apellidos" />
-            <TableColumn fx:id="telefono" minWidth="0.0" prefWidth="118.82220458984375" text="Telefono" />
-            <TableColumn fx:id="direccion" minWidth="4.1995849609375" prefWidth="113.30926513671875" text="Direccion" />
+          <TableColumn fx:id="usuario" onEditCommit="#editModificarUsuario" prefWidth="102.01005935668945" text="Usuario" />
+          <TableColumn fx:id="password" onEditCommit="#editModificarPass" prefWidth="190.9899597167969" text="Password" />
+            <TableColumn fx:id="rol" onEditCommit="#editModificarRol" prefWidth="62.70709228515625" text="Rol" />
+            <TableColumn fx:id="nombre" onEditCommit="#editModificarNombre" prefWidth="154.29287719726562" text="Nombre" />
+            <TableColumn fx:id="apellidos" onEditCommit="#editModificarApellidos" prefWidth="109.30902099609375" text="Apellidos" />
+            <TableColumn fx:id="telefono" minWidth="0.0" onEditCommit="#editModificarTelefono" prefWidth="118.82220458984375" text="Telefono" />
+            <TableColumn fx:id="direccion" minWidth="4.1995849609375" onEditCommit="#editModificarDireccion" prefWidth="113.30926513671875" text="Direccion" />
         </columns>
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />

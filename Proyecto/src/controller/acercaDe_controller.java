@@ -33,4 +33,3 @@ public class acercaDe_controller {
 		this.campo5.setEditable(false);
 	}
 }
-

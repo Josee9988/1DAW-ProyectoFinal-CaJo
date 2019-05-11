@@ -100,8 +100,8 @@ public class Home_Jefe_Controller {
 	public void administrarProveedores() throws SQLException {
 		this.controllerProveedores.inicializar(this.nombre.getText());
 		this.proveedores.setScene(this.scene1);
-		this.proveedores.getIcons().add(this.icon); //agregamos el icono
-		this.proveedores.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.proveedores.getIcons().add(this.icon); // agregamos el icono
+		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.proveedores.show();
 	}
 
@@ -109,8 +109,8 @@ public class Home_Jefe_Controller {
 	public void administrarIncidencias() throws SQLException {
 		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene2);
-		this.incidencias.getIcons().add(this.icon); //agregamos el icono
-		this.incidencias.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.incidencias.getIcons().add(this.icon); // agregamos el icono
+		this.incidencias.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.incidencias.show();
 	}
 
@@ -118,16 +118,16 @@ public class Home_Jefe_Controller {
 	public void administrarMensajes() throws SQLException {
 		this.controllerMensajes.inicializar(this.nombre.getText());
 		this.mensajes.setScene(this.scene3);
-		this.mensajes.getIcons().add(this.icon); //agregamos el icono
-		this.mensajes.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.mensajes.getIcons().add(this.icon); // agregamos el icono
+		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.mensajes.show();
 	}
 
 	@FXML
 	public void acercaDe() {
 		this.acercaDe.setScene(this.scene4);
-		this.acercaDe.getIcons().add(this.icon); //agregamos el icono
-		this.acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
+		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.acercaDe.show();
 	}
 

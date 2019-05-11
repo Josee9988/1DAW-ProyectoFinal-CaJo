@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import dto.ubicacionDTO;
 
-public class jdbcUbicacionDAO implements ubicacionDAO{
+public class jdbcUbicacionDAO implements ubicacionDAO {
 
 	private Connection connect;
 	private PreparedStatement ps;
@@ -91,7 +91,6 @@ public class jdbcUbicacionDAO implements ubicacionDAO{
 		}
 		return aux;
 	}
-
 
 	public ArrayList<ubicacionDTO> leerNombresUbicaciones() throws SQLException {
 		ArrayList<ubicacionDTO> aux = new ArrayList<>();

@@ -13,8 +13,11 @@ import dto.proveedorDTO;
 public interface proveedoresDAO {
 
 	boolean eliminarProveedor(proveedorDTO p) throws SQLException;
+
 	ArrayList<proveedorDTO> leerProveedores() throws SQLException;
+
 	void agregarProveedor(proveedorDTO p) throws SQLException;
+
 	boolean modificarProveedor(int id, String valor, String campo) throws SQLException;
 
 }

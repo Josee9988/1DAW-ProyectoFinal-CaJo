@@ -58,9 +58,12 @@ public class Home_Prof_Controller {
 		this.mensajes = new Stage();
 		this.acercaDe = new Stage();
 
-		this.fxmlLoaderAdministrarIncidencia = new FXMLLoader(this.getClass().getResource("/view/consultarIncidencias.fxml"));
-		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(this.getClass().getResource("/view/consultarProveedores.fxml"));
-		this.fxmlLoaderAdministrarMensajes = new FXMLLoader(this.getClass().getResource("/view/consultarMensajes.fxml"));
+		this.fxmlLoaderAdministrarIncidencia = new FXMLLoader(
+				this.getClass().getResource("/view/consultarIncidencias.fxml"));
+		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(
+				this.getClass().getResource("/view/consultarProveedores.fxml"));
+		this.fxmlLoaderAdministrarMensajes = new FXMLLoader(
+				this.getClass().getResource("/view/consultarMensajes.fxml"));
 		this.fxmlLoaderAcerca = new FXMLLoader(this.getClass().getResource("/view/acerca_de.fxml"));
 
 		this.rootAdministrarIncidencia = (Parent) this.fxmlLoaderAdministrarIncidencia.load();
@@ -94,10 +97,10 @@ public class Home_Prof_Controller {
 
 	@FXML
 	public void administrarIncidencias() throws SQLException {
-		this.controllerIncidencia.inicializar(this.username.getText(),this.rol_number);
+		this.controllerIncidencia.inicializar(this.username.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene1);
-		this.incidencias.getIcons().add(this.icon); //agregamos el icono
-		this.incidencias.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.incidencias.getIcons().add(this.icon); // agregamos el icono
+		this.incidencias.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.incidencias.show();
 	}
 
@@ -105,8 +108,8 @@ public class Home_Prof_Controller {
 	public void consultarProveedores() throws SQLException {
 		this.controllerProveedores.inicializar(this.username.getText());
 		this.proveedores.setScene(this.scene2);
-		this.proveedores.getIcons().add(this.icon); //agregamos el icono
-		this.proveedores.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.proveedores.getIcons().add(this.icon); // agregamos el icono
+		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.proveedores.show();
 	}
 
@@ -114,16 +117,16 @@ public class Home_Prof_Controller {
 	public void administrarMensajes() throws SQLException {
 		this.controllerMensajes.inicializar(this.username.getText());
 		this.mensajes.setScene(this.scene3);
-		this.mensajes.getIcons().add(this.icon); //agregamos el icono
-		this.mensajes.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.mensajes.getIcons().add(this.icon); // agregamos el icono
+		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.mensajes.show();
 	}
 
 	@FXML
 	public void acercaDe() throws SQLException {
 		this.acercaDe.setScene(this.scene4);
-		this.acercaDe.getIcons().add(this.icon); //agregamos el icono
-		this.acercaDe.setTitle("Proyecto Jose Carlos"); //ponemos el título de la ventana
+		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
+		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.acercaDe.show();
 	}
 }

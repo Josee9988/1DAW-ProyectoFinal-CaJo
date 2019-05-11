@@ -85,7 +85,7 @@ public class usuarioDTO {
 	}
 
 	public usuarioDTO(usuarioDTO u) {
-		this(u.user,u.password,u.rol,u.nombre,u.apellidos,u.telefono,u.direccion);
+		this(u.user, u.password, u.rol, u.nombre, u.apellidos, u.telefono, u.direccion);
 	}
 
 	public usuarioDTO clonar() {
@@ -98,8 +98,9 @@ public class usuarioDTO {
 
 	@Override
 	public String toString() {
-		return "usuarioDTO [id=" + this.id + ",user=" + this.user + ", password=" + this.password + ", rol=" + this.rol + ", nombre="
-				+ this.nombre + ", apellidos=" + this.apellidos + ", telefono=" + this.telefono + ", direccion=" + this.direccion + "]";
+		return "usuarioDTO [id=" + this.id + ",user=" + this.user + ", password=" + this.password + ", rol=" + this.rol
+				+ ", nombre=" + this.nombre + ", apellidos=" + this.apellidos + ", telefono=" + this.telefono
+				+ ", direccion=" + this.direccion + "]";
 	}
 
 	public String getUser() {
