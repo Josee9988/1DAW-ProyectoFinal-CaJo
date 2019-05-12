@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -29,5 +30,14 @@
       <Button layoutX="21.0" layoutY="528.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="36.0" prefWidth="272.0" text="Agregar usuario" />
       <Button layoutX="335.0" layoutY="528.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="272.0" text="Modificar usuario" />
       <Button layoutX="656.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="36.0" prefWidth="274.0" text="Eliminar usuario" />
+      <Button fx:id="restart" layoutX="666.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
+         <graphic>
+            <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

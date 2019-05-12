@@ -69,7 +69,6 @@ public class consultar_usuarios {
 
 	private jdbcUsuarioDAO dbusuario;
 
-
 	usuarioDTO usuarioSelected;
 	int idselected;
 	String nombreCompleto;
@@ -82,14 +81,11 @@ public class consultar_usuarios {
 		this.nombreCompleto = "";
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.dbusuario = new jdbcUsuarioDAO();
-
-
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
-
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -121,10 +117,6 @@ public class consultar_usuarios {
 
 	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.dbusuario.crearUsuario(user);//lo agrega en la base de datos
-		this.tabla.getItems().clear(); //borramos todos los datos
-		this.inicializar(this.nombreCompleto);
-
-
 	}
 
 	@FXML
@@ -141,47 +133,51 @@ public class consultar_usuarios {
 		this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_usuarios.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.agregar_usuarios.show();
-
-
 	}
 
 	@FXML
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
-		this.usuarioSelected.setId(this.idselected); // id no cambiará
-		if (this.usuarioSelected.getUser().equals("")) {
-			this.usuarioSelected.setUser(this.tabla.getSelectionModel().getSelectedItem().getUser());
-		}
-		if (this.usuarioSelected.getPassword().equals("")) {
-			this.usuarioSelected.setPassword(this.tabla.getSelectionModel().getSelectedItem().getPassword());
-		}
-		if (this.usuarioSelected.getRol() == 0) {
-			this.usuarioSelected.setRol(this.tabla.getSelectionModel().getSelectedItem().getRol());
-		}
-		if (this.usuarioSelected.getNombre().equals("")) {
-			this.usuarioSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
-		}
-		if (this.usuarioSelected.getApellidos().equals("")) {
-			this.usuarioSelected.setApellidos(this.tabla.getSelectionModel().getSelectedItem().getApellidos());
-		}
-		if (this.usuarioSelected.getTelefono().equals("")) {
-			this.usuarioSelected.setTelefono(this.tabla.getSelectionModel().getSelectedItem().getTelefono());
-		}
-		if (this.usuarioSelected.getDireccion().equals("")) {
-			this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
-		}
-		//System.out.println(this.usuarioSelected.toString());
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			this.usuarioSelected.setId(this.idselected); // id no cambiará
+			if (this.usuarioSelected.getUser().equals("")) {
+				this.usuarioSelected.setUser(this.tabla.getSelectionModel().getSelectedItem().getUser());
+			}
+			if (this.usuarioSelected.getPassword().equals("")) {
+				this.usuarioSelected.setPassword(this.tabla.getSelectionModel().getSelectedItem().getPassword());
+			}
+			if (this.usuarioSelected.getRol() == 0) {
+				this.usuarioSelected.setRol(this.tabla.getSelectionModel().getSelectedItem().getRol());
+			}
+			if (this.usuarioSelected.getNombre().equals("")) {
+				this.usuarioSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
+			}
+			if (this.usuarioSelected.getApellidos().equals("")) {
+				this.usuarioSelected.setApellidos(this.tabla.getSelectionModel().getSelectedItem().getApellidos());
+			}
+			if (this.usuarioSelected.getTelefono().equals("")) {
+				this.usuarioSelected.setTelefono(this.tabla.getSelectionModel().getSelectedItem().getTelefono());
+			}
+			if (this.usuarioSelected.getDireccion().equals("")) {
+				this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
+			}
 
 
-		this.idselected = -1;
-		this.bdusuarios.modificarUsuario(this.usuarioSelected);
-		this.usuarioSelected = new usuarioDTO();
-		this.tabla.getItems().clear(); //borramos todos los datos
-		this.inicializar(this.nombreCompleto);
-
+			this.idselected = -1;
+			this.bdusuarios.modificarUsuario(this.usuarioSelected);
+			this.usuarioSelected = new usuarioDTO();
+		}
+		//	this.restart();
 	}
 
+	@FXML
+	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.idselected = -1;
+		this.usuarioSelected = new usuarioDTO();
+		this.tabla.getItems().clear(); //borramos todos los datos
+		this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
 
+	}
 
 	@FXML
 	public void eliminarUsuario() throws SQLException { // boton eliminar

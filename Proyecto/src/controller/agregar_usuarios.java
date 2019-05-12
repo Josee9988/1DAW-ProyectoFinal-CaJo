@@ -73,7 +73,6 @@ public class agregar_usuarios {
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 		this.consultar_usuarios.agregarEnBaseDatos(usuarioDTO);
-
 	}
 
 
