@@ -84,7 +84,7 @@ public class consultar_usuarios {
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -115,20 +115,20 @@ public class consultar_usuarios {
 
 	}
 
-	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
-		this.dbusuario.crearUsuario(user);//lo agrega en la base de datos
+	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException,
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
 	}
 
 	@FXML
 	public void agregarUsuario() throws IOException { // boton agregar
-		//creamos la escena
+		// creamos la escena
 		this.agregar_usuarios = new Stage();
-		this.fxmlLoaderagregar_usuarios = new FXMLLoader(
-				this.getClass().getResource("/view/agregarUser.fxml"));
+		this.fxmlLoaderagregar_usuarios = new FXMLLoader(this.getClass().getResource("/view/agregarUser.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderagregar_usuarios.load();
 		this.controller_agregar_usuarios = this.fxmlLoaderagregar_usuarios.<agregar_usuarios>getController();
 		this.scene1 = new Scene(this.root1);
-		this.controller_agregar_usuarios.inicializar(); //llamamos al método inicializar
+		this.controller_agregar_usuarios.inicializar(); // llamamos al método inicializar
 		this.agregar_usuarios.setScene(this.scene1);
 		this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_usuarios.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
@@ -136,7 +136,8 @@ public class consultar_usuarios {
 	}
 
 	@FXML
-	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
+			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -162,27 +163,28 @@ public class consultar_usuarios {
 				this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 			}
 
-
 			this.idselected = -1;
 			this.bdusuarios.modificarUsuario(this.usuarioSelected);
 			this.usuarioSelected = new usuarioDTO();
 		}
-		//	this.restart();
+		// this.restart();
 	}
 
 	@FXML
-	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.idselected = -1;
 		this.usuarioSelected = new usuarioDTO();
-		this.tabla.getItems().clear(); //borramos todos los datos
+		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
 
 	}
 
 	@FXML
 	public void eliminarUsuario() throws SQLException { // boton eliminar
-		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); //lo eliminamos en la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); //lo eliminamos en la tabla
+		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos en
+																									// la bd
+		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 
 	}
 

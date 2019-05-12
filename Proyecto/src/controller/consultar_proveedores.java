@@ -5,17 +5,29 @@
  */
 package controller;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import dto.incidenciaDTO;
 import dto.proveedorDTO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import model.jdbcProveedoresDAO;
 
 public class consultar_proveedores {
@@ -40,9 +52,17 @@ public class consultar_proveedores {
 	@FXML
 	private TextField fecha_encabezado;
 
+	private Stage agregar_proveedor;
+	private Parent root1;
+	private Scene scene1;
+	private FXMLLoader fxmlLoaderagregar_proveedor;
+	private controller.agregar_proveedor controller_agregar_proveedor;
+	private Image icon;
+
 	public consultar_proveedores() {
 		this.tabla = new TableView<>();
 		this.bdproveedores = new jdbcProveedoresDAO();
+		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException {
@@ -60,8 +80,18 @@ public class consultar_proveedores {
 	}
 
 	@FXML
-	public void agregarProveedor() {
-
+	public void agregarProveedor() throws IOException {
+		// creamos la escena
+		this.agregar_proveedor = new Stage();
+		this.fxmlLoaderagregar_proveedor = new FXMLLoader(this.getClass().getResource("/view/agregarProveedor.fxml"));
+		this.root1 = (Parent) this.fxmlLoaderagregar_proveedor.load();
+		this.controller_agregar_proveedor = this.fxmlLoaderagregar_proveedor.<agregar_proveedor>getController();
+		this.scene1 = new Scene(this.root1);
+		this.controller_agregar_proveedor.inicializar(); // llamamos al método inicializar
+		this.agregar_proveedor.setScene(this.scene1);
+		this.agregar_proveedor.getIcons().add(this.icon); // agregamos el icono
+		this.agregar_proveedor.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_proveedor.show();
 	}
 
 	@FXML
@@ -70,7 +100,22 @@ public class consultar_proveedores {
 	}
 
 	@FXML
-	public void eliminarProveedor() {
+	public void eliminarProveedor() throws SQLException {
+		this.bdproveedores.eliminarProveedor(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
+																										// en la bd
+		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
+	}
+
+	@FXML
+	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
+
+	}
+
+	public void agregarProveedorEnBD(proveedorDTO proveedor) throws SQLException {
+		this.bdproveedores.agregarProveedor(proveedor);
 
 	}
 

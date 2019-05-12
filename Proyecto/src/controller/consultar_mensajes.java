@@ -73,4 +73,9 @@ public class consultar_mensajes {
 
 	}
 
+	@FXML
+	public void restart() {
+
+	}
+
 }

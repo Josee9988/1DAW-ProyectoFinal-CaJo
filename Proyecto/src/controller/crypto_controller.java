@@ -116,15 +116,4 @@ public class crypto_controller {
 		String decrypted = new String(cipher.doFinal(hexToByte(text)));
 		return decrypted;
 	}
-
-//	public static void main(String[] str) throws Exception {
-//		String textToEncrypt = "1234";
-//		String encryptedText = encrypt(textToEncrypt);
-//
-//		System.out.println("\"" + textToEncrypt + "\" after encryption---->" + encryptedText);
-//
-//		String decryptedSecretText = decrypt(encryptedText);
-//		System.out.println("After decryption --->" + decryptedSecretText);
-//
-//	}
 }

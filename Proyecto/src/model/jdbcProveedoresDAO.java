@@ -30,10 +30,10 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 	}
 
 	@Override
-	public boolean eliminarProveedor(proveedorDTO p) throws SQLException {
+	public boolean eliminarProveedor(int id) throws SQLException {
 		boolean resultado;
 		this.ps = this.connect.prepareStatement("delete from proveedores where id = ?");
-		this.ps.setInt(1, p.getId());
+		this.ps.setInt(1, id);
 		if (this.ps.executeUpdate() == 1) {
 			resultado = true;
 		} else {

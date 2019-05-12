@@ -5,7 +5,6 @@
  */
 package controller;
 
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -42,9 +41,8 @@ public class agregar_usuarios {
 	@FXML
 	private Button agregarusuario;
 
-	consultar_usuarios consultar_usuarios;
-	Stage stage;
-
+	private consultar_usuarios consultar_usuarios;
+	private Stage stage;
 
 	public agregar_usuarios() {
 		this.consultar_usuarios = new consultar_usuarios();
@@ -52,16 +50,17 @@ public class agregar_usuarios {
 	}
 
 	public void inicializar() {
-		ObservableList<Integer> roles = FXCollections.observableArrayList(1,2,3,4);
+		ObservableList<Integer> roles = FXCollections.observableArrayList(1, 2, 3, 4);
 		this.rol.setItems(roles);
 		this.rol.setEditable(false);
 		this.rol.getSelectionModel().select(3);
-		this.rol.getStyleClass().add("center-aligned");//clase del css para centrar combobox
+		this.rol.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 
 	}
 
 	@FXML
-	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();
 		usuarioDTO.setUser(this.usuario.getText());
 		usuarioDTO.setPassword(this.password.getText());
@@ -74,7 +73,5 @@ public class agregar_usuarios {
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 		this.consultar_usuarios.agregarEnBaseDatos(usuarioDTO);
 	}
-
-
 
 }

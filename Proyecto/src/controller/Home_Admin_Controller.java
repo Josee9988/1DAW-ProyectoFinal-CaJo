@@ -90,7 +90,7 @@ public class Home_Admin_Controller {
 
 	@FXML
 	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
 		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(
 				this.getClass().getResource("/view/consultarUsuarios.fxml"));

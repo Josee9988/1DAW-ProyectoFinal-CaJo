@@ -5,9 +5,15 @@
  */
 package controller;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import dto.incidenciaDTO;
 import dto.usuarioDTO;
@@ -86,6 +92,14 @@ public class consultar_incidencias {
 
 	@FXML
 	public void eliminarIncidencia() {
+
+	}
+
+	@FXML
+	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.tabla.getItems().clear(); // borramos todos los datos
+		// this.tabla.getItems().addAll(bdincidencias.leerIncidencias());
 
 	}
 

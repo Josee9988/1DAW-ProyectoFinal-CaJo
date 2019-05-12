@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -26,5 +27,14 @@
       <Button layoutX="17.0" layoutY="526.0" mnemonicParsing="false" onAction="#agregarMensaje" prefHeight="38.0" prefWidth="255.0" text="Agregar mensaje" />
       <Button layoutX="316.0" layoutY="526.0" mnemonicParsing="false" onAction="#modificarMensaje" prefHeight="38.0" prefWidth="291.0" text="Modificar mensaje" />
       <Button layoutX="646.0" layoutY="527.0" mnemonicParsing="false" onAction="#eliminarMensaje" prefHeight="38.0" prefWidth="291.0" text="Eliminar mensaje" />
+      <Button fx:id="restart" layoutX="665.0" layoutY="20.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
+         <graphic>
+            <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>
