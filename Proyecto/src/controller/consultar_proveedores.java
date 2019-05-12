@@ -23,11 +23,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import model.jdbcProveedoresDAO;
 
 public class consultar_proveedores {
@@ -58,11 +61,15 @@ public class consultar_proveedores {
 	private FXMLLoader fxmlLoaderagregar_proveedor;
 	private controller.agregar_proveedor controller_agregar_proveedor;
 	private Image icon;
+	private int idselected;
+	private proveedorDTO proveedorDTO;
 
 	public consultar_proveedores() {
 		this.tabla = new TableView<>();
 		this.bdproveedores = new jdbcProveedoresDAO();
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
+		this.idselected = -1;
+		this.proveedorDTO = new proveedorDTO();
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException {
@@ -77,6 +84,16 @@ public class consultar_proveedores {
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
+
+		this.tabla.setEditable(true);// hacemos la tabla entera editable
+
+		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y
+		// nunca va a ser relevante a la hora de modificar un usuario
+		this.nombre.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.contacto.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.valoracion.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		this.direccion.setCellFactory(TextFieldTableCell.forTableColumn());
+
 	}
 
 	@FXML
@@ -95,14 +112,33 @@ public class consultar_proveedores {
 	}
 
 	@FXML
-	public void modificarProveedor() {
+	public void modificarProveedor() throws SQLException {
+		// Si un valor no se ha modificado cogerá el que estaba en la fila.
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			this.proveedorDTO.setId(this.idselected); // id no cambiará
+			if (this.proveedorDTO.getNombre().equals("")) {
+				this.proveedorDTO.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
+			}
+			if (this.proveedorDTO.getContacto().equals("")) {
+				this.proveedorDTO.setContacto(this.tabla.getSelectionModel().getSelectedItem().getContacto());
+			}
+			if (this.proveedorDTO.getValoracion() == 0) {
+				this.proveedorDTO.setValoracion(this.tabla.getSelectionModel().getSelectedItem().getValoracion());
+			}
+			if (this.proveedorDTO.getDireccion().equals("")) {
+				this.proveedorDTO.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
+			}
+			this.idselected = -1;
+			this.bdproveedores.modificarProveedor(this.proveedorDTO);
+			this.proveedorDTO = new proveedorDTO();
+		}
 
 	}
 
 	@FXML
 	public void eliminarProveedor() throws SQLException {
 		this.bdproveedores.eliminarProveedor(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
-																										// en la bd
+		// en la bd
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 	}
 
@@ -117,6 +153,59 @@ public class consultar_proveedores {
 	public void agregarProveedorEnBD(proveedorDTO proveedor) throws SQLException {
 		this.bdproveedores.agregarProveedor(proveedor);
 
+	}
+
+	// ##### MODIFICACIONES
+	@FXML
+	public void editNombre(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.proveedorDTO.setNombre(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.proveedorDTO.setNombre(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editContacto(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.proveedorDTO.setContacto(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.proveedorDTO.setContacto(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editDireccion(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.proveedorDTO.setDireccion(edditedCell.getNewValue().toString());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.proveedorDTO.setDireccion(edditedCell.getNewValue().toString());
+			}
+		}
+	}
+
+	@FXML
+	public void editValoracion(CellEditEvent edditedCell) {
+		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+			this.proveedorDTO.setValoracion((int) edditedCell.getNewValue());
+
+		} else {
+			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
+				this.proveedorDTO.setValoracion((int) edditedCell.getNewValue());
+			}
+		}
 	}
 
 }

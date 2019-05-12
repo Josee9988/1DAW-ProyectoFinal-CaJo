@@ -71,21 +71,18 @@ public class consultar_usuarios {
 
 	usuarioDTO usuarioSelected;
 	int idselected;
-	String nombreCompleto;
 
 	public consultar_usuarios() {
 		this.tabla = new TableView<>();
 		this.bdusuarios = new jdbcUsuarioDAO();
 		this.usuarioSelected = new usuarioDTO();
 		this.idselected = -1;
-		this.nombreCompleto = "";
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.dbusuario = new jdbcUsuarioDAO();
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
-		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -183,7 +180,7 @@ public class consultar_usuarios {
 	@FXML
 	public void eliminarUsuario() throws SQLException { // boton eliminar
 		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos en
-																									// la bd
+		// la bd
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 
 	}

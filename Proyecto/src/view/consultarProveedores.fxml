@@ -15,11 +15,11 @@
       </Label>
       <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="919.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="116.0" text="ID" />
-          <TableColumn fx:id="nombre" prefWidth="234.0" text="Nombre" />
-            <TableColumn fx:id="contacto" prefWidth="204.0" text="Contacto" />
-            <TableColumn fx:id="direccion" prefWidth="241.0" text="Dirección" />
-            <TableColumn fx:id="valoracion" minWidth="0.0" prefWidth="128.0" text="Valoración" />
+          <TableColumn fx:id="id" prefWidth="69.0" text="ID" />
+          <TableColumn fx:id="nombre" onEditCommit="#editNombre" prefWidth="234.0" text="Nombre" />
+            <TableColumn fx:id="contacto" onEditCommit="#editContacto" prefWidth="251.0" text="Contacto" />
+            <TableColumn fx:id="direccion" onEditCommit="#editDireccion" prefWidth="252.0" text="Dirección" />
+            <TableColumn fx:id="valoracion" minWidth="0.0" onEditCommit="#editValoracion" prefWidth="117.0" text="Valoración" />
         </columns>
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />

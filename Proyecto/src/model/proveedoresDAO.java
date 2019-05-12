@@ -16,8 +16,8 @@ public interface proveedoresDAO {
 
 	void agregarProveedor(proveedorDTO p) throws SQLException;
 
-	boolean modificarProveedor(int id, String valor, String campo) throws SQLException;
-
 	boolean eliminarProveedor(int id) throws SQLException;
+
+	boolean modificarProveedor(proveedorDTO proveedor) throws SQLException;
 
 }

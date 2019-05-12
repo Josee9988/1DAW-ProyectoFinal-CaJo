@@ -66,29 +66,23 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 	}
 
 	@Override
-	public boolean modificarProveedor(int id, String valor, String campo) throws SQLException {
+	public boolean modificarProveedor(proveedorDTO proveedor) throws SQLException {
 		boolean resultado = false;
-		switch (campo) {
-		case "Nombre":
-			this.ps = this.connect.prepareStatement("update proveedores set nombre = ? where id = ?");
-			break;
-		case "Contacto":
-			this.ps = this.connect.prepareStatement("update proveedores set contacto = ? where id = ?");
-			break;
-		case "Direccion":
-			this.ps = this.connect.prepareStatement("update proveedores set direccion = ? where id = ?");
-			break;
-		case "Valoracion":
-			this.ps = this.connect.prepareStatement("update proveedores set valoracion = ? where id = ?");
-			break;
-		}
-		this.ps.setString(1, valor);
-		this.ps.setInt(2, id);
+		this.ps = this.connect.prepareStatement(
+				"update proveedores set nombre = ?, contacto = ?, direccion = ?, valoracion = ?  where id = ?");
+		this.ps.setString(1, proveedor.getNombre());
+		this.ps.setString(2, proveedor.getContacto());
+		this.ps.setString(3, proveedor.getDireccion());
+		this.ps.setInt(4, proveedor.getValoracion());
+		this.ps.setInt(5, proveedor.getId());
+		this.ps.executeUpdate();
 		if (this.ps.executeUpdate() == 1) {
 			resultado = true;
 		} else {
 			resultado = false;
 		}
+
+		this.ps.close();
 		return resultado;
 	}
 
