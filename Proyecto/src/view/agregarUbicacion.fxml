@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creadoresController.agregar_ubicacion">
+   <children>
+      <Text layoutX="170.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Ubicación" wrappingWidth="261.0">
+         <font>
+            <Font name="Ubuntu Bold" size="29.0" />
+         </font>
+      </Text>
+      <Label layoutX="121.0" layoutY="104.0" text="Nombre" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="408.0" layoutY="104.0" text="Descripción" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="420.0" layoutY="200.0" text="Planta" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="122.0" layoutY="200.0" text="Edificio" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nombre" layoutX="64.0" layoutY="139.0" prefHeight="30.0" prefWidth="180.0" promptText="nombre" />
+      <TextField fx:id="descripcion" layoutX="358.0" layoutY="139.0" prefHeight="30.0" prefWidth="180.0" promptText="descripcion" />
+      <TextField fx:id="planta" layoutX="357.0" layoutY="240.0" prefHeight="30.0" prefWidth="180.0" promptText="planta" />
+      <Button fx:id="agregarUbicacion" layoutX="63.0" layoutY="304.0" mnemonicParsing="false" onAction="#agregarUbicacion" prefHeight="59.0" prefWidth="470.0" style="-fx-background-color: #5781af;" text="Agregar Ubicación">
+         <font>
+            <Font name="Ubuntu Bold" size="17.0" />
+         </font>
+      </Button>
+      <TextField fx:id="edificio" layoutX="64.0" layoutY="240.0" prefHeight="30.0" prefWidth="180.0" promptText="edificio" />
+   </children>
+</Pane>

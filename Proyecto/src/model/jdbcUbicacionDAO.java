@@ -32,7 +32,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	@Override
 	public void agregarUbicacion(ubicacionDTO u) throws SQLException {
 		this.ps = this.connect
-				.prepareStatement("insert into ubicaciones(nombre,descripcion,edificio,planta) values (?,?,?,?)");
+				.prepareStatement("INSERT INTO ubicaciones(nombre,descripcion,edificio,planta) values (?,?,?,?)");
 		this.ps.setString(1, u.getNombre());
 		this.ps.setString(2, u.getDescripcion());
 		this.ps.setString(3, u.getEdificio());
@@ -41,25 +41,19 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	}
 
 	@Override
-	public boolean modificarUbicacion(int id, String valor, String campo) throws SQLException {
+	public boolean modificarUbicacion(ubicacionDTO ubicacion) throws SQLException {
 		boolean resultado = false;
-		switch (campo) {
-		case "Nombre":
-			this.ps = this.connect.prepareStatement("update ubicaciones set nombre = ? where id = ?");
-			break;
-		case "Descripcion":
-			this.ps = this.connect.prepareStatement("update ubicaciones set descripcion = ? where id = ?");
-			break;
-		case "Edificio":
-			this.ps = this.connect.prepareStatement("update ubicaciones set edificio = ? where id = ?");
-			break;
-		case "Planta":
-			this.ps = this.connect.prepareStatement("update ubicaciones set planta = ? where id = ?");
-			break;
-		}
-		this.ps.setString(1, valor);
-		this.ps.setInt(2, id);
-		if (this.ps.executeUpdate() == 1) {
+		int n = 0;
+		this.ps = this.connect.prepareStatement(
+				"UPDATE ubicaciones SET nombre = ?, descripcion = ?, edificio = ?, planta = ?  WHERE id = ?");
+		this.ps.setString(1, ubicacion.getNombre());
+		this.ps.setString(2, ubicacion.getDescripcion());
+		this.ps.setString(3, ubicacion.getEdificio());
+		this.ps.setString(4, ubicacion.getPlanta());
+		this.ps.setInt(5, ubicacion.getId());
+		n = this.ps.executeUpdate();
+
+		if (n == 1) {
 			resultado = true;
 		} else {
 			resultado = false;
@@ -68,10 +62,10 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	}
 
 	@Override
-	public boolean eliminarUbicacion(ubicacionDTO u) throws SQLException {
+	public boolean eliminarUbicacion(int id) throws SQLException {
 		boolean resultado;
-		this.ps = this.connect.prepareStatement("delete from ubicaciones where id = ?");
-		this.ps.setInt(1, u.getId());
+		this.ps = this.connect.prepareStatement("DELETE FROM ubicaciones where id = ?");
+		this.ps.setInt(1, id);
 		if (this.ps.executeUpdate() == 1) {
 			resultado = true;
 		} else {

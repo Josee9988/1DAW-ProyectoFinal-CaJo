@@ -60,7 +60,7 @@ public class consultar_proveedores {
 	private Parent root1;
 	private Scene scene1;
 	private FXMLLoader fxmlLoaderagregar_proveedor;
-	private agregar_proveedor controller_agregar_proveedor;
+	private creadoresController.agregar_proveedor controller_agregar_proveedor;
 	private Image icon;
 	private int idselected;
 	private proveedorDTO proveedorDTO;

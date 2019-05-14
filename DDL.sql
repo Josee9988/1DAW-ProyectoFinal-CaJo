@@ -19,8 +19,6 @@ USE m_proyectodaw;
 
 
 DROP TABLE IF EXISTS `incidencias`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `incidencias` (
   `id_incidencia` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -33,12 +31,10 @@ CREATE TABLE `incidencias` (
   `materiales` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_incidencia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 DROP TABLE IF EXISTS `mensajes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mensajes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `asunto` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -51,8 +47,6 @@ CREATE TABLE `mensajes` (
 
 
 DROP TABLE IF EXISTS `proveedores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -61,12 +55,10 @@ CREATE TABLE `proveedores` (
   `valoracion` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 DROP TABLE IF EXISTS `ubicaciones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ubicaciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -75,13 +67,10 @@ CREATE TABLE `ubicaciones` (
   `planta` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 
 DROP TABLE IF EXISTS `usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` char(15) COLLATE utf8mb4_general_ci NOT NULL,
@@ -93,14 +82,9 @@ CREATE TABLE `usuarios` (
   `direccion` varchar(80) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 
-
-/*INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
-VALUES ("root", "1234", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");*/
-
-/*	INSERT INTO FIRST USER ROOT AS AN ADMIN	*/
+/*	INSERTAMOS AL MENOS UN USUARIO ROOT CON PASSWORD 1234 */
 INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
 VALUES ("root", "e01064882b3febf97916c7df6e33b4b2", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");
