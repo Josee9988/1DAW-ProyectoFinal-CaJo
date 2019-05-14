@@ -4,7 +4,6 @@
  * @param args Recibe los datos del programa
  */
 package controller;
-
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -16,6 +15,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import creadoresController.agregar_usuarios;
 import dto.usuarioDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,7 +82,7 @@ public class consultar_usuarios {
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -113,7 +113,7 @@ public class consultar_usuarios {
 	}
 
 	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
 	}
 
@@ -134,7 +134,7 @@ public class consultar_usuarios {
 
 	@FXML
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+	IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -169,7 +169,7 @@ public class consultar_usuarios {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.idselected = -1;
 		this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); // borramos todos los datos

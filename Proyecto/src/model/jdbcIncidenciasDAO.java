@@ -31,10 +31,10 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	}
 
 	@Override
-	public boolean eliminarIncidencia(incidenciaDTO i) throws SQLException {
+	public boolean eliminarIncidencia(int id) throws SQLException {
 		boolean resultado;
-		this.ps = this.connect.prepareStatement("delete from incidencias where id_incidencia = ?");
-		this.ps.setInt(1, i.getId());
+		this.ps = this.connect.prepareStatement("DELETE FROM incidencias WHERE id_incidencia = ?");
+		this.ps.setInt(1, id);
 		if (this.ps.executeUpdate() == 1) {
 			resultado = true;
 		} else {
@@ -63,16 +63,30 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	}
 
 	@Override
-	public boolean modificarIncidencia(incidenciaDTO i) throws SQLException {
+	public boolean modificarIncidencia(incidenciaDTO incidencia) throws SQLException {
 		boolean resultado;
-		this.ps = this.connect.prepareStatement("update incidencias set urgencia = ? where id_incidencia = ?");
-		this.ps.setString(1, i.getUrgencia());
-		this.ps.setInt(2, i.getId());
-		if (this.ps.executeUpdate() == 1) {
+		int n = 0;
+		this.ps = this.connect.prepareStatement(
+				"UPDATE incidencias SET usuario = ?, descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id_incidencia = ?");
+
+		this.ps.setString(1, incidencia.getUsuario());
+		this.ps.setString(2, incidencia.getDescripcion());
+		this.ps.setString(3, incidencia.getElemento());
+		this.ps.setString(4, incidencia.getUbicacion());
+		this.ps.setDate(5, incidencia.getFecha());
+		this.ps.setString(6, incidencia.getUrgencia());
+		this.ps.setString(7, incidencia.getCategoria());
+		this.ps.setString(8, incidencia.getMateriales());
+		this.ps.setInt(9, incidencia.getId());
+
+		n = this.ps.executeUpdate();
+
+		if (n == 1) {
 			resultado = true;
 		} else {
 			resultado = false;
 		}
+		this.ps.close();
 		return resultado;
 	}
 

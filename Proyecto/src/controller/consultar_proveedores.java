@@ -16,6 +16,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import creadoresController.agregar_proveedor;
 import dto.incidenciaDTO;
 import dto.proveedorDTO;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class consultar_proveedores {
 	private Parent root1;
 	private Scene scene1;
 	private FXMLLoader fxmlLoaderagregar_proveedor;
-	private controller.agregar_proveedor controller_agregar_proveedor;
+	private agregar_proveedor controller_agregar_proveedor;
 	private Image icon;
 	private int idselected;
 	private proveedorDTO proveedorDTO;
@@ -144,7 +145,7 @@ public class consultar_proveedores {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 

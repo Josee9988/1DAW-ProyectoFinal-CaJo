@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creadoresController.agregar_incidencia">
+   <children>
+      <Text layoutX="163.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Incidencia" wrappingWidth="274.5869140625">
+         <font>
+            <Font name="Ubuntu Bold" size="29.0" />
+         </font>
+      </Text>
+      <Label layoutX="82.0" layoutY="105.0" text="Usuario" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="257.0" layoutY="105.0" text="Descripción" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="304.0" text="Materiales" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="447.0" layoutY="105.0" text="Elemento" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="200.0" text="Urgencia" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="447.0" layoutY="201.0" text="Categoría" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="200.0" text="Fecha" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usuario" layoutX="64.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="usuario" />
+      <TextField fx:id="descripcion" layoutX="253.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="descripcion" />
+      <TextField fx:id="elemento" layoutX="437.0" layoutY="139.0" prefHeight="25.0" prefWidth="93.0" promptText="elemento" />
+      <TextField fx:id="urgencia" layoutX="254.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="urgencia" />
+      <TextField fx:id="categoria" layoutX="437.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="categoria" />
+      <Button fx:id="agregarincidencia" layoutX="390.0" layoutY="315.0" mnemonicParsing="false" onAction="#agregarincidencia" prefHeight="82.0" prefWidth="192.0" style="-fx-background-color: #5781af;" text="Agregar incidencia">
+         <font>
+            <Font name="Ubuntu Bold" size="17.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="date" layoutX="64.0" layoutY="240.0" prefHeight="25.0" prefWidth="93.0" promptText="date" />
+      <TextField fx:id="materiales" layoutX="64.0" layoutY="338.0" prefHeight="25.0" prefWidth="93.0" promptText="materiales" />
+      <TextField fx:id="ubicacion" layoutX="255.0" layoutY="338.0" prefHeight="25.0" prefWidth="93.0" promptText="ubicacion" />
+      <Label layoutX="265.0" layoutY="304.0" text="Ubicación" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

@@ -3,8 +3,7 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
-
+package creadoresController;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import controller.consultar_usuarios;
 import dto.usuarioDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,7 +60,7 @@ public class agregar_usuarios {
 
 	@FXML
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();
 		usuarioDTO.setUser(this.usuario.getText());
 		usuarioDTO.setPassword(this.password.getText());

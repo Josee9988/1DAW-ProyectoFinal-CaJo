@@ -3,10 +3,11 @@
  * @version May 12, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package creadoresController;
 
 import java.sql.SQLException;
 
+import controller.consultar_proveedores;
 import dto.proveedorDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

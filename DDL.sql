@@ -44,6 +44,8 @@ CREATE TABLE `mensajes` (
   `asunto` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `cuerpo` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `fecha` date NOT NULL,
+  `id_emisor` int(11) NOT NULL,
+  `id_receptor` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
