@@ -4,6 +4,7 @@
  * @param args Recibe los datos del programa
  */
 package creadoresController;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -60,7 +61,7 @@ public class agregar_usuarios {
 
 	@FXML
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();
 		usuarioDTO.setUser(this.usuario.getText());
 		usuarioDTO.setPassword(this.password.getText());

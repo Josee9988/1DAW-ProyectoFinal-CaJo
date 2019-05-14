@@ -6,16 +6,10 @@
 package controller;
 
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import creadoresController.agregar_incidencia;
 import dto.incidenciaDTO;
@@ -114,8 +108,9 @@ public class consultar_incidencias {
 		this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.descripcion.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.elemento.setCellFactory(TextFieldTableCell.forTableColumn());
-		//TODO: make list
-		//fecha.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateTimeStringConverter()));
+		// TODO: make list
+		// fecha.setCellFactory(TextFieldTableCell.forTableColumn(new
+		// LocalDateTimeStringConverter()));
 		this.urgencia.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.materiales.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -124,7 +119,7 @@ public class consultar_incidencias {
 
 	@FXML
 	public void agregarIncidencia() throws IOException {
-		this.agregar_incidencia= new Stage();
+		this.agregar_incidencia = new Stage();
 		this.fxmlLoaderagregar_incidencia = new FXMLLoader(this.getClass().getResource("/view/agregarIncidencia.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderagregar_incidencia.load();
 		this.controller_agregar_incidencia = this.fxmlLoaderagregar_incidencia.<agregar_incidencia>getController();
@@ -135,7 +130,6 @@ public class consultar_incidencias {
 		this.agregar_incidencia.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.agregar_incidencia.show();
 	}
-
 
 	public void agregarIncidenciaEnBD(incidenciaDTO incidenciaDTO) throws SQLException {
 		this.bdincidencias.crearIncidencia(incidenciaDTO);
@@ -150,15 +144,16 @@ public class consultar_incidencias {
 				this.incidenciaSelected.setUsuario(this.tabla.getSelectionModel().getSelectedItem().getUsuario());
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
-				this.incidenciaSelected.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+				this.incidenciaSelected
+						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
 			}
-			//TODO: hacerlo como un desplegable de fechas
-			//if (this.incidenciaSelected.getfecha().equals("")) {
-			//	this.incidenciaSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
-			//}
+			// TODO: hacerlo como un desplegable de fechas
+			// if (this.incidenciaSelected.getfecha().equals("")) {
+			// this.incidenciaSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
+			// }
 			if (this.incidenciaSelected.getUrgencia().equals("")) {
 				this.incidenciaSelected.setUrgencia(this.tabla.getSelectionModel().getSelectedItem().getUrgencia());
 			}
@@ -172,7 +167,6 @@ public class consultar_incidencias {
 				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
 			}
 
-
 			this.bdincidencias.modificarIncidencia(this.incidenciaSelected);
 			this.idselected = -1;
 			this.incidenciaSelected = new incidenciaDTO();
@@ -181,21 +175,20 @@ public class consultar_incidencias {
 
 	@FXML
 	public void eliminarIncidencia() throws SQLException {
-		this.bdincidencias.eliminarIncidencia(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
+		this.bdincidencias.eliminarIncidencia(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo
+																											// eliminamos
 		// en la bd
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 	}
 
 	@FXML
-	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
-
+		this.tabla.getItems().addAll(
+				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
 	}
 
-
-	//MODIFICACIONES
+	// MODIFICACIONES
 	@FXML
 	public void editUsuario(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
@@ -237,7 +230,8 @@ public class consultar_incidencias {
 		Date date = new Date();
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.incidenciaSelected.setFecha((java.sql.Date) new SimpleDateFormat("dd-MM-yyyy").parse(edditedCell.getNewValue().toString()));
+			this.incidenciaSelected.setFecha(
+					(java.sql.Date) new SimpleDateFormat("dd-MM-yyyy").parse(edditedCell.getNewValue().toString()));
 		} else {
 			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
 				this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
@@ -269,7 +263,6 @@ public class consultar_incidencias {
 		}
 	}
 
-
 	@FXML
 	public void editMateriales(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
@@ -293,10 +286,5 @@ public class consultar_incidencias {
 			}
 		}
 	}
-
-
-
-
-
 
 }

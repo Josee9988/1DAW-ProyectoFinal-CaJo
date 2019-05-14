@@ -53,7 +53,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
@@ -68,8 +68,8 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-		//boolean resultado;
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
 
@@ -102,7 +102,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
@@ -121,6 +121,39 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.setInt(1, id);
 		this.ps.executeUpdate();
 		this.ps.close();
+	}
+
+	// para mensajes
+	public int devolverId(String nombre, String apellidos) throws SQLException {
+		int id = 0;
+		this.ps = this.connect.prepareStatement("SELECT id FROM usuarios WHERE nombre = ? AND apellidos = ? LIMIT 1");
+		this.ps.setString(1, nombre);
+		this.ps.setString(2, apellidos);
+		this.rs = this.ps.executeQuery();
+		if (this.rs.next()) {
+			id = this.rs.getInt("id");
+
+		}
+		this.ps.close();
+		this.rs.close();
+		return id;
+	}
+
+	// para mensajes
+	public String devolverNombre(int id) throws SQLException {
+		String nombre = "";
+		String apellidos = "";
+		this.ps = this.connect.prepareStatement("select nombre, apellidos from usuarios where id = ?");
+		this.ps.setInt(1, id);
+
+		this.rs = this.ps.executeQuery();
+		if (this.rs.next()) {
+			nombre = this.rs.getString("nombre");
+			apellidos = this.rs.getString("apellidos");
+		}
+
+		return nombre.concat(" ").concat(apellidos);
+
 	}
 
 }

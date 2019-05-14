@@ -141,19 +141,17 @@ public class consultar_ubicaciones {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
 
 	}
 
-
-
 	public void agregarUbicacionEnBD(ubicacionDTO ubicacion) throws SQLException {
 		this.bdubicaciones.agregarUbicacion(ubicacion);
 	}
 
-	//#####MODIFICACIONESs
+	// #####MODIFICACIONESs
 	@FXML
 	public void editNombre(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...

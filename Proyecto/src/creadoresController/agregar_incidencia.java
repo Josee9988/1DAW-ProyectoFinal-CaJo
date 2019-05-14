@@ -35,8 +35,6 @@ public class agregar_incidencia {
 
 	private consultar_incidencias consultar;
 
-
-
 	public agregar_incidencia() {
 		this.consultar = new consultar_incidencias();
 
@@ -62,6 +60,5 @@ public class agregar_incidencia {
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 		this.consultar.agregarIncidenciaEnBD(incidenciaDTO);
 	}
-
 
 }

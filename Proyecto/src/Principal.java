@@ -22,7 +22,7 @@ public class Principal extends Application {
 			root = FXMLLoader.load(this.getClass().getResource("/view/login.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setResizable(false);
-			primaryStage.setOpacity(0.90);
+			primaryStage.setOpacity(0.875);
 			Image icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("Proyecto Jose Carlos");

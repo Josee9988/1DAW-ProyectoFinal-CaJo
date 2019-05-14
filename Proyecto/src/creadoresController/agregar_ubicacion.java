@@ -25,16 +25,13 @@ public class agregar_ubicacion {
 
 	private consultar_ubicaciones consultar;
 
-
 	public agregar_ubicacion() {
 		this.consultar = new consultar_ubicaciones();
 	}
 
-
 	public void inicializar() {
 
 	}
-
 
 	@FXML
 	public void agregarUbicacion() throws SQLException {
@@ -50,7 +47,5 @@ public class agregar_ubicacion {
 		this.consultar.agregarUbicacionEnBD(ubicacionDTO);
 
 	}
-
-
 
 }
