@@ -103,7 +103,7 @@ public class consultar_mensajes {
 	}
 
 	@FXML
-	public void agregarMensaje() throws IOException {
+	public void agregarMensaje() throws IOException, SQLException {
 		this.agregar_mensaje = new Stage();
 		this.fxmlLoaderagregar_mensaje = new FXMLLoader(this.getClass().getResource("/view/agregarMensaje.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderagregar_mensaje.load();

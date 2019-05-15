@@ -51,17 +51,18 @@ public class agregar_usuarios {
 	}
 
 	public void inicializar() {
-		ObservableList<Integer> roles = FXCollections.observableArrayList(1, 2, 3, 4);
+		ObservableList<String> roles = FXCollections.observableArrayList("Profesor", "Jefe Dpto.", "Mantenimiento",
+				"Admin");
 		this.rol.setItems(roles);
 		this.rol.setEditable(false);
-		this.rol.getSelectionModel().select(3);
+		this.rol.getSelectionModel().select(0);
 		this.rol.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 
 	}
 
 	@FXML
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();
 		usuarioDTO.setUser(this.usuario.getText());
 		usuarioDTO.setPassword(this.password.getText());
@@ -69,10 +70,40 @@ public class agregar_usuarios {
 		usuarioDTO.setDireccion(this.direccion.getText());
 		usuarioDTO.setTelefono(this.telefono.getText());
 		usuarioDTO.setTelefono(this.telefono.getText());
-		usuarioDTO.setRol((int) this.rol.getValue());
+		usuarioDTO.setRol(this.traducirComboBox());
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 		this.consultar_usuarios.agregarEnBaseDatos(usuarioDTO);
+	}
+
+	/**
+	 * traducirComboBox Según el valor que tenga el ComboBox seleccionado, se
+	 * traduce a entero para guardarlo en la base de datos
+	 *
+	 * @return resultado entero que contiene el valor entre 1 y 4 referido a los
+	 *         roles
+	 */
+	public int traducirComboBox() {
+		String seleccionado = (String) this.rol.getValue();
+		int resultado = 0;
+		switch (seleccionado) {
+		case "Profesor":
+			resultado = 1;
+			break;
+		case "Jefe Dpto.":
+			resultado = 2;
+			break;
+		case "Mantenimiento":
+			resultado = 3;
+			break;
+		case "Admin":
+			resultado = 4;
+			break;
+
+		default:
+			break;
+		}
+		return resultado;
 	}
 
 }

@@ -1,5 +1,4 @@
-/view/
-/controller/
 /creadoresController/
 /model/
-/dto/
+/controller/
+/view/

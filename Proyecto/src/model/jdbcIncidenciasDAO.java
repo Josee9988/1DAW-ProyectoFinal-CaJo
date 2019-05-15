@@ -105,4 +105,19 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.executeUpdate();
 	}
 
+
+	//@Override
+	public ArrayList<Integer> leerIncidencias() throws SQLException {
+		ArrayList<Integer> incidencias = new ArrayList<>();
+
+		this.ps = this.connect.prepareStatement("select id_incidencia from incidencias");
+
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+
+			incidencias.add((this.rs.getInt("id_incidencia")));
+		}
+		return incidencias;
+	}
+
 }

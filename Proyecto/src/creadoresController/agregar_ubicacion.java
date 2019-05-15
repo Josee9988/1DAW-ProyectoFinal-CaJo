@@ -1,3 +1,8 @@
+/**
+ * @author Jose_Gracia, Carlos_Robles
+ * @version May 15, 2019
+ * @param args Recibe los datos del programa
+ */
 package creadoresController;
 
 import java.sql.SQLException;
