@@ -9,8 +9,8 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Prof_Controller">
    <children>
-      <Button fx:id="incidenciasAdmin" layoutX="79.0" layoutY="142.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="338.0" text="Mis incidencias" />
-      <Button fx:id="proveedoresConsult" layoutX="79.0" layoutY="193.0" mnemonicParsing="false" onAction="#consultarProveedores" prefHeight="27.0" prefWidth="338.0" text="Consultar Proveedores" />
+      <Button layoutX="79.0" layoutY="142.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="338.0" text="Mis incidencias" />
+      <Button layoutX="79.0" layoutY="193.0" mnemonicParsing="false" onAction="#consultarProveedores" prefHeight="27.0" prefWidth="338.0" text="Consultar Proveedores" />
       <Label layoutX="188.0" layoutY="58.0" text="Menu de opciones">
          <font>
             <Font name="Tamil Sangam MN" size="29.0" />
@@ -22,12 +22,12 @@
       <Label layoutX="484.0" layoutY="98.0" text="Rol:" />
       <TextField fx:id="fecha" layoutX="469.0" layoutY="206.0" prefHeight="40.0" prefWidth="111.0" />
       <Label layoutX="484.0" layoutY="182.0" text="Fecha:" />
-      <Button fx:id="informacion" layoutX="21.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
+      <Button layoutX="21.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
       <ImageView fitHeight="53.0" fitWidth="62.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Documents/Logos%20Spotify/WaniLogo2.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="mismensajes" layoutX="79.0" layoutY="246.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="338.0" text="Mis mensajes" />
+      <Button layoutX="79.0" layoutY="246.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="338.0" text="Mis mensajes" />
    </children>
 </Pane>

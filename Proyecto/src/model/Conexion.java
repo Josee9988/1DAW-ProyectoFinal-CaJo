@@ -18,6 +18,10 @@ public class Conexion {
 		this.connect = this.conectar();
 	}
 
+	/**
+	 * getInstance devuelve la conexión en forma de instancia de la base de datos
+	 * @return instance devuelve la instancia de la conexión Connection
+	 */
 	public static Conexion getInstance() {
 		if (instance == null) {
 			instance = new Conexion();
@@ -25,10 +29,18 @@ public class Conexion {
 		return instance;
 	}
 
+	/**
+	 * cerrarConexion método que cierra la conexión con la base de datos
+	 * @throws SQLException
+	 */
 	public void cerrarConexion() throws SQLException {
 		this.connect.close();
 	}
 
+	/**
+	 * conectar método en el cual se llama a la base de datos con el usuario contraseña y la dirección
+	 * @return Conexion devuelve la conexión de la base de datos
+	 */
 	public Connection conectar() {
 		Connection Conexion = null;
 		try {

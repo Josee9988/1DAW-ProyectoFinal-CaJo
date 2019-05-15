@@ -63,44 +63,78 @@ public class proveedorDTO {
 		System.out.println(this.toString());
 	}
 
+	// --- GETTERS && SETTERS --- //
+
+
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the nombre
+	 */
 	public String getNombre() {
 		return this.nombre;
 	}
 
+	/**
+	 * @param nombre the nombre to set
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * @return the contacto
+	 */
 	public String getContacto() {
 		return this.contacto;
 	}
 
+	/**
+	 * @param contacto the contacto to set
+	 */
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
 
+	/**
+	 * @return the direccion
+	 */
 	public String getDireccion() {
 		return this.direccion;
 	}
 
+	/**
+	 * @param direccion the direccion to set
+	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
+	/**
+	 * @return the valoracion
+	 */
 	public int getValoracion() {
 		return this.valoracion;
 	}
 
+	/**
+	 * @param valoracion the valoracion to set
+	 */
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
+
 
 }

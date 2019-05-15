@@ -6,15 +6,9 @@
 package controller;
 
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import creadoresController.agregar_ubicacion;
 import dto.ubicacionDTO;
@@ -140,19 +134,26 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
-	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
-
 	}
 
+	/**
+	 * agregarUbicacionEnBD agregamos el objeto ubicacionDTO en la base de datos
+	 * @param ubicacion objeto ubicacionDTO creado por el usuario
+	 * @throws SQLException
+	 */
 	public void agregarUbicacionEnBD(ubicacionDTO ubicacion) throws SQLException {
 		this.bdubicaciones.agregarUbicacion(ubicacion);
 	}
 
 	// #####MODIFICACIONESs
 	@FXML
+	/**
+	 * editNombre si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editNombre(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -166,6 +167,10 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * editDescripcion si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editDescripcion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -179,6 +184,10 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * editEdificio si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editEdificio(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -192,6 +201,10 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * editPlanta si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editPlanta(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();

@@ -108,8 +108,19 @@ public class Login_Controller {
 	}
 
 	@FXML
+	/**
+	 * iniciarSesion Método que inicia la sesión a través de usuario y contraseña
+	 * @param event evento ActionEvent que recibe
+	 * @throws IOException excepción IO
+	 * @throws SQLException excepción SQL
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será siempre 32)
+	 * @throws BadPaddingException por si el formato no es el correcto
+	 * @throws InvalidKeyException si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
+	 */
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
-			NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
 
 		// vemos si están vacios los campos o no.

@@ -101,77 +101,6 @@ public class incidenciaDTO {
 		return new incidenciaDTO(this);
 	}
 
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getElemento() {
-		return this.elemento;
-	}
-
-	public void setElemento(String elemento) {
-		this.elemento = elemento;
-	}
-
-	public String getUbicacion() {
-		return this.ubicacion;
-	}
-
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-
-	public Date getFecha() {
-		return this.fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public String getUrgencia() {
-		return this.urgencia;
-	}
-
-	public void setUrgencia(String urgencia) {
-		this.urgencia = urgencia;
-	}
-
-	public String getCategoria() {
-		return this.categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	public String getMateriales() {
-		return this.materiales;
-	}
-
-	public void setMateriales(String materiales) {
-		this.materiales = materiales;
-	}
 
 	@Override
 	public String toString() {
@@ -184,5 +113,137 @@ public class incidenciaDTO {
 	public void visualizar() {
 		System.out.println(this.toString());
 	}
+
+
+	// --- GETTERS && SETTERS --- //
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return this.id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public String getUsuario() {
+		return this.usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the elemento
+	 */
+	public String getElemento() {
+		return this.elemento;
+	}
+
+	/**
+	 * @param elemento the elemento to set
+	 */
+	public void setElemento(String elemento) {
+		this.elemento = elemento;
+	}
+
+	/**
+	 * @return the ubicacion
+	 */
+	public String getUbicacion() {
+		return this.ubicacion;
+	}
+
+	/**
+	 * @param ubicacion the ubicacion to set
+	 */
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	/**
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return this.fecha;
+	}
+
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @return the urgencia
+	 */
+	public String getUrgencia() {
+		return this.urgencia;
+	}
+
+	/**
+	 * @param urgencia the urgencia to set
+	 */
+	public void setUrgencia(String urgencia) {
+		this.urgencia = urgencia;
+	}
+
+	/**
+	 * @return the categoria
+	 */
+	public String getCategoria() {
+		return this.categoria;
+	}
+
+	/**
+	 * @param categoria the categoria to set
+	 */
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	/**
+	 * @return the materiales
+	 */
+	public String getMateriales() {
+		return this.materiales;
+	}
+
+	/**
+	 * @param materiales the materiales to set
+	 */
+	public void setMateriales(String materiales) {
+		this.materiales = materiales;
+	}
+
+
+
 
 }

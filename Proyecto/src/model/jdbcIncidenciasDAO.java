@@ -24,6 +24,10 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
+	/**
+	 * cerrarBD cierra la base de datos
+	 * @throws SQLException si hay una excepción SQL
+	 */
 	public void cerrarBD() throws SQLException {
 		this.ps.close();
 		this.rs.close();

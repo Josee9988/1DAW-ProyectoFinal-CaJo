@@ -12,15 +12,15 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <Button fx:id="proveedoresAdmin" layoutX="53.0" layoutY="245.0" mnemonicParsing="false" onAction="#administrarProveedores" prefHeight="27.0" prefWidth="357.0" text="Administrar proveedores" />
+      <Button layoutX="53.0" layoutY="245.0" mnemonicParsing="false" onAction="#administrarProveedores" prefHeight="27.0" prefWidth="357.0" text="Administrar proveedores" />
       <Label layoutX="484.0" layoutY="58.0" text="Bienvenido/a:" />
       <Label layoutX="514.0" layoutY="136.0" text="Rol:" />
       <Label layoutX="502.0" layoutY="200.0" text="Fecha:" />
       <TextField fx:id="nombre" layoutX="465.0" layoutY="82.0" prefHeight="27.0" prefWidth="121.0" />
       <TextField fx:id="rol_name" layoutX="466.0" layoutY="159.0" prefHeight="27.0" prefWidth="121.0" />
       <TextField fx:id="fecha" layoutX="465.0" layoutY="231.0" prefHeight="27.0" prefWidth="121.0" />
-      <Button fx:id="acerca" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
-      <Button fx:id="incidenciasAdmin" layoutX="53.0" layoutY="131.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="357.0" text="Mis incidencias" />
-      <Button fx:id="mensajesAdmin" layoutX="53.0" layoutY="187.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="357.0" text="Mis mensajes" />
+      <Button layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
+      <Button layoutX="53.0" layoutY="131.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="357.0" text="Mis incidencias" />
+      <Button layoutX="53.0" layoutY="187.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="357.0" text="Mis mensajes" />
    </children>
 </Pane>

@@ -103,68 +103,121 @@ public class usuarioDTO {
 				+ ", direccion=" + this.direccion + "]";
 	}
 
-	public String getUser() {
-		return this.user;
-	}
+	// --- GETTERS && SETTERS --- //
 
-	public void setUser(String user) {
-		this.user = user;
-	}
 
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getRol() {
-		return this.rol;
-	}
-
-	public void setRol(int rol) {
-		this.rol = rol;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellidos() {
-		return this.apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
-	public String getTelefono() {
-		return this.telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getDireccion() {
-		return this.direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	/**
+	 * @return the user
+	 */
+	public String getUser() {
+		return this.user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return this.password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the rol
+	 */
+	public int getRol() {
+		return this.rol;
+	}
+
+	/**
+	 * @param rol the rol to set
+	 */
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the apellidos
+	 */
+	public String getApellidos() {
+		return this.apellidos;
+	}
+
+	/**
+	 * @param apellidos the apellidos to set
+	 */
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	/**
+	 * @return the telefono
+	 */
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	/**
+	 * @param telefono the telefono to set
+	 */
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	/**
+	 * @return the direccion
+	 */
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	/**
+	 * @param direccion the direccion to set
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+
 
 }

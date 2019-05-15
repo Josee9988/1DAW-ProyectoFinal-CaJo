@@ -13,7 +13,7 @@
          <font>
             <Font name="Ubuntu Bold" size="18.0" />
          </font></Button>
-      <Label fx:id="login" ellipsisString="" layoutX="73.0" layoutY="24.0" prefHeight="51.0" prefWidth="349.0" text="Inicio de sesión" textAlignment="CENTER">
+      <Label ellipsisString="" layoutX="73.0" layoutY="24.0" prefHeight="51.0" prefWidth="349.0" text="Inicio de sesión" textAlignment="CENTER">
          <font>
             <Font name="FreeSans Bold" size="45.0" />
          </font>

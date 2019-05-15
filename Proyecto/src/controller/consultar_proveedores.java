@@ -145,12 +145,17 @@ public class consultar_proveedores {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 
 	}
 
+	/**
+	 * agregarProveedorEnBD agregamos el objeto proveedorDTO en la base de datos
+	 * @param proveedor proveedorDTO que ha creado el usuario
+	 * @throws SQLException
+	 */
 	public void agregarProveedorEnBD(proveedorDTO proveedor) throws SQLException {
 		this.bdproveedores.agregarProveedor(proveedor);
 
@@ -158,6 +163,10 @@ public class consultar_proveedores {
 
 	// ##### MODIFICACIONES
 	@FXML
+	/**
+	 * editNombre si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editNombre(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -171,6 +180,10 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * editContacto si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editContacto(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -184,6 +197,10 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * editDireccion si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editDireccion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -197,6 +214,10 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * editValoracion si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editValoracion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();

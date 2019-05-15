@@ -71,44 +71,79 @@ public class ubicacionDTO {
 		System.out.println(this.toString());
 	}
 
+	// --- GETTERS && SETTERS --- //
+
+
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the nombre
+	 */
 	public String getNombre() {
 		return this.nombre;
 	}
 
+	/**
+	 * @param nombre the nombre to set
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * @return the descripcion
+	 */
 	public String getDescripcion() {
 		return this.descripcion;
 	}
 
+	/**
+	 * @param descripcion the descripcion to set
+	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
+	/**
+	 * @return the edificio
+	 */
 	public String getEdificio() {
 		return this.edificio;
 	}
 
+	/**
+	 * @param edificio the edificio to set
+	 */
 	public void setEdificio(String edificio) {
 		this.edificio = edificio;
 	}
 
+	/**
+	 * @return the planta
+	 */
 	public String getPlanta() {
 		return this.planta;
 	}
 
+	/**
+	 * @param planta the planta to set
+	 */
 	public void setPlanta(String planta) {
 		this.planta = planta;
 	}
+
+
 
 }

@@ -97,7 +97,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	}
 
 	@Override
-	public int obtnerIdUbicacion(String nombre) throws SQLException {
+	public int obtenerIdUbicacion(String nombre) throws SQLException {
 		this.ps = this.connect.prepareStatement("select id from ubicaciones where nombre = ?");
 		this.ps.setString(1, nombre);
 		this.rs = this.ps.executeQuery();

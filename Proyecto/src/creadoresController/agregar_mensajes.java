@@ -46,6 +46,11 @@ public class agregar_mensajes {
 		// this.nombrecompleto = "";
 	}
 
+	/**
+	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes
+	 * @param nombrecompleto nombre + apellidos de el usuario logeado
+	 * @throws SQLException excepción SQL
+	 */
 	public void inicializarMensajes(String nombrecompleto) throws SQLException {
 		this.nombrecompleto = nombrecompleto;
 		// TODO: que salgan los que tocan y que luego con un switch se pase a numeros de

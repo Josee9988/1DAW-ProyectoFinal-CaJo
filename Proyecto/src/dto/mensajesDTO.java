@@ -69,42 +69,76 @@ public class mensajesDTO {
 		System.out.println(this.toString());
 	}
 
+
+	// --- GETTERS && SETTERS --- //
+
+
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the asunto
+	 */
 	public String getAsunto() {
 		return this.asunto;
 	}
 
+	/**
+	 * @param asunto the asunto to set
+	 */
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
 
+	/**
+	 * @return the cuerpo
+	 */
 	public String getCuerpo() {
 		return this.cuerpo;
 	}
 
+	/**
+	 * @param cuerpo the cuerpo to set
+	 */
 	public void setCuerpo(String cuerpo) {
 		this.cuerpo = cuerpo;
 	}
 
+	/**
+	 * @return the incidencia
+	 */
 	public int getIncidencia() {
 		return this.incidencia;
 	}
 
+	/**
+	 * @param incidencia the incidencia to set
+	 */
 	public void setIncidencia(int incidencia) {
 		this.incidencia = incidencia;
 	}
 
+	/**
+	 * @return the fecha
+	 */
 	public Date getFecha() {
 		return this.fecha;
 	}
 
+	/**
+	 * @param fecha the fecha to set
+	 */
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
@@ -136,5 +170,10 @@ public class mensajesDTO {
 	public void setReceptor(int receptor) {
 		this.receptor = receptor;
 	}
+
+
+
+
+
 
 }

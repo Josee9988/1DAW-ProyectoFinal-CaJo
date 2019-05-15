@@ -24,10 +24,10 @@
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
-      <Button fx:id="agregarUbicacion" layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#agregarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Agregar ubicacion" />
-      <Button fx:id="modificarUbicacion" layoutX="338.0" layoutY="546.0" mnemonicParsing="false" onAction="#modificarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Modificar ubicacion" />
-      <Button fx:id="eliminarUbicacion" layoutX="651.0" layoutY="546.0" mnemonicParsing="false" onAction="#eliminarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Eliminar ubicacion" />
-      <Button fx:id="restart" layoutX="668.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
+      <Button layoutX="27.0" layoutY="545.0" mnemonicParsing="false" onAction="#agregarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Agregar ubicacion" />
+      <Button layoutX="338.0" layoutY="546.0" mnemonicParsing="false" onAction="#modificarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Modificar ubicacion" />
+      <Button layoutX="651.0" layoutY="546.0" mnemonicParsing="false" onAction="#eliminarUbicacion" prefHeight="38.0" prefWidth="275.0" text="Eliminar ubicacion" />
+      <Button layoutX="668.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
             <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -75,7 +75,11 @@ public class Home_Mantenimiento_Controller {
 		this.stage = null;
 
 	}
-
+	/**
+	 * recibirParametros recibe los parametros necesarios para inicializar varias textfields
+	 * @param nombreCompleto nombre + apellidos en un string
+	 * @param rol rol que toma el usuario
+	 */
 	public void recibirParametros(String nombreCompleto, int rol) {
 		this.date = new Date();
 		this.nombre.setEditable(false);

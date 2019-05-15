@@ -80,6 +80,12 @@ public class consultar_incidencias {
 		this.rol = 0;
 	}
 
+	/**
+	 * inicializar inicializa todos los elementos necesarios de la tabla cogiendo los datos de la base de datos y aplicándoselos
+	 * @param nombreCompleto el nombre y el apellido de la persona logeada
+	 * @param rol el rol que el usuario tiene
+	 * @throws SQLException si ha habido un fallo de sql...
+	 */
 	public void inicializar(String nombreCompleto, int rol) throws SQLException {
 		this.rol_number = rol;
 		this.nombreCompleto = nombreCompleto;
@@ -131,6 +137,11 @@ public class consultar_incidencias {
 		this.agregar_incidencia.show();
 	}
 
+	/**
+	 * agregarIncidenciaEnBD agregamos la incidencia creada en la base de datos
+	 * @param incidenciaDTO objeto incidenciaDTO creada por el usuario
+	 * @throws SQLException
+	 */
 	public void agregarIncidenciaEnBD(incidenciaDTO incidenciaDTO) throws SQLException {
 		this.bdincidencias.crearIncidencia(incidenciaDTO);
 	}
@@ -145,7 +156,7 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
@@ -176,7 +187,7 @@ public class consultar_incidencias {
 	@FXML
 	public void eliminarIncidencia() throws SQLException {
 		this.bdincidencias.eliminarIncidencia(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo
-																											// eliminamos
+		// eliminamos
 		// en la bd
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 	}
@@ -190,6 +201,10 @@ public class consultar_incidencias {
 
 	// MODIFICACIONES
 	@FXML
+	/**
+	 * editUsuario si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editUsuario(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -202,6 +217,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editDescripcion si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editDescripcion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -214,6 +233,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editElemento si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editElemento(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -226,6 +249,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editFecha si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editFecha(CellEditEvent edditedCell) throws ParseException {
 		Date date = new Date();
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
@@ -240,6 +267,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editUrgencia si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editUrgencia(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -252,6 +283,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editCategoria si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editCategoria(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -264,6 +299,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editMateriales si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editMateriales(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -276,6 +315,10 @@ public class consultar_incidencias {
 	}
 
 	@FXML
+	/**
+	 * editUbicacion si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editUbicacion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();

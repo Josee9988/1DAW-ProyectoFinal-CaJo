@@ -50,7 +50,6 @@ public class Home_Prof_Controller {
 	private TextField fecha;
 
 	private Image icon;
-	// private Stage stage;
 
 	public Home_Prof_Controller() throws IOException {
 		this.incidencias = new Stage();
@@ -81,9 +80,13 @@ public class Home_Prof_Controller {
 		this.scene4 = new Scene(this.rootAcerca);
 
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		// this.stage = null;
 	}
 
+	/**
+	 * recibirParametros recibe los parametros necesarios para inicializar varias textfields
+	 * @param nombreCompleto nombre + apellidos en un string
+	 * @param rol rol que toma el usuario
+	 */
 	public void recibirParametros(String nombreCompleto, int rol) {
 		this.date = new Date();
 		this.username.setEditable(false);

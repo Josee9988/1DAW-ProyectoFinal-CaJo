@@ -113,8 +113,18 @@ public class consultar_usuarios {
 
 	}
 
-	public void agregarEnBaseDatos(usuarioDTO user) throws InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	/**
+	 * agregarEnBaseDatos agrega el objeto usuarioDTO en la base de datos
+	 * @param user objeto usuarioDTO creado por el usuario
+	 * @throws SQLException si hay una excepción de SQL
+	 * @throws InvalidKeyException si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será siempre 32)
+	 * @throws BadPaddingException por si el formato no es el correcto
+	 */
+	public void agregarEnBaseDatos(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
 	}
 
@@ -165,7 +175,6 @@ public class consultar_usuarios {
 			this.bdusuarios.modificarUsuario(this.usuarioSelected);
 			this.usuarioSelected = new usuarioDTO();
 		}
-		// this.restart();
 	}
 
 	@FXML
@@ -188,6 +197,11 @@ public class consultar_usuarios {
 
 	// ######################### MODIFICACIONES #########################
 	@FXML
+	/**
+	 * editModificarUsuario si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarUsuario(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -201,6 +215,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarPass si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarPass(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -214,6 +233,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarRol si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarRol(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -227,6 +251,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarNombre si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarNombre(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -240,6 +269,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarApellidos si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarApellidos(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -253,6 +287,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarTelefono si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarTelefono(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -265,6 +304,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * editModificarDireccion si se ha hecho doble click en una celda
+	 *
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editModificarDireccion(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();

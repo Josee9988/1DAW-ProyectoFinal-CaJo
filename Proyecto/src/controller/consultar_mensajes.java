@@ -162,6 +162,10 @@ public class consultar_mensajes {
 
 	// MODIFICACIONES
 	@FXML
+	/**
+	 * editAsunto si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editAsunto(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -174,6 +178,10 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * editCuerpo si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editCuerpo(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -186,6 +194,10 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * editIncidencia si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editIncidencia(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -198,6 +210,10 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * editFecha si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editFecha(CellEditEvent edditedCell) {
 		/*
 		 * if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
@@ -210,6 +226,10 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * editEmisor si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editEmisor(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -222,6 +242,10 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * editReceptor si se ha hecho doble click en una celda
+	 * @param edditedCell celda editada por el usuario al hacer doble click
+	 */
 	public void editReceptor(CellEditEvent edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
@@ -233,6 +257,11 @@ public class consultar_mensajes {
 		}
 	}
 
+	/**
+	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido y lo agregamos en la base de datos
+	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
+	 * @throws SQLException
+	 */
 	public void agregarEnBaseDatos(mensajesDTO mensajesDTO) throws SQLException {
 		this.bdmensajes.crearMensaje(mensajesDTO);
 	}
