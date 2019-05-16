@@ -51,6 +51,12 @@ public class Home_Prof_Controller {
 
 	private Image icon;
 
+	/**
+	 * Home_Prof_Controller constructor default que inicializa las variables
+	 * necesarias
+	 * 
+	 * @throws IOException si ha habido una excepción de tipo SQl
+	 */
 	public Home_Prof_Controller() throws IOException {
 		this.incidencias = new Stage();
 		this.proveedores = new Stage();
@@ -85,7 +91,7 @@ public class Home_Prof_Controller {
 	/**
 	 * recibirParametros recibe los parametros necesarios para inicializar varias
 	 * textfields
-	 * 
+	 *
 	 * @param nombreCompleto nombre + apellidos en un string
 	 * @param rol            rol que toma el usuario
 	 */
@@ -101,6 +107,12 @@ public class Home_Prof_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarIncidencias abre la view de administrar incidencias la cual
+	 * muestra todas las incidencias en una tableview
+	 * 
+	 * @throws SQLException por si hay una excepción de tipo SQL
+	 */
 	public void administrarIncidencias() throws SQLException {
 		this.controllerIncidencia.inicializar(this.username.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene1);
@@ -110,6 +122,12 @@ public class Home_Prof_Controller {
 	}
 
 	@FXML
+	/**
+	 * consultarProveedores abre la view de consultar proveedores la cual muestra
+	 * todos los proveedores en una tableview
+	 * 
+	 * @throws SQLException por si hay una excepción de tipo SQL
+	 */
 	public void consultarProveedores() throws SQLException {
 		this.controllerProveedores.inicializar(this.username.getText());
 		this.proveedores.setScene(this.scene2);
@@ -119,6 +137,12 @@ public class Home_Prof_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarMensajes abre la view de administrar mensajes la cual muestra
+	 * todos los mensajes en una tableview
+	 * 
+	 * @throws SQLException por si hay una excepción de tipo SQL
+	 */
 	public void administrarMensajes() throws SQLException {
 		this.controllerMensajes.inicializar(this.username.getText());
 		this.mensajes.setScene(this.scene3);
@@ -128,6 +152,10 @@ public class Home_Prof_Controller {
 	}
 
 	@FXML
+	/**
+	 * acercaDe abre la view de acercaDe la cual contiene información sobre el
+	 * programa
+	 */
 	public void acercaDe() throws SQLException {
 		this.acercaDe.setScene(this.scene4);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono

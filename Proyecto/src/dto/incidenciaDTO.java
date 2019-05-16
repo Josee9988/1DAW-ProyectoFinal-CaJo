@@ -19,6 +19,9 @@ public class incidenciaDTO {
 	private String categoria;
 	private String materiales;
 
+	/**
+	 * incidenciaDTO constructor default que inicializa todas las variables
+	 */
 	public incidenciaDTO() {
 		this.id = 0;
 		this.usuario = "";
@@ -31,18 +34,11 @@ public class incidenciaDTO {
 		this.materiales = "";
 	}
 
-	public incidenciaDTO(int id) {
-		this.id = id;
-		this.usuario = "";
-		this.descripcion = "";
-		this.elemento = "";
-		this.ubicacion = "";
-		this.fecha = new Date(0);
-		this.urgencia = "";
-		this.categoria = "";
-		this.materiales = "";
-	}
-
+	/**
+	 * incidenciaDTO constructor parametrizado que recibe id y urgencia
+	 * @param id recibe un entero id y se lo asigna a incidenciaDTO
+	 * @param urgencia recibe un String de urgencia y se lo asigna
+	 */
 	public incidenciaDTO(int id, String urgencia) {
 		this.id = id;
 		this.usuario = "";
@@ -55,31 +51,18 @@ public class incidenciaDTO {
 		this.materiales = "";
 	}
 
-	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion) {
-		this.id = id;
-		this.usuario = usuario;
-		this.descripcion = descripcion;
-		this.elemento = elemento;
-		this.ubicacion = ubicacion;
-		this.fecha = new Date(0);
-		this.urgencia = "";
-		this.categoria = "";
-		this.materiales = "";
-	}
-
-	public incidenciaDTO(String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
-			String urgencia, String categoria, String materiales) {
-		this.id = 0;
-		this.usuario = usuario;
-		this.descripcion = descripcion;
-		this.elemento = elemento;
-		this.ubicacion = ubicacion;
-		this.fecha = fecha;
-		this.urgencia = urgencia;
-		this.categoria = categoria;
-		this.materiales = materiales;
-	}
-
+	/**
+	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de incidenciaDTO
+	 * @param id recibe un entero id y se lo asigna a incidenciaDTO
+	 * @param usuario String con elusuario
+	 * @param descripcion String con la descripción de la incidencia
+	 * @param elemento String elemento al que le ha ocurrido la incidencia
+	 * @param ubicacion String de dónde ha ocurrido la incidencia
+	 * @param fecha Date de cuándo ha ocurrido la incidencia
+	 * @param urgencia recibe un String de urgencia y se lo asigna
+	 * @param categoria String de la categoría de la incidencia
+	 * @param materiales String materiales de los materiales de la incidencia
+	 */
 	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
 			String urgencia, String categoria, String materiales) {
 		this.id = id;
@@ -93,10 +76,18 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
+	/**
+	 * incidenciaDTO constructor copia
+	 * @param i recibe el objeto incidenciaDTO
+	 */
 	public incidenciaDTO(incidenciaDTO i) {
 		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.fecha, i.urgencia, i.categoria, i.materiales);
 	}
 
+	/**
+	 * incidenciaDTO constructor clonar
+	 * @return devuelve el objeto copiado y se lo asigna al actual incidenciaDTO
+	 */
 	public incidenciaDTO clonar() {
 		return new incidenciaDTO(this);
 	}
@@ -109,6 +100,9 @@ public class incidenciaDTO {
 				+ "]";
 	}
 
+	/**
+	 * visualizar saca por pantalla el toString
+	 */
 	public void visualizar() {
 		System.out.println(this.toString());
 	}

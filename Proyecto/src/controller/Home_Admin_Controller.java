@@ -67,12 +67,16 @@ public class Home_Admin_Controller {
 	private Image icon;
 	private Stage stage;
 
+	/**
+	 * Home_Admin_Controller constructor default que inicializa variables
+	 * 
+	 * @throws IOException si ha habido una excepción IO
+	 */
 	public Home_Admin_Controller() throws IOException {
 		this.acercaDe = new Stage();
 		this.fxmlLoaderAcercaDe = new FXMLLoader(this.getClass().getResource("/view/acerca_de.fxml"));
 		this.root6 = (Parent) this.fxmlLoaderAcercaDe.load();
 		this.scene6 = new Scene(this.root6);
-
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.stage = null;
 	}
@@ -80,7 +84,7 @@ public class Home_Admin_Controller {
 	/**
 	 * recibirParametros recibe los parametros necesarios para inicializar varias
 	 * textfields
-	 * 
+	 *
 	 * @param nombreCompleto nombre + apellidos en un string
 	 * @param rol            rol que toma el usuario
 	 */
@@ -96,6 +100,19 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarUsuarios abre la view de consultar usuarios que muestra una
+	 * tableview con los usuarios
+	 * 
+	 * @throws SQLException              por si ha habido una excepción de tipo SQL
+	 * @throws IOException               si ha habido una excepción IO
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 */
 	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException,
 			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
@@ -112,6 +129,13 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarProveedores abre la view de consultar proveedores que muestra una
+	 * tableview con los proveedores
+	 * 
+	 * @throws SQLException por si ha habido una excepción de tipo SQL
+	 * @throws IOException  si ha habido una excepción IO
+	 */
 	public void administrarProveedores() throws SQLException, IOException {
 		this.proveedores = new Stage();
 		this.fxmlLoaderAdministrarProveedores = new FXMLLoader(
@@ -127,6 +151,13 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarIncidencias abre la view de consultar incidencias que muestra una
+	 * tableview con las incidencias
+	 * 
+	 * @throws SQLException por si ha habido una excepción de tipo SQL
+	 * @throws IOException  si ha habido una excepción IO
+	 */
 	public void administrarIncidencias() throws SQLException, IOException {
 		this.incidencias = new Stage();
 		this.fxmlLoaderAdministrarIncidencias = new FXMLLoader(
@@ -142,6 +173,13 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarMensajes abre la view de consultar mensajes que muestra una
+	 * tableview con los mensajes
+	 * 
+	 * @throws SQLException por si ha habido una excepción de tipo SQL
+	 * @throws IOException  si ha habido una excepción IO
+	 */
 	public void administrarMensajes() throws SQLException, IOException {
 		this.mensajes = new Stage();
 		this.fxmlLoaderAdministrarMensajes = new FXMLLoader(
@@ -157,6 +195,13 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarUbicaciones abre la view de consultar ubicaciones que muestra una
+	 * tableview con las ubicaciones
+	 * 
+	 * @throws SQLException por si ha habido una excepción de tipo SQL
+	 * @throws IOException  si ha habido una excepción IO
+	 */
 	public void administrarUbicaciones() throws SQLException, IOException {
 		this.ubicaciones = new Stage();
 		this.fxmlLoaderAdministrarUbicaciones = new FXMLLoader(
@@ -172,6 +217,11 @@ public class Home_Admin_Controller {
 	}
 
 	@FXML
+	/**
+	 * acercaDe abre la view de acercaDe que contiene información del programa.
+	 * 
+	 * @throws SQLException por si ha habido una excepción de tipo SQL
+	 */
 	public void acercaDe() throws SQLException {
 		this.acercaDe.setScene(this.scene6);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono

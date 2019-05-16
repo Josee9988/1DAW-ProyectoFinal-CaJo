@@ -74,6 +74,9 @@ public class consultar_usuarios {
 	usuarioDTO usuarioSelected;
 	int idselected;
 
+	/**
+	 * consultar_usuarios constructor parametrizado que inicializa variables.
+	 */
 	public consultar_usuarios() {
 		this.tabla = new TableView<>();
 		this.bdusuarios = new jdbcUsuarioDAO();
@@ -84,6 +87,13 @@ public class consultar_usuarios {
 		this.nombreCompleto = "";
 	}
 
+	/**
+	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
+	 * asignándoselos
+	 * 
+	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
@@ -158,6 +168,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * agregarUsuario agrega un usuario a través de una view
+	 * 
+	 * @throws IOException si hay una excepción de tipo SQl
+	 */
 	public void agregarUsuario() throws IOException { // boton agregar
 		// creamos la escena
 		this.agregar_usuarios = new Stage();
@@ -173,6 +188,19 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * modificarUsuario modifica un usuario en el tableview y base de datos a través
+	 * de darle doble click o abriendo un tableview si no se ha modificado nada con
+	 * doble click.
+	 * 
+	 * @throws SQLException              si hay una excepción de SQL
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 */
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
 			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
@@ -207,6 +235,18 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
+	 * datos de la base de datos
+	 * 
+	 * @throws SQLException              si hay una excepción de SQL
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
 			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.idselected = -1;
@@ -218,6 +258,11 @@ public class consultar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * eliminarUsuario elimina un usuario en la base de datos y en el tableview
+	 * 
+	 * @throws SQLException si hay una excepción de SQL
+	 */
 	public void eliminarUsuario() throws SQLException { // boton eliminar
 		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos en
 		// la bd

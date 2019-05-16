@@ -71,6 +71,12 @@ public class Login_Controller {
 	private Stage stage;
 	private crypto_controller crypto;
 
+	/**
+	 * Login_Controller constructor default que inicializa variables de escenas y
+	 * fxmls.
+	 * 
+	 * @throws IOException si ha habido una excepción de tipo IO
+	 */
 	public Login_Controller() throws IOException {
 
 		this.users = new jdbcUsuarioDAO();
@@ -109,7 +115,10 @@ public class Login_Controller {
 
 	@FXML
 	/**
-	 * iniciarSesion Método que inicia la sesión a través de usuario y contraseña
+	 * iniciarSesion Método que inicia la sesión a través de usuario y contraseña,
+	 * según el rol del usuario logeado le mandará a su respectiva view Si ha habido
+	 * un error mostrará por texto que no existe el usuario o que no se han
+	 * rellenado los campos
 	 * 
 	 * @param event evento ActionEvent que recibe
 	 * @throws IOException               excepción IO

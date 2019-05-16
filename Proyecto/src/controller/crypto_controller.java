@@ -21,6 +21,9 @@ public class crypto_controller {
 	private static Cipher cipher;
 	private static StringBuffer retString;
 
+	/**
+	 * crypto_controller constructor default que inicializa variables
+	 */
 	public crypto_controller() {
 		this.skeySpec = null;
 		this.cipher = null;

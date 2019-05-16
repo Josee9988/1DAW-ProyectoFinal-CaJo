@@ -33,10 +33,17 @@ public class agregar_proveedor {
 
 	private consultar_proveedores consultar;
 
+	/**
+	 * agregar_proveedor constructor defult que inicializa el controller
+	 * consultar_proveedores
+	 */
 	public agregar_proveedor() {
 		this.consultar = new consultar_proveedores();
 	}
 
+	/**
+	 * inicializar método que inicializa los ComboBox
+	 */
 	public void inicializar() {
 		ObservableList<Integer> valoraciones = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		this.valoracion.setItems(valoraciones);
@@ -46,6 +53,12 @@ public class agregar_proveedor {
 	}
 
 	@FXML
+	/**
+	 * agregarproveedor método que a través de los TextFields recibidos rellenados
+	 * por el usuario rellena un objeto proveedorDTO y lo manda a la base de datos
+	 * 
+	 * @throws SQLException por is ha habido una excepción SQL
+	 */
 	public void agregarproveedor() throws SQLException {
 		proveedorDTO proveedorDTO = new proveedorDTO();
 		proveedorDTO.setNombre(this.nombre.getText());

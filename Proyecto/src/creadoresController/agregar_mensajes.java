@@ -39,6 +39,9 @@ public class agregar_mensajes {
 	private String nombrecompleto;
 	private jdbcUsuarioDAO bdusuario;
 
+	/**
+	 * agregar_mensajes constructor default que inicializa variables
+	 */
 	public agregar_mensajes() {
 		this.consultar_mensajes = new consultar_mensajes();
 		this.stage = null;
@@ -48,7 +51,7 @@ public class agregar_mensajes {
 
 	/**
 	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes
-	 * 
+	 *
 	 * @param nombrecompleto nombre + apellidos de el usuario logeado
 	 * @throws SQLException excepción SQL
 	 */
@@ -74,6 +77,12 @@ public class agregar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * agregarmensaje método que tras recibir el texto de los TextFields rellenados
+	 * por el usuario rellena un objeto mensajesDTO y lo pasa a la base de datos
+	 * 
+	 * @throws SQLException excepción SQL
+	 */
 	public void agregarmensaje() throws SQLException {
 		mensajesDTO mensajesDTO = new mensajesDTO();
 		mensajesDTO.setAsunto(this.asunto.getText());

@@ -45,11 +45,17 @@ public class agregar_usuarios {
 	private consultar_usuarios consultar_usuarios;
 	private Stage stage;
 
+	/**
+	 * agregar_usuarios constructor default que inicializa variables simples.
+	 */
 	public agregar_usuarios() {
 		this.consultar_usuarios = new consultar_usuarios();
 		this.stage = null;
 	}
 
+	/**
+	 * inicializar método que inicializa los ComboBox
+	 */
 	public void inicializar() {
 		ObservableList<String> roles = FXCollections.observableArrayList("Profesor", "Jefe Dpto.", "Mantenimiento",
 				"Admin");
@@ -61,6 +67,16 @@ public class agregar_usuarios {
 	}
 
 	@FXML
+	/**
+	 * agregarusuario agrega todos los valores recibidos de los TextField a un
+	 * objeto usuarioDTO que se mandará a la base de datos para agregarlo
+	 * 
+	 * @throws SQLException             si ha habido una excepción SQL
+	 * @throws BadPaddingException      por si el formato no es el correcto
+	 * @throws InvalidKeyException      si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
+	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();

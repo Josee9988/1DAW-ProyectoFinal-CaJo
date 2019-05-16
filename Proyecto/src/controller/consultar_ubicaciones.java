@@ -57,6 +57,9 @@ public class consultar_ubicaciones {
 	private int idselected;
 	private ubicacionDTO ubicacionDTO;
 
+	/**
+	 * consultar_ubicaciones constructor default que inicializa variables.
+	 */
 	public consultar_ubicaciones() {
 		this.tabla = new TableView<>();
 		this.bdubicaciones = new jdbcUbicacionDAO();
@@ -65,6 +68,13 @@ public class consultar_ubicaciones {
 		this.ubicacionDTO = new ubicacionDTO();
 	}
 
+	/**
+	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
+	 * asignándoselos
+	 * 
+	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -89,6 +99,11 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * agregarUbicacion agrega una ubicación a través de una view
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void agregarUbicacion() throws IOException {
 		// creamos la escena
 		this.agregar_ubicacion = new Stage();
@@ -96,7 +111,8 @@ public class consultar_ubicaciones {
 		this.root1 = (Parent) this.fxmlLoaderagregar_ubicacion.load();
 		this.controller_agregar_ubicacion = this.fxmlLoaderagregar_ubicacion.<agregar_ubicacion>getController();
 		this.scene1 = new Scene(this.root1);
-		this.controller_agregar_ubicacion.inicializar(); // llamamos al método inicializar
+		// this.controller_agregar_ubicacion.inicializar(); // llamamos al método
+		// inicializar
 		this.agregar_ubicacion.setScene(this.scene1);
 		this.agregar_ubicacion.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
@@ -104,6 +120,12 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * modificarUbicacion modifica una ubicación tras ser modificado con doble click
+	 * o a través de una view
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void modificarUbicacion() throws SQLException {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
@@ -127,6 +149,11 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * eliminarUbicacion elimina una ubicación seleccionada
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void eliminarUbicacion() throws SQLException {
 		this.bdubicaciones.eliminarUbicacion(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
 		// en la bd
@@ -134,6 +161,12 @@ public class consultar_ubicaciones {
 	}
 
 	@FXML
+	/**
+	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
+	 * datos de la base de datos
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
@@ -141,7 +174,7 @@ public class consultar_ubicaciones {
 
 	/**
 	 * agregarUbicacionEnBD agregamos el objeto ubicacionDTO en la base de datos
-	 * 
+	 *
 	 * @param ubicacion objeto ubicacionDTO creado por el usuario
 	 * @throws SQLException
 	 */
@@ -153,7 +186,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editNombre si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editNombre(CellEditEvent edditedCell) {
@@ -171,7 +204,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editDescripcion si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editDescripcion(CellEditEvent edditedCell) {
@@ -189,7 +222,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editEdificio si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editEdificio(CellEditEvent edditedCell) {
@@ -207,7 +240,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editPlanta si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editPlanta(CellEditEvent edditedCell) {

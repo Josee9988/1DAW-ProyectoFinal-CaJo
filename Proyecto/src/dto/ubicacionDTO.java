@@ -13,6 +13,9 @@ public class ubicacionDTO {
 	private String edificio;
 	private String planta;
 
+	/**
+	 * ubicacionDTO constructor default
+	 */
 	public ubicacionDTO() {
 		this.id = 0;
 		this.nombre = "";
@@ -21,6 +24,10 @@ public class ubicacionDTO {
 		this.planta = "";
 	}
 
+	/**
+	 * ubicacionDTO constructor parametrizado con String nombre
+	 * @param nombre nombre de la ubicación
+	 */
 	public ubicacionDTO(String nombre) {
 		this.id = 0;
 		this.nombre = nombre;
@@ -29,22 +36,14 @@ public class ubicacionDTO {
 		this.planta = "";
 	}
 
-	public ubicacionDTO(int id) {
-		this.id = id;
-		this.nombre = "";
-		this.descripcion = "";
-		this.edificio = "";
-		this.planta = "";
-	}
-
-	public ubicacionDTO(String nombre, String descripcion, String edificio, String planta) {
-		this.id = 0;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.edificio = edificio;
-		this.planta = planta;
-	}
-
+	/**
+	 * ubicacionDTO constructor parametrizado con todos los valores
+	 * @param id id de la ubicacion
+	 * @param nombre de la ubicación
+	 * @param descripcion de la ubicación
+	 * @param edificio de la ubicación
+	 * @param planta de la ubicación
+	 */
 	public ubicacionDTO(int id, String nombre, String descripcion, String edificio, String planta) {
 		this.id = id;
 		this.nombre = nombre;
@@ -53,10 +52,18 @@ public class ubicacionDTO {
 		this.planta = planta;
 	}
 
+	/**
+	 * ubicacionDTO constructor copia
+	 * @param u ubicacionDTO
+	 */
 	public ubicacionDTO(ubicacionDTO u) {
 		this(u.id, u.nombre, u.descripcion, u.edificio, u.planta);
 	}
 
+	/**
+	 * ubicacionDTO constructor clonar
+	 * @return ubicacionDTO clonado
+	 */
 	public ubicacionDTO clonar() {
 		return new ubicacionDTO(this);
 	}
@@ -67,6 +74,9 @@ public class ubicacionDTO {
 				+ ", edificio=" + this.edificio + ", planta=" + this.planta + "]";
 	}
 
+	/**
+	 * visualizar método que imprime por pantalla el toString
+	 */
 	public void visualizar() {
 		System.out.println(this.toString());
 	}

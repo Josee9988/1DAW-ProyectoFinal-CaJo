@@ -65,6 +65,9 @@ public class consultar_proveedores {
 	private int idselected;
 	private proveedorDTO proveedorDTO;
 
+	/**
+	 * consultar_proveedores constructor default inicializa valores necesarios
+	 */
 	public consultar_proveedores() {
 		this.tabla = new TableView<>();
 		this.bdproveedores = new jdbcProveedoresDAO();
@@ -73,6 +76,13 @@ public class consultar_proveedores {
 		this.proveedorDTO = new proveedorDTO();
 	}
 
+	/**
+	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
+	 * asignándoselos
+	 * 
+	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -98,6 +108,11 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * agregarProveedor agrega un proveedor a través de una view
+	 * 
+	 * @throws IOException si ha habido una excepción de tipo IO
+	 */
 	public void agregarProveedor() throws IOException {
 		// creamos la escena
 		this.agregar_proveedor = new Stage();
@@ -113,6 +128,12 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * modificarProveedor modifica un proveedor tras ser modificado con doble click
+	 * o a través de una view
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void modificarProveedor() throws SQLException {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
@@ -137,6 +158,11 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * eliminarProveedor elimina un proveedor seleccionado
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void eliminarProveedor() throws SQLException {
 		this.bdproveedores.eliminarProveedor(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
 		// en la bd
@@ -144,6 +170,12 @@ public class consultar_proveedores {
 	}
 
 	@FXML
+	/**
+	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
+	 * datos de la base de datos
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
 			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
@@ -153,7 +185,7 @@ public class consultar_proveedores {
 
 	/**
 	 * agregarProveedorEnBD agregamos el objeto proveedorDTO en la base de datos
-	 * 
+	 *
 	 * @param proveedor proveedorDTO que ha creado el usuario
 	 * @throws SQLException
 	 */
@@ -166,7 +198,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editNombre si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editNombre(CellEditEvent edditedCell) {
@@ -184,7 +216,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editContacto si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editContacto(CellEditEvent edditedCell) {
@@ -202,7 +234,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editDireccion si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editDireccion(CellEditEvent edditedCell) {
@@ -220,7 +252,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editValoracion si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editValoracion(CellEditEvent edditedCell) {

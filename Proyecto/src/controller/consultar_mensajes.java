@@ -65,6 +65,9 @@ public class consultar_mensajes {
 	private Image icon;
 	private String nombreCompleto;
 
+	/**
+	 * consultar_mensajes constructor default que inicializa valores
+	 */
 	public consultar_mensajes() {
 		this.tabla = new TableView<>();
 		this.bdmensajes = new jdbcMensajesDAO();
@@ -74,6 +77,13 @@ public class consultar_mensajes {
 		this.nombreCompleto = "";
 	}
 
+	/**
+	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
+	 * asignándoselos
+	 * 
+	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
 		jdbcIncidenciasDAO jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 		jdbcUsuarioDAO jdbcUsuarioDAO = new jdbcUsuarioDAO();
@@ -124,6 +134,12 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * agregarMensaje agrega un mensaje, desde una view
+	 * 
+	 * @throws IOException  si ha habido una excepción IO
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void agregarMensaje() throws IOException, SQLException {
 		this.agregar_mensaje = new Stage();
 		this.fxmlLoaderagregar_mensaje = new FXMLLoader(this.getClass().getResource("/view/agregarMensaje.fxml"));
@@ -138,6 +154,12 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * modificarMensaje modifica un mensaje; desde el texto modificado o desde una
+	 * view
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void modificarMensaje() throws SQLException {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
@@ -169,6 +191,11 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * eliminarMensaje elimina un mensaje el cual ha sido seleccionado
+	 * 
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
 	public void eliminarMensaje() throws SQLException {
 		this.bdmensajes.eliminarMensajes(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
 		// en la bd
@@ -176,6 +203,12 @@ public class consultar_mensajes {
 	}
 
 	@FXML
+	/**
+	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
+	 * datos de la base de datos
+	 * 
+	 * @throws SQLException
+	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto);

@@ -48,6 +48,11 @@ public class Home_Mantenimiento_Controller {
 	private Image icon;
 	private Stage stage;
 
+	/**
+	 * Home_Mantenimiento_Controller constructor default que inicializa variables
+	 * 
+	 * @throws IOException si ha habido una excepción de tipo SQl
+	 */
 	public Home_Mantenimiento_Controller() throws IOException {
 
 		this.incidencias = new Stage();
@@ -79,7 +84,7 @@ public class Home_Mantenimiento_Controller {
 	/**
 	 * recibirParametros recibe los parametros necesarios para inicializar varias
 	 * textfields
-	 * 
+	 *
 	 * @param nombreCompleto nombre + apellidos en un string
 	 * @param rol            rol que toma el usuario
 	 */
@@ -95,6 +100,12 @@ public class Home_Mantenimiento_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarIncidencias abre la view de administrar incidencias la cual
+	 * muestra todas las incidencias en una tableview
+	 * 
+	 * @throws SQLException por si hay una excepción de tipo SQL
+	 */
 	public void administrarIncidencias() throws SQLException {
 		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene1);
@@ -104,6 +115,12 @@ public class Home_Mantenimiento_Controller {
 	}
 
 	@FXML
+	/**
+	 * administrarMensajes abre la view de administrar mensajes la cual muestra
+	 * todos los mensajes en una tableview
+	 * 
+	 * @throws SQLException por si hay una excepción de tipo SQL
+	 */
 	public void administrarMensajes() throws SQLException {
 		this.controllerMensajes.inicializar(this.nombre.getText());
 		this.mensajes.setScene(this.scene2);
@@ -113,6 +130,10 @@ public class Home_Mantenimiento_Controller {
 	}
 
 	@FXML
+	/**
+	 * acercaDe abre la view de acercaDe la cual contiene información sobre el
+	 * programa
+	 */
 	public void acercaDe() {
 		this.acercaDe.setScene(this.scene3);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono

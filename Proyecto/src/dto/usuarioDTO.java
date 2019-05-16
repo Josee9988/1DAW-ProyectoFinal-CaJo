@@ -17,6 +17,9 @@ public class usuarioDTO {
 	private String telefono;
 	private String direccion;
 
+	/**
+	 * usuarioDTO constructor default
+	 */
 	public usuarioDTO() {
 		this.id = 0;
 		this.user = "";
@@ -29,18 +32,11 @@ public class usuarioDTO {
 		this.direccion = "";
 	}
 
-	public usuarioDTO(String user) {
-		this.id = 0;
-		this.user = user;
-		this.password = "";
-		this.rol = 0;
-		this.rolS = "";
-		this.nombre = "";
-		this.apellidos = "";
-		this.telefono = "";
-		this.direccion = "";
-	}
-
+	/**
+	 * usuarioDTO constructor parametrizado con el usuario y el rol
+	 * @param user nombre de usuario del usuario
+	 * @param rol rol del usuario
+	 */
 	public usuarioDTO(String user, int rol) {
 		this.id = 0;
 		this.user = user;
@@ -53,6 +49,11 @@ public class usuarioDTO {
 		this.direccion = "";
 	}
 
+	/**
+	 * usuarioDTO constructor parametrizado con el usuario y la contraseña
+	 * @param user nombre de usuario del usuario
+	 * @param password contraseña del usuario
+	 */
 	public usuarioDTO(String user, String password) {
 		this.id = 0;
 		this.user = user;
@@ -65,6 +66,17 @@ public class usuarioDTO {
 		this.direccion = "";
 	}
 
+	/**
+	 * usuarioDTO constructor parametrizado con el String del rol traducido
+	 * @param user nombre de usuario del usuario
+	 * @param password contraseña del usuario
+	 * @param rol rol del usuario
+	 * @param rolS traducción del rol, lo que significa esa id del rol
+	 * @param nombre nombre del usuario
+	 * @param apellidos apellidos del usuario
+	 * @param telefono telefono del usuario
+	 * @param direccion dirección del usuario
+	 */
 	public usuarioDTO(String user, String password, int rol, String rolS, String nombre, String apellidos,
 			String telefono, String direccion) {
 		this.id = 0;
@@ -78,20 +90,17 @@ public class usuarioDTO {
 		this.direccion = direccion;
 	}
 
-	public usuarioDTO(int id, String user, String password, int rol, String rolS, String nombre, String apellidos,
-			String telefono, String direccion) {
-		this.id = id;
-		this.user = user;
-		this.password = password;
-		this.rol = rol;
-		this.rolS = rolS;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.telefono = telefono;
-		this.direccion = direccion;
-	}
-
-	// PARAM SIN ROLS
+	/**
+	 * usuarioDTO constructor parametrizado
+	 * @param id id del usuario
+	 * @param user nombre de usuario del usuario
+	 * @param password contraseña del usuario
+	 * @param rol rol del usuario
+	 * @param nombre nombre del usuario
+	 * @param apellidos apellidos del usuario
+	 * @param telefono telefono del usuario
+	 * @param direccion dirección del usuario
+	 */
 	public usuarioDTO(int id, String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
 		this.id = id;
@@ -104,14 +113,25 @@ public class usuarioDTO {
 		this.direccion = direccion;
 	}
 
+	/**
+	 * usuarioDTO constructor clonar
+	 * @param u usuarioDTO a clonar
+	 */
 	public usuarioDTO(usuarioDTO u) {
 		this(u.user, u.password, u.rol, u.rolS, u.nombre, u.apellidos, u.telefono, u.direccion);
 	}
 
+	/**
+	 * clonar constructor clonar
+	 * @return usuarioDTO clonado
+	 */
 	public usuarioDTO clonar() {
 		return new usuarioDTO(this);
 	}
 
+	/**
+	 * visualizar método que imprime por pantalla el toString
+	 */
 	public void visualizar() {
 		System.out.println(this.toString());
 	}

@@ -20,6 +20,9 @@ public class mensajesDTO {
 	private String emisorS;
 	private String receptorS;
 
+	/**
+	 * mensajesDTO constructor default inicializa todas las variables
+	 */
 	public mensajesDTO() {
 		this.id = 0;
 		this.asunto = "";
@@ -33,6 +36,16 @@ public class mensajesDTO {
 		this.receptorS = "";
 	}
 
+	/**
+	 * mensajesDTO constructor parametrizado que recibe todos los atributos originales
+	 * @param id entero id
+	 * @param asunto String asunto del mensaje
+	 * @param cuerpo String cuerpo del mensajer
+	 * @param incidencia int id de la incidencia referida
+	 * @param fecha Date fecha del mensaje que será la de creación
+	 * @param emisor int id del emisor
+	 * @param receptor int id del receptor
+	 */
 	public mensajesDTO(int id, String asunto, String cuerpo, int incidencia, Date fecha, int emisor, int receptor) {
 		this.id = id;
 		this.asunto = asunto;
@@ -43,6 +56,19 @@ public class mensajesDTO {
 		this.receptor = receptor;
 	}
 
+	/**
+	 * mensajesDTO constructor parametrizado que recibe todos los atributos
+	 * @param id entero id
+	 * @param asunto String asunto del mensaje
+	 * @param cuerpo String cuerpo del mensajer
+	 * @param incidencia int id de la incidencia referida
+	 * @param fecha Date fecha del mensaje que será la de creación
+	 * @param emisor int id del emisor
+	 * @param receptor int id del receptor
+	 * @param incidenciaS String nombre de la incidencia
+	 * @param emisorS String nombre y apellidos del emisor
+	 * @param receptorS String nombre y apellidos del receptor
+	 */
 	public mensajesDTO(int id, String asunto, String cuerpo, int incidencia, Date fecha, int emisor, int receptor,
 			String incidenciaS, String emisorS, String receptorS) {
 		this.id = id;
@@ -57,11 +83,19 @@ public class mensajesDTO {
 		this.receptorS = receptorS;
 	}
 
+	/**
+	 * mensajesDTO constructor copia
+	 * @param m objeto mensajesDTO
+	 */
 	public mensajesDTO(mensajesDTO m) {
 		this(m.id, m.asunto, m.cuerpo, m.incidencia, m.fecha, m.emisor, m.receptor, m.incidenciaS, m.emisorS,
 				m.receptorS);
 	}
 
+	/**
+	 * mensajesDTO constructor clonar
+	 * @return mensajesDTO devuelve el propio mensajesDTO clonado
+	 */
 	public mensajesDTO clonar() {
 		return new mensajesDTO(this);
 	}
@@ -74,6 +108,9 @@ public class mensajesDTO {
 				+ "]";
 	}
 
+	/**
+	 * visualizar método que saca por pantalla el toString
+	 */
 	public void visualizar() {
 		System.out.println(this.toString());
 	}

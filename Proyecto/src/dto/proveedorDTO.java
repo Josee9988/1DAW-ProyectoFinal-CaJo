@@ -13,6 +13,9 @@ public class proveedorDTO {
 	private String direccion;
 	private int valoracion;
 
+	/**
+	 * proveedorDTO constructor default
+	 */
 	public proveedorDTO() {
 		this.id = 0;
 		this.nombre = "";
@@ -21,14 +24,14 @@ public class proveedorDTO {
 		this.valoracion = 0;
 	}
 
-	public proveedorDTO(int id) {
-		this.id = id;
-		this.nombre = "";
-		this.contacto = "";
-		this.direccion = "";
-		this.valoracion = 0;
-	}
-
+	/**
+	 * proveedorDTO constructor parametrizado con todos los valores
+	 * @param id id del proveedorDTO
+	 * @param nombre nombre del proveedor
+	 * @param contacto contacto del proveedor
+	 * @param direccion dirección del proveedor
+	 * @param valoracion del proveedor
+	 */
 	public proveedorDTO(int id, String nombre, String contacto, String direccion, int valoracion) {
 		this.id = id;
 		this.nombre = nombre;
@@ -37,18 +40,18 @@ public class proveedorDTO {
 		this.valoracion = valoracion;
 	}
 
-	public proveedorDTO(String nombre, String contacto, String direccion, int valoracion) {
-		this.id = 0;
-		this.nombre = nombre;
-		this.contacto = contacto;
-		this.direccion = direccion;
-		this.valoracion = valoracion;
-	}
-
+	/**
+	 * proveedorDTO constructor copia
+	 * @param p proveedorDTO
+	 */
 	public proveedorDTO(proveedorDTO p) {
 		this(p.id, p.nombre, p.contacto, p.direccion, p.valoracion);
 	}
 
+	/**
+	 * proveedorDTO constructor clonar
+	 * @return proveedorDTO clonado
+	 */
 	public proveedorDTO clonar() {
 		return new proveedorDTO(this);
 	}
@@ -59,6 +62,9 @@ public class proveedorDTO {
 				+ ", direccion=" + this.direccion + ", valoracion=" + this.valoracion + "]";
 	}
 
+	/**
+	 * visualizar método que imprime por pantalla el toString
+	 */
 	public void visualizar() {
 		System.out.println(this.toString());
 	}

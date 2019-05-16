@@ -30,15 +30,21 @@ public class agregar_ubicacion {
 
 	private consultar_ubicaciones consultar;
 
+	/**
+	 * agregar_ubicacion constructor default que inicializa la clase
+	 * consultar_ubicaciones
+	 */
 	public agregar_ubicacion() {
 		this.consultar = new consultar_ubicaciones();
 	}
 
-	public void inicializar() {
-
-	}
-
 	@FXML
+	/**
+	 * agregarUbicacion método que a través de los TextFields rellanados por el
+	 * usuario rellena un objeto ubicacionDTO y lo manda a la base de datos
+	 * 
+	 * @throws SQLException por si ha habido una excepción SQL
+	 */
 	public void agregarUbicacion() throws SQLException {
 		ubicacionDTO ubicacionDTO = new ubicacionDTO();
 		ubicacionDTO.setNombre(this.nombre.getText());

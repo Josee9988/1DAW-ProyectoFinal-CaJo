@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_incidencias">
+<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.consultar_incidencias">
    <children>
-      <Label layoutX="358.0" layoutY="25.0" text="Consultar Incidencias">
+      <Label layoutX="342.0" layoutY="25.0" text="Consultar Incidencias">
          <font>
             <Font size="24.0" />
          </font>
@@ -27,7 +27,7 @@
         </columns>
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
-      <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <TextField fx:id="fecha_encabezado" layoutX="21.0" layoutY="21.0" prefHeight="37.0" prefWidth="200.0" />
       <Button layoutX="21.0" layoutY="528.0" mnemonicParsing="false" onAction="#agregarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Agregar incidencia" />
       <Button layoutX="335.0" layoutY="528.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Modificar inidencia" />
       <Button layoutX="656.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Eliminar incidencia" />

@@ -21,10 +21,16 @@ public class acercaDe_controller {
 	@FXML
 	private TextField campo5;
 
+	/**
+	 * acercaDe_controller constructor default, no realiza ninguna acción
+	 */
 	public acercaDe_controller() {
 
 	}
 
+	/**
+	 * inicializar método hace los campos TextField no editables
+	 */
 	public void inicializar() {
 		this.campo1.setEditable(false);
 		this.campo2.setEditable(false);

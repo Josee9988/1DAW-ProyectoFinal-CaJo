@@ -47,12 +47,22 @@ public class agregar_incidencia {
 
 	private String nombreCompleto;
 
+	/**
+	 * agregar_incidencia constructor default que inicializa variables
+	 */
 	public agregar_incidencia() {
 		this.consultar = new consultar_incidencias();
 		this.nombreCompleto = "";
 
 	}
 
+	/**
+	 * inicializar inicializa los ComboBox llamando a las baes de datos de
+	 * ubicaciones para poner seleccionarlas en el ComboBox
+	 * 
+	 * @param nombreCompleto nombre y apellidos del usuario logeado
+	 * @throws SQLException por si ha habido una excepción SQL
+	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.nombreCompleto = nombreCompleto;
 		jdbcUbicacionDAO jdbcUbicacionDAO = new jdbcUbicacionDAO();
@@ -67,6 +77,13 @@ public class agregar_incidencia {
 	}
 
 	@FXML
+	/**
+	 * agregarincidencia tras recibir los datos introducidos por el usuario desde
+	 * TextFields y ComboBox, rellenamos un objeto incideciaDTO y se lo pasamos a la
+	 * base de datos
+	 * 
+	 * @throws SQLException por si ha habido una excepción SQL
+	 */
 	public void agregarincidencia() throws SQLException {
 		incidenciaDTO incidenciaDTO = new incidenciaDTO();
 		jdbcUsuarioDAO jdbcUsuarioDAO = new jdbcUsuarioDAO();
