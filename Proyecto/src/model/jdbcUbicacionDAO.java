@@ -105,4 +105,14 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		return this.rs.getInt("id");
 	}
 
+	public ArrayList<String> leerNombresUbicacionesString() throws SQLException {
+		ArrayList<String> aux = new ArrayList<>();
+		this.ps = this.connect.prepareStatement("select nombre from ubicaciones");
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			aux.add(this.rs.getString("nombre"));
+		}
+		return aux;
+	}
+
 }

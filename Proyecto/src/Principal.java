@@ -35,6 +35,7 @@ public class Principal extends Application {
 
 	/**
 	 * main Función de inicio que carga la primera ventana.
+	 * 
 	 * @param args recibe los datos del programa
 	 */
 	public static void main(String[] args) {

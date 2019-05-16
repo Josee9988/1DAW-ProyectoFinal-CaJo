@@ -26,6 +26,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 
 	/**
 	 * cerrarBD cierra la base de datos
+	 * 
 	 * @throws SQLException si hay una excepción SQL
 	 */
 	public void cerrarBD() throws SQLException {
@@ -109,8 +110,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.executeUpdate();
 	}
 
-
-	//@Override
+	// @Override
 	public ArrayList<Integer> leerIncidencias() throws SQLException {
 		ArrayList<Integer> incidencias = new ArrayList<>();
 

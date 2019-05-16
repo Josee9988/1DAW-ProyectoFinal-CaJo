@@ -69,9 +69,7 @@ public class mensajesDTO {
 		System.out.println(this.toString());
 	}
 
-
 	// --- GETTERS && SETTERS --- //
-
 
 	/**
 	 * @return the id
@@ -170,10 +168,5 @@ public class mensajesDTO {
 	public void setReceptor(int receptor) {
 		this.receptor = receptor;
 	}
-
-
-
-
-
 
 }

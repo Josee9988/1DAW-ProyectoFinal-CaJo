@@ -164,6 +164,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editAsunto si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editAsunto(CellEditEvent edditedCell) {
@@ -180,6 +181,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editCuerpo si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editCuerpo(CellEditEvent edditedCell) {
@@ -196,6 +198,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editIncidencia si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editIncidencia(CellEditEvent edditedCell) {
@@ -212,6 +215,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editFecha si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editFecha(CellEditEvent edditedCell) {
@@ -228,6 +232,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editEmisor si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editEmisor(CellEditEvent edditedCell) {
@@ -244,6 +249,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editReceptor si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editReceptor(CellEditEvent edditedCell) {
@@ -258,7 +264,9 @@ public class consultar_mensajes {
 	}
 
 	/**
-	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido y lo agregamos en la base de datos
+	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
+	 * y lo agregamos en la base de datos
+	 * 
 	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
 	 * @throws SQLException
 	 */

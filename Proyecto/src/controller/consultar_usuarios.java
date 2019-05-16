@@ -83,7 +83,7 @@ public class consultar_usuarios {
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
@@ -115,16 +115,18 @@ public class consultar_usuarios {
 
 	/**
 	 * agregarEnBaseDatos agrega el objeto usuarioDTO en la base de datos
+	 * 
 	 * @param user objeto usuarioDTO creado por el usuario
-	 * @throws SQLException si hay una excepción de SQL
-	 * @throws InvalidKeyException si la key de la encriptación falla
-	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
-	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
-	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será siempre 32)
-	 * @throws BadPaddingException por si el formato no es el correcto
+	 * @throws SQLException              si hay una excepción de SQL
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void agregarEnBaseDatos(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
 	}
 
@@ -145,7 +147,7 @@ public class consultar_usuarios {
 
 	@FXML
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-	IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -179,7 +181,7 @@ public class consultar_usuarios {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.idselected = -1;
 		this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); // borramos todos los datos

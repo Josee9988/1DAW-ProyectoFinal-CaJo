@@ -65,7 +65,6 @@ public class proveedorDTO {
 
 	// --- GETTERS && SETTERS --- //
 
-
 	/**
 	 * @return the id
 	 */
@@ -135,6 +134,5 @@ public class proveedorDTO {
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
 	}
-
 
 }

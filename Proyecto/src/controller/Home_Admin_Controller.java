@@ -78,9 +78,11 @@ public class Home_Admin_Controller {
 	}
 
 	/**
-	 * recibirParametros recibe los parametros necesarios para inicializar varias textfields
+	 * recibirParametros recibe los parametros necesarios para inicializar varias
+	 * textfields
+	 * 
 	 * @param nombreCompleto nombre + apellidos en un string
-	 * @param rol rol que toma el usuario
+	 * @param rol            rol que toma el usuario
 	 */
 	public void recibirParametros(String nombreCompleto, int rol) {
 		this.date = new Date();
@@ -95,7 +97,7 @@ public class Home_Admin_Controller {
 
 	@FXML
 	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
 		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(
 				this.getClass().getResource("/view/consultarUsuarios.fxml"));

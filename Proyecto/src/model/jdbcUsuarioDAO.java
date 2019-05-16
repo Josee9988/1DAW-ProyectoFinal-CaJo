@@ -53,7 +53,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
@@ -68,7 +68,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
@@ -102,7 +102,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
@@ -156,8 +156,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	}
 
-
-	//para mensajes el observable list
+	// para mensajes el observable list
 	public ArrayList<Integer> leerDestinatarios() throws SQLException {
 		ArrayList<Integer> incidencias = new ArrayList<>();
 
@@ -169,6 +168,20 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 			incidencias.add((this.rs.getInt("id")));
 		}
 		return incidencias;
+	}
+
+	public String leerUsuario(String nombre, String apellidos) throws SQLException {
+		String usuario = "";
+		this.ps = this.connect.prepareStatement("SELECT user FROM usuarios WHERE nombre = ? AND apellidos = ? LIMIT 1");
+		this.ps.setString(1, nombre);
+		this.ps.setString(2, apellidos);
+		this.rs = this.ps.executeQuery();
+		if (this.rs.next()) {
+			usuario = this.rs.getString("user");
+		}
+		this.ps.close();
+		this.rs.close();
+		return usuario;
 	}
 
 }

@@ -101,7 +101,6 @@ public class incidenciaDTO {
 		return new incidenciaDTO(this);
 	}
 
-
 	@Override
 	public String toString() {
 		return "incidenciaDTO [id=" + this.id + ",usuario=" + this.usuario + ", descripcion=" + this.descripcion
@@ -113,7 +112,6 @@ public class incidenciaDTO {
 	public void visualizar() {
 		System.out.println(this.toString());
 	}
-
 
 	// --- GETTERS && SETTERS --- //
 
@@ -242,8 +240,5 @@ public class incidenciaDTO {
 	public void setMateriales(String materiales) {
 		this.materiales = materiales;
 	}
-
-
-
 
 }

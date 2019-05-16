@@ -38,8 +38,8 @@ public class crypto_controller {
 	 * @param isEncryptMode si está ya encriptado o no
 	 * @return cipher devuelve el objeto Cipher
 	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
-	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
-	 * @throws InvalidKeyException si la key de la encriptación falla
+	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
+	 * @throws InvalidKeyException      si la key de la encriptación falla
 	 */
 	private static Cipher getCipher(String synchro1, String synchro2, String synchro3, String synchro4,
 			boolean isEncryptMode) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
@@ -87,14 +87,15 @@ public class crypto_controller {
 	 *
 	 * @param text recibe el texto a encriptar
 	 * @return devuelve el texto encriptado
-	 * @throws InvalidKeyException si la key de la encriptación falla
-	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
-	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
-	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será siempre 32)
-	 * @throws BadPaddingException por si el formato no es el correcto
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public static String encrypt(String text) throws InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		javax.crypto.Cipher cipher = getCipher("!6w", "9x50", "9F17A", "9AXf", true);
 		return toHexString(cipher.doFinal(text.getBytes()));
 	}
@@ -104,14 +105,15 @@ public class crypto_controller {
 	 *
 	 * @param text recibe el texto encriptado
 	 * @return devuelve el desencriptado
-	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será siempre 32)
-	 * @throws BadPaddingException por si el formato no es el correcto
-	 * @throws InvalidKeyException si la key de la encriptación falla
-	 * @throws NoSuchAlgorithmException si no existe el algoritmo seleccionado
-	 * @throws NoSuchPaddingException por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	public static String decrypt(String text) throws IllegalBlockSizeException, BadPaddingException,
-	InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
+			InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
 		javax.crypto.Cipher cipher = getCipher("!6w", "9x50", "9F17A", "9AXf", false);
 		String decrypted = new String(cipher.doFinal(hexToByte(text)));
 		return decrypted;

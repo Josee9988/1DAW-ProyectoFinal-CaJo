@@ -20,6 +20,7 @@ public class Conexion {
 
 	/**
 	 * getInstance devuelve la conexión en forma de instancia de la base de datos
+	 * 
 	 * @return instance devuelve la instancia de la conexión Connection
 	 */
 	public static Conexion getInstance() {
@@ -31,6 +32,7 @@ public class Conexion {
 
 	/**
 	 * cerrarConexion método que cierra la conexión con la base de datos
+	 * 
 	 * @throws SQLException
 	 */
 	public void cerrarConexion() throws SQLException {
@@ -38,7 +40,9 @@ public class Conexion {
 	}
 
 	/**
-	 * conectar método en el cual se llama a la base de datos con el usuario contraseña y la dirección
+	 * conectar método en el cual se llama a la base de datos con el usuario
+	 * contraseña y la dirección
+	 * 
 	 * @return Conexion devuelve la conexión de la base de datos
 	 */
 	public Connection conectar() {

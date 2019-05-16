@@ -145,7 +145,7 @@ public class consultar_proveedores {
 
 	@FXML
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 
@@ -153,6 +153,7 @@ public class consultar_proveedores {
 
 	/**
 	 * agregarProveedorEnBD agregamos el objeto proveedorDTO en la base de datos
+	 * 
 	 * @param proveedor proveedorDTO que ha creado el usuario
 	 * @throws SQLException
 	 */
@@ -165,6 +166,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editNombre si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editNombre(CellEditEvent edditedCell) {
@@ -182,6 +184,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editContacto si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editContacto(CellEditEvent edditedCell) {
@@ -199,6 +202,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editDireccion si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editDireccion(CellEditEvent edditedCell) {
@@ -216,6 +220,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * editValoracion si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editValoracion(CellEditEvent edditedCell) {

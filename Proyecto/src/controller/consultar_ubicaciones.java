@@ -141,6 +141,7 @@ public class consultar_ubicaciones {
 
 	/**
 	 * agregarUbicacionEnBD agregamos el objeto ubicacionDTO en la base de datos
+	 * 
 	 * @param ubicacion objeto ubicacionDTO creado por el usuario
 	 * @throws SQLException
 	 */
@@ -152,6 +153,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editNombre si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editNombre(CellEditEvent edditedCell) {
@@ -169,6 +171,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editDescripcion si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editDescripcion(CellEditEvent edditedCell) {
@@ -186,6 +189,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editEdificio si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editEdificio(CellEditEvent edditedCell) {
@@ -203,6 +207,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * editPlanta si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editPlanta(CellEditEvent edditedCell) {

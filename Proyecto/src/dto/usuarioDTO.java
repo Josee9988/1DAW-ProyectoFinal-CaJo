@@ -105,7 +105,6 @@ public class usuarioDTO {
 
 	// --- GETTERS && SETTERS --- //
 
-
 	/**
 	 * @return the id
 	 */
@@ -217,7 +216,5 @@ public class usuarioDTO {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-
 
 }

@@ -73,7 +73,6 @@ public class ubicacionDTO {
 
 	// --- GETTERS && SETTERS --- //
 
-
 	/**
 	 * @return the id
 	 */
@@ -143,7 +142,5 @@ public class ubicacionDTO {
 	public void setPlanta(String planta) {
 		this.planta = planta;
 	}
-
-
 
 }

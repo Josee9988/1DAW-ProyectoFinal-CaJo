@@ -81,9 +81,11 @@ public class consultar_incidencias {
 	}
 
 	/**
-	 * inicializar inicializa todos los elementos necesarios de la tabla cogiendo los datos de la base de datos y aplicándoselos
+	 * inicializar inicializa todos los elementos necesarios de la tabla cogiendo
+	 * los datos de la base de datos y aplicándoselos
+	 * 
 	 * @param nombreCompleto el nombre y el apellido de la persona logeada
-	 * @param rol el rol que el usuario tiene
+	 * @param rol            el rol que el usuario tiene
 	 * @throws SQLException si ha habido un fallo de sql...
 	 */
 	public void inicializar(String nombreCompleto, int rol) throws SQLException {
@@ -111,7 +113,7 @@ public class consultar_incidencias {
 
 		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y
 		// nunca va a ser relevante a la hora de modificar un usuario
-		this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
+		// this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.descripcion.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.elemento.setCellFactory(TextFieldTableCell.forTableColumn());
 		// TODO: make list
@@ -124,13 +126,13 @@ public class consultar_incidencias {
 	}
 
 	@FXML
-	public void agregarIncidencia() throws IOException {
+	public void agregarIncidencia() throws IOException, SQLException {
 		this.agregar_incidencia = new Stage();
 		this.fxmlLoaderagregar_incidencia = new FXMLLoader(this.getClass().getResource("/view/agregarIncidencia.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderagregar_incidencia.load();
 		this.controller_agregar_incidencia = this.fxmlLoaderagregar_incidencia.<agregar_incidencia>getController();
 		this.scene1 = new Scene(this.root1);
-		this.controller_agregar_incidencia.inicializar(); // llamamos al método inicializar
+		this.controller_agregar_incidencia.inicializar(this.nombreCompleto); // llamamos al método inicializar
 		this.agregar_incidencia.setScene(this.scene1);
 		this.agregar_incidencia.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_incidencia.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
@@ -139,6 +141,7 @@ public class consultar_incidencias {
 
 	/**
 	 * agregarIncidenciaEnBD agregamos la incidencia creada en la base de datos
+	 * 
 	 * @param incidenciaDTO objeto incidenciaDTO creada por el usuario
 	 * @throws SQLException
 	 */
@@ -156,7 +159,7 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
@@ -203,6 +206,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editUsuario si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editUsuario(CellEditEvent edditedCell) {
@@ -219,6 +223,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editDescripcion si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editDescripcion(CellEditEvent edditedCell) {
@@ -235,6 +240,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editElemento si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editElemento(CellEditEvent edditedCell) {
@@ -251,6 +257,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editFecha si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editFecha(CellEditEvent edditedCell) throws ParseException {
@@ -269,6 +276,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editUrgencia si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editUrgencia(CellEditEvent edditedCell) {
@@ -285,6 +293,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editCategoria si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editCategoria(CellEditEvent edditedCell) {
@@ -301,6 +310,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editMateriales si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editMateriales(CellEditEvent edditedCell) {
@@ -317,6 +327,7 @@ public class consultar_incidencias {
 	@FXML
 	/**
 	 * editUbicacion si se ha hecho doble click en una celda
+	 * 
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editUbicacion(CellEditEvent edditedCell) {

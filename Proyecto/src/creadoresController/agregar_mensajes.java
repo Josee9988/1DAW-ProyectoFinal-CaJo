@@ -43,11 +43,12 @@ public class agregar_mensajes {
 		this.consultar_mensajes = new consultar_mensajes();
 		this.stage = null;
 		this.bdusuario = new jdbcUsuarioDAO();
-		// this.nombrecompleto = "";
+		this.nombrecompleto = "";
 	}
 
 	/**
 	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes
+	 * 
 	 * @param nombrecompleto nombre + apellidos de el usuario logeado
 	 * @throws SQLException excepción SQL
 	 */
