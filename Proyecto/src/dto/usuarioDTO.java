@@ -11,6 +11,7 @@ public class usuarioDTO {
 	private String user;
 	private String password;
 	private int rol;
+	private String rolS;
 	private String nombre;
 	private String apellidos;
 	private String telefono;
@@ -21,6 +22,7 @@ public class usuarioDTO {
 		this.user = "";
 		this.password = "";
 		this.rol = 0;
+		this.rolS = "";
 		this.nombre = "";
 		this.apellidos = "";
 		this.telefono = "";
@@ -32,6 +34,7 @@ public class usuarioDTO {
 		this.user = user;
 		this.password = "";
 		this.rol = 0;
+		this.rolS = "";
 		this.nombre = "";
 		this.apellidos = "";
 		this.telefono = "";
@@ -43,6 +46,7 @@ public class usuarioDTO {
 		this.user = user;
 		this.password = "";
 		this.rol = rol;
+		this.rolS = "";
 		this.nombre = "";
 		this.apellidos = "";
 		this.telefono = "";
@@ -54,24 +58,40 @@ public class usuarioDTO {
 		this.user = user;
 		this.password = password;
 		this.rol = 0;
+		this.rolS = "";
 		this.nombre = "";
 		this.apellidos = "";
 		this.telefono = "";
 		this.direccion = "";
 	}
 
-	public usuarioDTO(String user, String password, int rol, String nombre, String apellidos, String telefono,
-			String direccion) {
+	public usuarioDTO(String user, String password, int rol, String rolS, String nombre, String apellidos,
+			String telefono, String direccion) {
 		this.id = 0;
 		this.user = user;
 		this.password = password;
 		this.rol = rol;
+		this.rolS = rolS;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
 		this.direccion = direccion;
 	}
 
+	public usuarioDTO(int id, String user, String password, int rol, String rolS, String nombre, String apellidos,
+			String telefono, String direccion) {
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.rol = rol;
+		this.rolS = rolS;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.direccion = direccion;
+	}
+
+	// PARAM SIN ROLS
 	public usuarioDTO(int id, String user, String password, int rol, String nombre, String apellidos, String telefono,
 			String direccion) {
 		this.id = id;
@@ -85,7 +105,7 @@ public class usuarioDTO {
 	}
 
 	public usuarioDTO(usuarioDTO u) {
-		this(u.user, u.password, u.rol, u.nombre, u.apellidos, u.telefono, u.direccion);
+		this(u.user, u.password, u.rol, u.rolS, u.nombre, u.apellidos, u.telefono, u.direccion);
 	}
 
 	public usuarioDTO clonar() {
@@ -98,9 +118,9 @@ public class usuarioDTO {
 
 	@Override
 	public String toString() {
-		return "usuarioDTO [id=" + this.id + ",user=" + this.user + ", password=" + this.password + ", rol=" + this.rol
-				+ ", nombre=" + this.nombre + ", apellidos=" + this.apellidos + ", telefono=" + this.telefono
-				+ ", direccion=" + this.direccion + "]";
+		return "usuarioDTO [id=" + this.id + ", user=" + this.user + ", password=" + this.password + ", rol=" + this.rol
+				+ ", rolS=" + this.rolS + ", nombre=" + this.nombre + ", apellidos=" + this.apellidos + ", telefono="
+				+ this.telefono + ", direccion=" + this.direccion + "]";
 	}
 
 	// --- GETTERS && SETTERS --- //
@@ -215,6 +235,20 @@ public class usuarioDTO {
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	/**
+	 * @return the rolS
+	 */
+	public String getRolS() {
+		return this.rolS;
+	}
+
+	/**
+	 * @param rolS the rolS to set
+	 */
+	public void setRolS(String rolS) {
+		this.rolS = rolS;
 	}
 
 }

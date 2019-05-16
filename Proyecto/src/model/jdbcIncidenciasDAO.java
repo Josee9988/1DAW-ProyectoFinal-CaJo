@@ -26,7 +26,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 
 	/**
 	 * cerrarBD cierra la base de datos
-	 * 
+	 *
 	 * @throws SQLException si hay una excepción SQL
 	 */
 	public void cerrarBD() throws SQLException {
@@ -122,6 +122,20 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 			incidencias.add((this.rs.getInt("id_incidencia")));
 		}
 		return incidencias;
+	}
+
+	public String nombreIncidencia(int id) throws SQLException {
+		String nombre = "";
+		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias WHERE id_incidencia = ? LIMIT 1");
+		this.ps.setInt(1, id);
+
+		this.rs = this.ps.executeQuery();
+		if (this.rs.next()) {
+			nombre = this.rs.getString("descripcion");
+		}
+		this.ps.close();
+		this.rs.close();
+		return nombre;
 	}
 
 }

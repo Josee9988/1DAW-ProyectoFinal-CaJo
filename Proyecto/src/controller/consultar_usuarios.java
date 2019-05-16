@@ -10,6 +10,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.crypto.BadPaddingException;
@@ -30,7 +31,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 import model.jdbcUsuarioDAO;
 
 public class consultar_usuarios {
@@ -47,7 +47,7 @@ public class consultar_usuarios {
 	@FXML
 	private TableColumn<usuarioDTO, String> password;
 	@FXML
-	private TableColumn<usuarioDTO, Integer> rol;
+	private TableColumn<usuarioDTO, String> rol;
 	@FXML
 	private TableColumn<usuarioDTO, String> nombre;
 	@FXML
@@ -69,6 +69,7 @@ public class consultar_usuarios {
 	private Image icon;
 
 	private jdbcUsuarioDAO dbusuario;
+	private String nombreCompleto;
 
 	usuarioDTO usuarioSelected;
 	int idselected;
@@ -80,19 +81,46 @@ public class consultar_usuarios {
 		this.idselected = -1;
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.dbusuario = new jdbcUsuarioDAO();
+		this.nombreCompleto = "";
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
-		this.rol.setCellValueFactory(new PropertyValueFactory<>("Rol"));
+		this.rol.setCellValueFactory(new PropertyValueFactory<>("RolS"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
 		this.apellidos.setCellValueFactory(new PropertyValueFactory<>("Apellidos"));
 		this.telefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
 		this.direccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
-		this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
+
+		// Cambiamos el valor numérico de rol a un texto entendible.(solo para
+		// mostrárlos)
+		ArrayList<usuarioDTO> arrayToAdd = this.bdusuarios.leerUsuarios();
+		for (usuarioDTO i : arrayToAdd) {
+			String resultado = "";
+			switch (i.getRol()) {
+			case 1:
+				resultado = "Profesor";
+				break;
+			case 2:
+				resultado = "Jefe Dpto.";
+				break;
+			case 3:
+				resultado = "Mantenimiento";
+				break;
+			case 4:
+				resultado = "Admin";
+				break;
+			default:
+				break;
+			}
+			i.setRolS(resultado);
+		}
+
+		this.tabla.getItems().addAll(arrayToAdd);
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
@@ -105,17 +133,16 @@ public class consultar_usuarios {
 		// nunca va a ser relevante a la hora de modificar un usuario
 		this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.password.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.rol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		// this.rol.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.nombre.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.apellidos.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.telefono.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.direccion.setCellFactory(TextFieldTableCell.forTableColumn());
-
 	}
 
 	/**
 	 * agregarEnBaseDatos agrega el objeto usuarioDTO en la base de datos
-	 * 
+	 *
 	 * @param user objeto usuarioDTO creado por el usuario
 	 * @throws SQLException              si hay una excepción de SQL
 	 * @throws InvalidKeyException       si la key de la encriptación falla
@@ -185,7 +212,8 @@ public class consultar_usuarios {
 		this.idselected = -1;
 		this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
+		this.inicializar(this.nombreCompleto);
+		// this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
 
 	}
 

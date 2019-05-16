@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import creadoresController.agregar_mensajes;
@@ -24,8 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
+import model.jdbcIncidenciasDAO;
 import model.jdbcMensajesDAO;
+import model.jdbcUsuarioDAO;
 
 public class consultar_mensajes {
 
@@ -41,13 +43,13 @@ public class consultar_mensajes {
 	@FXML
 	private TableColumn<mensajesDTO, String> cuerpo;
 	@FXML
-	private TableColumn<mensajesDTO, Integer> incidencia;
+	private TableColumn<mensajesDTO, String> incidencia;
 	@FXML
 	private TableColumn<mensajesDTO, Date> fecha;
 	@FXML
-	private TableColumn<mensajesDTO, Integer> emisor;
+	private TableColumn<mensajesDTO, String> emisor;
 	@FXML
-	private TableColumn<mensajesDTO, Integer> receptor;
+	private TableColumn<mensajesDTO, String> receptor;
 	@FXML
 	private TextField usuario_encabezado;
 	@FXML
@@ -73,15 +75,34 @@ public class consultar_mensajes {
 	}
 
 	public void inicializar(String nombreCompleto) throws SQLException {
+		jdbcIncidenciasDAO jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
+		jdbcUsuarioDAO jdbcUsuarioDAO = new jdbcUsuarioDAO();
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.asunto.setCellValueFactory(new PropertyValueFactory<>("Asunto"));
 		this.cuerpo.setCellValueFactory(new PropertyValueFactory<>("Cuerpo"));
-		this.incidencia.setCellValueFactory(new PropertyValueFactory<>("Incidencia"));
+		this.incidencia.setCellValueFactory(new PropertyValueFactory<>("IncidenciaS"));
 		this.fecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
-		this.emisor.setCellValueFactory(new PropertyValueFactory<>("Emisor"));
-		this.receptor.setCellValueFactory(new PropertyValueFactory<>("Receptor"));
-		this.tabla.getItems().addAll(this.bdmensajes.leerMensajes());
+		this.emisor.setCellValueFactory(new PropertyValueFactory<>("EmisorS"));
+		this.receptor.setCellValueFactory(new PropertyValueFactory<>("ReceptorS"));
+
+		// cambiamos valores numéricos de incidencias, emisor y receptor para que salgan
+		// como el nombre al que corresponden esas ids
+		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
+		mensajesToAdd.addAll(this.bdmensajes.leerMensajes());
+		for (mensajesDTO i : mensajesToAdd) {
+			if (jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).length() > 64) {
+				i.setIncidenciaS(jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).substring(0, 64));
+
+			} else {
+				i.setIncidenciaS(jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()));
+
+			}
+			i.setEmisorS(jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
+			i.setReceptorS(jdbcUsuarioDAO.devolverNombre(i.getReceptor()));
+		}
+
+		this.tabla.getItems().addAll(mensajesToAdd);
 
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
@@ -95,11 +116,11 @@ public class consultar_mensajes {
 		// nunca va a ser relevante a la hora de modificar un usuario
 		this.asunto.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.cuerpo.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.incidencia.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		this.incidencia.setCellFactory(TextFieldTableCell.forTableColumn());
 		// TODO: make it happen
 		// this.fecha.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.emisor.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-		this.receptor.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		this.emisor.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.receptor.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
 	@FXML
@@ -157,14 +178,15 @@ public class consultar_mensajes {
 	@FXML
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(this.bdmensajes.leerMensajes());
+		this.inicializar(this.nombreCompleto);
+		// this.tabla.getItems().addAll(this.bdmensajes.leerMensajes());
 	}
 
 	// MODIFICACIONES
 	@FXML
 	/**
 	 * editAsunto si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editAsunto(CellEditEvent edditedCell) {
@@ -181,7 +203,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editCuerpo si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editCuerpo(CellEditEvent edditedCell) {
@@ -198,7 +220,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editIncidencia si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editIncidencia(CellEditEvent edditedCell) {
@@ -215,7 +237,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editFecha si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editFecha(CellEditEvent edditedCell) {
@@ -232,7 +254,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editEmisor si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editEmisor(CellEditEvent edditedCell) {
@@ -249,7 +271,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * editReceptor si se ha hecho doble click en una celda
-	 * 
+	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
 	public void editReceptor(CellEditEvent edditedCell) {
@@ -266,7 +288,7 @@ public class consultar_mensajes {
 	/**
 	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
 	 * y lo agregamos en la base de datos
-	 * 
+	 *
 	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
 	 * @throws SQLException
 	 */

@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 import model.jdbcUbicacionDAO;
 import model.jdbcUsuarioDAO;
 
-
 public class agregar_incidencia {
 	@FXML
 	private TextField descripcion;
