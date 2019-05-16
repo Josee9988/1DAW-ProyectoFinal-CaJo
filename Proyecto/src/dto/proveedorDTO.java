@@ -26,10 +26,11 @@ public class proveedorDTO {
 
 	/**
 	 * proveedorDTO constructor parametrizado con todos los valores
-	 * @param id id del proveedorDTO
-	 * @param nombre nombre del proveedor
-	 * @param contacto contacto del proveedor
-	 * @param direccion dirección del proveedor
+	 * 
+	 * @param id         id del proveedorDTO
+	 * @param nombre     nombre del proveedor
+	 * @param contacto   contacto del proveedor
+	 * @param direccion  dirección del proveedor
 	 * @param valoracion del proveedor
 	 */
 	public proveedorDTO(int id, String nombre, String contacto, String direccion, int valoracion) {
@@ -42,6 +43,7 @@ public class proveedorDTO {
 
 	/**
 	 * proveedorDTO constructor copia
+	 * 
 	 * @param p proveedorDTO
 	 */
 	public proveedorDTO(proveedorDTO p) {
@@ -50,6 +52,7 @@ public class proveedorDTO {
 
 	/**
 	 * proveedorDTO constructor clonar
+	 * 
 	 * @return proveedorDTO clonado
 	 */
 	public proveedorDTO clonar() {

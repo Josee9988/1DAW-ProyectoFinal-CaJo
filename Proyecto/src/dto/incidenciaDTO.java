@@ -36,7 +36,8 @@ public class incidenciaDTO {
 
 	/**
 	 * incidenciaDTO constructor parametrizado que recibe id y urgencia
-	 * @param id recibe un entero id y se lo asigna a incidenciaDTO
+	 * 
+	 * @param id       recibe un entero id y se lo asigna a incidenciaDTO
 	 * @param urgencia recibe un String de urgencia y se lo asigna
 	 */
 	public incidenciaDTO(int id, String urgencia) {
@@ -52,16 +53,18 @@ public class incidenciaDTO {
 	}
 
 	/**
-	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de incidenciaDTO
-	 * @param id recibe un entero id y se lo asigna a incidenciaDTO
-	 * @param usuario String con elusuario
+	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
+	 * incidenciaDTO
+	 * 
+	 * @param id          recibe un entero id y se lo asigna a incidenciaDTO
+	 * @param usuario     String con elusuario
 	 * @param descripcion String con la descripción de la incidencia
-	 * @param elemento String elemento al que le ha ocurrido la incidencia
-	 * @param ubicacion String de dónde ha ocurrido la incidencia
-	 * @param fecha Date de cuándo ha ocurrido la incidencia
-	 * @param urgencia recibe un String de urgencia y se lo asigna
-	 * @param categoria String de la categoría de la incidencia
-	 * @param materiales String materiales de los materiales de la incidencia
+	 * @param elemento    String elemento al que le ha ocurrido la incidencia
+	 * @param ubicacion   String de dónde ha ocurrido la incidencia
+	 * @param fecha       Date de cuándo ha ocurrido la incidencia
+	 * @param urgencia    recibe un String de urgencia y se lo asigna
+	 * @param categoria   String de la categoría de la incidencia
+	 * @param materiales  String materiales de los materiales de la incidencia
 	 */
 	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, Date fecha,
 			String urgencia, String categoria, String materiales) {
@@ -78,6 +81,7 @@ public class incidenciaDTO {
 
 	/**
 	 * incidenciaDTO constructor copia
+	 * 
 	 * @param i recibe el objeto incidenciaDTO
 	 */
 	public incidenciaDTO(incidenciaDTO i) {
@@ -86,6 +90,7 @@ public class incidenciaDTO {
 
 	/**
 	 * incidenciaDTO constructor clonar
+	 * 
 	 * @return devuelve el objeto copiado y se lo asigna al actual incidenciaDTO
 	 */
 	public incidenciaDTO clonar() {

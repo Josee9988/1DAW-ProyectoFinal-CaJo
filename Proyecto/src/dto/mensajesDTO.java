@@ -37,14 +37,16 @@ public class mensajesDTO {
 	}
 
 	/**
-	 * mensajesDTO constructor parametrizado que recibe todos los atributos originales
-	 * @param id entero id
-	 * @param asunto String asunto del mensaje
-	 * @param cuerpo String cuerpo del mensajer
+	 * mensajesDTO constructor parametrizado que recibe todos los atributos
+	 * originales
+	 * 
+	 * @param id         entero id
+	 * @param asunto     String asunto del mensaje
+	 * @param cuerpo     String cuerpo del mensajer
 	 * @param incidencia int id de la incidencia referida
-	 * @param fecha Date fecha del mensaje que será la de creación
-	 * @param emisor int id del emisor
-	 * @param receptor int id del receptor
+	 * @param fecha      Date fecha del mensaje que será la de creación
+	 * @param emisor     int id del emisor
+	 * @param receptor   int id del receptor
 	 */
 	public mensajesDTO(int id, String asunto, String cuerpo, int incidencia, Date fecha, int emisor, int receptor) {
 		this.id = id;
@@ -58,16 +60,17 @@ public class mensajesDTO {
 
 	/**
 	 * mensajesDTO constructor parametrizado que recibe todos los atributos
-	 * @param id entero id
-	 * @param asunto String asunto del mensaje
-	 * @param cuerpo String cuerpo del mensajer
-	 * @param incidencia int id de la incidencia referida
-	 * @param fecha Date fecha del mensaje que será la de creación
-	 * @param emisor int id del emisor
-	 * @param receptor int id del receptor
+	 * 
+	 * @param id          entero id
+	 * @param asunto      String asunto del mensaje
+	 * @param cuerpo      String cuerpo del mensajer
+	 * @param incidencia  int id de la incidencia referida
+	 * @param fecha       Date fecha del mensaje que será la de creación
+	 * @param emisor      int id del emisor
+	 * @param receptor    int id del receptor
 	 * @param incidenciaS String nombre de la incidencia
-	 * @param emisorS String nombre y apellidos del emisor
-	 * @param receptorS String nombre y apellidos del receptor
+	 * @param emisorS     String nombre y apellidos del emisor
+	 * @param receptorS   String nombre y apellidos del receptor
 	 */
 	public mensajesDTO(int id, String asunto, String cuerpo, int incidencia, Date fecha, int emisor, int receptor,
 			String incidenciaS, String emisorS, String receptorS) {
@@ -85,6 +88,7 @@ public class mensajesDTO {
 
 	/**
 	 * mensajesDTO constructor copia
+	 * 
 	 * @param m objeto mensajesDTO
 	 */
 	public mensajesDTO(mensajesDTO m) {
@@ -94,6 +98,7 @@ public class mensajesDTO {
 
 	/**
 	 * mensajesDTO constructor clonar
+	 * 
 	 * @return mensajesDTO devuelve el propio mensajesDTO clonado
 	 */
 	public mensajesDTO clonar() {

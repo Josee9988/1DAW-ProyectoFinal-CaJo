@@ -26,6 +26,7 @@ public class ubicacionDTO {
 
 	/**
 	 * ubicacionDTO constructor parametrizado con String nombre
+	 * 
 	 * @param nombre nombre de la ubicación
 	 */
 	public ubicacionDTO(String nombre) {
@@ -38,11 +39,12 @@ public class ubicacionDTO {
 
 	/**
 	 * ubicacionDTO constructor parametrizado con todos los valores
-	 * @param id id de la ubicacion
-	 * @param nombre de la ubicación
+	 * 
+	 * @param id          id de la ubicacion
+	 * @param nombre      de la ubicación
 	 * @param descripcion de la ubicación
-	 * @param edificio de la ubicación
-	 * @param planta de la ubicación
+	 * @param edificio    de la ubicación
+	 * @param planta      de la ubicación
 	 */
 	public ubicacionDTO(int id, String nombre, String descripcion, String edificio, String planta) {
 		this.id = id;
@@ -54,6 +56,7 @@ public class ubicacionDTO {
 
 	/**
 	 * ubicacionDTO constructor copia
+	 * 
 	 * @param u ubicacionDTO
 	 */
 	public ubicacionDTO(ubicacionDTO u) {
@@ -62,6 +65,7 @@ public class ubicacionDTO {
 
 	/**
 	 * ubicacionDTO constructor clonar
+	 * 
 	 * @return ubicacionDTO clonado
 	 */
 	public ubicacionDTO clonar() {
