@@ -7,24 +7,27 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import creadoresController.agregar_fecha;
 import creadoresController.agregar_incidencia;
 import dto.incidenciaDTO;
 import dto.usuarioDTO;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 
@@ -69,6 +72,14 @@ public class consultar_incidencias {
 	private Image icon;
 	private String nombreCompleto;
 	private int rol;
+
+	// pop up de fecha
+	private Stage agregar_fecha;
+	private Parent root2;
+	private Scene scene2;
+	private FXMLLoader fxmlLoaderagregar_fecha;
+	private agregar_fecha controller_agregar_fecha;
+	private static Date fechaSelected;
 
 	/**
 	 * consultar_incidencias constructor default el cual inicializa valores
@@ -126,12 +137,59 @@ public class consultar_incidencias {
 		this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.materiales.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.ubicacion.setCellFactory(TextFieldTableCell.forTableColumn());
+		this.fechaSelected = null;
+
+		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
+		this.tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			// para evento fecha
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) { // para que haya dos clicks
+					TablePosition pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					if (pos.getColumn() == 4) { // si es la columna(s) que queremos...
+						int row = pos.getRow();
+						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
+						// no
+						// cambiará
+						System.out.println(consultar_incidencias.this.idselected);
+						consultar_incidencias.this.incidenciaSelected.visualizar();
+
+						// creamos la view
+						consultar_incidencias.this.agregar_fecha = new Stage();
+						consultar_incidencias.this.fxmlLoaderagregar_fecha = new FXMLLoader(
+								this.getClass().getResource("/view/agregarFecha.fxml"));
+						try {
+							consultar_incidencias.this.root2 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_fecha
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
+								.<agregar_fecha>getController();
+								consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
+								consultar_incidencias.this.controller_agregar_fecha.inicializar(); // llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
+								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_incidencias.this.agregar_fecha.show();
+					}
+				}
+			}
+		}); // fin doble click en las columnas que queremos para abrir views
 	}
 
 	@FXML
 	/**
 	 * agregarIncidencia abre la view para agregar una incidencia
-	 * 
+	 *
 	 * @throws IOException  si ha habido una excepción IO
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
@@ -162,10 +220,12 @@ public class consultar_incidencias {
 	/**
 	 * modificarIncidencia modifica una incidencia al ser modificada o abre una
 	 * nueva view si no se ha modificado ningún valor
-	 * 
+	 *
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	public void modificarIncidencia() throws SQLException {
+		System.out.println("mod" + this.idselected + " fecha" + this.incidenciaSelected.getFecha() + " fechaselected: "
+				+ this.fechaSelected);
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.incidenciaSelected.setId(this.idselected); // id no cambiará
@@ -174,15 +234,11 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
 			}
-			// TODO: hacerlo como un desplegable de fechas
-			// if (this.incidenciaSelected.getfecha().equals("")) {
-			// this.incidenciaSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
-			// }
 			if (this.incidenciaSelected.getUrgencia().equals("")) {
 				this.incidenciaSelected.setUrgencia(this.tabla.getSelectionModel().getSelectedItem().getUrgencia());
 			}
@@ -195,18 +251,34 @@ public class consultar_incidencias {
 			if (this.incidenciaSelected.getUbicacion().equals("")) {
 				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
 			}
-
+			System.out.println("Antes de añadir" + this.fechaSelected);
+			this.incidenciaSelected.setFecha((java.sql.Date) this.fechaSelected);
+			this.incidenciaSelected.visualizar();
 			this.bdincidencias.modificarIncidencia(this.incidenciaSelected);
 			this.idselected = -1;
 			this.incidenciaSelected = new incidenciaDTO();
 		}
 	}
 
+	// cuando se llama desde el agregar_fecha
+	public void agregarFechaView(Date date) throws SQLException {
+		System.out.println("date: " + date);
+		this.fechaSelected = date;
+		// this.incidenciaSelected.setId(this.idselected);
+
+		// this.incidenciaSelected.setId(this.tabla.getSelectionModel().getSelectedItem().getId());
+		this.incidenciaSelected.setId(this.idselected); // id no cambiará
+		this.incidenciaSelected.setFecha((java.sql.Date) date);
+		System.out.println("En agregarfecha view:");
+		this.incidenciaSelected.visualizar();
+
+	}
+
 	@FXML
 	/**
 	 * eliminarIncidencia elimina la incidencia seleccionada del tableview y la base
 	 * de datos
-	 * 
+	 *
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	public void eliminarIncidencia() throws SQLException {
@@ -220,7 +292,7 @@ public class consultar_incidencias {
 	/**
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
-	 * 
+	 *
 	 * @throws SQLException
 	 */
 	public void restart() throws SQLException {
@@ -281,24 +353,26 @@ public class consultar_incidencias {
 		}
 	}
 
-	@FXML
-	/**
-	 * editFecha si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editFecha(CellEditEvent edditedCell) throws ParseException {
-		Date date = new Date();
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.incidenciaSelected.setFecha(
-					(java.sql.Date) new SimpleDateFormat("dd-MM-yyyy").parse(edditedCell.getNewValue().toString()));
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
-			}
-		}
-	}
+	// @FXML
+	// /**
+	// * editFecha si se ha hecho doble click en una celda
+	// *
+	// * @param edditedCell celda editada por el usuario al hacer doble click
+	// */
+	// public void editFecha(CellEditEvent edditedCell) throws ParseException {
+	// Date date = new Date();
+	// if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
+	// this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
+	// this.incidenciaSelected.setFecha(
+	// (java.sql.Date) new
+	// SimpleDateFormat("dd-MM-yyyy").parse(edditedCell.getNewValue().toString()));
+	// } else {
+	// if (this.tabla.getSelectionModel().getSelectedItem().getId() ==
+	// this.idselected) {// si correcto
+	// this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
+	// }
+	// }
+	// }
 
 	@FXML
 	/**
