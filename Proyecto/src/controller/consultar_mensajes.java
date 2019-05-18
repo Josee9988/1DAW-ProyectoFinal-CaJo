@@ -11,19 +11,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import creadoresController.agregar_combobox;
 import creadoresController.agregar_mensajes;
 import dto.mensajesDTO;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcMensajesDAO;
@@ -55,7 +59,7 @@ public class consultar_mensajes {
 	@FXML
 	private TextField fecha_encabezado;
 
-	private int idselected = -1;
+	private int idselected;
 	private mensajesDTO mensajesSelected;
 	private Stage agregar_mensaje;
 	private Parent root1;
@@ -64,6 +68,14 @@ public class consultar_mensajes {
 	private agregar_mensajes controller_agregar_mensajes;
 	private Image icon;
 	private String nombreCompleto;
+
+	// pop up de comboB
+	private Stage agregar_combobox;
+	private Parent root2;
+	private Scene scene2;
+	private FXMLLoader fxmlLoaderagregar_combo;
+	private agregar_combobox controller_agregar_combo;
+	private static int incidenciaCombo;
 
 	/**
 	 * consultar_mensajes constructor default que inicializa valores
@@ -75,12 +87,13 @@ public class consultar_mensajes {
 		this.idselected = -1;
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.nombreCompleto = "";
+		this.incidenciaCombo = -1;
 	}
 
 	/**
 	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
 	 * asignándoselos
-	 * 
+	 *
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
@@ -126,17 +139,66 @@ public class consultar_mensajes {
 		// nunca va a ser relevante a la hora de modificar un usuario
 		this.asunto.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.cuerpo.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.incidencia.setCellFactory(TextFieldTableCell.forTableColumn());
+		// this.incidencia.setCellFactory(TextFieldTableCell.forTableColumn());
 		// TODO: make it happen
 		// this.fecha.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.emisor.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.receptor.setCellFactory(TextFieldTableCell.forTableColumn());
+
+		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
+		this.tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			// para evento fecha
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) { // para que haya dos clicks
+					TablePosition pos = consultar_mensajes.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					if (pos.getColumn() == 3) { // si es la columna(s) que queremos...
+						int row = pos.getRow();
+						consultar_mensajes.this.idselected = consultar_mensajes.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_mensajes.this.mensajesSelected.setId(consultar_mensajes.this.idselected); // id
+
+
+
+						// creamos la view
+						consultar_mensajes.this.agregar_combobox = new Stage();
+						consultar_mensajes.this.fxmlLoaderagregar_combo = new FXMLLoader(
+								this.getClass().getResource("/view/agregarComboBox.fxml"));
+						try {
+							consultar_mensajes.this.root2 = (Parent) consultar_mensajes.this.fxmlLoaderagregar_combo
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_mensajes.this.controller_agregar_combo = consultar_mensajes.this.fxmlLoaderagregar_combo
+								.<agregar_combobox>getController();
+								consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
+								try {
+									consultar_mensajes.this.controller_agregar_combo.inicializar(0);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
+								consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
+								// el
+								// icono
+								consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_mensajes.this.agregar_combobox.show();
+					}
+				}
+			}
+		}); // fin doble click en las columnas que queremos para abrir views
+
 	}
 
 	@FXML
 	/**
 	 * agregarMensaje agrega un mensaje, desde una view
-	 * 
+	 *
 	 * @throws IOException  si ha habido una excepción IO
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
@@ -157,7 +219,7 @@ public class consultar_mensajes {
 	/**
 	 * modificarMensaje modifica un mensaje; desde el texto modificado o desde una
 	 * view
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void modificarMensaje() throws SQLException {
@@ -173,10 +235,6 @@ public class consultar_mensajes {
 			if (this.mensajesSelected.getIncidencia() == 0) {
 				this.mensajesSelected.setIncidencia(this.tabla.getSelectionModel().getSelectedItem().getIncidencia());
 			}
-			// TODO: hacerlo como un desplegable de fechas
-			// if (this.mensajesSelected.getFecha().equals("")) {
-			// this.mensajesSelected.setFecha(this.tabla.getSelectionModel().getSelectedItem().getFecha());
-			// }
 			if (this.mensajesSelected.getEmisor() == 0) {
 				this.mensajesSelected.setEmisor(this.tabla.getSelectionModel().getSelectedItem().getEmisor());
 			}
@@ -184,8 +242,14 @@ public class consultar_mensajes {
 				this.mensajesSelected.setReceptor(this.tabla.getSelectionModel().getSelectedItem().getReceptor());
 			}
 
+
+			if (this.incidenciaCombo != -1) {
+				this.mensajesSelected.setIncidencia(this.incidenciaCombo);
+			}
+
 			this.bdmensajes.modificarMensaje(this.mensajesSelected);
 			this.idselected = -1;
+			this.incidenciaCombo = -1;
 			this.mensajesSelected = new mensajesDTO();
 		}
 	}
@@ -193,7 +257,7 @@ public class consultar_mensajes {
 	@FXML
 	/**
 	 * eliminarMensaje elimina un mensaje el cual ha sido seleccionado
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void eliminarMensaje() throws SQLException {
@@ -202,11 +266,27 @@ public class consultar_mensajes {
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 	}
 
+
+	/**
+	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
+	 * y lo agregamos en la base de datos
+	 *
+	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
+	 * @throws SQLException
+	 */
+	public void agregarEnBaseDatos(mensajesDTO mensajesDTO) throws SQLException {
+		this.bdmensajes.crearMensaje(mensajesDTO);
+	}
+
+	public void agregarIncidenciaDeComboBox(int idToReturn) {
+		this.incidenciaCombo = idToReturn;
+	}
+
 	@FXML
 	/**
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
-	 * 
+	 *
 	 * @throws SQLException
 	 */
 	public void restart() throws SQLException {
@@ -318,15 +398,6 @@ public class consultar_mensajes {
 		}
 	}
 
-	/**
-	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
-	 * y lo agregamos en la base de datos
-	 *
-	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
-	 * @throws SQLException
-	 */
-	public void agregarEnBaseDatos(mensajesDTO mensajesDTO) throws SQLException {
-		this.bdmensajes.crearMensaje(mensajesDTO);
-	}
+
 
 }

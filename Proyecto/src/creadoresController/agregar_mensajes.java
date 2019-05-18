@@ -80,7 +80,7 @@ public class agregar_mensajes {
 	/**
 	 * agregarmensaje método que tras recibir el texto de los TextFields rellenados
 	 * por el usuario rellena un objeto mensajesDTO y lo pasa a la base de datos
-	 * 
+	 *
 	 * @throws SQLException excepción SQL
 	 */
 	public void agregarmensaje() throws SQLException {
@@ -94,6 +94,7 @@ public class agregar_mensajes {
 		mensajesDTO.setReceptor((int) this.destinatario.getValue());
 		String[] nombreYapellidos = this.nombrecompleto.split(" ");
 		int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]);
+		System.out.println(nombreYapellidos[0]+""+ nombreYapellidos[1]);
 		mensajesDTO.setEmisor(idEmisor);
 		this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente

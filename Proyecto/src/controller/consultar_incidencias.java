@@ -154,8 +154,6 @@ public class consultar_incidencias {
 						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
 						// no
 						// cambiará
-						System.out.println(consultar_incidencias.this.idselected);
-						consultar_incidencias.this.incidenciaSelected.visualizar();
 
 						// creamos la view
 						consultar_incidencias.this.agregar_fecha = new Stage();
@@ -224,8 +222,6 @@ public class consultar_incidencias {
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	public void modificarIncidencia() throws SQLException {
-		System.out.println("mod" + this.idselected + " fecha" + this.incidenciaSelected.getFecha() + " fechaselected: "
-				+ this.fechaSelected);
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.incidenciaSelected.setId(this.idselected); // id no cambiará
@@ -251,8 +247,12 @@ public class consultar_incidencias {
 			if (this.incidenciaSelected.getUbicacion().equals("")) {
 				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
 			}
-			System.out.println("Antes de añadir" + this.fechaSelected);
-			this.incidenciaSelected.setFecha((java.sql.Date) this.fechaSelected);
+			if (fechaSelected == null) {
+				this.incidenciaSelected.setFecha(this.tabla.getSelectionModel().getSelectedItem().getFecha());
+			}else {
+				this.incidenciaSelected.setFecha((java.sql.Date) this.fechaSelected);
+
+			}
 			this.incidenciaSelected.visualizar();
 			this.bdincidencias.modificarIncidencia(this.incidenciaSelected);
 			this.idselected = -1;
@@ -262,15 +262,12 @@ public class consultar_incidencias {
 
 	// cuando se llama desde el agregar_fecha
 	public void agregarFechaView(Date date) throws SQLException {
-		System.out.println("date: " + date);
 		this.fechaSelected = date;
 		// this.incidenciaSelected.setId(this.idselected);
 
 		// this.incidenciaSelected.setId(this.tabla.getSelectionModel().getSelectedItem().getId());
 		this.incidenciaSelected.setId(this.idselected); // id no cambiará
 		this.incidenciaSelected.setFecha((java.sql.Date) date);
-		System.out.println("En agregarfecha view:");
-		this.incidenciaSelected.visualizar();
 
 	}
 

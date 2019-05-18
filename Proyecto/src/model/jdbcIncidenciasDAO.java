@@ -138,4 +138,31 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return nombre;
 	}
 
+	public int obtenerIdDesdeDescripcion(String descripcion) throws SQLException {
+		int idToReturn = 0;
+		this.ps = this.connect.prepareStatement("SELECT id_incidencia FROM incidencias WHERE descripcion = ? LIMIT 1");
+		this.ps.setString(1, descripcion);
+
+		this.rs = this.ps.executeQuery();
+		if (this.rs.next()) {
+			idToReturn = this.rs.getInt("id_incidencia");
+		}
+		this.ps.close();
+		this.rs.close();
+		return idToReturn;
+	}
+
+	public ArrayList<String> leerDescripcionesIncidencias() throws SQLException {
+		ArrayList<String> arrayToReturn = new ArrayList<>();
+
+		this.ps = this.connect.prepareStatement("select descripcion from incidencias");
+
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+
+			arrayToReturn.add((this.rs.getString("descripcion")));
+		}
+		return arrayToReturn;
+	}
+
 }

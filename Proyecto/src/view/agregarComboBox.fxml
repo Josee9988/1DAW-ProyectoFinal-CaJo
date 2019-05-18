@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="263.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creadoresController.agregar_combobox">
+   <children>
+      <Label fx:id="texto" layoutX="39.0" layoutY="21.0" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="aplicarBoton" layoutX="15.0" layoutY="118.0" mnemonicParsing="false" onAction="#aplicarBoton" prefHeight="40.0" prefWidth="234.0" style="-fx-background-color: #5781af;">
+         <font>
+            <Font name="Ubuntu Bold" size="15.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="comboBox" layoutX="22.0" layoutY="69.0" prefHeight="25.0" prefWidth="220.0" />
+   </children>
+</AnchorPane>
