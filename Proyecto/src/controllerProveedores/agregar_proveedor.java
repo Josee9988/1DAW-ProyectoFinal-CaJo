@@ -22,7 +22,7 @@ public class agregar_proveedor {
 	@FXML
 	private TextField contacto;
 	@FXML
-	private ComboBox valoracion;
+	private ComboBox<Integer> valoracion;
 	@FXML
 	private TextField direccion;
 	@FXML
@@ -55,7 +55,7 @@ public class agregar_proveedor {
 	/**
 	 * agregarproveedor método que a través de los TextFields recibidos rellenados
 	 * por el usuario rellena un objeto proveedorDTO y lo manda a la base de datos
-	 * 
+	 *
 	 * @throws SQLException por is ha habido una excepción SQL
 	 */
 	public void agregarproveedor() throws SQLException {
@@ -63,7 +63,7 @@ public class agregar_proveedor {
 		proveedorDTO.setNombre(this.nombre.getText());
 		proveedorDTO.setContacto(this.contacto.getText());
 		proveedorDTO.setDireccion(this.direccion.getText());
-		proveedorDTO.setValoracion((int) this.valoracion.getValue());
+		proveedorDTO.setValoracion(this.valoracion.getValue());
 		// cerrar la ventana:
 		this.stage = (Stage) this.agregarproveedor.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente

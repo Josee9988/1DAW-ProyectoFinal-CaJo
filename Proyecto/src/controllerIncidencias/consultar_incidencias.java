@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import controller.agregar_combobox;
-import controller.agregar_fecha;
+import controllerUtilidades.agregar_combobox;
+import controllerUtilidades.agregar_fecha;
 import dto.incidenciaDTO;
 import dto.usuarioDTO;
 import javafx.event.EventHandler;
@@ -168,10 +168,10 @@ public class consultar_incidencias {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) { // para que haya dos clicks
-					TablePosition pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells().get(0);
 					// UBICACIÓN:
 					if (pos.getColumn() == 8) { // si es la columna(s) que queremos...
-						int row = pos.getRow();
+						//int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -208,7 +208,7 @@ public class consultar_incidencias {
 								// de la ventana
 								consultar_incidencias.this.agregar_ubicacion.show();
 					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
-						int row = pos.getRow();
+						//int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -371,7 +371,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editUsuario(CellEditEvent edditedCell) {
+	public void editUsuario(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setUsuario(edditedCell.getNewValue().toString());
@@ -388,7 +388,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editDescripcion(CellEditEvent edditedCell) {
+	public void editDescripcion(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setDescripcion(edditedCell.getNewValue().toString());
@@ -405,7 +405,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editElemento(CellEditEvent edditedCell) {
+	public void editElemento(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
@@ -416,26 +416,6 @@ public class consultar_incidencias {
 		}
 	}
 
-	// @FXML
-	// /**
-	// * editFecha si se ha hecho doble click en una celda
-	// *
-	// * @param edditedCell celda editada por el usuario al hacer doble click
-	// */
-	// public void editFecha(CellEditEvent edditedCell) throws ParseException {
-	// Date date = new Date();
-	// if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-	// this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-	// this.incidenciaSelected.setFecha(
-	// (java.sql.Date) new
-	// SimpleDateFormat("dd-MM-yyyy").parse(edditedCell.getNewValue().toString()));
-	// } else {
-	// if (this.tabla.getSelectionModel().getSelectedItem().getId() ==
-	// this.idselected) {// si correcto
-	// this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
-	// }
-	// }
-	// }
 
 	@FXML
 	/**
@@ -443,7 +423,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editUrgencia(CellEditEvent edditedCell) {
+	public void editUrgencia(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setUrgencia(edditedCell.getNewValue().toString());
@@ -460,7 +440,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editCategoria(CellEditEvent edditedCell) {
+	public void editCategoria(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setCategoria(edditedCell.getNewValue().toString());
@@ -477,7 +457,7 @@ public class consultar_incidencias {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editMateriales(CellEditEvent edditedCell) {
+	public void editMateriales(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.incidenciaSelected.setMateriales(edditedCell.getNewValue().toString());
@@ -488,21 +468,5 @@ public class consultar_incidencias {
 		}
 	}
 
-	@FXML
-	/**
-	 * editUbicacion si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editUbicacion(CellEditEvent edditedCell) {
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.incidenciaSelected.setUbicacion(edditedCell.getNewValue().toString());
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.incidenciaSelected.setUbicacion(edditedCell.getNewValue().toString());
-			}
-		}
-	}
 
 }

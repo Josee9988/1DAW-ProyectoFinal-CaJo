@@ -1,4 +1,4 @@
-package controller;
+package controllerUtilidades;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class agregar_combobox {
 	@FXML
 	private Label texto;
 	@FXML
-	private ComboBox comboBox;
+	private ComboBox<String> comboBox;
 	@FXML
 	private Button aplicarBoton;
 	private Stage stage;
@@ -45,7 +45,7 @@ public class agregar_combobox {
 	/**
 	 * inicializar método que se llama al principio que inicializa los comboBox
 	 * llamando a la base de datos para que los rellene
-	 * 
+	 *
 	 * @param tipo recibe un entero, si es un 0 será porque rellenaremos el combobox
 	 *             con incidencias, si es 1 es porque es de ubicaciones, y 2 si es
 	 *             porque lo llaman los usuarios y el comboBox se rellena con los
@@ -86,7 +86,7 @@ public class agregar_combobox {
 	/**
 	 * aplicarBoton método que se ejecuta en el momento en el que le damos al botón
 	 * de aplicar cambios
-	 * 
+	 *
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	public void aplicarBoton() throws SQLException {
@@ -94,17 +94,17 @@ public class agregar_combobox {
 		if (this.tipo == 0) { // si es una incidencia...
 			this.consultar_mensajes = new consultar_mensajes();
 			this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
-			idToReturn = this.jdbcIncidenciasDAO.obtenerIdDesdeDescripcion((String) this.comboBox.getValue());
+			idToReturn = this.jdbcIncidenciasDAO.obtenerIdDesdeDescripcion(this.comboBox.getValue());
 			this.consultar_mensajes.agregarIncidenciaDeComboBox(idToReturn);
 
 		} else if (this.tipo == 1) { // si es una ubicación
 			this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 			this.consultar_incidencias = new consultar_incidencias();
-			idToReturn = this.jdbcUbicacionDAO.obtenerIdUbicacion((String) this.comboBox.getValue());
+			idToReturn = this.jdbcUbicacionDAO.obtenerIdUbicacion(this.comboBox.getValue());
 			this.consultar_incidencias.agregarIncidenciaDeComboBox(idToReturn);
 		} else {
 			int resultado = 0;
-			switch ((String) this.comboBox.getValue()) {
+			switch (this.comboBox.getValue()) {
 			case "Profesor":
 				resultado = 1;
 				break;

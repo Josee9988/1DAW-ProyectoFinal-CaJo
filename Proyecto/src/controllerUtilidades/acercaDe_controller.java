@@ -3,7 +3,7 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerUtilidades;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

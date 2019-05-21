@@ -54,11 +54,11 @@ public class Home_Jefe_Controller {
 	private TextField fecha;
 
 	private Image icon;
-	private Stage stage;
+
 
 	/**
 	 * Home_Jefe_Controller constructor default que inicializa variables
-	 * 
+	 *
 	 * @throws IOException si ha habido una excepción SQL
 	 */
 	public Home_Jefe_Controller() throws IOException {
@@ -89,8 +89,6 @@ public class Home_Jefe_Controller {
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		this.stage = null;
-
 	}
 
 	/**
@@ -115,7 +113,7 @@ public class Home_Jefe_Controller {
 	/**
 	 * administrarProveedores abre la view de administrar proveedores la cual
 	 * muestra todos los proveedores en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarProveedores() throws SQLException {
@@ -130,7 +128,7 @@ public class Home_Jefe_Controller {
 	/**
 	 * administrarIncidencias abre la view de administrar incidencias la cual
 	 * muestra todas las incidencias en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarIncidencias() throws SQLException {
@@ -145,7 +143,7 @@ public class Home_Jefe_Controller {
 	/**
 	 * administrarMensajes abre la view de administrar mensajes la cual muestra
 	 * todos los mensajes en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarMensajes() throws SQLException {

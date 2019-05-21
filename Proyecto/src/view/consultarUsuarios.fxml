@@ -18,7 +18,7 @@
        	 <TableColumn fx:id="id" prefWidth="60.01005935668945" text="ID" />
           <TableColumn fx:id="usuario" onEditCommit="#editModificarUsuario" prefWidth="116.0" text="Usuario" />
           <TableColumn fx:id="password" onEditCommit="#editModificarPass" prefWidth="121.0" text="Password" />
-            <TableColumn fx:id="rol" onEditCommit="#editModificarRol" prefWidth="120.0" text="Rol" />
+            <TableColumn fx:id="rol" prefWidth="120.0" text="Rol" />
             <TableColumn fx:id="nombre" onEditCommit="#editModificarNombre" prefWidth="154.29287719726562" text="Nombre" />
             <TableColumn fx:id="apellidos" onEditCommit="#editModificarApellidos" prefWidth="109.30902099609375" text="Apellidos" />
             <TableColumn fx:id="telefono" minWidth="0.0" onEditCommit="#editModificarTelefono" prefWidth="128.0" text="Telefono" />

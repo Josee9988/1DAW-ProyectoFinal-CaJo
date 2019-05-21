@@ -5,7 +5,7 @@
  */
 //Uso encriptar: encrypt("textoaencriptar); devuelve string
 //Uso desencriptar: decrypt("textoencriptado); devuelve string
-package controller;
+package controllerUtilidades;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

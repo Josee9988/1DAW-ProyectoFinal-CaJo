@@ -51,7 +51,6 @@ public class consultar_ubicaciones {
 	private Parent root1;
 	private Scene scene1;
 	private FXMLLoader fxmlLoaderagregar_ubicacion;
-	private controllerUbicaciones.agregar_ubicacion controller_agregar_ubicacion;
 	private Image icon;
 	private int idselected;
 	private ubicacionDTO ubicacionDTO;
@@ -108,9 +107,7 @@ public class consultar_ubicaciones {
 		this.agregar_ubicacion = new Stage();
 		this.fxmlLoaderagregar_ubicacion = new FXMLLoader(this.getClass().getResource("/view/agregarUbicacion.fxml"));
 		this.root1 = (Parent) this.fxmlLoaderagregar_ubicacion.load();
-		this.controller_agregar_ubicacion = this.fxmlLoaderagregar_ubicacion.<agregar_ubicacion>getController();
 		this.scene1 = new Scene(this.root1);
-		// this.controller_agregar_ubicacion.inicializar(); // llamamos al método
 		// inicializar
 		this.agregar_ubicacion.setScene(this.scene1);
 		this.agregar_ubicacion.getIcons().add(this.icon); // agregamos el icono
@@ -188,7 +185,7 @@ public class consultar_ubicaciones {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editNombre(CellEditEvent edditedCell) {
+	public void editNombre(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.ubicacionDTO.setNombre(edditedCell.getNewValue().toString());
@@ -206,7 +203,7 @@ public class consultar_ubicaciones {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editDescripcion(CellEditEvent edditedCell) {
+	public void editDescripcion(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.ubicacionDTO.setDescripcion(edditedCell.getNewValue().toString());
@@ -224,7 +221,7 @@ public class consultar_ubicaciones {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editEdificio(CellEditEvent edditedCell) {
+	public void editEdificio(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.ubicacionDTO.setEdificio(edditedCell.getNewValue().toString());
@@ -242,7 +239,7 @@ public class consultar_ubicaciones {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editPlanta(CellEditEvent edditedCell) {
+	public void editPlanta(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.ubicacionDTO.setPlanta(edditedCell.getNewValue().toString());

@@ -17,7 +17,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import controller.crypto_controller;
+import controllerUtilidades.crypto_controller;
 import dto.usuarioDTO;
 
 public class jdbcUsuarioDAO implements usuarioDAO {
@@ -25,11 +25,9 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	private Connection connect;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	private crypto_controller crypto;
 
 	public jdbcUsuarioDAO() {
 		this.connect = Conexion.getInstance().conectar();
-		this.crypto = new crypto_controller();
 	}
 
 	public void cerrarBD() throws SQLException {
@@ -53,7 +51,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
@@ -68,7 +66,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
@@ -102,7 +100,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();

@@ -176,7 +176,7 @@ public class consultar_proveedores {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 
@@ -200,7 +200,7 @@ public class consultar_proveedores {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editNombre(CellEditEvent edditedCell) {
+	public void editNombre(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.proveedorDTO.setNombre(edditedCell.getNewValue().toString());
@@ -218,7 +218,7 @@ public class consultar_proveedores {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editContacto(CellEditEvent edditedCell) {
+	public void editContacto(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.proveedorDTO.setContacto(edditedCell.getNewValue().toString());
@@ -236,7 +236,7 @@ public class consultar_proveedores {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editDireccion(CellEditEvent edditedCell) {
+	public void editDireccion(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.proveedorDTO.setDireccion(edditedCell.getNewValue().toString());
@@ -254,7 +254,7 @@ public class consultar_proveedores {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editValoracion(CellEditEvent edditedCell) {
+	public void editValoracion(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.proveedorDTO.setValoracion((int) edditedCell.getNewValue());

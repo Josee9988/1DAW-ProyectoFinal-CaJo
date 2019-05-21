@@ -36,7 +36,7 @@ public class agregar_incidencia {
 	@FXML
 	private TextField materiales;
 	@FXML
-	private ComboBox ubicacion;
+	private ComboBox<String> ubicacion;
 	@FXML
 	private Button agregarincidencia;
 
@@ -103,7 +103,7 @@ public class agregar_incidencia {
 		}
 		incidenciaDTO.setUrgencia(this.urgencia.getText());
 		incidenciaDTO.setCategoria(this.categoria.getText());
-		incidenciaDTO.setUbicacion((String) this.ubicacion.getValue());
+		incidenciaDTO.setUbicacion(this.ubicacion.getValue());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 		this.consultar.agregarIncidenciaEnBD(incidenciaDTO);

@@ -37,7 +37,7 @@ public class agregar_usuarios {
 	@FXML
 	private TextField telefono;
 	@FXML
-	private ComboBox rol;
+	private ComboBox<String> rol;
 	@FXML
 	private Button agregarusuario;
 
@@ -78,7 +78,7 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.usuarioDTO.setUser(this.usuario.getText());
 		this.usuarioDTO.setPassword(this.password.getText());
 		this.usuarioDTO.setNombre(this.nombre.getText());
@@ -107,7 +107,7 @@ public class agregar_usuarios {
 	 */
 	public int traducirComboBox() {
 		int resultado = 0;
-		switch ((String) this.rol.getValue()) {
+		switch (this.rol.getValue()) {
 		case "Profesor":
 			resultado = 1;
 			break;

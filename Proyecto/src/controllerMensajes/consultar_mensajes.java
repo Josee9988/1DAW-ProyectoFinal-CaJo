@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import controller.agregar_combobox;
+import controllerUtilidades.agregar_combobox;
 import dto.mensajesDTO;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -141,11 +141,6 @@ public class consultar_mensajes {
 		// nunca va a ser relevante a la hora de modificar un usuario
 		this.asunto.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.cuerpo.setCellFactory(TextFieldTableCell.forTableColumn());
-		// this.incidencia.setCellFactory(TextFieldTableCell.forTableColumn());
-		// TODO: make it happen
-		// this.fecha.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.emisor.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.receptor.setCellFactory(TextFieldTableCell.forTableColumn());
 
 		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
 		this.tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -153,9 +148,8 @@ public class consultar_mensajes {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) { // para que haya dos clicks
-					TablePosition pos = consultar_mensajes.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = consultar_mensajes.this.tabla.getSelectionModel().getSelectedCells().get(0);
 					if (pos.getColumn() == 3) { // si es la columna(s) que queremos...
-						int row = pos.getRow();
 						consultar_mensajes.this.idselected = consultar_mensajes.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -300,7 +294,7 @@ public class consultar_mensajes {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editAsunto(CellEditEvent edditedCell) {
+	public void editAsunto(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.mensajesSelected.setAsunto(edditedCell.getNewValue().toString());
@@ -317,7 +311,7 @@ public class consultar_mensajes {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editCuerpo(CellEditEvent edditedCell) {
+	public void editCuerpo(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.mensajesSelected.setCuerpo(edditedCell.getNewValue().toString());
@@ -334,64 +328,13 @@ public class consultar_mensajes {
 	 *
 	 * @param edditedCell celda editada por el usuario al hacer doble click
 	 */
-	public void editIncidencia(CellEditEvent edditedCell) {
+	public void editIncidencia(CellEditEvent<?, ?> edditedCell) {
 		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
 			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
 			this.mensajesSelected.setIncidencia((int) (edditedCell.getNewValue()));
 		} else {
 			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
 				this.mensajesSelected.setIncidencia((int) (edditedCell.getNewValue()));
-			}
-		}
-	}
-
-	@FXML
-	/**
-	 * editFecha si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editFecha(CellEditEvent edditedCell) {
-		/*
-		 * if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-		 * this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-		 * this.mensajesSelected.setFecha(edditedCell.getNewValue().toString()); } else
-		 * { if (this.tabla.getSelectionModel().getSelectedItem().getId() ==
-		 * this.idselected) {// si correcto
-		 * this.mensajesSelected.setFecha(edditedCell.getNewValue().toString()); } }
-		 */
-	}
-
-	@FXML
-	/**
-	 * editEmisor si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editEmisor(CellEditEvent edditedCell) {
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.mensajesSelected.setAsunto(edditedCell.getNewValue().toString());
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.mensajesSelected.setAsunto(edditedCell.getNewValue().toString());
-			}
-		}
-	}
-
-	@FXML
-	/**
-	 * editReceptor si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editReceptor(CellEditEvent edditedCell) {
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.mensajesSelected.setAsunto(edditedCell.getNewValue().toString());
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.mensajesSelected.setAsunto(edditedCell.getNewValue().toString());
 			}
 		}
 	}

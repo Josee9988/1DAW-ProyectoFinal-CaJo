@@ -48,11 +48,10 @@ public class Home_Mantenimiento_Controller {
 	private TextField fecha;
 
 	private Image icon;
-	private Stage stage;
 
 	/**
 	 * Home_Mantenimiento_Controller constructor default que inicializa variables
-	 * 
+	 *
 	 * @throws IOException si ha habido una excepción de tipo SQl
 	 */
 	public Home_Mantenimiento_Controller() throws IOException {
@@ -79,8 +78,6 @@ public class Home_Mantenimiento_Controller {
 		this.scene3 = new Scene(this.root3);
 
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		this.stage = null;
-
 	}
 
 	/**
@@ -105,7 +102,7 @@ public class Home_Mantenimiento_Controller {
 	/**
 	 * administrarIncidencias abre la view de administrar incidencias la cual
 	 * muestra todas las incidencias en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarIncidencias() throws SQLException {
@@ -120,7 +117,7 @@ public class Home_Mantenimiento_Controller {
 	/**
 	 * administrarMensajes abre la view de administrar mensajes la cual muestra
 	 * todos los mensajes en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarMensajes() throws SQLException {

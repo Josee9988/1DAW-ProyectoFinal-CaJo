@@ -26,9 +26,9 @@ public class agregar_mensajes {
 	@FXML
 	private TextArea cuerpo;
 	@FXML
-	private ComboBox incidencia;
+	private ComboBox<String> incidencia;
 	@FXML
-	private ComboBox destinatario;
+	private ComboBox<String> destinatario;
 	@FXML
 	private Button agregarmensaje;
 
@@ -62,8 +62,6 @@ public class agregar_mensajes {
 	 */
 	public void inicializarMensajes(String nombrecompleto) throws SQLException {
 		this.nombrecompleto = nombrecompleto;
-		// TODO: que salgan los que tocan y que luego con un switch se pase a numeros de
-		// id de incidencia y de usuario
 
 		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidencias());
 		this.destinatarioBox = FXCollections.observableArrayList(this.bdusuario.leerDestinatarios());
@@ -93,10 +91,10 @@ public class agregar_mensajes {
 		java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		this.mensajesDTO.setFecha(sqlDate);
 
-		this.mensajesDTO.setIncidencia(this.incidencias.obtenerIdDesdeDescripcion((String) this.incidencia.getValue())); // añadimos
-																															// incidencia
-		this.mensajesDTO.setReceptor(this.bdusuario.devolverId((String) this.destinatario.getValue())); // añadimos
-																										// receptor
+		this.mensajesDTO.setIncidencia(this.incidencias.obtenerIdDesdeDescripcion(this.incidencia.getValue())); // añadimos
+		// incidencia
+		this.mensajesDTO.setReceptor(this.bdusuario.devolverId(this.destinatario.getValue())); // añadimos
+		// receptor
 		String[] nombreYapellidos = this.nombrecompleto.split(" ");
 		int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
 		this.mensajesDTO.setEmisor(idEmisor);

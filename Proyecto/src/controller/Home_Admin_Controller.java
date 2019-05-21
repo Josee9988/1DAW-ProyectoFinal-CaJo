@@ -70,11 +70,10 @@ public class Home_Admin_Controller {
 	private TextField fecha;
 
 	private Image icon;
-	private Stage stage;
 
 	/**
 	 * Home_Admin_Controller constructor default que inicializa variables
-	 * 
+	 *
 	 * @throws IOException si ha habido una excepción IO
 	 */
 	public Home_Admin_Controller() throws IOException {
@@ -83,7 +82,6 @@ public class Home_Admin_Controller {
 		this.root6 = (Parent) this.fxmlLoaderAcercaDe.load();
 		this.scene6 = new Scene(this.root6);
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		this.stage = null;
 	}
 
 	/**
@@ -108,7 +106,7 @@ public class Home_Admin_Controller {
 	/**
 	 * administrarUsuarios abre la view de consultar usuarios que muestra una
 	 * tableview con los usuarios
-	 * 
+	 *
 	 * @throws SQLException              por si ha habido una excepción de tipo SQL
 	 * @throws IOException               si ha habido una excepción IO
 	 * @throws InvalidKeyException       si la key de la encriptación falla
@@ -119,7 +117,7 @@ public class Home_Admin_Controller {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
 		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(
 				this.getClass().getResource("/view/consultarUsuarios.fxml"));
@@ -137,7 +135,7 @@ public class Home_Admin_Controller {
 	/**
 	 * administrarProveedores abre la view de consultar proveedores que muestra una
 	 * tableview con los proveedores
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
 	 * @throws IOException  si ha habido una excepción IO
 	 */
@@ -159,7 +157,7 @@ public class Home_Admin_Controller {
 	/**
 	 * administrarIncidencias abre la view de consultar incidencias que muestra una
 	 * tableview con las incidencias
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
 	 * @throws IOException  si ha habido una excepción IO
 	 */
@@ -181,7 +179,7 @@ public class Home_Admin_Controller {
 	/**
 	 * administrarMensajes abre la view de consultar mensajes que muestra una
 	 * tableview con los mensajes
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
 	 * @throws IOException  si ha habido una excepción IO
 	 */
@@ -203,7 +201,7 @@ public class Home_Admin_Controller {
 	/**
 	 * administrarUbicaciones abre la view de consultar ubicaciones que muestra una
 	 * tableview con las ubicaciones
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
 	 * @throws IOException  si ha habido una excepción IO
 	 */
@@ -224,7 +222,7 @@ public class Home_Admin_Controller {
 	@FXML
 	/**
 	 * acercaDe abre la view de acercaDe que contiene información del programa.
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
 	 */
 	public void acercaDe() throws SQLException {
