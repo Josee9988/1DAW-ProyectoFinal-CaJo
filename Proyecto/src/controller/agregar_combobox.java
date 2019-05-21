@@ -1,10 +1,10 @@
-package creadoresController;
+package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controller.consultar_incidencias;
-import controller.consultar_mensajes;
+import controllerIncidencias.consultar_incidencias;
+import controllerMensajes.consultar_mensajes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -92,7 +92,7 @@ public class agregar_combobox {
 			this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 			this.consultar_incidencias = new consultar_incidencias();
 			idToReturn = this.jdbcUbicacionDAO.obtenerIdUbicacion((String) this.comboBox.getValue());
-			//	this.consultar_incidencias.agregarIncidenciaDeComboBox(idToReturn);
+			this.consultar_incidencias.agregarIncidenciaDeComboBox(idToReturn);
 		}
 		//cerrar ventana actual
 		this.stage = (Stage) this.aplicarBoton.getScene().getWindow(); // seleccionamos la escena actual

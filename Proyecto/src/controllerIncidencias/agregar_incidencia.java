@@ -3,14 +3,13 @@
  * @version May 15, 2019
  * @param args Recibe los datos del programa
  */
-package creadoresController;
+package controllerIncidencias;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import controller.consultar_incidencias;
 import dto.incidenciaDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,8 +53,6 @@ public class agregar_incidencia {
 		this.consultar = new consultar_incidencias();
 		this.nombreCompleto = "";
 		this.stage = null;
-
-
 	}
 
 	/**

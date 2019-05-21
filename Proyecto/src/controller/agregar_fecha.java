@@ -1,9 +1,9 @@
-package creadoresController;
+package controller;
 
 import java.sql.SQLException;
 import java.util.Date;
 
-import controller.consultar_incidencias;
+import controllerIncidencias.consultar_incidencias;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;

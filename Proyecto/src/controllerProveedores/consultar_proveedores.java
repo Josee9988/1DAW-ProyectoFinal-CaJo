@@ -3,7 +3,7 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerProveedores;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -16,7 +16,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import creadoresController.agregar_proveedor;
 import dto.incidenciaDTO;
 import dto.proveedorDTO;
 import javafx.fxml.FXML;
@@ -60,7 +59,7 @@ public class consultar_proveedores {
 	private Parent root1;
 	private Scene scene1;
 	private FXMLLoader fxmlLoaderagregar_proveedor;
-	private creadoresController.agregar_proveedor controller_agregar_proveedor;
+	private controllerProveedores.agregar_proveedor controller_agregar_proveedor;
 	private Image icon;
 	private int idselected;
 	private proveedorDTO proveedorDTO;
@@ -79,7 +78,7 @@ public class consultar_proveedores {
 	/**
 	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
 	 * asignándoselos
-	 * 
+	 *
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
@@ -110,7 +109,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * agregarProveedor agrega un proveedor a través de una view
-	 * 
+	 *
 	 * @throws IOException si ha habido una excepción de tipo IO
 	 */
 	public void agregarProveedor() throws IOException {
@@ -131,7 +130,7 @@ public class consultar_proveedores {
 	/**
 	 * modificarProveedor modifica un proveedor tras ser modificado con doble click
 	 * o a través de una view
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void modificarProveedor() throws SQLException {
@@ -160,7 +159,7 @@ public class consultar_proveedores {
 	@FXML
 	/**
 	 * eliminarProveedor elimina un proveedor seleccionado
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void eliminarProveedor() throws SQLException {
@@ -173,11 +172,11 @@ public class consultar_proveedores {
 	/**
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 

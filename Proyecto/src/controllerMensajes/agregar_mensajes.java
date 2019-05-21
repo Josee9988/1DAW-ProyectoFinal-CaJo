@@ -3,13 +3,12 @@
  * @version May 15, 2019
  * @param args Recibe los datos del programa
  */
-package creadoresController;
+package controllerMensajes;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import controller.consultar_mensajes;
 import dto.mensajesDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

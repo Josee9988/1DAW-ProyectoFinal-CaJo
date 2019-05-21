@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import controllerIncidencias.consultar_incidencias;
+import controllerMensajes.consultar_mensajes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

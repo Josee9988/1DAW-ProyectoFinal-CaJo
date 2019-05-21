@@ -16,6 +16,11 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import controllerIncidencias.consultar_incidencias;
+import controllerMensajes.consultar_mensajes;
+import controllerProveedores.consultar_proveedores;
+import controllerUbicaciones.consultar_ubicaciones;
+import controllerUsuarios.consultar_usuarios;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

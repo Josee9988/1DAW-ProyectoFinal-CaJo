@@ -3,14 +3,13 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerUbicaciones;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import creadoresController.agregar_ubicacion;
 import dto.ubicacionDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +51,7 @@ public class consultar_ubicaciones {
 	private Parent root1;
 	private Scene scene1;
 	private FXMLLoader fxmlLoaderagregar_ubicacion;
-	private creadoresController.agregar_ubicacion controller_agregar_ubicacion;
+	private controllerUbicaciones.agregar_ubicacion controller_agregar_ubicacion;
 	private Image icon;
 	private int idselected;
 	private ubicacionDTO ubicacionDTO;
@@ -71,7 +70,7 @@ public class consultar_ubicaciones {
 	/**
 	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
 	 * asignándoselos
-	 * 
+	 *
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
@@ -101,7 +100,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * agregarUbicacion agrega una ubicación a través de una view
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void agregarUbicacion() throws IOException {
@@ -123,7 +122,7 @@ public class consultar_ubicaciones {
 	/**
 	 * modificarUbicacion modifica una ubicación tras ser modificado con doble click
 	 * o a través de una view
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void modificarUbicacion() throws SQLException {
@@ -151,7 +150,7 @@ public class consultar_ubicaciones {
 	@FXML
 	/**
 	 * eliminarUbicacion elimina una ubicación seleccionada
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void eliminarUbicacion() throws SQLException {
@@ -164,7 +163,7 @@ public class consultar_ubicaciones {
 	/**
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
-	 * 
+	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void restart() throws SQLException {

@@ -3,7 +3,7 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerMensajes;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,8 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import creadoresController.agregar_combobox;
-import creadoresController.agregar_mensajes;
+import controller.agregar_combobox;
 import dto.mensajesDTO;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

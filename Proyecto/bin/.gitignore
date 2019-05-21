@@ -2,3 +2,9 @@
 /creadoresController/
 /dto/
 /model/
+/controllerIncidencias/
+/controllerUsuarios/
+/controllerMensajes/
+/controllerProveedores/
+/controllerUbicaciones/
+/view/

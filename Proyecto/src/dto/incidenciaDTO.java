@@ -14,6 +14,7 @@ public class incidenciaDTO {
 	private String descripcion;
 	private String elemento;
 	private String ubicacion;
+	private int ubicacionI;
 	private Date fecha;
 	private String urgencia;
 	private String categoria;
@@ -28,6 +29,7 @@ public class incidenciaDTO {
 		this.descripcion = "";
 		this.elemento = "";
 		this.ubicacion = "";
+		this.ubicacionI = 0;
 		this.fecha = new Date(0);
 		this.urgencia = "";
 		this.categoria = "";
@@ -36,7 +38,7 @@ public class incidenciaDTO {
 
 	/**
 	 * incidenciaDTO constructor parametrizado que recibe id y urgencia
-	 * 
+	 *
 	 * @param id       recibe un entero id y se lo asigna a incidenciaDTO
 	 * @param urgencia recibe un String de urgencia y se lo asigna
 	 */
@@ -46,6 +48,7 @@ public class incidenciaDTO {
 		this.descripcion = "";
 		this.elemento = "";
 		this.ubicacion = "";
+		this.ubicacionI = 0;
 		this.fecha = new Date(0);
 		this.urgencia = urgencia;
 		this.categoria = "";
@@ -55,7 +58,7 @@ public class incidenciaDTO {
 	/**
 	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
 	 * incidenciaDTO
-	 * 
+	 *
 	 * @param id          recibe un entero id y se lo asigna a incidenciaDTO
 	 * @param usuario     String con elusuario
 	 * @param descripcion String con la descripción de la incidencia
@@ -79,30 +82,89 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
+
+
+	/**
+	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
+	 * incidenciaDTO
+	 *
+	 * @param id          recibe un entero id y se lo asigna a incidenciaDTO
+	 * @param usuario     String con elusuario
+	 * @param descripcion String con la descripción de la incidencia
+	 * @param elemento    String elemento al que le ha ocurrido la incidencia
+	 * @param ubicacionI  Int de la id de ubicación
+	 * @param fecha       Date de cuándo ha ocurrido la incidencia
+	 * @param urgencia    recibe un String de urgencia y se lo asigna
+	 * @param categoria   String de la categoría de la incidencia
+	 * @param materiales  String materiales de los materiales de la incidencia
+	 */
+	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, int ubicacionI, Date fecha,
+			String urgencia, String categoria, String materiales) {
+		this.id = id;
+		this.usuario = usuario;
+		this.descripcion = descripcion;
+		this.elemento = elemento;
+		this.ubicacionI = ubicacionI;
+		this.fecha = fecha;
+		this.urgencia = urgencia;
+		this.categoria = categoria;
+		this.materiales = materiales;
+	}
+
+
+	/**
+	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
+	 * incidenciaDTO
+	 *
+	 * @param id          recibe un entero id y se lo asigna a incidenciaDTO
+	 * @param usuario     String con elusuario
+	 * @param descripcion String con la descripción de la incidencia
+	 * @param elemento    String elemento al que le ha ocurrido la incidencia
+	 * @param ubicacion   String de dónde ha ocurrido la incidencia
+	 * @param ubicacionI  Int de la id de ubicación
+	 * @param fecha       Date de cuándo ha ocurrido la incidencia
+	 * @param urgencia    recibe un String de urgencia y se lo asigna
+	 * @param categoria   String de la categoría de la incidencia
+	 * @param materiales  String materiales de los materiales de la incidencia
+	 */
+	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, int ubicacionI, Date fecha,
+			String urgencia, String categoria, String materiales) {
+		this.id = id;
+		this.usuario = usuario;
+		this.descripcion = descripcion;
+		this.elemento = elemento;
+		this.ubicacion = ubicacion;
+		this.ubicacionI = ubicacionI;
+		this.fecha = fecha;
+		this.urgencia = urgencia;
+		this.categoria = categoria;
+		this.materiales = materiales;
+	}
+
 	/**
 	 * incidenciaDTO constructor copia
-	 * 
+	 *
 	 * @param i recibe el objeto incidenciaDTO
 	 */
 	public incidenciaDTO(incidenciaDTO i) {
-		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.fecha, i.urgencia, i.categoria, i.materiales);
+		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.ubicacionI, i.fecha, i.urgencia, i.categoria, i.materiales);
 	}
 
 	/**
 	 * incidenciaDTO constructor clonar
-	 * 
+	 *
 	 * @return devuelve el objeto copiado y se lo asigna al actual incidenciaDTO
 	 */
 	public incidenciaDTO clonar() {
 		return new incidenciaDTO(this);
 	}
 
+
 	@Override
 	public String toString() {
-		return "incidenciaDTO [id=" + this.id + ",usuario=" + this.usuario + ", descripcion=" + this.descripcion
-				+ ", elemento=" + this.elemento + ", ubicacion=" + this.ubicacion + ", fecha=" + this.fecha
-				+ ", urgencia=" + this.urgencia + ", categoria=" + this.categoria + ", materiales=" + this.materiales
-				+ "]";
+		return "incidenciaDTO [id=" + this.id + ", usuario=" + this.usuario + ", descripcion=" + this.descripcion + ", elemento="
+				+ this.elemento + ", ubicacion=" + this.ubicacion + ", ubicacionI=" + this.ubicacionI + ", fecha=" + this.fecha
+				+ ", urgencia=" + this.urgencia + ", categoria=" + this.categoria + ", materiales=" + this.materiales + "]";
 	}
 
 	/**
@@ -240,4 +302,17 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
+	/**
+	 * @return the ubicacionI
+	 */
+	public int getUbicacionI() {
+		return this.ubicacionI;
+	}
+
+	/**
+	 * @param ubicacionI the ubicacionI to set
+	 */
+	public void setUbicacionI(int ubicacionI) {
+		this.ubicacionI = ubicacionI;
+	}
 }

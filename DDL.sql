@@ -24,7 +24,7 @@ CREATE TABLE `incidencias` (
   `usuario` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `descripcion` varchar(85) COLLATE utf8mb4_general_ci NOT NULL,
   `elemento` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
-  `ubicacion` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `ubicacion` int(11) COLLATE utf8mb4_general_ci NOT NULL,
   `fecha` date NOT NULL,
   `urgencia` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `categoria` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,

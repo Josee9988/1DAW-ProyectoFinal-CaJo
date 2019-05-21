@@ -3,11 +3,10 @@
  * @version May 15, 2019
  * @param args Recibe los datos del programa
  */
-package creadoresController;
+package controllerUbicaciones;
 
 import java.sql.SQLException;
 
-import controller.consultar_ubicaciones;
 import dto.ubicacionDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

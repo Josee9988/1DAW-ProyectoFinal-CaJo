@@ -3,7 +3,7 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerUsuarios;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -17,7 +17,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import creadoresController.agregar_usuarios;
 import dto.usuarioDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

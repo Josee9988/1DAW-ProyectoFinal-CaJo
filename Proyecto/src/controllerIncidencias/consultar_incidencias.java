@@ -3,15 +3,16 @@
  * @version May 11, 2019
  * @param args Recibe los datos del programa
  */
-package controller;
+package controllerIncidencias;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
-import creadoresController.agregar_fecha;
-import creadoresController.agregar_incidencia;
+import controller.agregar_combobox;
+import controller.agregar_fecha;
 import dto.incidenciaDTO;
 import dto.usuarioDTO;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
+import model.jdbcUbicacionDAO;
 
 public class consultar_incidencias {
 
@@ -81,6 +83,15 @@ public class consultar_incidencias {
 	private agregar_fecha controller_agregar_fecha;
 	private static Date fechaSelected;
 
+
+	// pop up de ubicación
+	private Stage agregar_ubicacion;
+	private Parent root3;
+	private Scene scene3;
+	private FXMLLoader fxmlLoaderagregar_ubicacion;
+	private agregar_combobox controller_agregar_ubicacion;
+	private int idUbicacion;
+
 	/**
 	 * consultar_incidencias constructor default el cual inicializa valores
 	 */
@@ -115,8 +126,14 @@ public class consultar_incidencias {
 		this.categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
-		this.tabla.getItems().addAll(
-				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
+
+		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
+		jdbcUbicacionDAO jdbcUbicacionDAO = new jdbcUbicacionDAO();
+		arrayIncidenciaToAdd.addAll(this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
+		for (incidenciaDTO i : arrayIncidenciaToAdd) {
+			i.setUbicacion(jdbcUbicacionDAO.devolverNombreAPartirDeId(i.getId()));
+		}
+		this.tabla.getItems().addAll(arrayIncidenciaToAdd);
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
@@ -136,7 +153,7 @@ public class consultar_incidencias {
 		this.urgencia.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.materiales.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.ubicacion.setCellFactory(TextFieldTableCell.forTableColumn());
+		//this.ubicacion.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.fechaSelected = null;
 
 		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
@@ -146,7 +163,44 @@ public class consultar_incidencias {
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) { // para que haya dos clicks
 					TablePosition pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells().get(0);
-					if (pos.getColumn() == 4) { // si es la columna(s) que queremos...
+					//UBICACIÓN:
+					if (pos.getColumn() == 8) { // si es la columna(s) que queremos...
+						int row = pos.getRow();
+						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
+						// no
+						// cambiará
+
+						// creamos la view
+						consultar_incidencias.this.agregar_ubicacion = new Stage();
+						consultar_incidencias.this.fxmlLoaderagregar_ubicacion = new FXMLLoader(
+								this.getClass().getResource("/view/agregarComboBox.fxml"));
+						try {
+							consultar_incidencias.this.root3 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_ubicacion
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_incidencias.this.controller_agregar_ubicacion = consultar_incidencias.this.fxmlLoaderagregar_ubicacion
+								.<agregar_combobox>getController();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
+								consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_incidencias.this.agregar_ubicacion.show();
+					}else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
 						int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
@@ -253,7 +307,12 @@ public class consultar_incidencias {
 				this.incidenciaSelected.setFecha((java.sql.Date) this.fechaSelected);
 
 			}
-			this.incidenciaSelected.visualizar();
+			if (this.idUbicacion == -1) {
+				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
+			}else {
+				//this.incidenciaSelected.set
+			}
+			System.out.print("Lo que va a subirse:");this.incidenciaSelected.visualizar();
 			this.bdincidencias.modificarIncidencia(this.incidenciaSelected);
 			this.idselected = -1;
 			this.incidenciaSelected = new incidenciaDTO();
@@ -263,11 +322,13 @@ public class consultar_incidencias {
 	// cuando se llama desde el agregar_fecha
 	public void agregarFechaView(Date date) throws SQLException {
 		this.fechaSelected = date;
-		// this.incidenciaSelected.setId(this.idselected);
-
-		// this.incidenciaSelected.setId(this.tabla.getSelectionModel().getSelectedItem().getId());
 		this.incidenciaSelected.setId(this.idselected); // id no cambiará
 		this.incidenciaSelected.setFecha((java.sql.Date) date);
+
+	}
+
+	public void agregarIncidenciaDeComboBox(int idToReturn) {
+		this.idUbicacion = idToReturn;
 
 	}
 
@@ -294,8 +355,9 @@ public class consultar_incidencias {
 	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(
-				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
+
+
+		this.tabla.getItems().addAll(this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
 	}
 
 	// MODIFICACIONES
@@ -438,5 +500,6 @@ public class consultar_incidencias {
 			}
 		}
 	}
+
 
 }

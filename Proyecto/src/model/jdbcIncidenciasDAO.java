@@ -60,7 +60,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			incidencias.add(new incidenciaDTO(this.rs.getInt("id_incidencia"), this.rs.getString("usuario"),
-					this.rs.getString("descripcion"), this.rs.getString("elemento"), this.rs.getString("ubicacion"),
+					this.rs.getString("descripcion"), this.rs.getString("elemento"), this.rs.getInt("ubicacion"),
 					this.rs.getDate("fecha"), this.rs.getString("urgencia"), this.rs.getString("categoria"),
 					this.rs.getString("materiales")));
 		}
@@ -77,7 +77,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.setString(1, incidencia.getUsuario());
 		this.ps.setString(2, incidencia.getDescripcion());
 		this.ps.setString(3, incidencia.getElemento());
-		this.ps.setString(4, incidencia.getUbicacion());
+		this.ps.setInt(4, incidencia.getUbicacionI());
 		this.ps.setDate(5, incidencia.getFecha());
 		this.ps.setString(6, incidencia.getUrgencia());
 		this.ps.setString(7, incidencia.getCategoria());
@@ -102,7 +102,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.setString(1, i.getUsuario());
 		this.ps.setString(2, i.getDescripcion());
 		this.ps.setString(3, i.getElemento());
-		this.ps.setString(4, i.getUbicacion());
+		this.ps.setInt(4, i.getUbicacionI());
 		this.ps.setDate(5, i.getFecha());
 		this.ps.setString(6, i.getUrgencia());
 		this.ps.setString(7, i.getCategoria());
