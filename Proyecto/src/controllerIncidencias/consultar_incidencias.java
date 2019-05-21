@@ -64,7 +64,7 @@ public class consultar_incidencias {
 	@FXML
 	private TextField fecha_encabezado;
 
-	private int idselected = -1;
+	private int idselected;
 	private incidenciaDTO incidenciaSelected;
 	private Stage agregar_incidencia;
 	private Parent root1;

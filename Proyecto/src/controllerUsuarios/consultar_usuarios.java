@@ -17,18 +17,22 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import controller.agregar_combobox;
 import dto.usuarioDTO;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcUsuarioDAO;
 
@@ -73,6 +77,14 @@ public class consultar_usuarios {
 	usuarioDTO usuarioSelected;
 	int idselected;
 
+	// pop up de comboB
+	private Stage agregar_combobox;
+	private Parent root2;
+	private Scene scene2;
+	private FXMLLoader fxmlLoaderagregar_combo;
+	private agregar_combobox controller_agregar_combo;
+	private static int idRolCombo;
+
 	/**
 	 * consultar_usuarios constructor parametrizado que inicializa variables.
 	 */
@@ -84,17 +96,18 @@ public class consultar_usuarios {
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.dbusuario = new jdbcUsuarioDAO();
 		this.nombreCompleto = "";
+		idRolCombo = -1;
 	}
 
 	/**
 	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
 	 * asignándoselos
-	 * 
+	 *
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -142,11 +155,61 @@ public class consultar_usuarios {
 		// nunca va a ser relevante a la hora de modificar un usuario
 		this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.password.setCellFactory(TextFieldTableCell.forTableColumn());
-		// this.rol.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.nombre.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.apellidos.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.telefono.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.direccion.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
+
+		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
+		this.tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			// para evento fecha
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) { // para que haya dos clicks
+					TablePosition pos = consultar_usuarios.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					if (pos.getColumn() == 3) { // si es la columna(s) que queremos...
+						int row = pos.getRow();
+						consultar_usuarios.this.idselected = consultar_usuarios.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_usuarios.this.usuarioSelected.setId(consultar_usuarios.this.idselected); // id
+
+
+
+						// creamos la view
+						consultar_usuarios.this.agregar_combobox = new Stage();
+						consultar_usuarios.this.fxmlLoaderagregar_combo = new FXMLLoader(
+								this.getClass().getResource("/view/agregarComboBox.fxml"));
+						try {
+							consultar_usuarios.this.root2 = (Parent) consultar_usuarios.this.fxmlLoaderagregar_combo
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_usuarios.this.controller_agregar_combo = consultar_usuarios.this.fxmlLoaderagregar_combo
+								.<agregar_combobox>getController();
+								consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
+								try {
+									consultar_usuarios.this.controller_agregar_combo.inicializar(2);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
+								consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
+								// el
+								// icono
+								consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_usuarios.this.agregar_combobox.show();
+					}
+				}
+			}
+		}); // fin doble click en las columnas que queremos para abrir views
+
 	}
 
 	/**
@@ -162,14 +225,19 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void agregarEnBaseDatos(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
+	}
+
+	public void agregarRolDeComboBox(int resultado) {
+		this.idRolCombo = resultado;
+
 	}
 
 	@FXML
 	/**
 	 * agregarUsuario agrega un usuario a través de una view
-	 * 
+	 *
 	 * @throws IOException si hay una excepción de tipo SQl
 	 */
 	public void agregarUsuario() throws IOException { // boton agregar
@@ -191,7 +259,7 @@ public class consultar_usuarios {
 	 * modificarUsuario modifica un usuario en el tableview y base de datos a través
 	 * de darle doble click o abriendo un tableview si no se ha modificado nada con
 	 * doble click.
-	 * 
+	 *
 	 * @throws SQLException              si hay una excepción de SQL
 	 * @throws InvalidKeyException       si la key de la encriptación falla
 	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
@@ -201,7 +269,7 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+	IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -227,6 +295,10 @@ public class consultar_usuarios {
 				this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 			}
 
+			if (idRolCombo != -1) {
+				this.usuarioSelected .setRol(idRolCombo);
+			}
+
 			this.idselected = -1;
 			this.bdusuarios.modificarUsuario(this.usuarioSelected);
 			this.usuarioSelected = new usuarioDTO();
@@ -237,7 +309,7 @@ public class consultar_usuarios {
 	/**
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
-	 * 
+	 *
 	 * @throws SQLException              si hay una excepción de SQL
 	 * @throws InvalidKeyException       si la key de la encriptación falla
 	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
@@ -247,9 +319,9 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
-		this.idselected = -1;
-		this.usuarioSelected = new usuarioDTO();
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		//this.idselected = -1;
+		//this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto);
 		// this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
@@ -259,7 +331,7 @@ public class consultar_usuarios {
 	@FXML
 	/**
 	 * eliminarUsuario elimina un usuario en la base de datos y en el tableview
-	 * 
+	 *
 	 * @throws SQLException si hay una excepción de SQL
 	 */
 	public void eliminarUsuario() throws SQLException { // boton eliminar

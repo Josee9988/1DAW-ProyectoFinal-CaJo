@@ -69,7 +69,7 @@ public class agregar_usuarios {
 	/**
 	 * agregarusuario agrega todos los valores recibidos de los TextField a un
 	 * objeto usuarioDTO que se mandará a la base de datos para agregarlo
-	 * 
+	 *
 	 * @throws SQLException             si ha habido una excepción SQL
 	 * @throws BadPaddingException      por si el formato no es el correcto
 	 * @throws InvalidKeyException      si la key de la encriptación falla
@@ -77,7 +77,7 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		usuarioDTO usuarioDTO = new usuarioDTO();
 		usuarioDTO.setUser(this.usuario.getText());
 		usuarioDTO.setPassword(this.password.getText());
@@ -99,9 +99,8 @@ public class agregar_usuarios {
 	 *         roles
 	 */
 	public int traducirComboBox() {
-		String seleccionado = (String) this.rol.getValue();
 		int resultado = 0;
-		switch (seleccionado) {
+		switch ((String) this.rol.getValue()) {
 		case "Profesor":
 			resultado = 1;
 			break;
@@ -114,8 +113,8 @@ public class agregar_usuarios {
 		case "Admin":
 			resultado = 4;
 			break;
-
 		default:
+			resultado=1;
 			break;
 		}
 		return resultado;
