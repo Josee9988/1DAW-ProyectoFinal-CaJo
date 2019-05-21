@@ -38,10 +38,6 @@ public class agregar_combobox {
 	public agregar_combobox() {
 		this.stage = null;
 		this.tipo = 0;
-		this.jdbcIncidenciasDAO = null;
-		this.jdbcUbicacionDAO = null;
-		this.consultar_incidencias = null;
-		this.consultar_mensajes = null;
 	}
 
 

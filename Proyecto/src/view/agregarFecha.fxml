@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="263.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creadoresController.agregar_fecha">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="263.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.agregar_fecha">
    <children>
       <DatePicker fx:id="fecha" layoutX="26.0" layoutY="63.0" prefHeight="30.0" prefWidth="211.0" promptText="Escoja fecha" />
       <Label layoutX="39.0" layoutY="21.0" text="Agrege la nueva fecha" textFill="#792525">
