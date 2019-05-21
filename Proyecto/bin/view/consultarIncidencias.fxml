@@ -30,7 +30,7 @@
       <TextField fx:id="fecha_encabezado" layoutX="21.0" layoutY="21.0" prefHeight="37.0" prefWidth="200.0" />
       <Button layoutX="21.0" layoutY="528.0" mnemonicParsing="false" onAction="#agregarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Agregar incidencia" />
       <Button layoutX="335.0" layoutY="528.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Modificar inidencia" />
-      <Button layoutX="656.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Eliminar incidencia" />
+      <Button fx:id="resolverI" layoutX="656.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Resolver incidencia" />
       <Button layoutX="672.0" layoutY="20.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
             <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">

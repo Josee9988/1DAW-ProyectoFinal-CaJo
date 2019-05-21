@@ -82,10 +82,8 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
-
-
 	/**
-	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
+	 * incidenciaDTO constructor parametrizado que recibe los parámetros de
 	 * incidenciaDTO
 	 *
 	 * @param id          recibe un entero id y se lo asigna a incidenciaDTO
@@ -111,7 +109,6 @@ public class incidenciaDTO {
 		this.materiales = materiales;
 	}
 
-
 	/**
 	 * incidenciaDTO constructor parametrizado que recibe todos los parámetros de
 	 * incidenciaDTO
@@ -127,8 +124,8 @@ public class incidenciaDTO {
 	 * @param categoria   String de la categoría de la incidencia
 	 * @param materiales  String materiales de los materiales de la incidencia
 	 */
-	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, int ubicacionI, Date fecha,
-			String urgencia, String categoria, String materiales) {
+	public incidenciaDTO(int id, String usuario, String descripcion, String elemento, String ubicacion, int ubicacionI,
+			Date fecha, String urgencia, String categoria, String materiales) {
 		this.id = id;
 		this.usuario = usuario;
 		this.descripcion = descripcion;
@@ -147,7 +144,8 @@ public class incidenciaDTO {
 	 * @param i recibe el objeto incidenciaDTO
 	 */
 	public incidenciaDTO(incidenciaDTO i) {
-		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.ubicacionI, i.fecha, i.urgencia, i.categoria, i.materiales);
+		this(i.id, i.usuario, i.descripcion, i.elemento, i.ubicacion, i.ubicacionI, i.fecha, i.urgencia, i.categoria,
+				i.materiales);
 	}
 
 	/**
@@ -159,12 +157,12 @@ public class incidenciaDTO {
 		return new incidenciaDTO(this);
 	}
 
-
 	@Override
 	public String toString() {
-		return "incidenciaDTO [id=" + this.id + ", usuario=" + this.usuario + ", descripcion=" + this.descripcion + ", elemento="
-				+ this.elemento + ", ubicacion=" + this.ubicacion + ", ubicacionI=" + this.ubicacionI + ", fecha=" + this.fecha
-				+ ", urgencia=" + this.urgencia + ", categoria=" + this.categoria + ", materiales=" + this.materiales + "]";
+		return "incidenciaDTO [id=" + this.id + ", usuario=" + this.usuario + ", descripcion=" + this.descripcion
+				+ ", elemento=" + this.elemento + ", ubicacion=" + this.ubicacion + ", ubicacionI=" + this.ubicacionI
+				+ ", fecha=" + this.fecha + ", urgencia=" + this.urgencia + ", categoria=" + this.categoria
+				+ ", materiales=" + this.materiales + "]";
 	}
 
 	/**

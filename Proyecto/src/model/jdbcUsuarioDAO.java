@@ -53,11 +53,11 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
-		this.ps.setString(2, this.crypto.encrypt(user.getPassword()));
+		this.ps.setString(2, crypto_controller.encrypt(user.getPassword()));
 		this.ps.setInt(3, user.getRol());
 		this.ps.setString(4, user.getNombre());
 		this.ps.setString(5, user.getApellidos());
@@ -68,13 +68,13 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
 
 		this.ps.setString(1, user.getUser());
-		this.ps.setString(2, this.crypto.encrypt(user.getPassword()));
+		this.ps.setString(2, crypto_controller.encrypt(user.getPassword()));
 		this.ps.setInt(3, user.getRol());
 		this.ps.setString(4, user.getNombre());
 		this.ps.setString(5, user.getApellidos());
@@ -102,13 +102,13 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			usuarios.add(new usuarioDTO(this.rs.getInt("id"), this.rs.getString("user"),
-					this.crypto.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
+					crypto_controller.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
 					this.rs.getString("nombre"), this.rs.getString("apellidos"), this.rs.getString("telefono"),
 					this.rs.getString("direccion")));
 		}
@@ -126,9 +126,24 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	// para mensajes
 	public int devolverId(String nombre, String apellidos) throws SQLException {
 		int id = 0;
-		this.ps = this.connect.prepareStatement("SELECT id FROM usuarios WHERE nombre LIKE ? AND apellidos LIKE ? LIMIT 1");
-		this.ps.setString(1, nombre+"%");
-		this.ps.setString(2, apellidos+"%");
+		this.ps = this.connect
+				.prepareStatement("SELECT id FROM usuarios WHERE nombre LIKE ? AND apellidos LIKE ? LIMIT 1");
+		this.ps.setString(1, nombre + "%");
+		this.ps.setString(2, apellidos + "%");
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			id = this.rs.getInt("id");
+
+		}
+		this.ps.close();
+		this.rs.close();
+		return id;
+	}
+
+	public int devolverId(String user) throws SQLException {
+		int id = 0;
+		this.ps = this.connect.prepareStatement("SELECT id FROM usuarios WHERE user = ?");
+		this.ps.setString(1, user);
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			id = this.rs.getInt("id");
@@ -157,15 +172,15 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	}
 
 	// para mensajes el observable list
-	public ArrayList<Integer> leerDestinatarios() throws SQLException {
-		ArrayList<Integer> incidencias = new ArrayList<>();
+	public ArrayList<String> leerDestinatarios() throws SQLException {
+		ArrayList<String> incidencias = new ArrayList<>();
 
-		this.ps = this.connect.prepareStatement("select id from usuarios");
+		this.ps = this.connect.prepareStatement("select user from usuarios");
 
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 
-			incidencias.add((this.rs.getInt("id")));
+			incidencias.add((this.rs.getString("user")));
 		}
 		return incidencias;
 	}
@@ -173,8 +188,8 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	public String leerUsuario(String nombre, String apellidos) throws SQLException {
 		String usuario = "";
 		this.ps = this.connect.prepareStatement("SELECT user FROM usuarios WHERE nombre LIKE ? AND apellidos LIKE ?");
-		this.ps.setString(1, nombre+"%");
-		this.ps.setString(2, apellidos+"%");
+		this.ps.setString(1, nombre + "%");
+		this.ps.setString(2, apellidos + "%");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			usuario = this.rs.getString("user");

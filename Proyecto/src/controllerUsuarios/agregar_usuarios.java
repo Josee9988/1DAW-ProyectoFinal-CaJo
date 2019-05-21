@@ -43,13 +43,14 @@ public class agregar_usuarios {
 
 	private consultar_usuarios consultar_usuarios;
 	private Stage stage;
+	private usuarioDTO usuarioDTO;
 
 	/**
 	 * agregar_usuarios constructor default que inicializa variables simples.
 	 */
 	public agregar_usuarios() {
 		this.consultar_usuarios = new consultar_usuarios();
-		this.stage = null;
+		this.usuarioDTO = new usuarioDTO();
 	}
 
 	/**
@@ -77,18 +78,24 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-		usuarioDTO usuarioDTO = new usuarioDTO();
-		usuarioDTO.setUser(this.usuario.getText());
-		usuarioDTO.setPassword(this.password.getText());
-		usuarioDTO.setNombre(this.nombre.getText());
-		usuarioDTO.setDireccion(this.direccion.getText());
-		usuarioDTO.setTelefono(this.telefono.getText());
-		usuarioDTO.setTelefono(this.telefono.getText());
-		usuarioDTO.setRol(this.traducirComboBox());
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+		this.usuarioDTO.setUser(this.usuario.getText());
+		this.usuarioDTO.setPassword(this.password.getText());
+		this.usuarioDTO.setNombre(this.nombre.getText());
+		this.usuarioDTO.setDireccion(this.direccion.getText());
+		this.usuarioDTO.setTelefono(this.telefono.getText());
+		this.usuarioDTO.setApellidos(this.apellidos.getText());
+		this.usuarioDTO.setRol(this.traducirComboBox());
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.consultar_usuarios.agregarEnBaseDatos(usuarioDTO);
+
+		// si los campos importantes no están vacios lo hará, de otra manera no lo
+		// agregará
+		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
+				|| this.apellidos.getText().isEmpty())) {
+			this.consultar_usuarios.agregarEnBaseDatos(this.usuarioDTO);
+		}
+
 	}
 
 	/**
@@ -114,7 +121,7 @@ public class agregar_usuarios {
 			resultado = 4;
 			break;
 		default:
-			resultado=1;
+			resultado = 1;
 			break;
 		}
 		return resultado;

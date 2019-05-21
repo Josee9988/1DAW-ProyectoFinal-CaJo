@@ -137,7 +137,7 @@ public class Login_Controller {
 		// vemos si están vacios los campos o no.
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
 			// encriptamos el texto que ha escrito el usuario
-			passwordencriptada = this.crypto.encrypt(this.passwordField.getText());
+			passwordencriptada = crypto_controller.encrypt(this.passwordField.getText());
 			switch (this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada))) {
 
 			case 1: // profesor

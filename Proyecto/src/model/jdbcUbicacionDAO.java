@@ -114,7 +114,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		}
 		return aux;
 	}
-	public String devolverNombreAPartirDeId(int id) throws SQLException{
+
+	public String devolverNombreAPartirDeId(int id) throws SQLException {
 		String nombre = "";
 		this.ps = this.connect.prepareStatement("SELECT nombre FROM ubicaciones WHERE id = ?");
 		this.ps.setInt(1, id);

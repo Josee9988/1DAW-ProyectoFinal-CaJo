@@ -18,7 +18,7 @@ public class agregar_fecha {
 	private Stage stage;
 	private consultar_incidencias consultar_incidencias;
 
-	public agregar_fecha(){
+	public agregar_fecha() {
 		this.consultar_incidencias = new consultar_incidencias();
 		this.stage = null;
 	}
@@ -26,7 +26,6 @@ public class agregar_fecha {
 	public void inicializar() {
 
 	}
-
 
 	@FXML
 	public void aplicarFecha() throws SQLException {

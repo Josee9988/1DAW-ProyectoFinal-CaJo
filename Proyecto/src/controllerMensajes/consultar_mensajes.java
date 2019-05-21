@@ -58,6 +58,9 @@ public class consultar_mensajes {
 	@FXML
 	private TextField fecha_encabezado;
 
+	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
+	private jdbcUsuarioDAO jdbcUsuarioDAO;
+
 	private int idselected;
 	private mensajesDTO mensajesSelected;
 	private Stage agregar_mensaje;
@@ -81,12 +84,14 @@ public class consultar_mensajes {
 	 */
 	public consultar_mensajes() {
 		this.tabla = new TableView<>();
-		this.bdmensajes = new jdbcMensajesDAO();
 		this.mensajesSelected = new mensajesDTO();
 		this.idselected = -1;
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.nombreCompleto = "";
-		this.incidenciaCombo = -1;
+		consultar_mensajes.incidenciaCombo = -1;
+		this.bdmensajes = new jdbcMensajesDAO();
+		this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
+		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
 	}
 
 	/**
@@ -97,8 +102,6 @@ public class consultar_mensajes {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
-		jdbcIncidenciasDAO jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
-		jdbcUsuarioDAO jdbcUsuarioDAO = new jdbcUsuarioDAO();
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.asunto.setCellValueFactory(new PropertyValueFactory<>("Asunto"));
@@ -113,15 +116,15 @@ public class consultar_mensajes {
 		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
 		mensajesToAdd.addAll(this.bdmensajes.leerMensajes());
 		for (mensajesDTO i : mensajesToAdd) {
-			if (jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).length() > 64) {
-				i.setIncidenciaS(jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).substring(0, 64));
+			if (this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).length() > 64) {
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).substring(0, 64));
 
 			} else {
-				i.setIncidenciaS(jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()));
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()));
 
 			}
-			i.setEmisorS(jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
-			i.setReceptorS(jdbcUsuarioDAO.devolverNombre(i.getReceptor()));
+			i.setEmisorS(this.jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
+			i.setReceptorS(this.jdbcUsuarioDAO.devolverNombre(i.getReceptor()));
 		}
 
 		this.tabla.getItems().addAll(mensajesToAdd);
@@ -157,8 +160,6 @@ public class consultar_mensajes {
 								.getSelectedItem().getId();
 
 						consultar_mensajes.this.mensajesSelected.setId(consultar_mensajes.this.idselected); // id
-
-
 
 						// creamos la view
 						consultar_mensajes.this.agregar_combobox = new Stage();
@@ -241,14 +242,13 @@ public class consultar_mensajes {
 				this.mensajesSelected.setReceptor(this.tabla.getSelectionModel().getSelectedItem().getReceptor());
 			}
 
-
-			if (this.incidenciaCombo != -1) {
-				this.mensajesSelected.setIncidencia(this.incidenciaCombo);
+			if (consultar_mensajes.incidenciaCombo != -1) {
+				this.mensajesSelected.setIncidencia(consultar_mensajes.incidenciaCombo);
 			}
 
 			this.bdmensajes.modificarMensaje(this.mensajesSelected);
 			this.idselected = -1;
-			this.incidenciaCombo = -1;
+			consultar_mensajes.incidenciaCombo = -1;
 			this.mensajesSelected = new mensajesDTO();
 		}
 	}
@@ -265,7 +265,6 @@ public class consultar_mensajes {
 		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
 	}
 
-
 	/**
 	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
 	 * y lo agregamos en la base de datos
@@ -278,7 +277,7 @@ public class consultar_mensajes {
 	}
 
 	public void agregarIncidenciaDeComboBox(int idToReturn) {
-		this.incidenciaCombo = idToReturn;
+		consultar_mensajes.incidenciaCombo = idToReturn;
 	}
 
 	@FXML
@@ -396,7 +395,5 @@ public class consultar_mensajes {
 			}
 		}
 	}
-
-
 
 }

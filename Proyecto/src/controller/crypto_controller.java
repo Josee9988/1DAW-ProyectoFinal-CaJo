@@ -25,9 +25,9 @@ public class crypto_controller {
 	 * crypto_controller constructor default que inicializa variables
 	 */
 	public crypto_controller() {
-		this.skeySpec = null;
-		this.cipher = null;
-		this.retString = null;
+		crypto_controller.skeySpec = null;
+		crypto_controller.cipher = null;
+		crypto_controller.retString = null;
 	}
 
 	/**

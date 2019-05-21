@@ -107,7 +107,7 @@ public class consultar_usuarios {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -160,8 +160,6 @@ public class consultar_usuarios {
 		this.telefono.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.direccion.setCellFactory(TextFieldTableCell.forTableColumn());
 
-
-
 		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
 		this.tabla.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			// para evento fecha
@@ -176,8 +174,6 @@ public class consultar_usuarios {
 
 						consultar_usuarios.this.usuarioSelected.setId(consultar_usuarios.this.idselected); // id
 
-
-
 						// creamos la view
 						consultar_usuarios.this.agregar_combobox = new Stage();
 						consultar_usuarios.this.fxmlLoaderagregar_combo = new FXMLLoader(
@@ -191,20 +187,19 @@ public class consultar_usuarios {
 
 						consultar_usuarios.this.controller_agregar_combo = consultar_usuarios.this.fxmlLoaderagregar_combo
 								.<agregar_combobox>getController();
-								consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
-								try {
-									consultar_usuarios.this.controller_agregar_combo.inicializar(2);
-								} catch (SQLException e) {
-									System.out.println(e.toString());
-								} // llamamos al método
-								// inicializar
-								consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
-								consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
-								// el
-								// icono
-								consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
-								// de la ventana
-								consultar_usuarios.this.agregar_combobox.show();
+						consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
+						try {
+							consultar_usuarios.this.controller_agregar_combo.inicializar(2);
+						} catch (SQLException e) {
+							System.out.println(e.toString());
+						} // llamamos al método inicializar
+
+						consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
+						consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
+						// el icono
+						consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						// de la ventana
+						consultar_usuarios.this.agregar_combobox.show();
 					}
 				}
 			}
@@ -225,12 +220,12 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void agregarEnBaseDatos(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
 	}
 
 	public void agregarRolDeComboBox(int resultado) {
-		this.idRolCombo = resultado;
+		consultar_usuarios.idRolCombo = resultado;
 
 	}
 
@@ -269,7 +264,7 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-	IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -296,7 +291,7 @@ public class consultar_usuarios {
 			}
 
 			if (idRolCombo != -1) {
-				this.usuarioSelected .setRol(idRolCombo);
+				this.usuarioSelected.setRol(idRolCombo);
 			}
 
 			this.idselected = -1;
@@ -319,9 +314,9 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
-		//this.idselected = -1;
-		//this.usuarioSelected = new usuarioDTO();
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		// this.idselected = -1;
+		// this.usuarioSelected = new usuarioDTO();
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto);
 		// this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());

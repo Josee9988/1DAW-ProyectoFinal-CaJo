@@ -48,5 +48,4 @@ public interface incidenciasDAO {
 	 */
 	boolean eliminarIncidencia(int i) throws SQLException;
 
-
 }
