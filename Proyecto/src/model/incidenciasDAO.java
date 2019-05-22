@@ -43,9 +43,48 @@ public interface incidenciasDAO {
 	 * ID
 	 *
 	 * @param i es la id que recibe a eliminar
-	 * @return
-	 * @throws SQLException
+	 * @return true si ha ido todo bien o false si no se ha eliminado
+	 * @throws SQLException excepción SQL
 	 */
 	boolean eliminarIncidencia(int i) throws SQLException;
+
+	/**
+	 * leerIncidencias guarda todas las Ids de las incidencias en un ArrayList de
+	 * tipo Integer
+	 *
+	 * @return ArrayList<Integer> con todas las incidencias
+	 * @throws SQLException excepción SQL
+	 */
+	ArrayList<Integer> leerIncidencias() throws SQLException;
+
+	/**
+	 * obtenerNombreIncidencia recibe un id y devuelve el nombre encontrado a partir
+	 * de esa ID
+	 *
+	 * @param id entero id recibido, es la id a buscar en la base de datos
+	 * @return String del nombre encontrado
+	 * @throws SQLException excepción SQL
+	 */
+	String obtenerNombreIncidencia(int id) throws SQLException;
+
+	/**
+	 * obtenerId REcibe una descripción y devuelve el id encontrado a partir de esa
+	 * descripción
+	 *
+	 * @param descripcion String con la descripción a buscar en la base de datos
+	 * @return devuelve un entero con la id encontrada
+	 * @throws SQLException excepción SQL
+	 */
+	int obtenerId(String descripcion) throws SQLException;
+
+	/**
+	 * leerDescripcionesIncidencias lee las descripciones y las guarda en un
+	 * ArrayList
+	 *
+	 * @return devuelve un ArrayList de tipo string con las descripciones de las
+	 *         incidencias
+	 * @throws SQLException excepción SQL
+	 */
+	ArrayList<String> leerDescripcionesIncidencias() throws SQLException;
 
 }

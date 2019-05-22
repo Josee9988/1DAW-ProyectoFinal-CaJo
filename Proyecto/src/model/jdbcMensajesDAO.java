@@ -13,22 +13,34 @@ import java.util.ArrayList;
 
 import dto.mensajesDTO;
 
-public class jdbcMensajesDAO {
+public class jdbcMensajesDAO implements mensajesDAO {
 
 	private Connection connect;
 	private PreparedStatement ps;
 	private ResultSet rs;
 
+	/**
+	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
+	 * tipo "Connection". A éste método de la clase
+	 * "Conexion.getInstance().conectar()" le igualaremos nuestra variable "connect"
+	 * de tipo Connection
+	 */
 	public jdbcMensajesDAO() {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
+	/**
+	 * cerrarBD cierra la conexión a la base de datos
+	 *
+	 * @throws SQLException excepción de tipo SQL
+	 */
 	public void cerrarBD() throws SQLException {
 		this.ps.close();
 		this.rs.close();
 		this.connect.close();
 	}
 
+	@Override
 	public ArrayList<mensajesDTO> leerMensajes() throws SQLException {
 		ArrayList<mensajesDTO> aux = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("SELECT * FROM mensajes");
@@ -41,6 +53,7 @@ public class jdbcMensajesDAO {
 		return aux;
 	}
 
+	@Override
 	public void crearMensaje(mensajesDTO m) throws SQLException {
 		this.ps = this.connect.prepareStatement(
 				"insert into mensajes(asunto,cuerpo,fecha,id_emisor,id_receptor,incidencia) values(?,?,?,?,?,?)");
@@ -54,6 +67,7 @@ public class jdbcMensajesDAO {
 		this.ps.close();
 	}
 
+	@Override
 	public void modificarMensaje(mensajesDTO m) throws SQLException {
 		this.ps = this.connect.prepareStatement(
 				"UPDATE mensajes SET asunto = ?, cuerpo = ?, fecha = ?, id_emisor = ?, id_receptor = ?, incidencia = ? WHERE id = ?");
@@ -70,6 +84,7 @@ public class jdbcMensajesDAO {
 		this.ps.close();
 	}
 
+	@Override
 	public boolean eliminarMensajes(int id) throws SQLException {
 		boolean resultado;
 		int n = 0;

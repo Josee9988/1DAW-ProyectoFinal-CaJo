@@ -14,25 +14,30 @@ public class Conexion {
 	private static Conexion instance;
 	private Connection connect;
 
+	/**
+	 * Conexion método que llama al método conectar el cual devuelve un objeto
+	 * Connection el cual se le iguala a nuestra variable private Connection
+	 * connect.
+	 */
 	private Conexion() {
 		this.connect = this.conectar();
 	}
 
 	/**
 	 * getInstance devuelve la conexión en forma de instancia de la base de datos
-	 * 
+	 *
 	 * @return instance devuelve la instancia de la conexión Connection
 	 */
 	public static Conexion getInstance() {
-		if (instance == null) {
-			instance = new Conexion();
+		if (Conexion.instance == null) {
+			Conexion.instance = new Conexion();
 		}
-		return instance;
+		return Conexion.instance;
 	}
 
 	/**
 	 * cerrarConexion método que cierra la conexión con la base de datos
-	 * 
+	 *
 	 * @throws SQLException
 	 */
 	public void cerrarConexion() throws SQLException {
@@ -42,7 +47,7 @@ public class Conexion {
 	/**
 	 * conectar método en el cual se llama a la base de datos con el usuario
 	 * contraseña y la dirección
-	 * 
+	 *
 	 * @return Conexion devuelve la conexión de la base de datos
 	 */
 	public Connection conectar() {

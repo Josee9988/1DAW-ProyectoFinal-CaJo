@@ -91,7 +91,7 @@ public class agregar_mensajes {
 		java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		this.mensajesDTO.setFecha(sqlDate);
 
-		this.mensajesDTO.setIncidencia(this.incidencias.obtenerIdDesdeDescripcion(this.incidencia.getValue())); // añadimos
+		this.mensajesDTO.setIncidencia(this.incidencias.obtenerId(this.incidencia.getValue())); // añadimos
 		// incidencia
 		this.mensajesDTO.setReceptor(this.bdusuario.devolverId(this.destinatario.getValue())); // añadimos
 		// receptor

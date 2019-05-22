@@ -19,10 +19,21 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 
+	/**
+	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
+	 * tipo "Connection". A éste método de la clase
+	 * "Conexion.getInstance().conectar()" le igualaremos nuestra variable "connect"
+	 * de tipo Connection
+	 */
 	public jdbcProveedoresDAO() {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
+	/**
+	 * cierra las conexiones con la base de datos
+	 * 
+	 * @throws SQLException si ha habido una excepción de tipo SQL
+	 */
 	public void cerrarBD() throws SQLException {
 		this.ps.close();
 		this.rs.close();

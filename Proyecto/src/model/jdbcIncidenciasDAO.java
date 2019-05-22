@@ -20,6 +20,12 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 
+	/**
+	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
+	 * tipo "Connection". A éste método de la clase
+	 * "Conexion.getInstance().conectar()" le igualaremos nuestra variable "connect"
+	 * de tipo Connection
+	 */
 	public jdbcIncidenciasDAO() {
 		this.connect = Conexion.getInstance().conectar();
 	}
@@ -52,10 +58,10 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	public ArrayList<incidenciaDTO> leerIncidencias(usuarioDTO u) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
 		if (u.getRol() == 1 || u.getRol() == 2) {
-			this.ps = this.connect.prepareStatement("select * from incidencias where usuario = ?");
+			this.ps = this.connect.prepareStatement("SELECT * FROM incidencias WHERE usuario = ?");
 			this.ps.setString(1, u.getUser());
 		} else {
-			this.ps = this.connect.prepareStatement("select * from incidencias");
+			this.ps = this.connect.prepareStatement("SELECT * FROM incidencias");
 		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
@@ -98,7 +104,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	@Override
 	public void crearIncidencia(incidenciaDTO i) throws SQLException {
 		this.ps = this.connect.prepareStatement(
-				"insert into incidencias(usuario,descripcion,elemento,ubicacion,fecha,urgencia,categoria,materiales) values(?,?,?,?,?,?,?,?)");
+				"INSERT INTO incidencias(usuario,descripcion,elemento,ubicacion,fecha,urgencia,categoria,materiales) VALUES(?,?,?,?,?,?,?,?)");
 		this.ps.setString(1, i.getUsuario());
 		this.ps.setString(2, i.getDescripcion());
 		this.ps.setString(3, i.getElemento());
@@ -110,11 +116,11 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.executeUpdate();
 	}
 
-	// @Override
+	@Override
 	public ArrayList<Integer> leerIncidencias() throws SQLException {
 		ArrayList<Integer> incidencias = new ArrayList<>();
 
-		this.ps = this.connect.prepareStatement("select id_incidencia from incidencias");
+		this.ps = this.connect.prepareStatement("SELECT id_incidencia FROM incidencias");
 
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
@@ -124,7 +130,8 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return incidencias;
 	}
 
-	public String nombreIncidencia(int id) throws SQLException {
+	@Override
+	public String obtenerNombreIncidencia(int id) throws SQLException {
 		String nombre = "";
 		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias WHERE id_incidencia = ? LIMIT 1");
 		this.ps.setInt(1, id);
@@ -138,7 +145,8 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return nombre;
 	}
 
-	public int obtenerIdDesdeDescripcion(String descripcion) throws SQLException {
+	@Override
+	public int obtenerId(String descripcion) throws SQLException {
 		int idToReturn = 0;
 		this.ps = this.connect.prepareStatement("SELECT id_incidencia FROM incidencias WHERE descripcion = ? LIMIT 1");
 		this.ps.setString(1, descripcion);
@@ -152,10 +160,11 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return idToReturn;
 	}
 
+	@Override
 	public ArrayList<String> leerDescripcionesIncidencias() throws SQLException {
 		ArrayList<String> arrayToReturn = new ArrayList<>();
 
-		this.ps = this.connect.prepareStatement("select descripcion from incidencias");
+		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias");
 
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {

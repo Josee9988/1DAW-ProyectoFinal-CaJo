@@ -120,7 +120,8 @@ public class consultar_incidencias {
 	 * @throws SQLException si ha habido un fallo de sql...
 	 */
 	public void inicializar(String nombreCompleto, int rol) throws SQLException {
-		if (rol == 1 || rol == 2) {//si es un profesor o un jefe no podrá resolver incidencias, no mostramos el botón
+		if (rol == 1 || rol == 2) {// si es un profesor o un jefe no podrá resolver incidencias, no mostramos el
+									// botón
 			this.resolverI.setVisible(false);
 		}
 		this.rol_number = rol;
@@ -140,7 +141,7 @@ public class consultar_incidencias {
 		arrayIncidenciaToAdd.addAll(
 				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
-			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombreAPartirDeId(i.getUbicacionI()));
+			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
 		}
 		this.tabla.getItems().addAll(arrayIncidenciaToAdd);
 		this.date = new Date();
@@ -168,10 +169,11 @@ public class consultar_incidencias {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) { // para que haya dos clicks
-					TablePosition<?, ?> pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = consultar_incidencias.this.tabla.getSelectionModel().getSelectedCells()
+							.get(0);
 					// UBICACIÓN:
 					if (pos.getColumn() == 8) { // si es la columna(s) que queremos...
-						//int row = pos.getRow();
+						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -192,23 +194,23 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_ubicacion = consultar_incidencias.this.fxmlLoaderagregar_ubicacion
 								.<agregar_combobox>getController();
-								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
-								try {
-									consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
-								} catch (SQLException e) {
-									System.out.println(e.toString());
-								} // llamamos al método
-								// inicializar
-								consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
-								consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
-								// el
-								// icono
-								consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el
-								// título
-								// de la ventana
-								consultar_incidencias.this.agregar_ubicacion.show();
+						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+						try {
+							consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
+						} catch (SQLException e) {
+							System.out.println(e.toString());
+						} // llamamos al método
+							// inicializar
+						consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
+						consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
+						// el
+						// icono
+						consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el
+						// título
+						// de la ventana
+						consultar_incidencias.this.agregar_ubicacion.show();
 					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
-						//int row = pos.getRow();
+						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -228,16 +230,16 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
 								.<agregar_fecha>getController();
-								consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
-								consultar_incidencias.this.controller_agregar_fecha.inicializar(); // llamamos al método
-								// inicializar
-								consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
-								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
-								// el
-								// icono
-								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
-								// de la ventana
-								consultar_incidencias.this.agregar_fecha.show();
+						consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
+						consultar_incidencias.this.controller_agregar_fecha.inicializar(); // llamamos al método
+						// inicializar
+						consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
+						consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
+						// el
+						// icono
+						consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						// de la ventana
+						consultar_incidencias.this.agregar_fecha.show();
 					}
 				}
 			}
@@ -291,7 +293,7 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
@@ -308,7 +310,7 @@ public class consultar_incidencias {
 			if (this.incidenciaSelected.getUbicacion().equals("")) {
 				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
 			}
-			if (fechaSelected == null) {
+			if (consultar_incidencias.fechaSelected == null) {
 				this.incidenciaSelected.setFecha(this.tabla.getSelectionModel().getSelectedItem().getFecha());
 			} else {
 				this.incidenciaSelected.setFecha((java.sql.Date) consultar_incidencias.fechaSelected);
@@ -416,7 +418,6 @@ public class consultar_incidencias {
 		}
 	}
 
-
 	@FXML
 	/**
 	 * editUrgencia si se ha hecho doble click en una celda
@@ -467,6 +468,5 @@ public class consultar_incidencias {
 			}
 		}
 	}
-
 
 }

@@ -19,10 +19,21 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 
+	/**
+	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
+	 * tipo "Connection". A éste método de la clase
+	 * "Conexion.getInstance().conectar()" le igualaremos nuestra variable "connect"
+	 * de tipo Connection
+	 */
 	public jdbcUbicacionDAO() {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
+	/**
+	 * cierra las conexiones con la base de datos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
 	public void cerrarBD() throws SQLException {
 		this.ps.close();
 		this.rs.close();
@@ -86,12 +97,13 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		return aux;
 	}
 
-	public ArrayList<ubicacionDTO> leerNombresUbicaciones() throws SQLException {
-		ArrayList<ubicacionDTO> aux = new ArrayList<>();
+	@Override
+	public ArrayList<String> leerNombresUbicaciones() throws SQLException {
+		ArrayList<String> aux = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select nombre from ubicaciones");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-			aux.add(new ubicacionDTO(this.rs.getString("nombre")));
+			aux.add(this.rs.getString("nombre"));
 		}
 		return aux;
 	}
@@ -105,17 +117,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		return this.rs.getInt("id");
 	}
 
-	public ArrayList<String> leerNombresUbicacionesString() throws SQLException {
-		ArrayList<String> aux = new ArrayList<>();
-		this.ps = this.connect.prepareStatement("select nombre from ubicaciones");
-		this.rs = this.ps.executeQuery();
-		while (this.rs.next()) {
-			aux.add(this.rs.getString("nombre"));
-		}
-		return aux;
-	}
-
-	public String devolverNombreAPartirDeId(int id) throws SQLException {
+	@Override
+	public String devolverNombre(int id) throws SQLException {
 		String nombre = "";
 		this.ps = this.connect.prepareStatement("SELECT nombre FROM ubicaciones WHERE id = ?");
 		this.ps.setInt(1, id);

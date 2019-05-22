@@ -116,11 +116,11 @@ public class consultar_mensajes {
 		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
 		mensajesToAdd.addAll(this.bdmensajes.leerMensajes());
 		for (mensajesDTO i : mensajesToAdd) {
-			if (this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).length() > 64) {
-				i.setIncidenciaS(this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()).substring(0, 64));
+			if (this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).length() > 64) {
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).substring(0, 64));
 
 			} else {
-				i.setIncidenciaS(this.jdbcIncidenciasDAO.nombreIncidencia(i.getIncidencia()));
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()));
 
 			}
 			i.setEmisorS(this.jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
@@ -148,7 +148,8 @@ public class consultar_mensajes {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) { // para que haya dos clicks
-					TablePosition<?, ?> pos = consultar_mensajes.this.tabla.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = consultar_mensajes.this.tabla.getSelectionModel().getSelectedCells()
+							.get(0);
 					if (pos.getColumn() == 3) { // si es la columna(s) que queremos...
 						consultar_mensajes.this.idselected = consultar_mensajes.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
@@ -168,20 +169,20 @@ public class consultar_mensajes {
 
 						consultar_mensajes.this.controller_agregar_combo = consultar_mensajes.this.fxmlLoaderagregar_combo
 								.<agregar_combobox>getController();
-								consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
-								try {
-									consultar_mensajes.this.controller_agregar_combo.inicializar(0);
-								} catch (SQLException e) {
-									System.out.println(e.toString());
-								} // llamamos al método
-								// inicializar
-								consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
-								consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
-								// el
-								// icono
-								consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
-								// de la ventana
-								consultar_mensajes.this.agregar_combobox.show();
+						consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
+						try {
+							consultar_mensajes.this.controller_agregar_combo.inicializar(0);
+						} catch (SQLException e) {
+							System.out.println(e.toString());
+						} // llamamos al método
+							// inicializar
+						consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
+						consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
+						// el
+						// icono
+						consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						// de la ventana
+						consultar_mensajes.this.agregar_combobox.show();
 					}
 				}
 			}

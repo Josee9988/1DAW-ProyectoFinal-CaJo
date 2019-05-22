@@ -55,7 +55,6 @@ public class Home_Jefe_Controller {
 
 	private Image icon;
 
-
 	/**
 	 * Home_Jefe_Controller constructor default que inicializa variables
 	 *

@@ -26,10 +26,21 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 
+	/**
+	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
+	 * tipo "Connection". A éste método de la clase
+	 * "Conexion.getInstance().conectar()" le igualaremos nuestra variable "connect"
+	 * de tipo Connection
+	 */
 	public jdbcUsuarioDAO() {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
+	/**
+	 * cierra la conexión con la base de datos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
 	public void cerrarBD() throws SQLException {
 		this.ps.close();
 		this.rs.close();
@@ -51,7 +62,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
@@ -66,7 +77,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
@@ -99,8 +110,9 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return nombre.concat(" ").concat(apellidos);
 	}
 
+	@Override
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
@@ -121,7 +133,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.close();
 	}
 
-	// para mensajes
+	@Override
 	public int devolverId(String nombre, String apellidos) throws SQLException {
 		int id = 0;
 		this.ps = this.connect
@@ -138,6 +150,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return id;
 	}
 
+	@Override
 	public int devolverId(String user) throws SQLException {
 		int id = 0;
 		this.ps = this.connect.prepareStatement("SELECT id FROM usuarios WHERE user = ?");
@@ -152,7 +165,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return id;
 	}
 
-	// para mensajes
+	@Override
 	public String devolverNombre(int id) throws SQLException {
 		String nombre = "";
 		String apellidos = "";
@@ -169,7 +182,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	}
 
-	// para mensajes el observable list
+	@Override
 	public ArrayList<String> leerDestinatarios() throws SQLException {
 		ArrayList<String> incidencias = new ArrayList<>();
 
@@ -183,6 +196,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return incidencias;
 	}
 
+	@Override
 	public String leerUsuario(String nombre, String apellidos) throws SQLException {
 		String usuario = "";
 		this.ps = this.connect.prepareStatement("SELECT user FROM usuarios WHERE nombre LIKE ? AND apellidos LIKE ?");

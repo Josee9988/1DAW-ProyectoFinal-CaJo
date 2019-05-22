@@ -67,7 +67,7 @@ public class agregar_combobox {
 			this.aplicarBoton.setText("Aplicar ubicación");
 			this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 			// agregamos nombres al combobox
-			ArrayToCombo = this.jdbcUbicacionDAO.leerNombresUbicacionesString();
+			ArrayToCombo = this.jdbcUbicacionDAO.leerNombresUbicaciones();
 		} else { // roles usuarios
 			this.texto.setText("Agregue un rol");
 			this.aplicarBoton.setText("Aplicar rol");
@@ -94,7 +94,7 @@ public class agregar_combobox {
 		if (this.tipo == 0) { // si es una incidencia...
 			this.consultar_mensajes = new consultar_mensajes();
 			this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
-			idToReturn = this.jdbcIncidenciasDAO.obtenerIdDesdeDescripcion(this.comboBox.getValue());
+			idToReturn = this.jdbcIncidenciasDAO.obtenerId(this.comboBox.getValue());
 			this.consultar_mensajes.agregarIncidenciaDeComboBox(idToReturn);
 
 		} else if (this.tipo == 1) { // si es una ubicación

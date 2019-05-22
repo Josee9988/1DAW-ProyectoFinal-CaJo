@@ -1,9 +1,7 @@
-/controller/
-/view/
+/model/
+/controllerMensajes/
 /controllerUtilidades/
 /controllerIncidencias/
-/controllerMensajes/
-/controllerUsuarios/
-/model/
+/controller/
 /controllerProveedores/
-/controllerUbicaciones/
+/controllerUsuarios/

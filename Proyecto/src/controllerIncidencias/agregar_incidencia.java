@@ -65,7 +65,7 @@ public class agregar_incidencia {
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.nombreCompleto = nombreCompleto;
 		jdbcUbicacionDAO jdbcUbicacionDAO = new jdbcUbicacionDAO();
-		ArrayList<String> ubicacionesArray = jdbcUbicacionDAO.leerNombresUbicacionesString();
+		ArrayList<String> ubicacionesArray = jdbcUbicacionDAO.leerNombresUbicaciones();
 
 		ObservableList<String> ubicacionBox = FXCollections.observableArrayList(ubicacionesArray);
 		this.ubicacion.setItems(ubicacionBox);
