@@ -57,7 +57,7 @@ public class Home_Prof_Controller {
 	/**
 	 * Home_Prof_Controller constructor default que inicializa las variables
 	 * necesarias
-	 * 
+	 *
 	 * @throws IOException si ha habido una excepción de tipo SQl
 	 */
 	public Home_Prof_Controller() throws IOException {
@@ -113,7 +113,7 @@ public class Home_Prof_Controller {
 	/**
 	 * administrarIncidencias abre la view de administrar incidencias la cual
 	 * muestra todas las incidencias en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarIncidencias() throws SQLException {
@@ -128,7 +128,7 @@ public class Home_Prof_Controller {
 	/**
 	 * consultarProveedores abre la view de consultar proveedores la cual muestra
 	 * todos los proveedores en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void consultarProveedores() throws SQLException {
@@ -143,11 +143,11 @@ public class Home_Prof_Controller {
 	/**
 	 * administrarMensajes abre la view de administrar mensajes la cual muestra
 	 * todos los mensajes en una tableview
-	 * 
+	 *
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarMensajes() throws SQLException {
-		this.controllerMensajes.inicializar(this.username.getText());
+		this.controllerMensajes.inicializar(this.username.getText(), this.rol_number);
 		this.mensajes.setScene(this.scene3);
 		this.mensajes.getIcons().add(this.icon); // agregamos el icono
 		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana

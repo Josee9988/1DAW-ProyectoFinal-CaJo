@@ -52,7 +52,6 @@ public class agregar_incidencia {
 	public agregar_incidencia() {
 		this.consultar = new consultar_incidencias();
 		this.nombreCompleto = "";
-		this.stage = null;
 	}
 
 	/**

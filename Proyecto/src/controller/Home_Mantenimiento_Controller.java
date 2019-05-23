@@ -121,7 +121,7 @@ public class Home_Mantenimiento_Controller {
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void administrarMensajes() throws SQLException {
-		this.controllerMensajes.inicializar(this.nombre.getText());
+		this.controllerMensajes.inicializar(this.nombre.getText(), this.rol_number);
 		this.mensajes.setScene(this.scene2);
 		this.mensajes.getIcons().add(this.icon); // agregamos el icono
 		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana

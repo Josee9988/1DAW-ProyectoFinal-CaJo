@@ -41,9 +41,15 @@ public class jdbcMensajesDAO implements mensajesDAO {
 	}
 
 	@Override
-	public ArrayList<mensajesDTO> leerMensajes() throws SQLException {
+	public ArrayList<mensajesDTO> leerMensajes(int user, int rol) throws SQLException {
 		ArrayList<mensajesDTO> aux = new ArrayList<>();
-		this.ps = this.connect.prepareStatement("SELECT * FROM mensajes");
+		if (rol == 1 || rol == 2) {
+			this.ps = this.connect.prepareStatement("SELECT * FROM mensajes WHERE id_emisor = ? OR id_receptor = ?");
+			this.ps.setInt(1, user);
+			this.ps.setInt(2, user);
+		} else {
+			this.ps = this.connect.prepareStatement("SELECT * FROM mensajes");
+		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			aux.add(new mensajesDTO(this.rs.getInt("id"), this.rs.getString("asunto"), this.rs.getString("cuerpo"),

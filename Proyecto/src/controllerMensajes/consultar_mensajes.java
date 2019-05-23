@@ -70,6 +70,7 @@ public class consultar_mensajes {
 	private agregar_mensajes controller_agregar_mensajes;
 	private Image icon;
 	private String nombreCompleto;
+	private int rol;
 
 	// pop up de comboB
 	private Stage agregar_combobox;
@@ -92,16 +93,19 @@ public class consultar_mensajes {
 		this.bdmensajes = new jdbcMensajesDAO();
 		this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
+		this.rol = 0;
 	}
 
 	/**
 	 * inicializar inicializa el tableview, cogiendo los datos de la base de datos y
 	 * asignándoselos
 	 *
+	 * @param rol            entero del tipo de usuario que se ha logeado
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
-	public void inicializar(String nombreCompleto) throws SQLException {
+	public void inicializar(String nombreCompleto, int rol) throws SQLException {
+		this.rol = rol;
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.asunto.setCellValueFactory(new PropertyValueFactory<>("Asunto"));
@@ -113,8 +117,13 @@ public class consultar_mensajes {
 
 		// cambiamos valores numéricos de incidencias, emisor y receptor para que salgan
 		// como el nombre al que corresponden esas ids
+		String nombreCompletoArray[] = nombreCompleto.split(" ");
 		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
-		mensajesToAdd.addAll(this.bdmensajes.leerMensajes());
+		// this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0],
+		// nombreCompletoArray[1]); // conseguimos id
+
+		mensajesToAdd.addAll(this.bdmensajes
+				.leerMensajes(this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), rol));
 		for (mensajesDTO i : mensajesToAdd) {
 			if (this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).length() > 64) {
 				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).substring(0, 64));
@@ -284,7 +293,7 @@ public class consultar_mensajes {
 	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.inicializar(this.nombreCompleto);
+		this.inicializar(this.nombreCompleto, this.rol);
 		// this.tabla.getItems().addAll(this.bdmensajes.leerMensajes());
 	}
 

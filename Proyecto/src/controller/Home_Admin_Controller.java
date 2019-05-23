@@ -190,7 +190,7 @@ public class Home_Admin_Controller {
 		this.root4 = (Parent) this.fxmlLoaderAdministrarMensajes.load();
 		this.scene4 = new Scene(this.root4);
 		this.controllerMensajes = this.fxmlLoaderAdministrarMensajes.<consultar_mensajes>getController();
-		this.controllerMensajes.inicializar(this.nombre.getText());
+		this.controllerMensajes.inicializar(this.nombre.getText(), this.rol_number);
 		this.mensajes.setScene(this.scene4);
 		this.mensajes.getIcons().add(this.icon); // agregamos el icono
 		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
