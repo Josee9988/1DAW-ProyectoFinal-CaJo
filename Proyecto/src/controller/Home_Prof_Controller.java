@@ -132,7 +132,7 @@ public class Home_Prof_Controller {
 	 * @throws SQLException por si hay una excepción de tipo SQL
 	 */
 	public void consultarProveedores() throws SQLException {
-		this.controllerProveedores.inicializar(this.username.getText());
+		this.controllerProveedores.inicializar(this.username.getText(), this.rol_number);
 		this.proveedores.setScene(this.scene2);
 		this.proveedores.getIcons().add(this.icon); // agregamos el icono
 		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana

@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -54,6 +55,14 @@ public class consultar_proveedores {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+	@FXML
+	private Button agregarP;
+	@FXML
+	private Button modificarP;
+	@FXML
+	private Button eliminarP;
+
+	private String nombreCompleto;
 
 	private Stage agregar_proveedor;
 	private Parent root1;
@@ -63,6 +72,7 @@ public class consultar_proveedores {
 	private Image icon;
 	private int idselected;
 	private proveedorDTO proveedorDTO;
+	private int rol;
 
 	/**
 	 * consultar_proveedores constructor default inicializa valores necesarios
@@ -73,6 +83,8 @@ public class consultar_proveedores {
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.idselected = -1;
 		this.proveedorDTO = new proveedorDTO();
+		this.rol = 0;
+		this.nombreCompleto = "";
 	}
 
 	/**
@@ -82,7 +94,9 @@ public class consultar_proveedores {
 	 * @param nombreCompleto recibe el nombre y apellidos del usuario logeado
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
-	public void inicializar(String nombreCompleto) throws SQLException {
+	public void inicializar(String nombreCompleto, int rol) throws SQLException {
+		this.nombreCompleto = nombreCompleto;
+		this.rol = rol;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
 		this.contacto.setCellValueFactory(new PropertyValueFactory<>("Contacto"));
@@ -94,6 +108,12 @@ public class consultar_proveedores {
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
 		this.usuario_encabezado.setEditable(false);
 		this.fecha_encabezado.setEditable(false);
+
+		if (this.rol == 1) {
+			this.agregarP.setVisible(false);
+			this.modificarP.setVisible(false);
+			this.eliminarP.setVisible(false);
+		}
 
 		this.tabla.setEditable(true);// hacemos la tabla entera editable
 
@@ -178,7 +198,8 @@ public class consultar_proveedores {
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
 			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
+		this.inicializar(this.nombreCompleto, this.rol);
+		// this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 
 	}
 

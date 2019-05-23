@@ -146,7 +146,7 @@ public class Home_Admin_Controller {
 		this.root2 = (Parent) this.fxmlLoaderAdministrarProveedores.load();
 		this.scene2 = new Scene(this.root2);
 		this.controllerProveedores = this.fxmlLoaderAdministrarProveedores.<consultar_proveedores>getController();
-		this.controllerProveedores.inicializar(this.nombre.getText());
+		this.controllerProveedores.inicializar(this.nombre.getText(), this.rol_number);
 		this.proveedores.setScene(this.scene2);
 		this.proveedores.getIcons().add(this.icon); // agregamos el icono
 		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
