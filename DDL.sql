@@ -20,7 +20,7 @@ USE m_proyectodaw;
 
 DROP TABLE IF EXISTS `incidencias`;
 CREATE TABLE `incidencias` (
-  `id_incidencia` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `descripcion` varchar(85) COLLATE utf8mb4_general_ci NOT NULL,
   `elemento` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `incidencias` (
   `urgencia` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `categoria` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
   `materiales` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id_incidencia`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 

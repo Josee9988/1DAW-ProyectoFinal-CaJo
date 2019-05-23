@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.jdbcUsuarioDAO;
 
 public class agregar_usuarios {
 
@@ -41,16 +42,16 @@ public class agregar_usuarios {
 	@FXML
 	private Button agregarusuario;
 
-	private consultar_usuarios consultar_usuarios;
 	private Stage stage;
 	private usuarioDTO usuarioDTO;
+	private jdbcUsuarioDAO jdbcUsuarioDAO;
 
 	/**
 	 * agregar_usuarios constructor default que inicializa variables simples.
 	 */
 	public agregar_usuarios() {
-		this.consultar_usuarios = new consultar_usuarios();
 		this.usuarioDTO = new usuarioDTO();
+		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
 	}
 
 	/**
@@ -93,7 +94,7 @@ public class agregar_usuarios {
 		// agregará
 		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
 				|| this.apellidos.getText().isEmpty())) {
-			this.consultar_usuarios.agregarEnBaseDatos(this.usuarioDTO);
+			this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
 		}
 
 	}

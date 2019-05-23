@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.jdbcUbicacionDAO;
 
 public class agregar_ubicacion {
 	@FXML
@@ -26,35 +27,35 @@ public class agregar_ubicacion {
 	private Button agregarUbicacion;
 
 	private Stage stage;
-
-	private consultar_ubicaciones consultar;
-
+	private ubicacionDTO ubicacionDTO;
+	private jdbcUbicacionDAO jdbcUbicacionDAO;
 	/**
 	 * agregar_ubicacion constructor default que inicializa la clase
 	 * consultar_ubicaciones
 	 */
 	public agregar_ubicacion() {
-		this.consultar = new consultar_ubicaciones();
+		this.ubicacionDTO = new ubicacionDTO();
+		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
+
 	}
 
 	@FXML
 	/**
 	 * agregarUbicacion método que a través de los TextFields rellanados por el
 	 * usuario rellena un objeto ubicacionDTO y lo manda a la base de datos
-	 * 
+	 *
 	 * @throws SQLException por si ha habido una excepción SQL
 	 */
 	public void agregarUbicacion() throws SQLException {
-		ubicacionDTO ubicacionDTO = new ubicacionDTO();
-		ubicacionDTO.setNombre(this.nombre.getText());
-		ubicacionDTO.setDescripcion(this.descripcion.getText());
-		ubicacionDTO.setEdificio(this.edificio.getText());
-		ubicacionDTO.setPlanta(this.planta.getText());
+		this.ubicacionDTO.setNombre(this.nombre.getText());
+		this.ubicacionDTO.setDescripcion(this.descripcion.getText());
+		this.ubicacionDTO.setEdificio(this.edificio.getText());
+		this.ubicacionDTO.setPlanta(this.planta.getText());
 
 		// cerrar la ventana:
 		this.stage = (Stage) this.agregarUbicacion.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.consultar.agregarUbicacionEnBD(ubicacionDTO);
+		this.jdbcUbicacionDAO.agregarUbicacion(this.ubicacionDTO);
 
 	}
 

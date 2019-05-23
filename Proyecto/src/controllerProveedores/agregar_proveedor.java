@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.jdbcProveedoresDAO;
 
 public class agregar_proveedor {
 	@FXML
@@ -29,15 +30,17 @@ public class agregar_proveedor {
 	private Button agregarproveedor;
 
 	private Stage stage;
-
-	private consultar_proveedores consultar;
+	private proveedorDTO proveedorDTO;
+	private jdbcProveedoresDAO jdbcProveedoresDAO;
 
 	/**
 	 * agregar_proveedor constructor defult que inicializa el controller
 	 * consultar_proveedores
 	 */
 	public agregar_proveedor() {
-		this.consultar = new consultar_proveedores();
+		this.proveedorDTO = new proveedorDTO();
+		this.jdbcProveedoresDAO = new jdbcProveedoresDAO();
+
 	}
 
 	/**
@@ -59,15 +62,14 @@ public class agregar_proveedor {
 	 * @throws SQLException por is ha habido una excepción SQL
 	 */
 	public void agregarproveedor() throws SQLException {
-		proveedorDTO proveedorDTO = new proveedorDTO();
-		proveedorDTO.setNombre(this.nombre.getText());
-		proveedorDTO.setContacto(this.contacto.getText());
-		proveedorDTO.setDireccion(this.direccion.getText());
-		proveedorDTO.setValoracion(this.valoracion.getValue());
+		this.proveedorDTO.setNombre(this.nombre.getText());
+		this.proveedorDTO.setContacto(this.contacto.getText());
+		this.proveedorDTO.setDireccion(this.direccion.getText());
+		this.proveedorDTO.setValoracion(this.valoracion.getValue());
 		// cerrar la ventana:
 		this.stage = (Stage) this.agregarproveedor.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.consultar.agregarProveedorEnBD(proveedorDTO);
+		this.jdbcProveedoresDAO.agregarProveedor(this.proveedorDTO);
 	}
 
 }

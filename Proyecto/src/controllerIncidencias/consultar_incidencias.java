@@ -87,6 +87,7 @@ public class consultar_incidencias {
 	private Parent root2;
 	private Scene scene2;
 	private FXMLLoader fxmlLoaderagregar_fecha;
+	@SuppressWarnings("unused")
 	private agregar_fecha controller_agregar_fecha;
 	private static Date fechaSelected;
 
@@ -112,6 +113,7 @@ public class consultar_incidencias {
 		consultar_incidencias.idUbicacion = -1;
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
+		this.controller_agregar_fecha = new agregar_fecha();
 	}
 
 	/**
@@ -237,8 +239,6 @@ public class consultar_incidencias {
 						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
 								.<agregar_fecha>getController();
 						consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
-						consultar_incidencias.this.controller_agregar_fecha.inicializar(); // llamamos al método
-						// inicializar
 						consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
 						consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
 						// el
@@ -270,17 +270,6 @@ public class consultar_incidencias {
 		this.agregar_incidencia.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_incidencia.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.agregar_incidencia.show();
-	}
-
-	/**
-	 * agregarIncidenciaEnBD agregamos la incidencia creada en la base de datos
-	 *
-	 * @param incidenciaDTO objeto incidenciaDTO creada por el usuario
-	 * @throws SQLException si ha habido una excepción SQL
-	 */
-	public void agregarIncidenciaEnBD(incidenciaDTO incidenciaDTO) throws SQLException {
-		incidenciaDTO.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(incidenciaDTO.getUbicacion()));
-		this.bdincidencias.crearIncidencia(incidenciaDTO);
 	}
 
 	@FXML
@@ -333,7 +322,12 @@ public class consultar_incidencias {
 		}
 	}
 
-	// cuando se llama desde el agregar_fecha
+	/**
+	 * agregarFechaView cuando se llama desde el método agregar fecha, (el pop up)
+	 *
+	 * @param date fecha recibida del pop up de agregarfecha
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
 	public void agregarFechaView(Date date) throws SQLException {
 		consultar_incidencias.fechaSelected = date;
 		this.incidenciaSelected.setId(this.idselected); // id no cambiará
@@ -341,6 +335,13 @@ public class consultar_incidencias {
 
 	}
 
+	/**
+	 * agregarIncidenciaDeComboBox cuando se llama desde el método agregar
+	 * incidencia desde el combobox (el pop up)
+	 * 
+	 * @param idToReturn id recibida por el pop up del combobox (id seleccionada)
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
 	public void agregarIncidenciaDeComboBox(int idToReturn) throws SQLException {
 		consultar_incidencias.idUbicacion = idToReturn;
 	}

@@ -44,7 +44,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	@Override
 	public boolean eliminarIncidencia(int id) throws SQLException {
 		boolean resultado;
-		this.ps = this.connect.prepareStatement("DELETE FROM incidencias WHERE id_incidencia = ?");
+		this.ps = this.connect.prepareStatement("DELETE FROM incidencias WHERE id = ?");
 		this.ps.setInt(1, id);
 		if (this.ps.executeUpdate() == 1) {
 			resultado = true;
@@ -65,7 +65,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-			incidencias.add(new incidenciaDTO(this.rs.getInt("id_incidencia"), this.rs.getString("usuario"),
+			incidencias.add(new incidenciaDTO(this.rs.getInt("id"), this.rs.getString("usuario"),
 					this.rs.getString("descripcion"), this.rs.getString("elemento"), this.rs.getInt("ubicacion"),
 					this.rs.getDate("fecha"), this.rs.getString("urgencia"), this.rs.getString("categoria"),
 					this.rs.getString("materiales")));
@@ -78,7 +78,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		boolean resultado;
 		int n = 0;
 		this.ps = this.connect.prepareStatement(
-				"UPDATE incidencias SET usuario = ?, descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id_incidencia = ?");
+				"UPDATE incidencias SET usuario = ?, descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id = ?");
 
 		this.ps.setString(1, incidencia.getUsuario());
 		this.ps.setString(2, incidencia.getDescripcion());
@@ -120,12 +120,12 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	public ArrayList<Integer> leerIncidencias() throws SQLException {
 		ArrayList<Integer> incidencias = new ArrayList<>();
 
-		this.ps = this.connect.prepareStatement("SELECT id_incidencia FROM incidencias");
+		this.ps = this.connect.prepareStatement("SELECT id FROM incidencias");
 
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 
-			incidencias.add((this.rs.getInt("id_incidencia")));
+			incidencias.add((this.rs.getInt("id")));
 		}
 		return incidencias;
 	}
@@ -133,7 +133,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	@Override
 	public String obtenerNombreIncidencia(int id) throws SQLException {
 		String nombre = "";
-		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias WHERE id_incidencia = ? LIMIT 1");
+		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias WHERE id = ? LIMIT 1");
 		this.ps.setInt(1, id);
 
 		this.rs = this.ps.executeQuery();
@@ -148,12 +148,12 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	@Override
 	public int obtenerId(String descripcion) throws SQLException {
 		int idToReturn = 0;
-		this.ps = this.connect.prepareStatement("SELECT id_incidencia FROM incidencias WHERE descripcion = ? LIMIT 1");
+		this.ps = this.connect.prepareStatement("SELECT id FROM incidencias WHERE descripcion = ? LIMIT 1");
 		this.ps.setString(1, descripcion);
 
 		this.rs = this.ps.executeQuery();
 		if (this.rs.next()) {
-			idToReturn = this.rs.getInt("id_incidencia");
+			idToReturn = this.rs.getInt("id");
 		}
 		this.ps.close();
 		this.rs.close();

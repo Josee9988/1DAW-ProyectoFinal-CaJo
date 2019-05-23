@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
 import model.jdbcUsuarioDAO;
 
@@ -42,18 +43,22 @@ public class agregar_incidencia {
 
 	private Stage stage;
 
-	private consultar_incidencias consultar;
 
 	private String nombreCompleto;
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+	private incidenciaDTO incidenciaDTO;
+	private jdbcUsuarioDAO jdbcUsuarioDAO;
+	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
 
 	/**
 	 * agregar_incidencia constructor default que inicializa variables
 	 */
 	public agregar_incidencia() {
-		this.consultar = new consultar_incidencias();
 		this.nombreCompleto = "";
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
+		this.incidenciaDTO = new incidenciaDTO();
+		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
+		this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 	}
 
 	/**
@@ -84,29 +89,30 @@ public class agregar_incidencia {
 	 * @throws SQLException por si ha habido una excepción SQL
 	 */
 	public void agregarincidencia() throws SQLException {
-		incidenciaDTO incidenciaDTO = new incidenciaDTO();
-		jdbcUsuarioDAO jdbcUsuarioDAO = new jdbcUsuarioDAO();
 		String[] nombreYapellidos = this.nombreCompleto.split(" ");
 
-		incidenciaDTO.setUsuario(jdbcUsuarioDAO.leerUsuario(nombreYapellidos[0], nombreYapellidos[1]));
-		incidenciaDTO.setDescripcion(this.descripcion.getText());
-		incidenciaDTO.setElemento(this.elemento.getText());
+		this.incidenciaDTO.setUsuario(this.jdbcUsuarioDAO.leerUsuario(nombreYapellidos[0], nombreYapellidos[1]));
+		this.incidenciaDTO.setDescripcion(this.descripcion.getText());
+		this.incidenciaDTO.setElemento(this.elemento.getText());
 
 		// Si la fecha está vacia cogerá la actual
 		if (this.date.getValue() == null) {
 			java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-			incidenciaDTO.setFecha(sqlDate);
+			this.incidenciaDTO.setFecha(sqlDate);
 
 		} else {
 			Date date = java.sql.Date.valueOf(this.date.getValue());
-			incidenciaDTO.setFecha((java.sql.Date) date);
+			this.incidenciaDTO.setFecha((java.sql.Date) date);
 		}
-		incidenciaDTO.setUrgencia(this.urgencia.getText());
-		incidenciaDTO.setCategoria(this.categoria.getText());
-		incidenciaDTO.setUbicacion(this.ubicacion.getValue());
+		this.incidenciaDTO.setUrgencia(this.urgencia.getText());
+		this.incidenciaDTO.setCategoria(this.categoria.getText());
+		this.incidenciaDTO.setUbicacion(this.ubicacion.getValue());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.consultar.agregarIncidenciaEnBD(incidenciaDTO);
+
+		this.incidenciaDTO.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
+		this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
+
 	}
 
 }

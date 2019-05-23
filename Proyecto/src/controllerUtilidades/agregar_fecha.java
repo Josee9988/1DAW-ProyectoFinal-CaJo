@@ -20,12 +20,8 @@ public class agregar_fecha {
 
 	public agregar_fecha() {
 		this.consultar_incidencias = new consultar_incidencias();
-		this.stage = null;
 	}
 
-	public void inicializar() {
-
-	}
 
 	@FXML
 	public void aplicarFecha() throws SQLException {

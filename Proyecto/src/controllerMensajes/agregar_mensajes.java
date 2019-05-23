@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
+import model.jdbcMensajesDAO;
 import model.jdbcUsuarioDAO;
 
 public class agregar_mensajes {
@@ -35,23 +36,22 @@ public class agregar_mensajes {
 	private ObservableList<String> incidenciaBox;
 	private ObservableList<String> destinatarioBox;
 
-	private consultar_mensajes consultar_mensajes;
 	private Stage stage;
 	private String nombrecompleto;
 	private jdbcUsuarioDAO bdusuario;
 	private jdbcIncidenciasDAO incidencias;
+	private jdbcMensajesDAO jdbcMensajesDAO;
 	private mensajesDTO mensajesDTO;
 
 	/**
 	 * agregar_mensajes constructor default que inicializa variables
 	 */
 	public agregar_mensajes() {
-		this.consultar_mensajes = new consultar_mensajes();
-		this.stage = null;
 		this.bdusuario = new jdbcUsuarioDAO();
 		this.nombrecompleto = "";
 		this.incidencias = new jdbcIncidenciasDAO();
 		this.mensajesDTO = new mensajesDTO();
+		this.jdbcMensajesDAO = new jdbcMensajesDAO();
 	}
 
 	/**
@@ -100,7 +100,8 @@ public class agregar_mensajes {
 		this.mensajesDTO.setEmisor(idEmisor);
 		this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.consultar_mensajes.agregarEnBaseDatos(this.mensajesDTO);
+
+		this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);
 	}
 
 }

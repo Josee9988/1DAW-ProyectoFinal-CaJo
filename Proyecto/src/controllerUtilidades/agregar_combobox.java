@@ -91,18 +91,18 @@ public class agregar_combobox {
 	 */
 	public void aplicarBoton() throws SQLException {
 		int idToReturn = 0;
-		if (this.tipo == 0) { // si es una incidencia...
+		if (this.tipo == 0) { // si es una incidencia...(clase mensaje)
 			this.consultar_mensajes = new consultar_mensajes();
 			this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 			idToReturn = this.jdbcIncidenciasDAO.obtenerId(this.comboBox.getValue());
 			this.consultar_mensajes.agregarIncidenciaDeComboBox(idToReturn);
 
-		} else if (this.tipo == 1) { // si es una ubicación
+		} else if (this.tipo == 1) { // si es una ubicación (clase incidencia)
 			this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 			this.consultar_incidencias = new consultar_incidencias();
 			idToReturn = this.jdbcUbicacionDAO.obtenerIdUbicacion(this.comboBox.getValue());
 			this.consultar_incidencias.agregarIncidenciaDeComboBox(idToReturn);
-		} else {
+		} else { // usuarios clase usuario
 			int resultado = 0;
 			switch (this.comboBox.getValue()) {
 			case "Profesor":

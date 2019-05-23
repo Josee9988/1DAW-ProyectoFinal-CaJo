@@ -168,16 +168,6 @@ public class consultar_ubicaciones {
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
 	}
 
-	/**
-	 * agregarUbicacionEnBD agregamos el objeto ubicacionDTO en la base de datos
-	 *
-	 * @param ubicacion objeto ubicacionDTO creado por el usuario
-	 * @throws SQLException
-	 */
-	public void agregarUbicacionEnBD(ubicacionDTO ubicacion) throws SQLException {
-		this.bdubicaciones.agregarUbicacion(ubicacion);
-	}
-
 	// #####MODIFICACIONESs
 	@FXML
 	/**

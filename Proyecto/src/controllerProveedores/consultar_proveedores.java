@@ -203,17 +203,6 @@ public class consultar_proveedores {
 
 	}
 
-	/**
-	 * agregarProveedorEnBD agregamos el objeto proveedorDTO en la base de datos
-	 *
-	 * @param proveedor proveedorDTO que ha creado el usuario
-	 * @throws SQLException
-	 */
-	public void agregarProveedorEnBD(proveedorDTO proveedor) throws SQLException {
-		this.bdproveedores.agregarProveedor(proveedor);
-
-	}
-
 	// ##### MODIFICACIONES
 	@FXML
 	/**

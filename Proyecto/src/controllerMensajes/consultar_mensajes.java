@@ -270,16 +270,9 @@ public class consultar_mensajes {
 	}
 
 	/**
-	 * agregarEnBaseDatos recibimos el objeto mensajes que el usuario ha introducido
-	 * y lo agregamos en la base de datos
 	 *
-	 * @param mensajesDTO objeto mensajesDTO creado por el usuario
-	 * @throws SQLException
+	 * @param idToReturn
 	 */
-	public void agregarEnBaseDatos(mensajesDTO mensajesDTO) throws SQLException {
-		this.bdmensajes.crearMensaje(mensajesDTO);
-	}
-
 	public void agregarIncidenciaDeComboBox(int idToReturn) {
 		consultar_mensajes.incidenciaCombo = idToReturn;
 	}

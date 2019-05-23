@@ -71,7 +71,6 @@ public class consultar_usuarios {
 	private agregar_usuarios controller_agregar_usuarios;
 	private Image icon;
 
-	private jdbcUsuarioDAO dbusuario;
 	private String nombreCompleto;
 
 	usuarioDTO usuarioSelected;
@@ -94,9 +93,8 @@ public class consultar_usuarios {
 		this.usuarioSelected = new usuarioDTO();
 		this.idselected = -1;
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
-		this.dbusuario = new jdbcUsuarioDAO();
 		this.nombreCompleto = "";
-		idRolCombo = -1;
+		consultar_usuarios.idRolCombo = -1;
 	}
 
 	/**
@@ -208,22 +206,10 @@ public class consultar_usuarios {
 	}
 
 	/**
-	 * agregarEnBaseDatos agrega el objeto usuarioDTO en la base de datos
-	 *
-	 * @param user objeto usuarioDTO creado por el usuario
-	 * @throws SQLException              si hay una excepción de SQL
-	 * @throws InvalidKeyException       si la key de la encriptación falla
-	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
-	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
-	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
-	 *                                   siempre 32)
-	 * @throws BadPaddingException       por si el formato no es el correcto
+	 * agregarRolDeComboBox se llama cuando se envía el pop up de combobox.
+	 * 
+	 * @param resultado es el entero con el rol que ha seleccionado
 	 */
-	public void agregarEnBaseDatos(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-		this.dbusuario.crearUsuario(user);// lo agrega en la base de datos
-	}
-
 	public void agregarRolDeComboBox(int resultado) {
 		consultar_usuarios.idRolCombo = resultado;
 
@@ -290,8 +276,8 @@ public class consultar_usuarios {
 				this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 			}
 
-			if (idRolCombo != -1) {
-				this.usuarioSelected.setRol(idRolCombo);
+			if (consultar_usuarios.idRolCombo != -1) {
+				this.usuarioSelected.setRol(consultar_usuarios.idRolCombo);
 			}
 
 			this.idselected = -1;
