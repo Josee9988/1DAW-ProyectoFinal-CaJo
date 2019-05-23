@@ -45,6 +45,7 @@ public class agregar_incidencia {
 	private consultar_incidencias consultar;
 
 	private String nombreCompleto;
+	private jdbcUbicacionDAO jdbcUbicacionDAO;
 
 	/**
 	 * agregar_incidencia constructor default que inicializa variables
@@ -52,6 +53,7 @@ public class agregar_incidencia {
 	public agregar_incidencia() {
 		this.consultar = new consultar_incidencias();
 		this.nombreCompleto = "";
+		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 	}
 
 	/**
@@ -63,8 +65,7 @@ public class agregar_incidencia {
 	 */
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.nombreCompleto = nombreCompleto;
-		jdbcUbicacionDAO jdbcUbicacionDAO = new jdbcUbicacionDAO();
-		ArrayList<String> ubicacionesArray = jdbcUbicacionDAO.leerNombresUbicaciones();
+		ArrayList<String> ubicacionesArray = this.jdbcUbicacionDAO.leerNombresUbicaciones();
 
 		ObservableList<String> ubicacionBox = FXCollections.observableArrayList(ubicacionesArray);
 		this.ubicacion.setItems(ubicacionBox);

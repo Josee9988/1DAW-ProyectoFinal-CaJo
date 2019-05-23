@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
+import model.jdbcUsuarioDAO;
 
 public class consultar_incidencias {
 
@@ -68,6 +69,7 @@ public class consultar_incidencias {
 	private Button resolverI;
 
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+	private jdbcUsuarioDAO jdbcUsuarioDAO;
 
 	private int idselected;
 	private incidenciaDTO incidenciaSelected;
@@ -109,6 +111,7 @@ public class consultar_incidencias {
 		this.rol = 0;
 		consultar_incidencias.idUbicacion = -1;
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
+		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
 	}
 
 	/**
@@ -137,9 +140,12 @@ public class consultar_incidencias {
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
 
+		String nombreCompletoArray[] = nombreCompleto.split(" ");
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
 		arrayIncidenciaToAdd.addAll(
-				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
+				this.bdincidencias.leerIncidencias(
+						new usuarioDTO(this.jdbcUsuarioDAO.leerUsuario(nombreCompletoArray[0], nombreCompletoArray[1]),
+								this.rol_number)));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
 		}
