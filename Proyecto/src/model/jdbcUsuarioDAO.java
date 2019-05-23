@@ -211,4 +211,18 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		return usuario;
 	}
 
+	public boolean userEncontrado(String user) throws SQLException {
+		boolean encontrado = false;
+		this.ps = this.connect.prepareStatement("SELECT user FROM usuarios WHERE user = ?");
+		this.ps.setString(1, user);
+
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			encontrado = true;
+		}
+
+		return encontrado;
+
+	}
+
 }

@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcUsuarioDAO;
 
@@ -41,6 +42,8 @@ public class agregar_usuarios {
 	private ComboBox<String> rol;
 	@FXML
 	private Button agregarusuario;
+	@FXML
+	private Text textoError;
 
 	private Stage stage;
 	private usuarioDTO usuarioDTO;
@@ -94,7 +97,12 @@ public class agregar_usuarios {
 		// agregará
 		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
 				|| this.apellidos.getText().isEmpty())) {
-			this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
+			if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
+				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
+			} else {
+				this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
+
+			}
 		}
 
 	}

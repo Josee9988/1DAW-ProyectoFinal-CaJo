@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -59,5 +60,20 @@
             <Font name="Ubuntu Bold" size="17.0" />
          </font>
       </Button>
+      <Text fx:id="textoError" layoutX="386.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="24.719970703125">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.03365384615384615">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="0.007407407407407408" />
+                  <Stop color="RED" offset="0.4703703703703704" />
+                  <Stop color="RED" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
    </children>
 </Pane>
