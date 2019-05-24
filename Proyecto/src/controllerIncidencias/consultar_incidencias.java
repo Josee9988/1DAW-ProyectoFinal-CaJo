@@ -33,7 +33,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
-import model.jdbcUsuarioDAO;
 
 public class consultar_incidencias {
 
@@ -69,7 +68,6 @@ public class consultar_incidencias {
 	private Button resolverI;
 
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
-	private jdbcUsuarioDAO jdbcUsuarioDAO;
 
 	private int idselected;
 	private incidenciaDTO incidenciaSelected;
@@ -112,8 +110,6 @@ public class consultar_incidencias {
 		this.rol = 0;
 		consultar_incidencias.idUbicacion = -1;
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
-		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
-		this.controller_agregar_fecha = new agregar_fecha();
 	}
 
 	/**
@@ -126,7 +122,7 @@ public class consultar_incidencias {
 	 */
 	public void inicializar(String nombreCompleto, int rol) throws SQLException {
 		if (rol == 1 || rol == 2) {// si es un profesor o un jefe no podrá resolver incidencias, no mostramos el
-									// botón
+			// botón
 			this.resolverI.setVisible(false);
 		}
 		this.rol_number = rol;
@@ -142,12 +138,9 @@ public class consultar_incidencias {
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
 
-		String nombreCompletoArray[] = nombreCompleto.split(" ");
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
 		arrayIncidenciaToAdd.addAll(
-				this.bdincidencias.leerIncidencias(
-						new usuarioDTO(this.jdbcUsuarioDAO.leerUsuario(nombreCompletoArray[0], nombreCompletoArray[1]),
-								this.rol_number)));
+				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
 		}
@@ -202,21 +195,21 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_ubicacion = consultar_incidencias.this.fxmlLoaderagregar_ubicacion
 								.<agregar_combobox>getController();
-						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
-						try {
-							consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método
-							// inicializar
-						consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
-						consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						// el
-						// icono
-						consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el
-						// título
-						// de la ventana
-						consultar_incidencias.this.agregar_ubicacion.show();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
+								consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el
+								// título
+								// de la ventana
+								consultar_incidencias.this.agregar_ubicacion.show();
 					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
 						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
@@ -238,14 +231,17 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
 								.<agregar_fecha>getController();
-						consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
-						consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
-						consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						// el
-						// icono
-						consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
-						// de la ventana
-						consultar_incidencias.this.agregar_fecha.show();
+								consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
+								// consultar_incidencias.this.controller_agregar_fecha.inicializar(); //
+								// llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
+								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_incidencias.this.agregar_fecha.show();
 					}
 				}
 			}
@@ -272,6 +268,7 @@ public class consultar_incidencias {
 		this.agregar_incidencia.show();
 	}
 
+
 	@FXML
 	/**
 	 * modificarIncidencia modifica una incidencia al ser modificada o abre una
@@ -288,7 +285,7 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
@@ -338,7 +335,7 @@ public class consultar_incidencias {
 	/**
 	 * agregarIncidenciaDeComboBox cuando se llama desde el método agregar
 	 * incidencia desde el combobox (el pop up)
-	 * 
+	 *
 	 * @param idToReturn id recibida por el pop up del combobox (id seleccionada)
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
