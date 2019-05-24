@@ -1,5 +1,6 @@
-/view/
-/controllerProveedores/
-/controllerIncidencias/
-/controllerUtilidades/
 /controllerUsuarios/
+/controllerUtilidades/
+/controllerUbicaciones/
+/controllerProveedores/
+/controllerMensajes/
+/controllerIncidencias/

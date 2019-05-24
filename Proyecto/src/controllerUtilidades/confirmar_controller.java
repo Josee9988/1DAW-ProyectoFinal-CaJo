@@ -36,6 +36,9 @@ public class confirmar_controller {
 	private consultar_mensajes consultar_mensajes;
 	private consultar_incidencias consultar_incidencias;
 
+	/**
+	 * constructor default que inicializa las variables necesarias
+	 */
 	public confirmar_controller() {
 		this.clase = 0;
 		this.idSeleccionada = 0;
@@ -59,19 +62,35 @@ public class confirmar_controller {
 	}
 
 	@FXML
-	public void eliminar() throws SQLException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException {
+	/**
+	 * comprueba de qué clase se trara y llama al método de la clase consultar_...
+	 * para que elimine en la base de datos
+	 *
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 * @throws SQLException              si ha habido una excepción SQL
+	 */
+	public void eliminar() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		if (this.clase == 0) { // usuario
 			this.consultar_usuarios = new consultar_usuarios();
 			this.consultar_usuarios.eliminarUsuarioBD(this.idSeleccionada);
 		} else if (this.clase == 1) { // ubicaciones
 			this.consultar_ubicaciones = new consultar_ubicaciones();
+			this.consultar_ubicaciones.eliminarUbicacionBD(this.idSeleccionada);
 		} else if (this.clase == 2) { // proveedores
 			this.consultar_proveedores = new consultar_proveedores();
+			this.consultar_proveedores.eliminarProveedorBD(this.idSeleccionada);
 		} else if (this.clase == 3) { // mensajes
 			this.consultar_mensajes = new consultar_mensajes();
+			this.consultar_mensajes.eliminarMensajeBD(this.idSeleccionada);
 		} else { // incidencias
 			this.consultar_incidencias = new consultar_incidencias();
+			this.consultar_incidencias.eliminarIncidenciaBD(this.idSeleccionada);
 		}
 
 
@@ -82,7 +101,8 @@ public class confirmar_controller {
 
 	@FXML
 	/**
-	 * si pulsa el botón cancelar símplemente se cerrará la ventana y nada pasará
+	 * si pulsa el botón cancelar símplemente se cerrará la ventana y no se
+	 * eliminará nada
 	 */
 	public void cancelar() {
 		this.stage = (Stage) this.eliminar.getScene().getWindow(); // seleccionamos la escena actual

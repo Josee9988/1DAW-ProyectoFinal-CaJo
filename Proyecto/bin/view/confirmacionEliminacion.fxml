@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="295.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUtilidades.confirmar_controller">
+   <children>
+      <Label layoutX="13.0" layoutY="14.0" text="¿Eliminar permanentemente?" textFill="#792525">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="eliminar" layoutX="172.0" layoutY="130.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #ff3333;" text="ELIMINAR">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="14.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="48.0" layoutY="38.0" prefHeight="81.0" prefWidth="200.0" text="El objeto seleccionado se &#10;eliminará permanentemente, &#10;y no podrá ser recuperado,&#10;¿está seguro?" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Liberation Sans" size="13.0" />
+         </font></Label>
+      <Button layoutX="19.0" layoutY="130.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #4CAF50;" text="CANCELAR">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

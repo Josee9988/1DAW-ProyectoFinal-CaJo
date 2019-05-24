@@ -96,15 +96,15 @@ public class agregar_usuarios {
 		// agregará
 		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
 				|| this.apellidos.getText().isEmpty())) {
-			this.textoError.setText("ERROR!: Rellene todos los campos");
 			if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
 				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
 			} else {
 				this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 			}
+		} else {
+			this.textoError.setText("ERROR!: Rellene todos los campos");
 		}
-
 	}
 
 	/**

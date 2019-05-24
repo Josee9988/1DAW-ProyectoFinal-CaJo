@@ -13,6 +13,7 @@ import java.util.Date;
 
 import controllerUtilidades.agregar_combobox;
 import controllerUtilidades.agregar_fecha;
+import controllerUtilidades.confirmar_controller;
 import dto.incidenciaDTO;
 import dto.usuarioDTO;
 import javafx.event.EventHandler;
@@ -101,6 +102,13 @@ public class consultar_incidencias {
 	private FXMLLoader fxmlLoaderagregar_ubicacion;
 	private agregar_combobox controller_agregar_ubicacion;
 	private static int idUbicacion;
+
+	// pop up de confirmación de eliminación
+	private Stage confirmacion_eliminacion;
+	private Parent rootEliminacion;
+	private Scene sceneEliminacion;
+	private FXMLLoader fxmlLoaderagregar_eliminacion;
+	private confirmar_controller controller_confirmar_controller;
 
 	/**
 	 * consultar_incidencias constructor default el cual inicializa valores
@@ -356,16 +364,40 @@ public class consultar_incidencias {
 
 	@FXML
 	/**
-	 * eliminarIncidencia elimina la incidencia seleccionada del tableview y la base
-	 * de datos
+	 * eliminarIncidencia abre una pestaña de confirmación con un botón eliminar el
+	 * cuál llamará a un método para eliminar el incidencias o por lo contrario
+	 * cancelar símplemente cerrará la ventana actual.
 	 *
 	 * @throws SQLException si ha habido una excepción SQL
+	 * @param IOExcepcion si ha habido una excepción IO
 	 */
-	public void eliminarIncidencia() throws SQLException {
-		this.bdincidencias.eliminarIncidencia(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo
-		// eliminamos
-		// en la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
+	public void eliminarIncidencia() throws SQLException, IOException {
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			// creamos la escena
+			this.confirmacion_eliminacion = new Stage();
+			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+					.<confirmar_controller>getController();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(4,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar incidencia"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
+		}
+	}
+
+	/**
+	 * elimina la incidencia en la base de datos
+	 *
+	 * @param id, recibe la id a eliminar en la base de datos
+	 * @throws SQLException si hay una excepción de SQL
+	 */
+	public void eliminarIncidenciaBD(int id) throws SQLException {
+		this.bdincidencias.eliminarIncidencia(id);
 	}
 
 	@FXML

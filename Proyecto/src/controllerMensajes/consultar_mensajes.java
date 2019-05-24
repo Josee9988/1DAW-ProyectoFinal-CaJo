@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import controllerUtilidades.agregar_combobox;
+import controllerUtilidades.confirmar_controller;
 import dto.mensajesDTO;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -79,6 +80,13 @@ public class consultar_mensajes {
 	private FXMLLoader fxmlLoaderagregar_combo;
 	private agregar_combobox controller_agregar_combo;
 	private static int incidenciaCombo;
+
+	// pop up de confirmación de eliminación
+	private Stage confirmacion_eliminacion;
+	private Parent rootEliminacion;
+	private Scene sceneEliminacion;
+	private FXMLLoader fxmlLoaderagregar_eliminacion;
+	private confirmar_controller controller_confirmar_controller;
 
 	/**
 	 * consultar_mensajes constructor default que inicializa valores
@@ -178,20 +186,20 @@ public class consultar_mensajes {
 
 						consultar_mensajes.this.controller_agregar_combo = consultar_mensajes.this.fxmlLoaderagregar_combo
 								.<agregar_combobox>getController();
-						consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
-						try {
-							consultar_mensajes.this.controller_agregar_combo.inicializar(0);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método
-							// inicializar
-						consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
-						consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
-						// el
-						// icono
-						consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
-						// de la ventana
-						consultar_mensajes.this.agregar_combobox.show();
+								consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
+								try {
+									consultar_mensajes.this.controller_agregar_combo.inicializar(0);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
+								consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
+								// el
+								// icono
+								consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_mensajes.this.agregar_combobox.show();
 					}
 				}
 			}
@@ -259,14 +267,50 @@ public class consultar_mensajes {
 
 	@FXML
 	/**
-	 * eliminarMensaje elimina un mensaje el cual ha sido seleccionado
+	 * eliminarMensaje abre una pestaña de confirmación con un botón eliminar el
+	 * cuál llamará a un método para eliminar el mensajes o por lo contrario
+	 * cancelar símplemente cerrará la ventana actual.
 	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 * @param IOExcepcion si ha habido una excepción IO
+	 *
 	 */
-	public void eliminarMensaje() throws SQLException {
-		this.bdmensajes.eliminarMensajes(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
-		// en la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
+	public void eliminarMensaje() throws SQLException, IOException {
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			// creamos la escena
+			this.confirmacion_eliminacion = new Stage();
+			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+					.<confirmar_controller>getController();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(3,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+					// al
+					// método
+					// inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar mensaje"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
+		}
+		/*
+		 * this.bdmensajes.eliminarMensajes(this.tabla.getSelectionModel().
+		 * getSelectedItem().getId()); // lo eliminamos // en la bd
+		 * this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()
+		 * ); // lo eliminamos en la tabla
+		 */
+	}
+
+	/**
+	 * elimina el mensaje en la base de datos
+	 *
+	 * @param id, recibe la id a eliminar en la base de datos
+	 * @throws SQLException si hay una excepción de SQL
+	 */
+	public void eliminarMensajeBD(int id) throws SQLException {
+		this.bdmensajes.eliminarMensajes(id);
 	}
 
 	/**

@@ -115,7 +115,7 @@ public class consultar_usuarios {
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
-		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+		this.id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
 		this.password.setCellValueFactory(new PropertyValueFactory<>("Password"));
 		this.rol.setCellValueFactory(new PropertyValueFactory<>("RolS"));
@@ -318,23 +318,29 @@ public class consultar_usuarios {
 	 * abre una pestaña de confirmación con un botón eliminar el cuál llamará a un
 	 * método para eliminar el usuario o por lo contrario cancelar símplemente
 	 * cerrará la ventana actual.
+	 *
+	 * @param IOException si ha habido una excepción de tipo IO
 	 */
 	public void eliminarUsuario() throws IOException { // boton eliminar
-		// creamos la escena
-		this.confirmacion_eliminacion = new Stage();
-		this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
-				this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
-		this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
-		this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion.<confirmar_controller>getController();
-		this.sceneEliminacion = new Scene(this.rootEliminacion);
-		this.controller_confirmar_controller.inicializar(0, this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
-		// al
-		// método
-		// inicializar
-		this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-		this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-		this.confirmacion_eliminacion.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
-		this.confirmacion_eliminacion.show();
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			// creamos la escena
+			this.confirmacion_eliminacion = new Stage();
+			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+					.<confirmar_controller>getController();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(0,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+					// al
+					// método
+					// inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar usuario"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
+		}
 	}
 
 
@@ -342,22 +348,17 @@ public class consultar_usuarios {
 	 * eliminarUsuario elimina un usuario en la base de datos y en el tableview
 	 *
 	 * @param id,   recibe la id a eliminar en la base de datos
-	 * @param fila, recibe la fila a eliminar en la tableview para que no tengamos
-	 *              que refrescar
 	 * @throws SQLException              si hay una excepción de SQL
-	 * @throws NoSuchPaddingException
-	 * @throws NoSuchAlgorithmException
-	 * @throws BadPaddingException
-	 * @throws IllegalBlockSizeException
-	 * @throws InvalidKeyException
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void eliminarUsuarioBD(int id) throws SQLException, InvalidKeyException,
 	IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
-		this.bdusuarios.eliminarUsuario(id); // lo eliminamos en
-		// la bd
-		// this.tabla.getItems().remove(fila); // lo eliminamos en la tabla
-		this.tabla.getItems().clear(); // borramos todos los datos
-		this.inicializar(this.nombreCompleto);
+		this.bdusuarios.eliminarUsuario(id); // lo eliminamos en la bd
 	}
 
 	// ######################### MODIFICACIONES #########################

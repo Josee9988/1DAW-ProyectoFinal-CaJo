@@ -16,6 +16,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import controllerUtilidades.confirmar_controller;
 import dto.incidenciaDTO;
 import dto.proveedorDTO;
 import javafx.fxml.FXML;
@@ -73,6 +74,13 @@ public class consultar_proveedores {
 	private int idselected;
 	private proveedorDTO proveedorDTO;
 	private int rol;
+
+	// pop up de confirmación de eliminación
+	private Stage confirmacion_eliminacion;
+	private Parent rootEliminacion;
+	private Scene sceneEliminacion;
+	private FXMLLoader fxmlLoaderagregar_eliminacion;
+	private confirmar_controller controller_confirmar_controller;
 
 	/**
 	 * consultar_proveedores constructor default inicializa valores necesarios
@@ -178,14 +186,40 @@ public class consultar_proveedores {
 
 	@FXML
 	/**
-	 * eliminarProveedor elimina un proveedor seleccionado
+	 * eliminarProveedor abre una pestaña de confirmación con un botón eliminar el
+	 * cuál llamará a un método para eliminar el proveedor o por lo contrario
+	 * cancelar símplemente cerrará la ventana actual.
 	 *
+	 * @param IOExcepcion si ha habido una excepción IO
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
-	public void eliminarProveedor() throws SQLException {
-		this.bdproveedores.eliminarProveedor(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
-		// en la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
+	public void eliminarProveedor() throws SQLException, IOException {
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			// creamos la escena
+			this.confirmacion_eliminacion = new Stage();
+			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+					.<confirmar_controller>getController();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(2,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar proveedor"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
+		}
+	}
+
+	/**
+	 * elimina un proveedor en la base de datos
+	 *
+	 * @param id, recibe la id a eliminar en la base de datos
+	 * @throws SQLException si hay una excepción de SQL
+	 */
+	public void eliminarProveedorBD(int id) throws SQLException {
+		this.bdproveedores.eliminarProveedor(id);
 	}
 
 	@FXML
@@ -196,7 +230,7 @@ public class consultar_proveedores {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto, this.rol);
 		// this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());

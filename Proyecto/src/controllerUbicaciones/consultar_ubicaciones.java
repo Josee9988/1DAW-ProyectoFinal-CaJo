@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import controllerUtilidades.confirmar_controller;
 import dto.ubicacionDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +55,13 @@ public class consultar_ubicaciones {
 	private Image icon;
 	private int idselected;
 	private ubicacionDTO ubicacionDTO;
+
+	// pop up de confirmación de eliminación
+	private Stage confirmacion_eliminacion;
+	private Parent rootEliminacion;
+	private Scene sceneEliminacion;
+	private FXMLLoader fxmlLoaderagregar_eliminacion;
+	private confirmar_controller controller_confirmar_controller;
 
 	/**
 	 * consultar_ubicaciones constructor default que inicializa variables.
@@ -149,11 +157,44 @@ public class consultar_ubicaciones {
 	 * eliminarUbicacion elimina una ubicación seleccionada
 	 *
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 * @param IOExcepcion si ha habido una excepción IO
 	 */
-	public void eliminarUbicacion() throws SQLException {
-		this.bdubicaciones.eliminarUbicacion(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos
+	public void eliminarUbicacion() throws SQLException, IOException {
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			// creamos la escena
+			this.confirmacion_eliminacion = new Stage();
+			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+					.<confirmar_controller>getController();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(1,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+					// al
+					// método
+					// inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
+		}
+
+		// this.bdubicaciones.eliminarUbicacion(this.tabla.getSelectionModel().getSelectedItem().getId());
+		// // lo eliminamos
 		// en la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
+		// this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem());
+		// // lo eliminamos en la tabla
+	}
+
+	/**
+	 * elimina una ubicacion en la base de datos
+	 *
+	 * @param id, recibe la id a eliminar en la base de datos
+	 * @throws SQLException si hay una excepción de SQL
+	 */
+	public void eliminarUbicacionBD(int id) throws SQLException {
+		this.bdubicaciones.eliminarUbicacion(id);
 	}
 
 	@FXML
