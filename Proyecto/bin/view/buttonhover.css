@@ -6,14 +6,19 @@
 .button{
 	-fx-background-radius: 6px;
 	-fx-border-radius: 6px;
+	-fx-border-width: 0.175px;
+	-fx-border-color: black;
+	
 }
 
 .button:hover{
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+		-fx-border-width: 0.55px;
 }
 
 .button:pressed{
 	-fx-effect: dropshadow(three-pass-box, grey, 40, 0, 0, 0);
+	-fx-border-width: 0.75px;
 }
 
 .combo-box.center-aligned>.list-cell {

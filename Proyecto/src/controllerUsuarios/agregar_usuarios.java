@@ -96,6 +96,7 @@ public class agregar_usuarios {
 		// agregará
 		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
 				|| this.apellidos.getText().isEmpty())) {
+			this.textoError.setText("ERROR!: Rellene todos los campos");
 			if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
 				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
 			} else {
@@ -111,7 +112,7 @@ public class agregar_usuarios {
 	 * traduce a entero para guardarlo en la base de datos
 	 *
 	 * @return resultado entero que contiene el valor entre 1 y 4 referido a los
-	 *         roles
+	 *         roles7
 	 */
 	public int traducirComboBox() {
 		int resultado = 0;

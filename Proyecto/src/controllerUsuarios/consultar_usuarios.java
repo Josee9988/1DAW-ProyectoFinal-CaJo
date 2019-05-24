@@ -18,6 +18,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import controllerUtilidades.agregar_combobox;
+import controllerUtilidades.confirmar_controller;
 import dto.usuarioDTO;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -84,6 +85,13 @@ public class consultar_usuarios {
 	private agregar_combobox controller_agregar_combo;
 	private static int idRolCombo;
 
+	// pop up de confirmación de eliminación
+	private Stage confirmacion_eliminacion;
+	private Parent rootEliminacion;
+	private Scene sceneEliminacion;
+	private FXMLLoader fxmlLoaderagregar_eliminacion;
+	private confirmar_controller controller_confirmar_controller;
+
 	/**
 	 * consultar_usuarios constructor parametrizado que inicializa variables.
 	 */
@@ -105,7 +113,7 @@ public class consultar_usuarios {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void inicializar(String nombreCompleto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.nombreCompleto = nombreCompleto;
 		this.id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		this.usuario.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -185,19 +193,19 @@ public class consultar_usuarios {
 
 						consultar_usuarios.this.controller_agregar_combo = consultar_usuarios.this.fxmlLoaderagregar_combo
 								.<agregar_combobox>getController();
-						consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
-						try {
-							consultar_usuarios.this.controller_agregar_combo.inicializar(2);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método inicializar
+								consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
+								try {
+									consultar_usuarios.this.controller_agregar_combo.inicializar(2);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método inicializar
 
-						consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
-						consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
-						// el icono
-						consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
-						// de la ventana
-						consultar_usuarios.this.agregar_combobox.show();
+								consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
+								consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
+								// el icono
+								consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								// de la ventana
+								consultar_usuarios.this.agregar_combobox.show();
 					}
 				}
 			}
@@ -207,7 +215,7 @@ public class consultar_usuarios {
 
 	/**
 	 * agregarRolDeComboBox se llama cuando se envía el pop up de combobox.
-	 * 
+	 *
 	 * @param resultado es el entero con el rol que ha seleccionado
 	 */
 	public void agregarRolDeComboBox(int resultado) {
@@ -250,7 +258,7 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void modificarUsuario() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
+	IllegalBlockSizeException, BadPaddingException, SQLException { // boton modificar
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
@@ -300,26 +308,56 @@ public class consultar_usuarios {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
-		// this.idselected = -1;
-		// this.usuarioSelected = new usuarioDTO();
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto);
-		// this.tabla.getItems().addAll(this.bdusuarios.leerUsuarios());
-
 	}
 
 	@FXML
 	/**
+	 * abre una pestaña de confirmación con un botón eliminar el cuál llamará a un
+	 * método para eliminar el usuario o por lo contrario cancelar símplemente
+	 * cerrará la ventana actual.
+	 */
+	public void eliminarUsuario() throws IOException { // boton eliminar
+		// creamos la escena
+		this.confirmacion_eliminacion = new Stage();
+		this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+				this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+		this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+		this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion.<confirmar_controller>getController();
+		this.sceneEliminacion = new Scene(this.rootEliminacion);
+		this.controller_confirmar_controller.inicializar(0, this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+		// al
+		// método
+		// inicializar
+		this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+		this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+		this.confirmacion_eliminacion.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.confirmacion_eliminacion.show();
+	}
+
+
+	/**
 	 * eliminarUsuario elimina un usuario en la base de datos y en el tableview
 	 *
-	 * @throws SQLException si hay una excepción de SQL
+	 * @param id,   recibe la id a eliminar en la base de datos
+	 * @param fila, recibe la fila a eliminar en la tableview para que no tengamos
+	 *              que refrescar
+	 * @throws SQLException              si hay una excepción de SQL
+	 * @throws NoSuchPaddingException
+	 * @throws NoSuchAlgorithmException
+	 * @throws BadPaddingException
+	 * @throws IllegalBlockSizeException
+	 * @throws InvalidKeyException
 	 */
-	public void eliminarUsuario() throws SQLException { // boton eliminar
-		this.bdusuarios.eliminarUsuario(this.tabla.getSelectionModel().getSelectedItem().getId()); // lo eliminamos en
+	public void eliminarUsuarioBD(int id) throws SQLException, InvalidKeyException,
+	IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+		this.bdusuarios.eliminarUsuario(id); // lo eliminamos en
 		// la bd
-		this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem()); // lo eliminamos en la tabla
-
+		// this.tabla.getItems().remove(fila); // lo eliminamos en la tabla
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.inicializar(this.nombreCompleto);
 	}
 
 	// ######################### MODIFICACIONES #########################
