@@ -11,6 +11,7 @@ import dto.ubicacionDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcUbicacionDAO;
 
@@ -25,6 +26,8 @@ public class agregar_ubicacion {
 	private TextField planta;
 	@FXML
 	private Button agregarUbicacion;
+	@FXML
+	private Text textoError;
 
 	private Stage stage;
 	private ubicacionDTO ubicacionDTO;
@@ -54,9 +57,14 @@ public class agregar_ubicacion {
 
 		// cerrar la ventana:
 		this.stage = (Stage) this.agregarUbicacion.getScene().getWindow(); // seleccionamos la escena actual
-		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.jdbcUbicacionDAO.agregarUbicacion(this.ubicacionDTO);
 
+		if (this.nombre.getText().isEmpty() || this.descripcion.getText().isEmpty() || this.edificio.getText().isEmpty()
+				|| this.planta.getText().isEmpty()) {
+			this.textoError.setText("Rellena todos los campos");
+		} else {
+			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+			this.jdbcUbicacionDAO.agregarUbicacion(this.ubicacionDTO);
+		}
 	}
 
 }

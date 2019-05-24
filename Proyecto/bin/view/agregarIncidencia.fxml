@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -59,5 +60,24 @@
          </font>
       </Label>
       <ComboBox fx:id="ubicacion" layoutX="73.0" layoutY="339.0" prefHeight="25.0" prefWidth="93.0" promptText="ubicacion" />
+      <TextFlow layoutX="12.0" layoutY="7.0" prefHeight="33.0" prefWidth="577.0">
+         <children>
+            <Text fx:id="textoError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.719970703125">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.03365384615384615">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="BLACK" offset="0.007407407407407408" />
+                        <Stop color="RED" offset="0.4703703703703704" />
+                        <Stop color="RED" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="Ubuntu Bold Italic" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
    </children>
 </Pane>

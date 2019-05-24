@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcProveedoresDAO;
 
@@ -28,6 +29,8 @@ public class agregar_proveedor {
 	private TextField direccion;
 	@FXML
 	private Button agregarproveedor;
+	@FXML
+	private Text textoError;
 
 	private Stage stage;
 	private proveedorDTO proveedorDTO;
@@ -68,8 +71,15 @@ public class agregar_proveedor {
 		this.proveedorDTO.setValoracion(this.valoracion.getValue());
 		// cerrar la ventana:
 		this.stage = (Stage) this.agregarproveedor.getScene().getWindow(); // seleccionamos la escena actual
-		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-		this.jdbcProveedoresDAO.agregarProveedor(this.proveedorDTO);
+
+		if (this.nombre.getText().isEmpty() || this.contacto.getText().isEmpty()
+				|| this.direccion.getText().isEmpty()) {
+			this.textoError.setText("Rellena todos los campos");
+
+		} else {
+			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+			this.jdbcProveedoresDAO.agregarProveedor(this.proveedorDTO);
+		}
 	}
 
 }

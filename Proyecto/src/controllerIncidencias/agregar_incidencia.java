@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
@@ -40,6 +41,8 @@ public class agregar_incidencia {
 	private ComboBox<String> ubicacion;
 	@FXML
 	private Button agregarincidencia;
+	@FXML
+	private Text textoError;
 
 	private Stage stage;
 
@@ -108,11 +111,15 @@ public class agregar_incidencia {
 		this.incidenciaDTO.setCategoria(this.categoria.getText());
 		this.incidenciaDTO.setUbicacion(this.ubicacion.getValue());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
-		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 
-		this.incidenciaDTO.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
-		this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
-
+		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()
+				|| this.urgencia.getText().isEmpty() || this.categoria.getText().isEmpty()) {
+			this.textoError.setText("Rellena todos los campos");
+		} else {
+			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+			this.incidenciaDTO.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
+			this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
+		}
 	}
 
 }
