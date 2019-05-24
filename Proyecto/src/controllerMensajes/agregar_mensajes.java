@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcMensajesDAO;
@@ -32,6 +33,8 @@ public class agregar_mensajes {
 	private ComboBox<String> destinatario;
 	@FXML
 	private Button agregarmensaje;
+	@FXML
+	private Text textoError;
 
 	private ObservableList<String> incidenciaBox;
 	private ObservableList<String> destinatarioBox;
@@ -99,9 +102,16 @@ public class agregar_mensajes {
 		int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
 		this.mensajesDTO.setEmisor(idEmisor);
 		this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
-		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 
-		this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);
+		if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty() || this.incidencia.getValue().equals("")
+				|| this.destinatario.getValue().equals("")) {
+			this.textoError.setText("Rellena todos los campos");
+
+		} else {
+			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+			this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);
+		}
+
 	}
 
 }
