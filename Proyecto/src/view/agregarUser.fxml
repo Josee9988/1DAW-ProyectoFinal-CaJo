@@ -60,7 +60,7 @@
             <Font name="Ubuntu Bold" size="17.0" />
          </font>
       </Button>
-      <Text fx:id="textoError" layoutX="386.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="24.719970703125">
+      <Text fx:id="textoError" layoutX="60.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.719970703125">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
          </font>

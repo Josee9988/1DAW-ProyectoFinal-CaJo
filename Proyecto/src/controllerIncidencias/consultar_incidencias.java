@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
@@ -66,6 +67,10 @@ public class consultar_incidencias {
 	private TextField fecha_encabezado;
 	@FXML
 	private Button resolverI;
+	@FXML
+	private Button agregarI;
+	@FXML
+	private Text textoError;
 
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
 
@@ -137,6 +142,12 @@ public class consultar_incidencias {
 		this.categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
 		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
+
+		// Si no hay ubicaciones que no se pueda agregar
+		if (this.jdbcUbicacionDAO.leerUbicaciones().size() == 0) {
+			this.textoError.setText("Sin ubicaciones no se pueden agregar incidencias");
+			this.agregarI.setVisible(false);
+		}
 
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
 		arrayIncidenciaToAdd.addAll(

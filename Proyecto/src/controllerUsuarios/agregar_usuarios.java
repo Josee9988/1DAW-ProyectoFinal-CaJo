@@ -82,7 +82,7 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.usuarioDTO.setUser(this.usuario.getText());
 		this.usuarioDTO.setPassword(this.password.getText());
 		this.usuarioDTO.setNombre(this.nombre.getText());
@@ -91,7 +91,6 @@ public class agregar_usuarios {
 		this.usuarioDTO.setApellidos(this.apellidos.getText());
 		this.usuarioDTO.setRol(this.traducirComboBox());
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
-		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 
 		// si los campos importantes no están vacios lo hará, de otra manera no lo
 		// agregará
@@ -101,7 +100,7 @@ public class agregar_usuarios {
 				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
 			} else {
 				this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
-
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 			}
 		}
 
