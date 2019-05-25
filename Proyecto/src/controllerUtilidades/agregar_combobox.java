@@ -49,15 +49,18 @@ public class agregar_combobox {
 
 	/**
 	 * inicializar método que se llama al principio que inicializa los comboBox
-	 * llamando a la base de datos para que los rellene
+	 * llamando a la base de datos para que los rellene 0 == incidencias; 1 ==
+	 * ubicaciones; 2 == rolesUsuarios, 3 = urgencia, 4 = categoría
 	 *
 	 * @param tipo recibe un entero, si es un 0 será porque rellenaremos el combobox
 	 *             con incidencias, si es 1 es porque es de ubicaciones, y 2 si es
 	 *             porque lo llaman los usuarios y el comboBox se rellena con los
-	 *             roles
+	 *             roles. 3 si lo llama incidencia y se tiene que rellenar con una
+	 *             urgencia, 4 si es una categoría, llamada desde incidencia también
+	 *             y se rellena con categorías
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
-	public void inicializar(int tipo) throws SQLException {// 0 == incidencias; 1 == ubicaciones; 2 == rolesUsuarios
+	public void inicializar(int tipo) throws SQLException {
 		this.tipo = tipo;
 		ObservableList<String> comboBox = null;
 		ArrayList<String> ArrayToCombo = null;
@@ -73,10 +76,19 @@ public class agregar_combobox {
 			this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 			// agregamos nombres al combobox
 			ArrayToCombo = this.jdbcUbicacionDAO.leerNombresUbicaciones();
-		} else { // roles usuarios
+		} else if (tipo == 2) { // roles usuarios
 			this.texto.setText("Agregue un rol");
 			this.aplicarBoton.setText("Aplicar rol");
 			ArrayToCombo = new ArrayList<>(Arrays.asList("Profesor", "Jefe Dpto", "Mantenimiento", "Admin"));
+		} else if (tipo == 3) { // urgencias incidencias
+			this.texto.setText("Agregue una urgencia");
+			this.aplicarBoton.setText("Aplicar urgencia");
+			ArrayToCombo = new ArrayList<>(Arrays.asList("Alta", "Media", "Baja", "Indiferente"));
+		} else { // categoría incidencias
+			this.texto.setText("Agregue una categoría");
+			this.aplicarBoton.setText("Aplicar categoría");
+			ArrayToCombo = new ArrayList<>(Arrays.asList("Hardware", "Software", "Otros"));
+
 		}
 		// fin if
 
@@ -84,7 +96,6 @@ public class agregar_combobox {
 		this.comboBox.setItems(comboBox);
 		this.comboBox.setEditable(false);
 		this.comboBox.getSelectionModel().select(0);
-		this.comboBox.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 	}// fin inicializar
 
 	@FXML
@@ -107,7 +118,8 @@ public class agregar_combobox {
 			this.consultar_incidencias = new consultar_incidencias();
 			idToReturn = this.jdbcUbicacionDAO.obtenerIdUbicacion(this.comboBox.getValue());
 			this.consultar_incidencias.agregarIncidenciaDeComboBox(idToReturn);
-		} else { // usuarios clase usuario
+
+		} else if (this.tipo == 2) { // usuarios clase usuario
 			int resultado = 0;
 			switch (this.comboBox.getValue()) {
 			case "Profesor":
@@ -129,6 +141,13 @@ public class agregar_combobox {
 			this.consultar_usuarios = new consultar_usuarios();
 			this.consultar_usuarios.agregarRolDeComboBox(resultado);
 
+		} else if (this.tipo == 3) {// urgencias incidencias
+			this.consultar_incidencias = new consultar_incidencias();
+			this.consultar_incidencias.agregarUrgenciaDeComboBox(this.comboBox.getValue());
+
+		} else { // categoría incidencias
+			this.consultar_incidencias = new consultar_incidencias();
+			this.consultar_incidencias.agregarCategoriaDeComboBox(this.comboBox.getValue());
 		}
 		// cerrar ventana actual
 		this.stage = (Stage) this.aplicarBoton.getScene().getWindow(); // seleccionamos la escena actual

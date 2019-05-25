@@ -95,13 +95,15 @@ public class consultar_incidencias {
 	private agregar_fecha controller_agregar_fecha;
 	private static Date fechaSelected;
 
-	// pop up de ubicación
-	private Stage agregar_ubicacion;
+	// pop up de combobox
+	private Stage agregar_combobox;
 	private Parent root3;
 	private Scene scene3;
-	private FXMLLoader fxmlLoaderagregar_ubicacion;
-	private agregar_combobox controller_agregar_ubicacion;
+	private FXMLLoader fxmlLoaderagregar_combobox;
+	private agregar_combobox controller_agregar_combobox;
 	private static int idUbicacion;
+	private static String urgenciaCombo;
+	private static String categoriaCombo;
 
 	// pop up de confirmación de eliminación
 	private Stage confirmacion_eliminacion;
@@ -122,6 +124,8 @@ public class consultar_incidencias {
 		this.nombreCompleto = "";
 		this.rol = 0;
 		consultar_incidencias.idUbicacion = -1;
+		consultar_incidencias.categoriaCombo = "";
+		consultar_incidencias.urgenciaCombo = "";
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
 	}
 
@@ -148,7 +152,7 @@ public class consultar_incidencias {
 		this.fecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
 		this.urgencia.setCellValueFactory(new PropertyValueFactory<>("Urgencia"));
 		this.categoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
-		this.materiales.setCellValueFactory(new PropertyValueFactory<>("Materiales"));
+		this.materiales.setCellValueFactory(new PropertyValueFactory<>("materiales"));
 		this.ubicacion.setCellValueFactory(new PropertyValueFactory<>("Ubicacion"));
 
 		// Si no hay ubicaciones que no se pueda agregar
@@ -174,13 +178,9 @@ public class consultar_incidencias {
 
 		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y
 		// nunca va a ser relevante a la hora de modificar un usuario
-		// this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.descripcion.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.elemento.setCellFactory(TextFieldTableCell.forTableColumn());
-		// this.urgencia.setCellFactory(TextFieldTableCell.forTableColumn());
-		// this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.materiales.setCellFactory(TextFieldTableCell.forTableColumn());
-		// this.ubicacion.setCellFactory(TextFieldTableCell.forTableColumn());
 		consultar_incidencias.fechaSelected = null;
 
 		// Evento que cuando dé doble click en las columna(s) que queremos abrá views.
@@ -202,33 +202,33 @@ public class consultar_incidencias {
 						// cambiará
 
 						// creamos la view
-						consultar_incidencias.this.agregar_ubicacion = new Stage();
-						consultar_incidencias.this.fxmlLoaderagregar_ubicacion = new FXMLLoader(
+						consultar_incidencias.this.agregar_combobox = new Stage();
+						consultar_incidencias.this.fxmlLoaderagregar_combobox = new FXMLLoader(
 								this.getClass().getResource("/view/agregarComboBox.fxml"));
 						try {
-							consultar_incidencias.this.root3 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_ubicacion
+							consultar_incidencias.this.root3 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_combobox
 									.load();
 						} catch (IOException e) {
 							System.out.println(e.toString());
 						}
 
-						consultar_incidencias.this.controller_agregar_ubicacion = consultar_incidencias.this.fxmlLoaderagregar_ubicacion
+						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
 								.<agregar_combobox>getController();
 								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 								try {
-									consultar_incidencias.this.controller_agregar_ubicacion.inicializar(1);
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(1);
 								} catch (SQLException e) {
 									System.out.println(e.toString());
 								} // llamamos al método
 								// inicializar
-								consultar_incidencias.this.agregar_ubicacion.setScene(consultar_incidencias.this.scene3);
-								consultar_incidencias.this.agregar_ubicacion.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
 								// el
 								// icono
-								consultar_incidencias.this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
 								// título
 								// de la ventana
-								consultar_incidencias.this.agregar_ubicacion.show();
+								consultar_incidencias.this.agregar_combobox.show();
 					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
@@ -254,7 +254,84 @@ public class consultar_incidencias {
 								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
 								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
 								consultar_incidencias.this.agregar_fecha.show();
+					} else if (pos.getColumn() == 5) { // si es la columna(s) que queremos...//URGENCIA:
+
+						// int row = pos.getRow();
+						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
+						// no
+						// cambiará
+
+						// creamos la view
+						consultar_incidencias.this.agregar_combobox = new Stage();
+						consultar_incidencias.this.fxmlLoaderagregar_combobox = new FXMLLoader(
+								this.getClass().getResource("/view/agregarComboBox.fxml"));
+						try {
+							consultar_incidencias.this.root3 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_combobox
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
+								.<agregar_combobox>getController();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(3);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
+								// título
+								// de la ventana
+								consultar_incidencias.this.agregar_combobox.show();
+
+					} else if (pos.getColumn() == 6) {// si es la columna(s) que queremos ... //CATEGORÍA:
+						// int row = pos.getRow();
+						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
+								.getSelectedItem().getId();
+
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
+						// no
+						// cambiará
+
+						// creamos la view
+						consultar_incidencias.this.agregar_combobox = new Stage();
+						consultar_incidencias.this.fxmlLoaderagregar_combobox = new FXMLLoader(
+								this.getClass().getResource("/view/agregarComboBox.fxml"));
+						try {
+							consultar_incidencias.this.root3 = (Parent) consultar_incidencias.this.fxmlLoaderagregar_combobox
+									.load();
+						} catch (IOException e) {
+							System.out.println(e.toString());
+						}
+
+						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
+								.<agregar_combobox>getController();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(4);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método
+								// inicializar
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								// el
+								// icono
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
+								// título
+								// de la ventana
+								consultar_incidencias.this.agregar_combobox.show();
 					}
+
 				}
 			}
 		}); // fin doble click en las columnas que queremos para abrir views
@@ -319,10 +396,19 @@ public class consultar_incidencias {
 				this.incidenciaSelected.setFecha((java.sql.Date) consultar_incidencias.fechaSelected);
 
 			}
+
+			if (consultar_incidencias.urgenciaCombo != "") {
+				this.incidenciaSelected.setUrgencia(consultar_incidencias.urgenciaCombo);
+			}
+
+			if (consultar_incidencias.categoriaCombo != "") {
+				this.incidenciaSelected.setCategoria(consultar_incidencias.categoriaCombo);
+			}
+
 			if (consultar_incidencias.idUbicacion != -1) {
 				this.incidenciaSelected.setUbicacionI(consultar_incidencias.idUbicacion);
-
 			}
+
 			this.bdincidencias.modificarIncidencia(this.incidenciaSelected);
 			this.idselected = -1;
 			consultar_incidencias.idUbicacion = -1;
@@ -352,6 +438,30 @@ public class consultar_incidencias {
 	 */
 	public void agregarIncidenciaDeComboBox(int idToReturn) throws SQLException {
 		consultar_incidencias.idUbicacion = idToReturn;
+		this.incidenciaSelected.setId(this.idselected); // id no cambiará
+	}
+
+	/**
+	 * agregarUrgenciaDeComboBox es llamado por la clase agregar_combobox; recibirá
+	 * una urgencia y si se le dá a modificar se aplicará
+	 *
+	 * @param urgencia recibe el String de urgencia que se ha seleccionado en el
+	 *                 combobox
+	 */
+	public void agregarUrgenciaDeComboBox(String urgencia) {
+		consultar_incidencias.urgenciaCombo = urgencia;
+		this.incidenciaSelected.setId(this.idselected); // id no cambiará
+	}
+
+	/**
+	 * agregarCategoriaDeComboBox es llamado por la clase agregar_combobox; recibirá
+	 * una categoría y si se le dá a modificar se aplicará
+	 *
+	 * @param categoria recibe el String de categoría que se ha seleccionado en el
+	 *                  combobox
+	 */
+	public void agregarCategoriaDeComboBox(String categoria) {
+		consultar_incidencias.categoriaCombo = categoria;
 	}
 
 	@FXML

@@ -124,6 +124,7 @@ public class agregar_incidencia {
 		this.incidenciaDTO.setUrgencia(this.urgencia.getValue());
 		this.incidenciaDTO.setCategoria(this.categoria.getValue());
 		this.incidenciaDTO.setUbicacion(this.ubicacion.getValue());
+		this.incidenciaDTO.setMateriales(this.materiales.getText());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
 
 		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()
