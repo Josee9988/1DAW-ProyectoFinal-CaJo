@@ -2,13 +2,15 @@
 
 - En este repositorio encontraremos el proyecto que hemos tenido que realizar compuesto por las asignaturas de **Programación**, **Bases de datos** y **Entornos de Desarrollo**
 
-- El proyecto se nos ha presentado el *14/02/2019* y la entrega se efectuará el *06/06/2019*.
+- El proyecto se presentó el *14/02/2019* y la entrega se efectuó el *06/06/2019*.
+
+- Consistió de una primera fase símplemente de análisis y documentación. La segunda parte comenzó a partir del *09/05/2019* en la cual ya comenzamos a crear el programa en java.
 
 - El proyecto está realizado por [@Josee9988](https://github.com/Josee9988), y [@Wanikoko](https://github.com/Wanikoko)
 
 ---
 
-- Contacto <graciaj9988@gmail.com>, <caromamusic@gmail.com>
+- Contacto <jgracia9988@gmail.com>, <caromamusic@gmail.com>
 
 ---
 
@@ -29,6 +31,7 @@
 - Java
 - SQL
 - UML
+- CSS
 
 ---
 
@@ -68,8 +71,8 @@
 
     - [Diagramas de clase](/Analisis%20Inicial/Diagramas/Diagrama%20de%20clases)
 
-  - [Analisis](/Analisis)
+  - [Analisis](/Analisis%20Inicial/Analisis)
 
 ---
 
-*Hecho con ❤️ por [@Josee9988](https://github.com/Josee9988) y [@Wanikoko](https://github.com/Wanikoko)*
+*Hecho con mucho ❤️ por [@Josee9988](https://github.com/Josee9988) y [@Wanikoko](https://github.com/Wanikoko)*
