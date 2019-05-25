@@ -66,7 +66,6 @@ public class agregar_usuarios {
 		this.rol.setItems(roles);
 		this.rol.setEditable(false);
 		this.rol.getSelectionModel().select(0);
-		this.rol.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 
 	}
 

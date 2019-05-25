@@ -2,25 +2,38 @@
  * @author Jose_Gracia, Carlos_Robles
  * @version May 11, 2019
  */
-
-.button{
-	-fx-background-radius: 6px;
-	-fx-border-radius: 6px;
-	-fx-border-width: 0.175px;
-	-fx-border-color: black;
-	
+ 
+/* Centra los elementos del tableview */
+ .table-column {
+  -fx-alignment: center;
 }
 
+/* Centra las cabeceras del tableview */
+.combo-box.center-aligned>.list-cell {
+    -fx-alignment: center;
+}
+
+/* Centra el combobox */
+.combo-box.center-aligned>.list-cell {
+    -fx-alignment: center;
+}
+
+/* Le da un borde a los botones */
+.button{
+	-fx-background-radius: 6.0px;
+	-fx-border-radius: 6.0px;
+	-fx-border-width: 0.175px;
+	-fx-border-color: black;
+}
+
+/* Añade una sombra a los botones cuando está el ratón por encima */
 .button:hover{
-	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-effect: dropshadow(three-pass-box, grey, 10.0, 0.0, 0.0, 0.0);
 		-fx-border-width: 0.55px;
 }
 
+/* Cuando se ha pulsado el botón le da más sobra */
 .button:pressed{
-	-fx-effect: dropshadow(three-pass-box, grey, 40, 0, 0, 0);
+	-fx-effect: dropshadow(three-pass-box, grey, 40.0, 0.0, 0.0, 0.0);
 	-fx-border-width: 0.75px;
-}
-
-.combo-box.center-aligned>.list-cell {
-    -fx-alignment: center;
 }

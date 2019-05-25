@@ -32,9 +32,9 @@ public class agregar_incidencia {
 	@FXML
 	private DatePicker date;
 	@FXML
-	private TextField urgencia;
+	private ComboBox<String> urgencia;
 	@FXML
-	private TextField categoria;
+	private ComboBox<String> categoria;
 	@FXML
 	private TextField materiales;
 	@FXML
@@ -74,12 +74,26 @@ public class agregar_incidencia {
 	public void inicializar(String nombreCompleto) throws SQLException {
 		this.nombreCompleto = nombreCompleto;
 		ArrayList<String> ubicacionesArray = this.jdbcUbicacionDAO.leerNombresUbicaciones();
-
 		ObservableList<String> ubicacionBox = FXCollections.observableArrayList(ubicacionesArray);
+		ObservableList<String> categoriaArray = FXCollections.observableArrayList("Hardware", "Software", "Otros");
+		ObservableList<String> urgenciaArray = FXCollections.observableArrayList("Alta", "Media", "Baja",
+				"Indiferente");
+
+		//urgencia
+
+		this.urgencia.setItems(urgenciaArray);
+		this.urgencia.setEditable(false);
+		this.urgencia.getSelectionModel().select(3);
+
+		// categoría
+		this.categoria.setItems(categoriaArray);
+		this.categoria.setEditable(false);
+		this.categoria.getSelectionModel().select(2);
+
+		// ubicación
 		this.ubicacion.setItems(ubicacionBox);
 		this.ubicacion.setEditable(false);
 		this.ubicacion.getSelectionModel().select(0);
-		this.ubicacion.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 
 	}
 
@@ -107,13 +121,13 @@ public class agregar_incidencia {
 			Date date = java.sql.Date.valueOf(this.date.getValue());
 			this.incidenciaDTO.setFecha((java.sql.Date) date);
 		}
-		this.incidenciaDTO.setUrgencia(this.urgencia.getText());
-		this.incidenciaDTO.setCategoria(this.categoria.getText());
+		this.incidenciaDTO.setUrgencia(this.urgencia.getValue());
+		this.incidenciaDTO.setCategoria(this.categoria.getValue());
 		this.incidenciaDTO.setUbicacion(this.ubicacion.getValue());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
 
 		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()
-				|| this.urgencia.getText().isEmpty() || this.categoria.getText().isEmpty()) {
+				) {
 			this.textoError.setText("Rellena todos los campos");
 		} else {
 			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente

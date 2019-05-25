@@ -177,8 +177,8 @@ public class consultar_incidencias {
 		// this.usuario.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.descripcion.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.elemento.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.urgencia.setCellFactory(TextFieldTableCell.forTableColumn());
-		this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
+		// this.urgencia.setCellFactory(TextFieldTableCell.forTableColumn());
+		// this.categoria.setCellFactory(TextFieldTableCell.forTableColumn());
 		this.materiales.setCellFactory(TextFieldTableCell.forTableColumn());
 		// this.ubicacion.setCellFactory(TextFieldTableCell.forTableColumn());
 		consultar_incidencias.fechaSelected = null;
@@ -230,7 +230,6 @@ public class consultar_incidencias {
 								// de la ventana
 								consultar_incidencias.this.agregar_ubicacion.show();
 					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
-						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
@@ -251,15 +250,9 @@ public class consultar_incidencias {
 						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
 								.<agregar_fecha>getController();
 								consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
-								// consultar_incidencias.this.controller_agregar_fecha.inicializar(); //
-								// llamamos al método
-								// inicializar
 								consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
 								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
-								// el
-								// icono
 								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
-								// de la ventana
 								consultar_incidencias.this.agregar_fecha.show();
 					}
 				}
@@ -286,7 +279,6 @@ public class consultar_incidencias {
 		this.agregar_incidencia.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
 		this.agregar_incidencia.show();
 	}
-
 
 	@FXML
 	/**
@@ -461,40 +453,6 @@ public class consultar_incidencias {
 		} else {
 			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
 				this.incidenciaSelected.setElemento(edditedCell.getNewValue().toString());
-			}
-		}
-	}
-
-	@FXML
-	/**
-	 * editUrgencia si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editUrgencia(CellEditEvent<?, ?> edditedCell) {
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.incidenciaSelected.setUrgencia(edditedCell.getNewValue().toString());
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.incidenciaSelected.setUrgencia(edditedCell.getNewValue().toString());
-			}
-		}
-	}
-
-	@FXML
-	/**
-	 * editCategoria si se ha hecho doble click en una celda
-	 *
-	 * @param edditedCell celda editada por el usuario al hacer doble click
-	 */
-	public void editCategoria(CellEditEvent<?, ?> edditedCell) {
-		if (this.idselected == -1) {// si es la primera vez que cambiamos un valor...
-			this.idselected = this.tabla.getSelectionModel().getSelectedItem().getId();
-			this.incidenciaSelected.setCategoria(edditedCell.getNewValue().toString());
-		} else {
-			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
-				this.incidenciaSelected.setCategoria(edditedCell.getNewValue().toString());
 			}
 		}
 	}

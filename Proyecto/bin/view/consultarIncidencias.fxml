@@ -19,10 +19,10 @@
        	 <TableColumn fx:id="id" prefWidth="50.0" text="ID" />
           <TableColumn fx:id="usuario" onEditCommit="#editUsuario" prefWidth="101.0" text="Usuario" />
           <TableColumn fx:id="descripcion" onEditCommit="#editDescripcion" prefWidth="181.0" text="Descripcion" />
-            <TableColumn fx:id="elemento" onEditCommit="#editElemento" prefWidth="106.0" text="Elemento" />
-            <TableColumn fx:id="fecha" prefWidth="93.0" text="Fecha" />
-            <TableColumn fx:id="urgencia" onEditCommit="#editUrgencia" prefWidth="100.0" text="Urgencia" />
-            <TableColumn fx:id="categoria" minWidth="0.0" onEditCommit="#editCategoria" prefWidth="91.0" text="Categoria" />
+            <TableColumn fx:id="elemento" onEditCommit="#editElemento" prefWidth="100.0" text="Elemento" />
+            <TableColumn fx:id="fecha" prefWidth="99.0" text="Fecha" />
+            <TableColumn fx:id="urgencia" prefWidth="94.0" text="Urgencia" />
+            <TableColumn fx:id="categoria" minWidth="0.0" prefWidth="97.0" text="Categoria" />
             <TableColumn fx:id="materiales" minWidth="4.1995849609375" onEditCommit="#editMateriales" prefWidth="88.0" text="Materiales" />
             <TableColumn fx:id="ubicacion" prefWidth="113.0" text="Ubicación" />
         </columns>
