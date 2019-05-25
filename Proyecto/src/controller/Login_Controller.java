@@ -207,13 +207,12 @@ public class Login_Controller {
 				this.area2.setText("No encontrado");
 				break;
 			}
+		} else if (this.user.getText().isEmpty() && this.passwordField.getText().isEmpty() == false) {
+			this.area2.setText("Rellene el usuario");
+		} else if (this.user.getText().isEmpty() == false && this.passwordField.getText().isEmpty()) {
+			this.area2.setText("Rellene la contraseña");
 		} else {
-			this.resultadoIncorrecto();
+			this.area2.setText("Rellene los campos");
 		}
 	}
-
-	public void resultadoIncorrecto() {
-		this.area2.setText("Campo(s) vacios");
-	}
-
 }

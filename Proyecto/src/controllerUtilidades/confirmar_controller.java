@@ -75,7 +75,7 @@ public class confirmar_controller {
 	 * @throws SQLException              si ha habido una excepción SQL
 	 */
 	public void eliminar() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		if (this.clase == 0) { // usuario
 			this.consultar_usuarios = new consultar_usuarios();
 			this.consultar_usuarios.eliminarUsuarioBD(this.idSeleccionada);
@@ -92,8 +92,6 @@ public class confirmar_controller {
 			this.consultar_incidencias = new consultar_incidencias();
 			this.consultar_incidencias.eliminarIncidenciaBD(this.idSeleccionada);
 		}
-
-
 
 		this.stage = (Stage) this.eliminar.getScene().getWindow(); // seleccionamos la escena actual
 		this.stage.close(); // cerramos la ventana actual para pasar a la siguiente

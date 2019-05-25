@@ -1,4 +1,3 @@
-
 /**
  * @author Jose_Gracia, Carlos_Robles
  * @version May 11, 2019
@@ -39,7 +38,7 @@ public class Principal extends Application {
 	 * @param args recibe los datos del programa
 	 */
 	public static void main(String[] args) {
-		launch(args);
+		Application.launch(args);
 	}
 
 }

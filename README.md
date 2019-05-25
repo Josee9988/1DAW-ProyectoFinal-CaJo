@@ -1,26 +1,23 @@
 # **Proyecto Final 1º DAW CIPFPBATOI**
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
-[![wercker status](https://app.wercker.com/status/9e0bc54c43f48d220aec684fffb2b110/s/master "wercker status")](https://app.wercker.com/project/byKey/9e0bc54c43f48d220ac684fffb2b110)
-
 - En este repositorio encontraremos el proyecto que hemos tenido que realizar compuesto por las asignaturas de **Programación**, **Bases de datos** y **Entornos de Desarrollo**
 
-- El proyecto se nos ha presentado el *14/02/2019* y durará aproximadamente hasta Junio.
+- El proyecto se nos ha presentado el *14/02/2019* y la entrega se efectuará el *06/06/2019*.
 
 - El proyecto está realizado por [@Josee9988](https://github.com/Josee9988), y [@Wanikoko](https://github.com/Wanikoko)
 
 ---
 
-- Contacto <graciaj9988@gmail.com> <caromamusic@gmail.com>
+- Contacto <graciaj9988@gmail.com>, <caromamusic@gmail.com>
 
 ---
 
 ## Recursos  🛠️
 
 - [Eclipse](https://www.eclipse.org/) - IDE utilizado para Java y Javadoc.
-- [NetBeans](https://netbeans.org/) - IDE utilizado para Java.
-- [Virtual Studio Code](https://code.visualstudio.com/) - IDE utilizado para Markdown.
+- [Virtual Studio Code](https://code.visualstudio.com/) - IDE utilizado para Markdown y SQL.
 - [Día](https://dia-installer.de/index.html.es) - Creación de diagramas.
+- [MySQL](https://www.mysql.com/) - Servidor utilizado para guardar la base de datos.
 - [PHPMyAdmin](https://www.phpmyadmin.net/) - Creación y pruebas de Bases de Datos.
 - [Git](https://git-scm.com/downloads) - Control de versiones en Github.
 - [Github](https://github.com) - Plataforma de desarrollo donde se almacenan las versiones.
@@ -46,24 +43,32 @@
 
 - [Enunciados](Enunciado.pdf)
 
-- [Bases de Datos](/Bases%20de%20datos/)
+- [Creación de la base de datos DDL](DDL.sql)
 
-  - [DDL SQL](/Bases%20de%20datos/DDL)
+- [Proyecto java](/Proyecto)
 
-  - [Diseño Lógico](/Bases%20de%20datos/Diseño%20lógico)
+---
 
-  - [Modelo Conseptual](/Bases%20de%20datos/Modelo%20conceptual)
+- [Análisis inicial (pre proyecto)](/Analisis%20Inicial/)
 
-- [Diagramas](/Bases%20de%20datos/DDL)
+  - [Bases de Datos](/Analisis%20Inicial/Bases%20de%20datos/)
 
-  - [Diagramas de casos de uso](/Diagramas/Diagrama%20de%20casos%20de%20uso)
+    - [DDL SQL](/Analisis%20Inicial/Bases%20de%20datos/DDL)
 
-    - [Gestión inventario](/Diagramas/Diagrama%20de%20casos%20de%20uso/Gestión%20Inventario)
-    - [Gestión Incidencias](/Diagramas/Diagrama%20de%20casos%20de%20uso/Gestión%20Incidencias)
+    - [Diseño Lógico](/Analisis%20Inicial/Bases%20de%20datos/Diseño%20lógico)
 
-  - [Diagramas de clase](/Diagramas/Diagrama%20de%20clases)
+    - [Modelo Conseptual](/Analisis%20Inicial/Bases%20de%20datos/Modelo%20conceptual)
 
-- [Analisis](/Analisis)
+  - [Diagramas](/Analisis%20Inicial/Bases%20de%20datos/DDL)
+
+    - [Diagramas de casos de uso](/Analisis%20Inicial/Diagramas/Diagrama%20de%20casos%20de%20uso)
+
+      - [Gestión inventario](/Analisis%20Inicial/Diagramas/Diagrama%20de%20casos%20de%20uso/Gestión%20Inventario)
+      - [Gestión Incidencias](/Analisis%20Inicial/Diagramas/Diagrama%20de%20casos%20de%20uso/Gestión%20Incidencias)
+
+    - [Diagramas de clase](/Analisis%20Inicial/Diagramas/Diagrama%20de%20clases)
+
+  - [Analisis](/Analisis)
 
 ---
 

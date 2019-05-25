@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -49,10 +50,20 @@
             </Text>
          </children>
       </Pane>
-      <Text fx:id="area2" fill="RED" layoutX="130.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="236.0">
+      <Text fx:id="area2" layoutX="130.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="236.0">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="0.007407407407407408" />
+                  <Stop color="#d30000" offset="0.3629629629629631" />
+                  <Stop color="#d30000" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
       </Text>
    </children>
 </Pane>

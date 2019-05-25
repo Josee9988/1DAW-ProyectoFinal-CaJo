@@ -168,16 +168,16 @@ public class consultar_ubicaciones {
 			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
 			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
 					.<confirmar_controller>getController();
-					this.sceneEliminacion = new Scene(this.rootEliminacion);
-					this.controller_confirmar_controller.inicializar(1,
-							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
-					// al
-					// método
-					// inicializar
-					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-					this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
-					this.confirmacion_eliminacion.show();
+			this.sceneEliminacion = new Scene(this.rootEliminacion);
+			this.controller_confirmar_controller.inicializar(1,
+					this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+			// al
+			// método
+			// inicializar
+			this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+			this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
+			this.confirmacion_eliminacion.show();
 		}
 
 		// this.bdubicaciones.eliminarUbicacion(this.tabla.getSelectionModel().getSelectedItem().getId());

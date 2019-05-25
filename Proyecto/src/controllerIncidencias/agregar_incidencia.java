@@ -46,7 +46,6 @@ public class agregar_incidencia {
 
 	private Stage stage;
 
-
 	private String nombreCompleto;
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
 	private incidenciaDTO incidenciaDTO;
@@ -79,7 +78,7 @@ public class agregar_incidencia {
 		ObservableList<String> urgenciaArray = FXCollections.observableArrayList("Alta", "Media", "Baja",
 				"Indiferente");
 
-		//urgencia
+		// urgencia
 
 		this.urgencia.setItems(urgenciaArray);
 		this.urgencia.setEditable(false);
@@ -127,12 +126,12 @@ public class agregar_incidencia {
 		this.incidenciaDTO.setMateriales(this.materiales.getText());
 		this.stage = (Stage) this.agregarincidencia.getScene().getWindow(); // seleccionamos la escena actual
 
-		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()
-				) {
+		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()) {
 			this.textoError.setText("Rellena todos los campos");
 		} else {
 			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-			this.incidenciaDTO.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
+			this.incidenciaDTO
+					.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
 			this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
 		}
 	}

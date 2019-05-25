@@ -32,6 +32,7 @@ public class agregar_ubicacion {
 	private Stage stage;
 	private ubicacionDTO ubicacionDTO;
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+
 	/**
 	 * agregar_ubicacion constructor default que inicializa la clase
 	 * consultar_ubicaciones

@@ -186,20 +186,20 @@ public class consultar_mensajes {
 
 						consultar_mensajes.this.controller_agregar_combo = consultar_mensajes.this.fxmlLoaderagregar_combo
 								.<agregar_combobox>getController();
-								consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
-								try {
-									consultar_mensajes.this.controller_agregar_combo.inicializar(0);
-								} catch (SQLException e) {
-									System.out.println(e.toString());
-								} // llamamos al método
-								// inicializar
-								consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
-								consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
-								// el
-								// icono
-								consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
-								// de la ventana
-								consultar_mensajes.this.agregar_combobox.show();
+						consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
+						try {
+							consultar_mensajes.this.controller_agregar_combo.inicializar(0);
+						} catch (SQLException e) {
+							System.out.println(e.toString());
+						} // llamamos al método
+							// inicializar
+						consultar_mensajes.this.agregar_combobox.setScene(consultar_mensajes.this.scene2);
+						consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
+						// el
+						// icono
+						consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						// de la ventana
+						consultar_mensajes.this.agregar_combobox.show();
 					}
 				}
 			}
@@ -284,16 +284,16 @@ public class consultar_mensajes {
 			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
 			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
 					.<confirmar_controller>getController();
-					this.sceneEliminacion = new Scene(this.rootEliminacion);
-					this.controller_confirmar_controller.inicializar(3,
-							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
-					// al
-					// método
-					// inicializar
-					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-					this.confirmacion_eliminacion.setTitle("Eliminar mensaje"); // ponemos el título de la ventana
-					this.confirmacion_eliminacion.show();
+			this.sceneEliminacion = new Scene(this.rootEliminacion);
+			this.controller_confirmar_controller.inicializar(3,
+					this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+			// al
+			// método
+			// inicializar
+			this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+			this.confirmacion_eliminacion.setTitle("Eliminar mensaje"); // ponemos el título de la ventana
+			this.confirmacion_eliminacion.show();
 		}
 		/*
 		 * this.bdmensajes.eliminarMensajes(this.tabla.getSelectionModel().

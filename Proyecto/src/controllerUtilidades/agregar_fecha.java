@@ -27,7 +27,6 @@ public class agregar_fecha {
 		this.consultar_incidencias = new consultar_incidencias();
 	}
 
-
 	@FXML
 	public void aplicarFecha() throws SQLException {
 		if (this.fecha.getValue() != null) {
