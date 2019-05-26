@@ -119,7 +119,7 @@ public class Home_Jefe_Controller {
 		this.controllerProveedores.inicializar(this.nombre.getText(), this.rol_number);
 		this.proveedores.setScene(this.scene2);
 		this.proveedores.getIcons().add(this.icon); // agregamos el icono
-		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.proveedores.setTitle("Administrar Proveedores"); // ponemos el título de la ventana
 		this.proveedores.show();
 	}
 
@@ -134,7 +134,7 @@ public class Home_Jefe_Controller {
 		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene1);
 		this.incidencias.getIcons().add(this.icon); // agregamos el icono
-		this.incidencias.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.incidencias.setTitle("Administrar Incidencias"); // ponemos el título de la ventana
 		this.incidencias.show();
 	}
 
@@ -149,7 +149,7 @@ public class Home_Jefe_Controller {
 		this.controllerMensajes.inicializar(this.nombre.getText(), this.rol_number);
 		this.mensajes.setScene(this.scene3);
 		this.mensajes.getIcons().add(this.icon); // agregamos el icono
-		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.mensajes.setTitle("Administrar Mensajes"); // ponemos el título de la ventana
 		this.mensajes.show();
 	}
 
@@ -161,7 +161,7 @@ public class Home_Jefe_Controller {
 	public void acercaDe() {
 		this.acercaDe.setScene(this.scene4);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
-		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.acercaDe.setTitle("Acerca de"); // ponemos el título de la ventana
 		this.acercaDe.setResizable(false);
 		this.acercaDe.show();
 	}

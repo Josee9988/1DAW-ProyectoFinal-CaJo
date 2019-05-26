@@ -119,7 +119,7 @@ public class consultar_ubicaciones {
 		// inicializar
 		this.agregar_ubicacion.setScene(this.scene1);
 		this.agregar_ubicacion.getIcons().add(this.icon); // agregamos el icono
-		this.agregar_ubicacion.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_ubicacion.setTitle("Agregar Ubicación"); // ponemos el título de la ventana
 		this.agregar_ubicacion.show();
 	}
 

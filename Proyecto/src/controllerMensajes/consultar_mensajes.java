@@ -197,7 +197,7 @@ public class consultar_mensajes {
 						consultar_mensajes.this.agregar_combobox.getIcons().add(consultar_mensajes.this.icon); // agregamos
 						// el
 						// icono
-						consultar_mensajes.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						consultar_mensajes.this.agregar_combobox.setTitle("Agregar en ComboBox"); // ponemos el título
 						// de la ventana
 						consultar_mensajes.this.agregar_combobox.show();
 					}
@@ -223,7 +223,7 @@ public class consultar_mensajes {
 		this.controller_agregar_mensajes.inicializarMensajes(this.nombreCompleto); // llamamos al método inicializar
 		this.agregar_mensaje.setScene(this.scene1);
 		this.agregar_mensaje.getIcons().add(this.icon); // agregamos el icono
-		this.agregar_mensaje.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_mensaje.setTitle("Agregar Mensaje"); // ponemos el título de la ventana
 		this.agregar_mensaje.show();
 	}
 

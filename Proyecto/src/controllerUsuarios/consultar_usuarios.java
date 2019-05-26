@@ -203,7 +203,7 @@ public class consultar_usuarios {
 						consultar_usuarios.this.agregar_combobox.setScene(consultar_usuarios.this.scene2);
 						consultar_usuarios.this.agregar_combobox.getIcons().add(consultar_usuarios.this.icon); // agregamos
 						// el icono
-						consultar_usuarios.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el título
+						consultar_usuarios.this.agregar_combobox.setTitle("Agregar en ComboBox"); // ponemos el título
 						// de la ventana
 						consultar_usuarios.this.agregar_combobox.show();
 					}
@@ -239,7 +239,7 @@ public class consultar_usuarios {
 		this.controller_agregar_usuarios.inicializar(); // llamamos al método inicializar
 		this.agregar_usuarios.setScene(this.scene1);
 		this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
-		this.agregar_usuarios.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_usuarios.setTitle("Agregar Usuario"); // ponemos el título de la ventana
 		this.agregar_usuarios.show();
 	}
 

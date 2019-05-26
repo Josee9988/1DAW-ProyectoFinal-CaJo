@@ -127,7 +127,7 @@ public class Home_Admin_Controller {
 		this.controllerUsuarios.inicializar(this.nombre.getText());
 		this.usuarios.setScene(this.scene1);
 		this.usuarios.getIcons().add(this.icon); // agregamos el icono
-		this.usuarios.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.usuarios.setTitle("Administrar Usuarios"); // ponemos el título de la ventana
 		this.usuarios.show();
 	}
 
@@ -149,7 +149,7 @@ public class Home_Admin_Controller {
 		this.controllerProveedores.inicializar(this.nombre.getText(), this.rol_number);
 		this.proveedores.setScene(this.scene2);
 		this.proveedores.getIcons().add(this.icon); // agregamos el icono
-		this.proveedores.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.proveedores.setTitle("Administrar Proveedores"); // ponemos el título de la ventana
 		this.proveedores.show();
 	}
 
@@ -171,7 +171,7 @@ public class Home_Admin_Controller {
 		this.controllerIncidencias.inicializar(this.nombre.getText(), this.rol_number);
 		this.incidencias.setScene(this.scene3);
 		this.incidencias.getIcons().add(this.icon); // agregamos el icono
-		this.incidencias.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.incidencias.setTitle("Administrar Incidencias"); // ponemos el título de la ventana
 		this.incidencias.show();
 	}
 
@@ -193,7 +193,7 @@ public class Home_Admin_Controller {
 		this.controllerMensajes.inicializar(this.nombre.getText(), this.rol_number);
 		this.mensajes.setScene(this.scene4);
 		this.mensajes.getIcons().add(this.icon); // agregamos el icono
-		this.mensajes.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.mensajes.setTitle("Administrar Mensajes"); // ponemos el título de la ventana
 		this.mensajes.show();
 	}
 
@@ -215,7 +215,7 @@ public class Home_Admin_Controller {
 		this.controllerUbicaciones.inicializar(this.nombre.getText());
 		this.ubicaciones.setScene(this.scene5);
 		this.ubicaciones.getIcons().add(this.icon); // agregamos el icono
-		this.ubicaciones.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.ubicaciones.setTitle("Administrar Ubicaciones"); // ponemos el título de la ventana
 		this.ubicaciones.show();
 	}
 
@@ -228,7 +228,7 @@ public class Home_Admin_Controller {
 	public void acercaDe() throws SQLException {
 		this.acercaDe.setScene(this.scene6);
 		this.acercaDe.getIcons().add(this.icon); // agregamos el icono
-		this.acercaDe.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.acercaDe.setTitle("Acerca de"); // ponemos el título de la ventana
 		this.acercaDe.setResizable(false);
 		this.acercaDe.show();
 	}

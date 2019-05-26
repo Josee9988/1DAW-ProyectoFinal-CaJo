@@ -150,7 +150,7 @@ public class consultar_proveedores {
 		this.controller_agregar_proveedor.inicializar(); // llamamos al método inicializar
 		this.agregar_proveedor.setScene(this.scene1);
 		this.agregar_proveedor.getIcons().add(this.icon); // agregamos el icono
-		this.agregar_proveedor.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+		this.agregar_proveedor.setTitle("Agregar Proveedor"); // ponemos el título de la ventana
 		this.agregar_proveedor.show();
 	}
 
