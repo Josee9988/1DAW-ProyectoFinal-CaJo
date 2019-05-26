@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <StackPane fx:id="stackLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
    <children>
       <AnchorPane fx:id="anchorLogin" prefHeight="405.0" prefWidth="605.0">
@@ -20,7 +19,7 @@
                         <Font name="Ubuntu Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Label ellipsisString="" layoutX="124.0" layoutY="22.0" prefHeight="59.0" prefWidth="371.0" text="Inicio de sesión" textAlignment="CENTER">
+                  <Label fx:id="topText" ellipsisString="" layoutX="124.0" layoutY="22.0" prefHeight="59.0" prefWidth="371.0" text="Inicio de sesión" textAlignment="CENTER">
                      <effect>
                         <Lighting>
                            <bumpInput>

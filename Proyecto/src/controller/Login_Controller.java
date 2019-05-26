@@ -25,24 +25,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.jdbcUsuarioDAO;
 
 public class Login_Controller {
 
 	private jdbcUsuarioDAO users;
-
-	private Stage profesor;
-	private Stage jefe_departamento;
-	private Stage mantenimiento;
-	private Stage admin;
 
 	private FXMLLoader fxmlLoaderProfesor;
 	private FXMLLoader fxmlLoaderJefeDepartamento;
@@ -79,9 +73,12 @@ public class Login_Controller {
 	private AnchorPane anchorLogin;
 	@FXML
 	private StackPane stackLogin;
+	@FXML
+	private Label topText;
 
-	private Image icon;
-	private Stage stage;
+	private Timeline timeline;
+	private KeyValue kv;
+	private KeyFrame kf;
 
 	/**
 	 * Login_Controller constructor default que inicializa variables de escenas y
@@ -92,11 +89,6 @@ public class Login_Controller {
 	public Login_Controller() throws IOException {
 
 		this.users = new jdbcUsuarioDAO();
-
-		this.profesor = new Stage();
-		this.jefe_departamento = new Stage();
-		this.mantenimiento = new Stage();
-		this.admin = new Stage();
 
 		this.fxmlLoaderProfesor = new FXMLLoader(this.getClass().getResource("/view/home_prof_page.fxml"));
 		this.fxmlLoaderJefeDepartamento = new FXMLLoader(this.getClass().getResource("/view/home_jefe_page.fxml"));
@@ -118,7 +110,7 @@ public class Login_Controller {
 		this.scene2 = new Scene(this.root2);
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
-		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // ruta icono
+		this.timeline = new Timeline();
 	}
 
 	@FXML
@@ -152,82 +144,67 @@ public class Login_Controller {
 				this.controllerProfesor.recibirParametros(
 						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada)));
-				this.profesor.setScene(this.scene1);
-
-				this.profesor.getIcons().add(this.icon); // agregamos el icono
-				this.profesor.setTitle("Menú de Profesor"); // ponemos el título de la ventana
-				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
-				// botón "iniciar"
-				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-				this.profesor.setResizable(false);
-				this.profesor.show();
+				this.scene1 = this.iniciar.getScene();
+				this.root1.translateYProperty().set(this.scene1.getHeight());
+				this.stackLogin.getChildren().add(this.root1);
+				this.kv = new KeyValue(this.root1.translateYProperty(), 0, Interpolator.EASE_IN);
+				this.kf = new KeyFrame(Duration.seconds(0.75), this.kv);
+				this.timeline.getKeyFrames().add(this.kf);
+				this.timeline.setOnFinished(t -> {
+					this.stackLogin.getChildren().remove(this.anchorLogin);
+				});
+				this.timeline.play();
 				break;
 
 			case 2: // jefedepartamento
 				this.controllerJefeDepartamento.recibirParametros(
 						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada)));
-				this.jefe_departamento.setScene(this.scene2);
 
-				this.jefe_departamento.getIcons().add(this.icon); // agregamos el icono
-				this.jefe_departamento.setTitle("Menú de Jefe de Departamento"); // ponemos el título de la ventana
-				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
-				// botón "iniciar"
-				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-				this.jefe_departamento.setResizable(false);
-				this.jefe_departamento.show();
+				this.scene2 = this.iniciar.getScene();
+				this.root2.translateYProperty().set(this.scene2.getHeight());
+				this.stackLogin.getChildren().add(this.root2);
+				this.kv = new KeyValue(this.root2.translateYProperty(), 0, Interpolator.EASE_IN);
+				this.kf = new KeyFrame(Duration.seconds(0.75), this.kv);
+				this.timeline.getKeyFrames().add(this.kf);
+				this.timeline.setOnFinished(t -> {
+					this.stackLogin.getChildren().remove(this.anchorLogin);
+				});
+				this.timeline.play();
 				break;
 
 			case 3: // mantenimiento
 				this.controllerMantenimiento.recibirParametros(
 						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada)));
-				this.mantenimiento.setScene(this.scene3);
 
-				this.mantenimiento.getIcons().add(this.icon); // agregamos el icono
-				this.mantenimiento.setTitle("Menú de Mantenimiento"); // ponemos el título de la ventana
-				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
-				// botón "iniciar"
-				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-				this.mantenimiento.setResizable(false);
-				this.mantenimiento.show();
+				this.scene3 = this.iniciar.getScene();
+				this.root3.translateYProperty().set(this.scene3.getHeight());
+				this.stackLogin.getChildren().add(this.root3);
+				this.kv = new KeyValue(this.root3.translateYProperty(), 0, Interpolator.EASE_IN);
+				this.kf = new KeyFrame(Duration.seconds(0.75), this.kv);
+				this.timeline.getKeyFrames().add(this.kf);
+				this.timeline.setOnFinished(t -> {
+					this.stackLogin.getChildren().remove(this.anchorLogin);
+				});
+				this.timeline.play();
 				break;
 
 			case 4: // admin
 				this.controllerAdmin.recibirParametros(
 						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada)));
-				this.admin.setScene(this.scene4);
 
-				this.admin.getIcons().add(this.icon); // agregamos el icono
-				this.admin.setTitle("Menú de Administrador"); // ponemos el título de la ventana
-				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
-				// botón "iniciar"
-
-				// this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la
-				// escena actual
-				// this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-				this.admin.setResizable(false);
 				this.scene4 = this.iniciar.getScene();
 				this.root4.translateYProperty().set(this.scene4.getHeight());
-
 				this.stackLogin.getChildren().add(this.root4);
-
-				Timeline timeline = new Timeline();
-				KeyValue kv = new KeyValue(this.root4.translateYProperty(), 0, Interpolator.EASE_IN);
-				KeyFrame kf = new KeyFrame(Duration.seconds(0.75), kv);
-				timeline.getKeyFrames().add(kf);
-				timeline.setOnFinished(t -> {
+				this.kv = new KeyValue(this.root4.translateYProperty(), 0, Interpolator.EASE_IN);
+				this.kf = new KeyFrame(Duration.seconds(0.75), this.kv);
+				this.timeline.getKeyFrames().add(this.kf);
+				this.timeline.setOnFinished(t -> {
 					this.stackLogin.getChildren().remove(this.anchorLogin);
 				});
-				timeline.play();
-
-
-
-				// this.admin.show();
+				this.timeline.play();
 				break;
 
 			default:
