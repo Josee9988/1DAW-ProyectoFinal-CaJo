@@ -16,6 +16,10 @@ import javax.crypto.NoSuchPaddingException;
 
 import controllerUtilidades.crypto_controller;
 import dto.usuarioDTO;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +28,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.jdbcUsuarioDAO;
 
 public class Login_Controller {
@@ -68,6 +75,11 @@ public class Login_Controller {
 	@FXML
 	private javafx.scene.control.Button iniciar; // botón iniciar del login
 
+	@FXML
+	private AnchorPane anchorLogin;
+	@FXML
+	private StackPane stackLogin;
+
 	private Image icon;
 	private Stage stage;
 
@@ -107,8 +119,6 @@ public class Login_Controller {
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png")); // ruta icono
-
-		this.stage = null;
 	}
 
 	@FXML
@@ -129,7 +139,7 @@ public class Login_Controller {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
-			NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
 
 		// vemos si están vacios los campos o no.
@@ -197,10 +207,27 @@ public class Login_Controller {
 				// cogemos la escena que tenemos y la cerramos en el momento que se activa el
 				// botón "iniciar"
 
-				this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la escena actual
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				// this.stage = (Stage) this.iniciar.getScene().getWindow(); // seleccionamos la
+				// escena actual
+				// this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.admin.setResizable(false);
-				this.admin.show();
+				this.scene4 = this.iniciar.getScene();
+				this.root4.translateYProperty().set(this.scene4.getHeight());
+
+				this.stackLogin.getChildren().add(this.root4);
+
+				Timeline timeline = new Timeline();
+				KeyValue kv = new KeyValue(this.root4.translateYProperty(), 0, Interpolator.EASE_IN);
+				KeyFrame kf = new KeyFrame(Duration.seconds(0.75), kv);
+				timeline.getKeyFrames().add(kf);
+				timeline.setOnFinished(t -> {
+					this.stackLogin.getChildren().remove(this.anchorLogin);
+				});
+				timeline.play();
+
+
+
+				// this.admin.show();
 				break;
 
 			default:

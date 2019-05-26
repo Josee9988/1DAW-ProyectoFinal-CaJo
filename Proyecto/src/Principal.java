@@ -21,7 +21,7 @@ public class Principal extends Application {
 			root = FXMLLoader.load(this.getClass().getResource("/view/login.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setResizable(false);
-			primaryStage.setOpacity(0.87);
+			// primaryStage.setOpacity(0.87);
 			Image icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 			primaryStage.getIcons().add(icon);
 			primaryStage.setTitle("Proyecto Jose Carlos");
@@ -34,7 +34,7 @@ public class Principal extends Application {
 
 	/**
 	 * main Función de inicio que carga la primera ventana.
-	 * 
+	 *
 	 * @param args recibe los datos del programa
 	 */
 	public static void main(String[] args) {

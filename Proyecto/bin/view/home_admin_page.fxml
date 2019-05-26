@@ -5,24 +5,33 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Admin_Controller">
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home_Admin_Controller">
    <children>
-      <Label layoutX="147.0" layoutY="41.0" text="Menu de opciones">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Button layoutX="57.0" layoutY="106.0" mnemonicParsing="false" onAction="#administrarUsuarios" prefHeight="27.0" prefWidth="355.0" stylesheets="@buttonhover.css" text="Administrar usuarios" />
-      <Button layoutX="55.0" layoutY="220.0" mnemonicParsing="false" onAction="#administrarProveedores" prefHeight="27.0" prefWidth="355.0" text="Administrar proveedores" />
-      <Label layoutX="484.0" layoutY="33.0" text="Bienvenido/a:" />
-      <Label layoutX="514.0" layoutY="111.0" text="Rol:" />
-      <Label layoutX="502.0" layoutY="175.0" text="Fecha:" />
-      <TextField fx:id="nombre" layoutX="465.0" layoutY="57.0" prefHeight="27.0" prefWidth="121.0" />
-      <TextField fx:id="rol_name" layoutX="466.0" layoutY="134.0" prefHeight="27.0" prefWidth="121.0" />
-      <TextField fx:id="fecha" layoutX="465.0" layoutY="206.0" prefHeight="27.0" prefWidth="121.0" />
-      <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" stylesheets="@buttonhover.css" text="Acerca de..." />
-      <Button layoutX="55.0" layoutY="162.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="355.0" stylesheets="@buttonhover.css" text="Administrar incidencias" />
-      <Button layoutX="55.0" layoutY="279.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="355.0" text="Administrar mensajes" />
-      <Button layoutX="55.0" layoutY="335.0" mnemonicParsing="false" onAction="#administrarUbicaciones" prefHeight="27.0" prefWidth="355.0" text="Administrar ubicaciones" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@buttonhover.css">
+               <children>
+                  <Label layoutX="147.0" layoutY="41.0" text="Menu de opciones">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="57.0" layoutY="106.0" mnemonicParsing="false" onAction="#administrarUsuarios" prefHeight="27.0" prefWidth="355.0" stylesheets="@buttonhover.css" text="Administrar usuarios" />
+                  <Button layoutX="55.0" layoutY="220.0" mnemonicParsing="false" onAction="#administrarProveedores" prefHeight="27.0" prefWidth="355.0" text="Administrar proveedores" />
+                  <Label layoutX="484.0" layoutY="33.0" text="Bienvenido/a:" />
+                  <Label layoutX="514.0" layoutY="111.0" text="Rol:" />
+                  <Label layoutX="502.0" layoutY="175.0" text="Fecha:" />
+                  <TextField fx:id="nombre" layoutX="465.0" layoutY="57.0" prefHeight="27.0" prefWidth="121.0" />
+                  <TextField fx:id="rol_name" layoutX="466.0" layoutY="134.0" prefHeight="27.0" prefWidth="121.0" />
+                  <TextField fx:id="fecha" layoutX="465.0" layoutY="206.0" prefHeight="27.0" prefWidth="121.0" />
+                  <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" stylesheets="@buttonhover.css" text="Acerca de..." />
+                  <Button layoutX="55.0" layoutY="162.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="355.0" stylesheets="@buttonhover.css" text="Administrar incidencias" />
+                  <Button layoutX="55.0" layoutY="279.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="355.0" text="Administrar mensajes" />
+                  <Button layoutX="55.0" layoutY="335.0" mnemonicParsing="false" onAction="#administrarUbicaciones" prefHeight="27.0" prefWidth="355.0" text="Administrar ubicaciones" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
-</Pane>
+</StackPane>
