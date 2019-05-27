@@ -21,5 +21,10 @@
       <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
       <Button layoutX="51.0" layoutY="106.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="359.0" text="Administrar incidencias" />
       <Button layoutX="51.0" layoutY="162.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="359.0" text="Administrar mensajes" />
+      <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#cerrarBD" prefHeight="35.0" prefWidth="121.0" style="-fx-background-color: #ff4455;" text="Cerrar sesión">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

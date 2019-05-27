@@ -155,6 +155,17 @@ public class Home_Jefe_Controller {
 
 	@FXML
 	/**
+	 * cerrarBD cierra la conexión con la base de datos de forma segura y cierra el
+	 * programa
+	 *
+	 * @param SQLException si ha habido una excepción SQL
+	 */
+	public void cerrarBD() {
+
+	}
+
+	@FXML
+	/**
 	 * acercaDe abre la view de acercaDe la cual contiene información sobre el
 	 * programa
 	 */

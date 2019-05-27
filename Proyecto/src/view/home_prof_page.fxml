@@ -23,11 +23,11 @@
       <TextField fx:id="fecha" layoutX="469.0" layoutY="206.0" prefHeight="40.0" prefWidth="111.0" />
       <Label layoutX="484.0" layoutY="182.0" text="Fecha:" />
       <Button layoutX="21.0" layoutY="18.0" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de..." />
-      <ImageView fitHeight="53.0" fitWidth="62.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Documents/Logos%20Spotify/WaniLogo2.jpg" />
-         </image>
-      </ImageView>
       <Button layoutX="79.0" layoutY="246.0" mnemonicParsing="false" onAction="#administrarMensajes" prefHeight="27.0" prefWidth="338.0" text="Mis mensajes" />
+      <Button layoutX="466.0" layoutY="306.0" mnemonicParsing="false" onAction="#cerrarBD" prefHeight="35.0" prefWidth="121.0" style="-fx-background-color: #ff4455;" text="Cerrar sesión">
+         <font>
+            <Font name="Ubuntu Bold Italic" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

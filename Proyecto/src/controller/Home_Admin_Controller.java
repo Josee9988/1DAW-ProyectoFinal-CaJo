@@ -221,6 +221,17 @@ public class Home_Admin_Controller {
 
 	@FXML
 	/**
+	 * cerrarBD cierra la conexión con la base de datos de forma segura y cierra el
+	 * programa
+	 *
+	 * @param SQLException si ha habido una excepción SQL
+	 */
+	public void cerrarBD() throws SQLException {
+		System.exit(0);
+	}
+
+	@FXML
+	/**
 	 * acercaDe abre la view de acercaDe que contiene información del programa.
 	 *
 	 * @throws SQLException por si ha habido una excepción de tipo SQL
