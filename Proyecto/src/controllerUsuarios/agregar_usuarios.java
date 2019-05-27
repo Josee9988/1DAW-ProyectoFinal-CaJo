@@ -81,7 +81,7 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.usuarioDTO.setUser(this.usuario.getText());
 		this.usuarioDTO.setPassword(this.password.getText());
 		this.usuarioDTO.setNombre(this.nombre.getText());
@@ -113,7 +113,7 @@ public class agregar_usuarios {
 	 * @return resultado entero que contiene el valor entre 1 y 4 referido a los
 	 *         roles7
 	 */
-	public int traducirComboBox() {
+	private int traducirComboBox() {
 		int resultado = 0;
 		switch (this.rol.getValue()) {
 		case "Profesor":

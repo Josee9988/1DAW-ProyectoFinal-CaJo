@@ -17,9 +17,9 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 public class crypto_controller {
-	private static SecretKeySpec skeySpec;
-	private static Cipher cipher;
-	private static StringBuffer retString;
+	private SecretKeySpec skeySpec;
+	private Cipher cipher;
+	private StringBuffer retString;
 
 	/**
 	 * crypto_controller constructor
@@ -41,17 +41,17 @@ public class crypto_controller {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 * @throws InvalidKeyException      si la key de la encriptación falla
 	 */
-	private static Cipher getCipher(String synchro1, String synchro2, String synchro3, String synchro4,
+	private Cipher getCipher(String synchro1, String synchro2, String synchro3, String synchro4,
 			boolean isEncryptMode) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
 		byte raw[] = (synchro1 + synchro2 + synchro3 + synchro4).getBytes();
-		crypto_controller.skeySpec = new SecretKeySpec(raw, "AES");
-		crypto_controller.cipher = Cipher.getInstance("AES");
+		this.skeySpec = new SecretKeySpec(raw, "AES");
+		this.cipher = Cipher.getInstance("AES");
 		if (isEncryptMode) {
-			crypto_controller.cipher.init(Cipher.ENCRYPT_MODE, crypto_controller.skeySpec);
+			this.cipher.init(Cipher.ENCRYPT_MODE, this.skeySpec);
 		} else {
-			crypto_controller.cipher.init(Cipher.DECRYPT_MODE, crypto_controller.skeySpec);
+			this.cipher.init(Cipher.DECRYPT_MODE, this.skeySpec);
 		}
-		return crypto_controller.cipher;
+		return this.cipher;
 	}
 
 	/**
@@ -74,12 +74,12 @@ public class crypto_controller {
 	 * @param bytes recibe el array de bytes
 	 * @return devuelve el texto en string
 	 */
-	private static String toHexString(byte bytes[]) {
-		crypto_controller.retString = new StringBuffer();
+	private String toHexString(byte bytes[]) {
+		this.retString = new StringBuffer();
 		for (int i = 0; i < bytes.length; i++) {
-			crypto_controller.retString.append(Integer.toHexString(256 + (bytes[i] & 0xff)).substring(1));
+			this.retString.append(Integer.toHexString(256 + (bytes[i] & 0xff)).substring(1));
 		}
-		return crypto_controller.retString.toString();
+		return this.retString.toString();
 	}
 
 	/**
@@ -94,10 +94,10 @@ public class crypto_controller {
 	 *                                   siempre 32)
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
-	public static String encrypt(String text) throws InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-		javax.crypto.Cipher cipher = crypto_controller.getCipher("!6w", "9x50", "9F17A", "9AXf", true);
-		return crypto_controller.toHexString(cipher.doFinal(text.getBytes()));
+	public String encrypt(String text) throws InvalidKeyException, NoSuchAlgorithmException,
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+		javax.crypto.Cipher cipher = this.getCipher("!6w", "9x50", "9F17A", "9AXf", true);
+		return this.toHexString(cipher.doFinal(text.getBytes()));
 	}
 
 	/**
@@ -112,9 +112,9 @@ public class crypto_controller {
 	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
-	public static String decrypt(String text) throws IllegalBlockSizeException, BadPaddingException,
-			InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
-		javax.crypto.Cipher cipher = crypto_controller.getCipher("!6w", "9x50", "9F17A", "9AXf", false);
+	public String decrypt(String text) throws IllegalBlockSizeException, BadPaddingException,
+	InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
+		javax.crypto.Cipher cipher = this.getCipher("!6w", "9x50", "9F17A", "9AXf", false);
 		String decrypted = new String(cipher.doFinal(crypto_controller.hexToByte(text)));
 		return decrypted;
 	}

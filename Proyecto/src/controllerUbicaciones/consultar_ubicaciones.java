@@ -179,12 +179,6 @@ public class consultar_ubicaciones {
 			this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
 			this.confirmacion_eliminacion.show();
 		}
-
-		// this.bdubicaciones.eliminarUbicacion(this.tabla.getSelectionModel().getSelectedItem().getId());
-		// // lo eliminamos
-		// en la bd
-		// this.tabla.getItems().remove(this.tabla.getSelectionModel().getSelectedItem());
-		// // lo eliminamos en la tabla
 	}
 
 	/**

@@ -25,6 +25,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	private Connection connect;
 	private PreparedStatement ps;
 	private ResultSet rs;
+	private crypto_controller crypto_controller;
 
 	/**
 	 * Método que llama a la clase "Conexion" y obtiene la instancia del objeto de
@@ -34,6 +35,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	 */
 	public jdbcUsuarioDAO() {
 		this.connect = Conexion.getInstance().conectar();
+		this.crypto_controller = new crypto_controller();
 	}
 
 	/**
@@ -45,6 +47,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.close();
 		this.rs.close();
 		this.connect.close();
+
 	}
 
 	@Override
@@ -62,11 +65,11 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.ps = this.connect.prepareStatement(
 				"insert into usuarios(user,password,rol,nombre,apellidos,telefono,direccion) values (?,?,?,?,?,?,?)");
 		this.ps.setString(1, user.getUser());
-		this.ps.setString(2, crypto_controller.encrypt(user.getPassword()));
+		this.ps.setString(2, this.crypto_controller.encrypt(user.getPassword()));
 		this.ps.setInt(3, user.getRol());
 		this.ps.setString(4, user.getNombre());
 		this.ps.setString(5, user.getApellidos());
@@ -77,13 +80,13 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		// boolean resultado;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE usuarios SET user = ?, password = ?, rol = ?, nombre = ?, apellidos = ?, telefono = ?, direccion = ? WHERE id = ?");
 
 		this.ps.setString(1, user.getUser());
-		this.ps.setString(2, crypto_controller.encrypt(user.getPassword()));
+		this.ps.setString(2, this.crypto_controller.encrypt(user.getPassword()));
 		this.ps.setInt(3, user.getRol());
 		this.ps.setString(4, user.getNombre());
 		this.ps.setString(5, user.getApellidos());
@@ -112,13 +115,13 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	@Override
 	public ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("select * from usuarios");
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
 			usuarios.add(new usuarioDTO(this.rs.getInt("id"), this.rs.getString("user"),
-					crypto_controller.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
+					this.crypto_controller.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
 					this.rs.getString("nombre"), this.rs.getString("apellidos"), this.rs.getString("telefono"),
 					this.rs.getString("direccion")));
 		}

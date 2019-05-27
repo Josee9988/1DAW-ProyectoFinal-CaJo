@@ -79,7 +79,6 @@ public class agregar_incidencia {
 				"Indiferente");
 
 		// urgencia
-
 		this.urgencia.setItems(urgenciaArray);
 		this.urgencia.setEditable(false);
 		this.urgencia.getSelectionModel().select(3);

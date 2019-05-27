@@ -80,6 +80,8 @@ public class Login_Controller {
 	private KeyValue kv;
 	private KeyFrame kf;
 
+	private crypto_controller crypto_controller;
+
 	/**
 	 * Login_Controller constructor default que inicializa variables de escenas y
 	 * fxmls.
@@ -111,6 +113,8 @@ public class Login_Controller {
 		this.scene3 = new Scene(this.root3);
 		this.scene4 = new Scene(this.root4);
 		this.timeline = new Timeline();
+
+		this.crypto_controller = new crypto_controller();
 	}
 
 	@FXML
@@ -131,13 +135,13 @@ public class Login_Controller {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
-			NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
 
 		// vemos si están vacios los campos o no.
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
 			// encriptamos el texto que ha escrito el usuario
-			passwordencriptada = crypto_controller.encrypt(this.passwordField.getText());
+			passwordencriptada = this.crypto_controller.encrypt(this.passwordField.getText());
 			switch (this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada))) {
 
 			case 1: // profesor

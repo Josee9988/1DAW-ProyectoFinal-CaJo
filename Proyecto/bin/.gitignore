@@ -1,3 +1,7 @@
-/model/
-/controller/
 /controllerIncidencias/
+/controllerMensajes/
+/controllerUbicaciones/
+/controllerUsuarios/
+/controllerUtilidades/
+/controller/
+/model/

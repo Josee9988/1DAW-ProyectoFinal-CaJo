@@ -193,13 +193,11 @@ public class consultar_incidencias {
 							.get(0);
 					// UBICACIÓN:
 					if (pos.getColumn() == 8) { // si es la columna(s) que queremos...
-						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
-						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
-						// no
-						// cambiará
+						// id no cambiará
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected);
 
 						// creamos la view
 						consultar_incidencias.this.agregar_combobox = new Stage();
@@ -214,27 +212,27 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
 								.<agregar_combobox>getController();
-						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
-						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(1);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método
-							// inicializar
-						consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
-						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						// el
-						// icono
-						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
-						// título
-						// de la ventana
-						consultar_incidencias.this.agregar_combobox.show();
-					} else if (pos.getColumn() == 4) { // si es la columna(s) que queremos...//FECHA:
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(1);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método inicializar
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+								// agregamos el icono
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
+								// ponemos el título de la ventana
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
+								consultar_incidencias.this.agregar_combobox.show();
+
+								// si es la columna(s) que queremos...//FECHA:
+					} else if (pos.getColumn() == 4) {
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
-						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected);
 						// id no cambiará
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected);
+
 
 						// creamos la view
 						consultar_incidencias.this.agregar_fecha = new Stage();
@@ -249,22 +247,19 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_fecha = consultar_incidencias.this.fxmlLoaderagregar_fecha
 								.<agregar_fecha>getController();
-						consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
-						consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
-						consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
-						consultar_incidencias.this.agregar_fecha.show();
-					} else if (pos.getColumn() == 5) { // si es la columna(s) que queremos...//URGENCIA:
+								consultar_incidencias.this.scene2 = new Scene(consultar_incidencias.this.root2);
+								consultar_incidencias.this.agregar_fecha.setScene(consultar_incidencias.this.scene2);
+								consultar_incidencias.this.agregar_fecha.getIcons().add(consultar_incidencias.this.icon); // agregamos
+								consultar_incidencias.this.agregar_fecha.setTitle("Proyecto Jose Carlos"); // ponemos el título
+								consultar_incidencias.this.agregar_fecha.show();
 
-						// int row = pos.getRow();
+
+					} else if (pos.getColumn() == 5) { // si es la columna(s) que queremos...//URGENCIA:
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
-						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
-						// no
-						// cambiará
-
-						// creamos la view
+						// id no cambiará creamos la view
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected);
 						consultar_incidencias.this.agregar_combobox = new Stage();
 						consultar_incidencias.this.fxmlLoaderagregar_combobox = new FXMLLoader(
 								this.getClass().getResource("/view/agregarComboBox.fxml"));
@@ -277,32 +272,25 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
 								.<agregar_combobox>getController();
-						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
-						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(3);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método
-							// inicializar
-						consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
-						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						// el
-						// icono
-						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
-						// título
-						// de la ventana
-						consultar_incidencias.this.agregar_combobox.show();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(3);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método inicializar
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+						// agregamos el icono
+						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
+						// ponemos el título de la ventana
+						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
+								consultar_incidencias.this.agregar_combobox.show();
 
 					} else if (pos.getColumn() == 6) {// si es la columna(s) que queremos ... //CATEGORÍA:
-						// int row = pos.getRow();
 						consultar_incidencias.this.idselected = consultar_incidencias.this.tabla.getSelectionModel()
 								.getSelectedItem().getId();
 
-						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected); // id
-						// no
-						// cambiará
-
-						// creamos la view
+						consultar_incidencias.this.incidenciaSelected.setId(consultar_incidencias.this.idselected);
+						// id no cambiará creamos la view
 						consultar_incidencias.this.agregar_combobox = new Stage();
 						consultar_incidencias.this.fxmlLoaderagregar_combobox = new FXMLLoader(
 								this.getClass().getResource("/view/agregarComboBox.fxml"));
@@ -315,21 +303,18 @@ public class consultar_incidencias {
 
 						consultar_incidencias.this.controller_agregar_combobox = consultar_incidencias.this.fxmlLoaderagregar_combobox
 								.<agregar_combobox>getController();
-						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
-						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(4);
-						} catch (SQLException e) {
-							System.out.println(e.toString());
-						} // llamamos al método
-							// inicializar
-						consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
-						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon); // agregamos
-						// el
-						// icono
-						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos"); // ponemos el
-						// título
-						// de la ventana
-						consultar_incidencias.this.agregar_combobox.show();
+								consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
+								try {
+									consultar_incidencias.this.controller_agregar_combobox.inicializar(4);
+								} catch (SQLException e) {
+									System.out.println(e.toString());
+								} // llamamos al método inicializar
+								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
+						// agregamos el icono
+						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
+						// ponemos el titulo de la ventana
+						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
+								consultar_incidencias.this.agregar_combobox.show();
 					}
 
 				}
@@ -373,7 +358,7 @@ public class consultar_incidencias {
 			}
 			if (this.incidenciaSelected.getDescripcion().equals("")) {
 				this.incidenciaSelected
-						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
+				.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
 			if (this.incidenciaSelected.getElemento().equals("")) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
@@ -482,13 +467,13 @@ public class consultar_incidencias {
 			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
 			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
 					.<confirmar_controller>getController();
-			this.sceneEliminacion = new Scene(this.rootEliminacion);
-			this.controller_confirmar_controller.inicializar(4,
-					this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
-			this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-			this.confirmacion_eliminacion.setTitle("Eliminar incidencia"); // ponemos el título de la ventana
-			this.confirmacion_eliminacion.show();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(4,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar incidencia"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
 		}
 	}
 

@@ -23,11 +23,20 @@ public class agregar_fecha {
 	private Stage stage;
 	private consultar_incidencias consultar_incidencias;
 
+	/**
+	 * agregar_fecha constructor default
+	 */
 	public agregar_fecha() {
 		this.consultar_incidencias = new consultar_incidencias();
 	}
 
 	@FXML
+	/**
+	 * aplicarFecha cuando se le da al botón coge el valor, si es que hay un valor y
+	 * se envía a consultar_incidencias, para que se modifique la fecha
+	 * 
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
 	public void aplicarFecha() throws SQLException {
 		if (this.fecha.getValue() != null) {
 			Date date = java.sql.Date.valueOf(this.fecha.getValue());

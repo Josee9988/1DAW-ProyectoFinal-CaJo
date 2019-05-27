@@ -22,7 +22,7 @@ public class acercaDe_controller {
 	private TextField campo5;
 
 	/**
-	 * acercaDe_controller constructor default, no realiza ninguna acción
+	 * acercaDe_controller constructor default
 	 */
 	public acercaDe_controller() {
 
