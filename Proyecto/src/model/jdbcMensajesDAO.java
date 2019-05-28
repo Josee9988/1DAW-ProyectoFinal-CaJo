@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.mensajesDTO;
+import dto.usuarioDTO;
 
 public class jdbcMensajesDAO implements mensajesDAO {
 
@@ -95,13 +96,14 @@ public class jdbcMensajesDAO implements mensajesDAO {
 		return resultado;
 	}
 
-	public ArrayList<mensajesDTO> filtrar(String texto, int user, int rol) throws SQLException {
+	@Override
+	public ArrayList<mensajesDTO> filtrar(String texto, usuarioDTO usuario) throws SQLException {
 		ArrayList<mensajesDTO> aux = new ArrayList<>();
-		if (rol == 1 || rol == 2) {
+		if (usuario.getRol() == 1 || usuario.getRol() == 2) {
 			this.ps = this.connect.prepareStatement(
 					"SELECT * FROM mensajes WHERE (id_emisor = ? OR id_receptor = ?) AND (asunto LIKE ? OR cuerpo LIKE ?");
-			this.ps.setInt(1, user);
-			this.ps.setInt(2, user);
+			this.ps.setInt(1, usuario.getId());
+			this.ps.setInt(2, usuario.getId());
 			this.ps.setString(3, "%" + texto + "%");
 			this.ps.setString(4, "%" + texto + "%");
 

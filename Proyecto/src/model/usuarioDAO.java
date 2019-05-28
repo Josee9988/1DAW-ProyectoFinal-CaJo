@@ -39,7 +39,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 	/**
 	 * modificarUsuario modifica el usuario
@@ -54,7 +54,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 	/**
 	 * devolverNombre devuelve el nombre de un usuario
@@ -80,7 +80,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
 
 	/**
 	 * eliminarUsuario elimina un usuario a través de una ID
@@ -121,7 +121,7 @@ public interface usuarioDAO {
 	/**
 	 * leerDestinatarios lee todos los nicks de usuarios encontrados en la base de
 	 * datos
-	 * 
+	 *
 	 * @return devuelve un ArrayList de tipo String con los nicks de usuarios
 	 *         encontrados
 	 * @throws SQLException si ha habido una excepción SQL
@@ -130,11 +130,38 @@ public interface usuarioDAO {
 
 	/**
 	 * leerUsuario lee un nick de usuario a partir de un Nombre y un Apellido
-	 * 
+	 *
 	 * @param nombre    String nombre recibido
 	 * @param apellidos String apellidos recibidos
 	 * @return devuelve un string con el nick de usuario encontrado
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	String leerUsuario(String nombre, String apellidos) throws SQLException;
+
+	/**
+	 * filtrar es llamado por la clase consultar correspondiente y busca los
+	 * elementos con un like y devolverá un arraylist con todos los objetos
+	 * encontrados * @param texto texto a buscar en diferentes campos
+	 * 
+	 * @return devuelve un arrayList con todos los objetos encontrados
+	 * @throws SQLException              si ha habido una excepción SQL
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 */
+	ArrayList<usuarioDTO> filtrar(String texto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
+
+	/**
+	 * userEncontrado busca en la base de datos un usuario en concreto recibido por
+	 * parámetro
+	 * 
+	 * @param user el usuario a buscar
+	 * @return devuelve true si lo ha encontrado o false si no existe
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	boolean userEncontrado(String user) throws SQLException;
 }

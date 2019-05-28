@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.mensajesDTO;
+import dto.usuarioDTO;
 
 public interface mensajesDAO {
 
@@ -51,5 +52,17 @@ public interface mensajesDAO {
 	 * @throws SQLException si hay una excepción SQL
 	 */
 	boolean eliminarMensajes(int id) throws SQLException;
+
+	/**
+	 * filtrar es llamado por la clase consultar correspondiente y busca los
+	 * elementos con un like y devolverá un arraylist con todos los objetos
+	 * encontrados
+	 * 
+	 * @param texto   texto a buscar en diferentes campos
+	 * @param usuario usuarioDTO en el cual obtendremos la id y el rol
+	 * @return devuelve un arrayList con todos los objetos encontrados
+	 * @throws SQLException si ha habido una excepción de tipo SQL
+	 */
+	ArrayList<mensajesDTO> filtrar(String texto, usuarioDTO usuario) throws SQLException;
 
 }

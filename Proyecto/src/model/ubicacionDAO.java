@@ -65,11 +65,22 @@ public interface ubicacionDAO {
 
 	/**
 	 * devolverNombre devuelve un String con un nombre a partir de una id recibida.
-	 * 
+	 *
 	 * @param id entero id recibida que buscará en la base de datos dicha id para
 	 *           obtener el nombre
 	 * @return devuelve un String con el nombre
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	String devolverNombre(int id) throws SQLException;
+
+	/**
+	 * filtrar es llamado por la clase consultar correspondiente y busca los
+	 * elementos con un like y devolverá un arraylist con todos los objetos
+	 * encontrados
+	 *
+	 * @param texto texto a buscar en diferentes campos
+	 * @return devuelve un arrayList con todos los objetos encontrados
+	 * @throws SQLException si ha habido una excepción de tipo SQL
+	 */
+	ArrayList<ubicacionDTO> filtrar(String texto) throws SQLException;
 }

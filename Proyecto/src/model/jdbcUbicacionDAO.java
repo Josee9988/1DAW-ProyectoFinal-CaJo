@@ -132,6 +132,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		return nombre;
 	}
 
+	@Override
 	public ArrayList<ubicacionDTO> filtrar(String texto) throws SQLException {
 		ArrayList<ubicacionDTO> aux = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("SELECT * FROM ubicaciones WHERE nombre LIKE ? OR descripcion LIKE ?");

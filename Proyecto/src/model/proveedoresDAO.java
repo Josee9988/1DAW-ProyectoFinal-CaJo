@@ -15,7 +15,7 @@ public interface proveedoresDAO {
 	/**
 	 * leerProveedores lee los proveedores y devuelve un arraylist con todos los de
 	 * la base de datos
-	 * 
+	 *
 	 * @return ArrayList<proveedorDTO> con todos los registros de la base de datos
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
@@ -23,7 +23,7 @@ public interface proveedoresDAO {
 
 	/**
 	 * agregarProveedor agrega un proveedor a la base de datos
-	 * 
+	 *
 	 * @param p objeto proveedorDTO a agregar
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
@@ -31,7 +31,7 @@ public interface proveedoresDAO {
 
 	/**
 	 * eliminarProveedor elimina un proveedor de la base de datos
-	 * 
+	 *
 	 * @param id id a elimianr
 	 * @return devuelve un booleano si ha ido todo correcto o no
 	 * @throws SQLException si ha habido una excepción SQL
@@ -40,11 +40,22 @@ public interface proveedoresDAO {
 
 	/**
 	 * modificarProveedor modifica un proveedor
-	 * 
+	 *
 	 * @param proveedor objeto con los nuevos datos de proveedor
 	 * @return devuelve un booleano si ha ido todo correcto o no
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	boolean modificarProveedor(proveedorDTO proveedor) throws SQLException;
+
+	/**
+	 * filtrar es llamado por la clase consultar correspondiente y busca los
+	 * elementos con un like y devolverá un arraylist con todos los objetos
+	 * encontrados
+	 * 
+	 * @param texto texto a buscar en diferentes campos
+	 * @return devuelve un arrayList con todos los objetos encontrados
+	 * @throws SQLException si ha habido una excepción de tipo SQL
+	 */
+	ArrayList<proveedorDTO> filtrar(String texto) throws SQLException;
 
 }

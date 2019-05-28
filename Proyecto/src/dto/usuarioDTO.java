@@ -33,8 +33,20 @@ public class usuarioDTO {
 	}
 
 	/**
-	 * usuarioDTO constructor parametrizado con el usuario y el rol
+	 * usuarioDTO constructor parametrizado utilizado en mensajes, que contiene la
+	 * id y el rol
 	 * 
+	 * @param id  entero de la id recibida
+	 * @param rol rol del rol recibido
+	 */
+	public usuarioDTO(int id, int rol) {
+		this.id = id;
+		this.rol = rol;
+	}
+
+	/**
+	 * usuarioDTO constructor parametrizado con el usuario y el rol
+	 *
 	 * @param user nombre de usuario del usuario
 	 * @param rol  rol del usuario
 	 */
@@ -52,7 +64,7 @@ public class usuarioDTO {
 
 	/**
 	 * usuarioDTO constructor parametrizado con el usuario y la contraseña
-	 * 
+	 *
 	 * @param user     nombre de usuario del usuario
 	 * @param password contraseña del usuario
 	 */
@@ -70,7 +82,7 @@ public class usuarioDTO {
 
 	/**
 	 * usuarioDTO constructor parametrizado con el String del rol traducido
-	 * 
+	 *
 	 * @param user      nombre de usuario del usuario
 	 * @param password  contraseña del usuario
 	 * @param rol       rol del usuario
@@ -95,7 +107,7 @@ public class usuarioDTO {
 
 	/**
 	 * usuarioDTO constructor parametrizado
-	 * 
+	 *
 	 * @param id        id del usuario
 	 * @param user      nombre de usuario del usuario
 	 * @param password  contraseña del usuario
@@ -119,16 +131,17 @@ public class usuarioDTO {
 
 	/**
 	 * usuarioDTO constructor clonar
-	 * 
+	 *
 	 * @param u usuarioDTO a clonar
 	 */
 	public usuarioDTO(usuarioDTO u) {
 		this(u.user, u.password, u.rol, u.rolS, u.nombre, u.apellidos, u.telefono, u.direccion);
 	}
 
+
 	/**
 	 * clonar constructor clonar
-	 * 
+	 *
 	 * @return usuarioDTO clonado
 	 */
 	public usuarioDTO clonar() {

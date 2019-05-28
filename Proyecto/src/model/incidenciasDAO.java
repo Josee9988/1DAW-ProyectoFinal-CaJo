@@ -87,4 +87,17 @@ public interface incidenciasDAO {
 	 */
 	ArrayList<String> leerDescripcionesIncidencias() throws SQLException;
 
+	/**
+	 * filtrar es llamado por la clase consultar correspondiente y busca los
+	 * elementos con un like y devolverá un arraylist con todos los objetos
+	 * encontrados
+	 *
+	 * @param u     usuarioDTO en el cual obtendremos la id y el rol
+	 * @param texto texto a buscar en diferentes campos
+	 *
+	 * @return devuelve un arrayList con todos los objetos encontrados
+	 * @throws SQLException si ha habido una excepción de tipo SQL
+	 */
+	ArrayList<incidenciaDTO> filtrar(usuarioDTO u, String texto) throws SQLException;
+
 }

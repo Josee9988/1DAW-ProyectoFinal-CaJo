@@ -89,6 +89,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		return resultado;
 	}
 
+	@Override
 	public ArrayList<proveedorDTO> filtrar(String texto) throws SQLException {
 		ArrayList<proveedorDTO> proveedores = new ArrayList<>();
 		this.ps = this.connect.prepareStatement("SELECT * FROM proveedores WHERE nombre LIKE ? OR contacto LIKE ?");

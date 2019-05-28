@@ -14,6 +14,7 @@ import java.util.Date;
 import controller.controllerUtilidades.agregar_combobox;
 import controller.controllerUtilidades.confirmar_controller;
 import dto.mensajesDTO;
+import dto.usuarioDTO;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -346,8 +347,8 @@ public class consultar_mensajes {
 
 		this.tabla.getItems().clear(); // borramos todos los datos
 
-		mensajesToAdd.addAll(this.bdmensajes.filtrar(this.filtro.getText(),
-				this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), this.rol));
+		mensajesToAdd.addAll(this.bdmensajes.filtrar(this.filtro.getText(), new usuarioDTO(
+				this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), this.rol)));
 		for (mensajesDTO i : mensajesToAdd) {
 			if (this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).length() > 64) {
 				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).substring(0, 64));

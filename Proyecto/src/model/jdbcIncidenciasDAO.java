@@ -171,6 +171,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return arrayToReturn;
 	}
 
+	@Override
 	public ArrayList<incidenciaDTO> filtrar(usuarioDTO u, String texto) throws SQLException {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
 		if (u.getRol() == 1 || u.getRol() == 2) {
