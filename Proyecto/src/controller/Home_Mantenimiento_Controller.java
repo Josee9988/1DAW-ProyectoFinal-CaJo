@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.Conexion;
 
 public class Home_Mantenimiento_Controller {
 
@@ -135,8 +136,9 @@ public class Home_Mantenimiento_Controller {
 	 *
 	 * @param SQLException si ha habido una excepción SQL
 	 */
-	public void cerrarBD() {
-
+	public void cerrarBD() throws SQLException {
+		Conexion.getInstance().cerrarConexion();
+		System.exit(0);
 	}
 
 	@FXML
