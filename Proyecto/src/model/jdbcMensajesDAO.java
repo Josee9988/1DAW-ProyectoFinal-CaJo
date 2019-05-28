@@ -106,8 +106,7 @@ public class jdbcMensajesDAO implements mensajesDAO {
 			this.ps.setString(4, "%" + texto + "%");
 
 		} else {
-			this.ps = this.connect.prepareStatement(
-					"SELECT * FROM mensajes WHERE asunto LIKE ? OR cuerpo LIKE ?");
+			this.ps = this.connect.prepareStatement("SELECT * FROM mensajes WHERE asunto LIKE ? OR cuerpo LIKE ?");
 			this.ps.setString(1, "%" + texto + "%");
 			this.ps.setString(2, "%" + texto + "%");
 		}

@@ -29,7 +29,6 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
-
 	@Override
 	public void agregarUbicacion(ubicacionDTO u) throws SQLException {
 		this.ps = this.connect
@@ -107,13 +106,16 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 
 	@Override
 	public int obtenerIdUbicacion(String nombre) throws SQLException {
+		int id = 0;
 		this.ps = this.connect.prepareStatement("select id from ubicaciones where nombre = ?");
 		this.ps.setString(1, nombre);
 		this.rs = this.ps.executeQuery();
-		this.rs.next();
+		while (this.rs.next()) {
+			id = this.rs.getInt("id");
+		}
 		this.ps.close();
 		this.rs.close();
-		return this.rs.getInt("id");
+		return id;
 	}
 
 	@Override
@@ -132,8 +134,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 
 	public ArrayList<ubicacionDTO> filtrar(String texto) throws SQLException {
 		ArrayList<ubicacionDTO> aux = new ArrayList<>();
-		this.ps = this.connect
-				.prepareStatement("SELECT * FROM ubicaciones WHERE nombre LIKE ? OR descripcion LIKE ?");
+		this.ps = this.connect.prepareStatement("SELECT * FROM ubicaciones WHERE nombre LIKE ? OR descripcion LIKE ?");
 		this.ps.setString(1, "%" + texto + "%");
 		this.ps.setString(2, "%" + texto + "%");
 
