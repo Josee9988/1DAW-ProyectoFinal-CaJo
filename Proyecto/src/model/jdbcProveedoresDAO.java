@@ -89,4 +89,19 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		return resultado;
 	}
 
+	public ArrayList<proveedorDTO> filtrar(String texto) throws SQLException {
+		ArrayList<proveedorDTO> proveedores = new ArrayList<>();
+		this.ps = this.connect.prepareStatement("SELECT * FROM proveedores WHERE nombre LIKE ? OR contacto LIKE ?");
+		this.ps.setString(1, "%" + texto + "%");
+		this.ps.setString(2, "%" + texto + "%");
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			proveedores.add(new proveedorDTO(this.rs.getInt("id"), this.rs.getString("nombre"),
+					this.rs.getString("contacto"), this.rs.getString("direccion"), this.rs.getInt("valoracion")));
+		}
+		this.ps.close();
+		this.rs.close();
+		return proveedores;
+	}
+
 }

@@ -171,4 +171,30 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		return arrayToReturn;
 	}
 
+	public ArrayList<incidenciaDTO> filtrar(usuarioDTO u, String texto) throws SQLException {
+		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
+		if (u.getRol() == 1 || u.getRol() == 2) {
+			this.ps = this.connect.prepareStatement(
+					"SELECT * FROM incidencias WHERE usuario = ? AND (usuario LIKE ? OR descripcion LIKE ?");
+			this.ps.setString(1, u.getUser());
+			this.ps.setString(2, "%" + texto + "%");
+			this.ps.setString(3, "%" + texto + "%");
+		} else {
+			this.ps = this.connect
+					.prepareStatement("SELECT * FROM incidencias WHERE usuario LIKE ? OR descripcion LIKE ?");
+			this.ps.setString(1, "%" + texto + "%");
+			this.ps.setString(2, "%" + texto + "%");
+		}
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			incidencias.add(new incidenciaDTO(this.rs.getInt("id"), this.rs.getString("usuario"),
+					this.rs.getString("descripcion"), this.rs.getString("elemento"), this.rs.getInt("ubicacion"),
+					this.rs.getDate("fecha"), this.rs.getString("urgencia"), this.rs.getString("categoria"),
+					this.rs.getString("materiales")));
+		}
+		this.ps.close();
+		this.rs.close();
+		return incidencias;
+	}
+
 }

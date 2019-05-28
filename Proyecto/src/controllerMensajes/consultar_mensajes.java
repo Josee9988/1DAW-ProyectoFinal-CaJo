@@ -58,6 +58,8 @@ public class consultar_mensajes {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+	@FXML
+	private TextField filtro;
 
 	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
 	private jdbcUsuarioDAO jdbcUsuarioDAO;
@@ -308,7 +310,7 @@ public class consultar_mensajes {
 	/**
 	 * agregarIncidenciaDeComboBox método que es llamado de la case de combobox,
 	 * éste guardará el valor en una variable y si se le dá a modificar se aplicará
-	 * 
+	 *
 	 * @param idToReturn entero recibido que referencia a una incidencia
 	 */
 	public void agregarIncidenciaDeComboBox(int idToReturn) {
@@ -329,6 +331,22 @@ public class consultar_mensajes {
 	}
 
 	// MODIFICACIONES
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void commitFIltro() throws SQLException {
+		String nombreCompletoArray[] = this.nombreCompleto.split(" ");
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.tabla.getItems().addAll(this.bdmensajes.filtrar(this.filtro.getText(),
+				this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), this.rol));
+	}
+
 	@FXML
 	/**
 	 * editAsunto si se ha hecho doble click en una celda

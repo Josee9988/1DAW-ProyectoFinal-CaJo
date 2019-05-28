@@ -6,14 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1024.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMensajes.consultar_mensajes">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1024.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerMensajes.consultar_mensajes">
    <children>
       <Label layoutX="358.0" layoutY="25.0" text="Consultar Mensajes">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="986.0">
+      <TableView fx:id="tabla" layoutX="14.0" layoutY="120.0" prefHeight="446.0" prefWidth="986.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="65.0" text="ID" />
           <TableColumn fx:id="asunto" onEditCommit="#editAsunto" prefWidth="147.0" text="Asunto" />
@@ -25,9 +25,9 @@
         </columns>
       </TableView>
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
-      <Button layoutX="30.0" layoutY="526.0" mnemonicParsing="false" onAction="#agregarMensaje" prefHeight="38.0" prefWidth="255.0" text="Agregar mensaje" />
-      <Button layoutX="367.0" layoutY="526.0" mnemonicParsing="false" onAction="#modificarMensaje" prefHeight="38.0" prefWidth="291.0" text="Modificar mensaje" />
-      <Button layoutX="708.0" layoutY="526.0" mnemonicParsing="false" onAction="#eliminarMensaje" prefHeight="38.0" prefWidth="291.0" text="Eliminar mensaje" />
+      <Button layoutX="26.0" layoutY="575.0" mnemonicParsing="false" onAction="#agregarMensaje" prefHeight="38.0" prefWidth="255.0" text="Agregar mensaje" />
+      <Button layoutX="363.0" layoutY="575.0" mnemonicParsing="false" onAction="#modificarMensaje" prefHeight="38.0" prefWidth="291.0" text="Modificar mensaje" />
+      <Button layoutX="704.0" layoutY="575.0" mnemonicParsing="false" onAction="#eliminarMensaje" prefHeight="38.0" prefWidth="291.0" text="Eliminar mensaje" />
       <TextField fx:id="usuario_encabezado" layoutX="778.0" layoutY="19.0" prefHeight="37.0" prefWidth="151.0" />
       <Button layoutX="716.0" layoutY="20.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
@@ -38,5 +38,11 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="20.0" layoutY="86.0" prefHeight="25.0" prefWidth="75.0" text="Buscar:" textAlignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="filtro" layoutX="98.0" layoutY="86.0" onAction="#commitFIltro" prefHeight="25.0" prefWidth="897.0" promptText="Buscar elementos en asunto o cuerpo" />
    </children>
 </Pane>

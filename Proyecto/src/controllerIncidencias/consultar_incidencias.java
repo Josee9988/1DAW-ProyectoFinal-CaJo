@@ -72,6 +72,8 @@ public class consultar_incidencias {
 	private Button agregarI;
 	@FXML
 	private Text textoError;
+	@FXML
+	private TextField filtro;
 
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
 
@@ -279,10 +281,10 @@ public class consultar_incidencias {
 									System.out.println(e.toString());
 								} // llamamos al método inicializar
 								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
-						// agregamos el icono
-						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
-						// ponemos el título de la ventana
-						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
+								// agregamos el icono
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
+								// ponemos el título de la ventana
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
 								consultar_incidencias.this.agregar_combobox.show();
 
 					} else if (pos.getColumn() == 6) {// si es la columna(s) que queremos ... //CATEGORÍA:
@@ -310,10 +312,10 @@ public class consultar_incidencias {
 									System.out.println(e.toString());
 								} // llamamos al método inicializar
 								consultar_incidencias.this.agregar_combobox.setScene(consultar_incidencias.this.scene3);
-						// agregamos el icono
-						consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
-						// ponemos el titulo de la ventana
-						consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
+								// agregamos el icono
+								consultar_incidencias.this.agregar_combobox.getIcons().add(consultar_incidencias.this.icon);
+								// ponemos el titulo de la ventana
+								consultar_incidencias.this.agregar_combobox.setTitle("Proyecto Jose Carlos");
 								consultar_incidencias.this.agregar_combobox.show();
 					}
 
@@ -501,6 +503,21 @@ public class consultar_incidencias {
 	}
 
 	// MODIFICACIONES
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void commitFIltro() throws SQLException {
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.tabla.getItems().addAll(this.bdincidencias
+				.filtrar(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number), this.filtro.getText()));
+	}
+
 	@FXML
 	/**
 	 * editUsuario si se ha hecho doble click en una celda

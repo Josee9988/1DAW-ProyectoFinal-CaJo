@@ -130,4 +130,21 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		return nombre;
 	}
 
+	public ArrayList<ubicacionDTO> filtrar(String texto) throws SQLException {
+		ArrayList<ubicacionDTO> aux = new ArrayList<>();
+		this.ps = this.connect
+				.prepareStatement("SELECT * FROM ubicaciones WHERE nombre LIKE ? OR descripcion LIKE ?");
+		this.ps.setString(1, "%" + texto + "%");
+		this.ps.setString(2, "%" + texto + "%");
+
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			aux.add(new ubicacionDTO(this.rs.getInt("id"), this.rs.getString("nombre"),
+					this.rs.getString("descripcion"), this.rs.getString("edificio"), this.rs.getString("planta")));
+		}
+		this.ps.close();
+		this.rs.close();
+		return aux;
+	}
+
 }

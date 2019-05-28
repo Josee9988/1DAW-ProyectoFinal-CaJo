@@ -1,11 +1,7 @@
-/Principal.class
-/controller/
+/controllerUsuarios/
+/view/
+/controllerUbicaciones/
+/model/
+/controllerProveedores/
 /controllerIncidencias/
 /controllerMensajes/
-/controllerProveedores/
-/controllerUbicaciones/
-/controllerUsuarios/
-/controllerUtilidades/
-/dto/
-/model/
-/view/

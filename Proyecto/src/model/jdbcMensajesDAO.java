@@ -95,4 +95,31 @@ public class jdbcMensajesDAO implements mensajesDAO {
 		return resultado;
 	}
 
+	public ArrayList<mensajesDTO> filtrar(String texto, int user, int rol) throws SQLException {
+		ArrayList<mensajesDTO> aux = new ArrayList<>();
+		if (rol == 1 || rol == 2) {
+			this.ps = this.connect.prepareStatement(
+					"SELECT * FROM mensajes WHERE (id_emisor = ? OR id_receptor = ?) AND (asunto LIKE ? OR cuerpo LIKE ?");
+			this.ps.setInt(1, user);
+			this.ps.setInt(2, user);
+			this.ps.setString(3, "%" + texto + "%");
+			this.ps.setString(4, "%" + texto + "%");
+
+		} else {
+			this.ps = this.connect.prepareStatement(
+					"SELECT * FROM mensajes WHERE asunto LIKE ? OR cuerpo LIKE ?");
+			this.ps.setString(1, "%" + texto + "%");
+			this.ps.setString(2, "%" + texto + "%");
+		}
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			aux.add(new mensajesDTO(this.rs.getInt("id"), this.rs.getString("asunto"), this.rs.getString("cuerpo"),
+					this.rs.getInt("incidencia"), this.rs.getDate("fecha"), this.rs.getInt("id_emisor"),
+					this.rs.getInt("id_receptor")));
+		}
+		this.ps.close();
+		this.rs.close();
+		return aux;
+	}
+
 }

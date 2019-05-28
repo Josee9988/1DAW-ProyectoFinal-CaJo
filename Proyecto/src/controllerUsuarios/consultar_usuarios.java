@@ -370,6 +370,20 @@ public class consultar_usuarios {
 
 	// ######################### MODIFICACIONES #########################
 	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 * 
+	 * @throws InvalidKeyException       si la key de la encriptación falla
+	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
+	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
+	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
+	 *                                   siempre 32)
+	 * @throws BadPaddingException       por si el formato no es el correcto
+	 * @throws SQLException              si ha habido una excepción SQL
+	 */
 	public void commitFIltro() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
 	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos

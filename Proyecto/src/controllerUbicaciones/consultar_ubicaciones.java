@@ -47,6 +47,8 @@ public class consultar_ubicaciones {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+	@FXML
+	private TextField filtro;
 
 	private Stage agregar_ubicacion;
 	private Parent root1;
@@ -168,16 +170,16 @@ public class consultar_ubicaciones {
 			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
 			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
 					.<confirmar_controller>getController();
-			this.sceneEliminacion = new Scene(this.rootEliminacion);
-			this.controller_confirmar_controller.inicializar(1,
-					this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
-			// al
-			// método
-			// inicializar
-			this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-			this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
-			this.confirmacion_eliminacion.show();
+					this.sceneEliminacion = new Scene(this.rootEliminacion);
+					this.controller_confirmar_controller.inicializar(1,
+							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+					// al
+					// método
+					// inicializar
+					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+					this.confirmacion_eliminacion.setTitle("Eliminar ubicación"); // ponemos el título de la ventana
+					this.confirmacion_eliminacion.show();
 		}
 	}
 
@@ -203,7 +205,21 @@ public class consultar_ubicaciones {
 		this.tabla.getItems().addAll(this.bdubicaciones.leerUbicaciones());
 	}
 
-	// #####MODIFICACIONESs
+	// #####MODIFICACIONES
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void commitFIltro() throws SQLException {
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.tabla.getItems().addAll(this.bdubicaciones.filtrar(this.filtro.getText()));
+	}
+
 	@FXML
 	/**
 	 * editNombre si se ha hecho doble click en una celda
