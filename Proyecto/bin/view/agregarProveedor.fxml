@@ -6,29 +6,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerProveedores.agregar_proveedor">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerProveedores.agregar_proveedor">
    <children>
-      <Text layoutX="166.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Proveedor" wrappingWidth="269.0">
+      <Text fill="WHITE" layoutX="166.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Proveedor" wrappingWidth="269.0">
          <font>
             <Font name="Ubuntu Bold" size="29.0" />
          </font>
       </Text>
-      <Label layoutX="121.0" layoutY="104.0" text="Nombre" textFill="#792525">
+      <Label layoutX="121.0" layoutY="104.0" text="Nombre" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="408.0" layoutY="104.0" text="Contacto" textFill="#792525">
+      <Label layoutX="408.0" layoutY="104.0" text="Contacto" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="407.0" layoutY="200.0" text="Dirección" textFill="#792525">
+      <Label layoutX="407.0" layoutY="200.0" text="Dirección" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="200.0" text="Valoracion" textFill="#792525">
+      <Label layoutX="108.0" layoutY="200.0" text="Valoracion" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
          </font>

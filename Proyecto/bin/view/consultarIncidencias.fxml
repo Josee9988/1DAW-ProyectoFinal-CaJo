@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.consultar_incidencias">
+<Pane fx:id="paneBG" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.consultar_incidencias">
    <children>
-      <Label layoutX="342.0" layoutY="27.0" text="Consultar Incidencias">
+      <Label layoutX="342.0" layoutY="27.0" text="Consultar Incidencias" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -60,7 +60,7 @@
             </Text>
          </children>
       </TextFlow>
-      <Label layoutX="21.0" layoutY="84.0" prefHeight="25.0" prefWidth="75.0" text="Buscar:" textAlignment="CENTER">
+      <Label layoutX="21.0" layoutY="84.0" prefHeight="25.0" prefWidth="75.0" text="Buscar:" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

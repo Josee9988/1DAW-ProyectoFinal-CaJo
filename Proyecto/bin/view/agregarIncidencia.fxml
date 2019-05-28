@@ -6,39 +6,39 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.agregar_incidencia">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.agregar_incidencia">
    <children>
-      <Text layoutX="163.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Incidencia" wrappingWidth="274.5869140625">
+      <Text fill="WHITE" layoutX="163.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Incidencia" wrappingWidth="274.5869140625">
          <font>
             <Font name="Ubuntu Bold" size="29.0" />
          </font>
       </Text>
-      <Label layoutX="257.0" layoutY="105.0" text="Descripción" textFill="#792525">
+      <Label layoutX="257.0" layoutY="105.0" text="Descripción" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="79.0" layoutY="105.0" text="Materiales" textFill="#792525">
+      <Label layoutX="79.0" layoutY="105.0" text="Materiales" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="447.0" layoutY="105.0" text="Elemento" textFill="#792525">
+      <Label layoutX="447.0" layoutY="105.0" text="Elemento" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="264.0" layoutY="200.0" text="Urgencia" textFill="#792525">
+      <Label layoutX="264.0" layoutY="200.0" text="Urgencia" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="447.0" layoutY="201.0" text="Categoría" textFill="#792525">
+      <Label layoutX="447.0" layoutY="201.0" text="Categoría" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="89.0" layoutY="200.0" text="Fecha" textFill="#792525">
+      <Label layoutX="89.0" layoutY="200.0" text="Fecha" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
@@ -52,7 +52,7 @@
       </Button>
       <DatePicker fx:id="date" layoutX="46.0" layoutY="240.0" prefHeight="25.0" prefWidth="147.0" promptText="date" />
       <TextField fx:id="materiales" layoutX="46.0" layoutY="139.0" prefHeight="25.0" prefWidth="147.0" promptText="materiales" />
-      <Label layoutX="83.0" layoutY="310.0" text="Ubicación" textFill="#792525">
+      <Label layoutX="83.0" layoutY="310.0" text="Ubicación" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>

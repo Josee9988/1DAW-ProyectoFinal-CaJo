@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUtilidades.acercaDe_controller">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="882.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUtilidades.acercaDe_controller">
    <children>
-      <Label layoutX="324.0" layoutY="45.0" text="Acerca de">
+      <Label layoutX="324.0" layoutY="45.0" text="Acerca de" textFill="WHITE">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -17,32 +17,32 @@
       <TextField fx:id="campo2" layoutX="8.0" layoutY="241.0" prefHeight="50.0" prefWidth="864.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" />
       <TextField fx:id="campo3" layoutX="9.0" layoutY="336.0" prefHeight="50.0" prefWidth="859.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" />
       <TextField fx:id="campo4" layoutX="13.0" layoutY="434.0" prefHeight="50.0" prefWidth="859.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" text="    jgracia9988@gmail.com" />
-      <Label layoutX="11.0" layoutY="110.0" text="DDL General">
+      <Label layoutX="11.0" layoutY="110.0" text="DDL General" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="23.0" />
          </font>
       </Label>
-      <Label layoutX="8.0" layoutY="207.0" text="Proyecto en Github">
+      <Label layoutX="8.0" layoutY="207.0" text="Proyecto en Github" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="9.0" layoutY="301.0" text="Proyecto de Trello">
+      <Label layoutX="9.0" layoutY="301.0" text="Proyecto de Trello" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="609.0" layoutY="59.0" text="My DataBase: m_proyectodaw">
+      <Label layoutX="609.0" layoutY="59.0" text="My DataBase: m_proyectodaw" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="400.0" text="Contacto Jose">
+      <Label layoutX="14.0" layoutY="400.0" text="Contacto Jose" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="13.0" layoutY="497.0" text="Contacto Carlos">
+      <Label layoutX="13.0" layoutY="497.0" text="Contacto Carlos" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>

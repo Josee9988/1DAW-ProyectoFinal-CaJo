@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMensajes.agregar_mensajes">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMensajes.agregar_mensajes">
    <children>
-      <Label layoutX="216.0" layoutY="33.0" text="Crear Mensaje">
+      <Label layoutX="212.0" layoutY="34.0" text="Crear Mensaje" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
       <TextArea fx:id="cuerpo" layoutX="24.0" layoutY="124.0" prefHeight="94.0" prefWidth="552.0" promptText="cuerpo" />
@@ -22,12 +22,12 @@
             <Font name="Ubuntu Bold" size="17.0" />
          </font>
       </Button>
-      <Label layoutX="99.0" layoutY="239.0" text="Incidencia" textFill="#792525">
+      <Label layoutX="99.0" layoutY="239.0" text="Incidencia" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="417.0" layoutY="239.0" text="Destinatario" textFill="#792525">
+      <Label layoutX="417.0" layoutY="239.0" text="Destinatario" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>

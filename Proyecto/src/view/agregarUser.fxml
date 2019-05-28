@@ -6,44 +6,44 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUsuarios.agregar_usuarios">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUsuarios.agregar_usuarios">
    <children>
-      <Text layoutX="182.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Usuario" wrappingWidth="237.5869140625">
+      <Text fill="WHITE" layoutX="182.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Usuario" wrappingWidth="237.5869140625">
          <font>
             <Font name="Ubuntu Bold" size="29.0" />
          </font>
       </Text>
-      <Label layoutX="82.0" layoutY="105.0" text="Usuario" textFill="#792525">
+      <Label layoutX="82.0" layoutY="105.0" text="Usuario" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="257.0" layoutY="105.0" text="Contraseña" textFill="#792525">
+      <Label layoutX="257.0" layoutY="105.0" text="Contraseña" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="304.0" text="Rol" textFill="#792525">
+      <Label layoutX="98.0" layoutY="304.0" text="Rol" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="447.0" layoutY="105.0" text="Nombre" textFill="#792525">
+      <Label layoutX="447.0" layoutY="105.0" text="Nombre" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="264.0" layoutY="200.0" text="Apellidos" textFill="#792525">
+      <Label layoutX="264.0" layoutY="200.0" text="Apellidos" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="437.0" layoutY="200.0" text="Telefono" textFill="#792525">
+      <Label layoutX="437.0" layoutY="200.0" text="Telefono" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="76.0" layoutY="200.0" text="Dirección" textFill="#792525">
+      <Label layoutX="76.0" layoutY="200.0" text="Dirección" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="16.0" />
          </font>

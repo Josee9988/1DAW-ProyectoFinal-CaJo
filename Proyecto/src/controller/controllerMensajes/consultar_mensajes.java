@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcMensajesDAO;
@@ -61,6 +63,10 @@ public class consultar_mensajes {
 	private TextField fecha_encabezado;
 	@FXML
 	private TextField filtro;
+	@FXML
+	private Text textoError;
+	@FXML
+	private Button agregarM;
 
 	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
 	private jdbcUsuarioDAO jdbcUsuarioDAO;
@@ -125,6 +131,11 @@ public class consultar_mensajes {
 		this.fecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
 		this.emisor.setCellValueFactory(new PropertyValueFactory<>("EmisorS"));
 		this.receptor.setCellValueFactory(new PropertyValueFactory<>("ReceptorS"));
+
+		if (this.jdbcIncidenciasDAO.leerIncidencias().size() == 0) {
+			this.textoError.setText("Sin incidencias no se pueden agregar mensajes");
+			this.agregarM.setVisible(false);
+		}
 
 		// cambiamos valores numéricos de incidencias, emisor y receptor para que salgan
 		// como el nombre al que corresponden esas ids

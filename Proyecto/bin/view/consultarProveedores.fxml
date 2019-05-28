@@ -6,9 +6,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerProveedores.consultar_proveedores">
+<Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerProveedores.consultar_proveedores">
    <children>
-      <Label layoutX="319.0" layoutY="23.0" text="Consultar Proveedores">
+      <Label layoutX="307.0" layoutY="23.0" text="Consultar Proveedores" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -36,7 +36,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="14.0" layoutY="90.0" prefHeight="25.0" prefWidth="75.0" text="Buscar:" textAlignment="CENTER">
+      <Label layoutX="14.0" layoutY="90.0" prefHeight="25.0" prefWidth="75.0" text="Buscar:" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

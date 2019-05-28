@@ -8,6 +8,13 @@
   -fx-alignment: center;
 }
 
+#paneBG {
+     -fx-background-image: url("texture.jpg");
+     -fx-background-repeat: stretch;   
+     -fx-background-position: center center;
+    
+}
+
 /* Centra las cabeceras del tableview */
 .combo-box.center-aligned>.list-cell {
     -fx-alignment: center;
