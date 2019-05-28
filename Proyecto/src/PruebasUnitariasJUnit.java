@@ -18,14 +18,14 @@ class PruebasUnitariasJUnit {
 	@Test
 	void primeraPrueba() {
 		incidenciaDTO incidenciaDTO = new incidenciaDTO(12, "Media");
-		Assert.assertEquals(incidenciaDTO.getId(), 12);// fail[posicionarray], objeto.metodo(correcto)[posicion];
+		Assert.assertEquals(incidenciaDTO.getId(), 12);
 	}
 
 	@Test
 	void segundaPrueba() {
 		incidenciaDTO incidenciaDTO = new incidenciaDTO();
 		incidenciaDTO.setId(19);
-		Assert.assertEquals(incidenciaDTO.getId(), 19);// fail[posicionarray], objeto.metodo(correcto)[posicion];
+		Assert.assertEquals(incidenciaDTO.getId(), 19);
 	}
 
 	@Test
