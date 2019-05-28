@@ -88,7 +88,7 @@ public class agregar_usuarios {
 		this.usuarioDTO.setDireccion(this.direccion.getText());
 		this.usuarioDTO.setTelefono(this.telefono.getText());
 		this.usuarioDTO.setApellidos(this.apellidos.getText());
-		this.usuarioDTO.setRol(this.traducirComboBox());
+		this.usuarioDTO.setRol(this.traducirComboBox(this.usuarioDTO.getRolS()));
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 
 		// si los campos importantes no están vacios lo hará, de otra manera no lo
@@ -114,12 +114,13 @@ public class agregar_usuarios {
 	 * traducirComboBox Según el valor que tenga el ComboBox seleccionado, se
 	 * traduce a entero para guardarlo en la base de datos
 	 *
+	 * @param valor para que se traduzca. valor a traducir
 	 * @return resultado entero que contiene el valor entre 1 y 4 referido a los
 	 *         roles7
 	 */
-	private int traducirComboBox() {
+	public int traducirComboBox(String valor) {
 		int resultado = 0;
-		switch (this.rol.getValue()) {
+		switch (valor) {
 		case "Profesor":
 			resultado = 1;
 			break;
