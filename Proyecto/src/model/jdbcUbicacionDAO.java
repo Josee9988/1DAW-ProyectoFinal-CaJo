@@ -29,16 +29,6 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
-	/**
-	 * cierra las conexiones con la base de datos
-	 *
-	 * @throws SQLException si ha habido una excepción SQL
-	 */
-	public void cerrarBD() throws SQLException {
-		this.ps.close();
-		this.rs.close();
-		this.connect.close();
-	}
 
 	@Override
 	public void agregarUbicacion(ubicacionDTO u) throws SQLException {
@@ -49,6 +39,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		this.ps.setString(3, u.getEdificio());
 		this.ps.setString(4, u.getPlanta());
 		this.ps.executeUpdate();
+		this.ps.close();
 	}
 
 	@Override
@@ -69,6 +60,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		} else {
 			resultado = false;
 		}
+		this.ps.close();
 		return resultado;
 	}
 
@@ -82,6 +74,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		} else {
 			resultado = false;
 		}
+		this.ps.close();
 		return resultado;
 	}
 
@@ -94,6 +87,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 			aux.add(new ubicacionDTO(this.rs.getInt("id"), this.rs.getString("nombre"),
 					this.rs.getString("descripcion"), this.rs.getString("edificio"), this.rs.getString("planta")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return aux;
 	}
 
@@ -105,6 +100,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		while (this.rs.next()) {
 			aux.add(this.rs.getString("nombre"));
 		}
+		this.ps.close();
+		this.rs.close();
 		return aux;
 	}
 
@@ -114,6 +111,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		this.ps.setString(1, nombre);
 		this.rs = this.ps.executeQuery();
 		this.rs.next();
+		this.ps.close();
+		this.rs.close();
 		return this.rs.getInt("id");
 	}
 

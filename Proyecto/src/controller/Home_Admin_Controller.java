@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.Conexion;
 
 public class Home_Admin_Controller {
 
@@ -117,7 +118,7 @@ public class Home_Admin_Controller {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public void administrarUsuarios() throws SQLException, IOException, InvalidKeyException, IllegalBlockSizeException,
-			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.usuarios = new Stage();
 		this.fxmlLoaderAdministrarUsuarios = new FXMLLoader(
 				this.getClass().getResource("/view/consultarUsuarios.fxml"));
@@ -227,6 +228,7 @@ public class Home_Admin_Controller {
 	 * @param SQLException si ha habido una excepción SQL
 	 */
 	public void cerrarBD() throws SQLException {
+		Conexion.getInstance().cerrarConexion();
 		System.exit(0);
 	}
 

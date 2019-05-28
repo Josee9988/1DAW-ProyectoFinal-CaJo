@@ -29,17 +29,6 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
-	/**
-	 * cierra las conexiones con la base de datos
-	 * 
-	 * @throws SQLException si ha habido una excepción de tipo SQL
-	 */
-	public void cerrarBD() throws SQLException {
-		this.ps.close();
-		this.rs.close();
-		this.connect.close();
-	}
-
 	@Override
 	public boolean eliminarProveedor(int id) throws SQLException {
 		boolean resultado;
@@ -50,6 +39,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		} else {
 			resultado = false;
 		}
+		this.ps.close();
 		return resultado;
 	}
 
@@ -62,6 +52,8 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 			proveedores.add(new proveedorDTO(this.rs.getInt("id"), this.rs.getString("nombre"),
 					this.rs.getString("contacto"), this.rs.getString("direccion"), this.rs.getInt("valoracion")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return proveedores;
 	}
 
@@ -74,6 +66,7 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		this.ps.setString(3, p.getDireccion());
 		this.ps.setInt(4, p.getValoracion());
 		this.ps.executeUpdate();
+		this.ps.close();
 	}
 
 	@Override
@@ -92,7 +85,6 @@ public class jdbcProveedoresDAO implements proveedoresDAO {
 		} else {
 			resultado = false;
 		}
-
 		this.ps.close();
 		return resultado;
 	}

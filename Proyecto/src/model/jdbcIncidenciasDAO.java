@@ -30,17 +30,6 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
-	/**
-	 * cerrarBD cierra la base de datos
-	 *
-	 * @throws SQLException si hay una excepción SQL
-	 */
-	public void cerrarBD() throws SQLException {
-		this.ps.close();
-		this.rs.close();
-		this.connect.close();
-	}
-
 	@Override
 	public boolean eliminarIncidencia(int id) throws SQLException {
 		boolean resultado;
@@ -51,6 +40,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		} else {
 			resultado = false;
 		}
+		this.ps.close();
 		return resultado;
 	}
 
@@ -70,6 +60,8 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 					this.rs.getDate("fecha"), this.rs.getString("urgencia"), this.rs.getString("categoria"),
 					this.rs.getString("materiales")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return incidencias;
 	}
 
@@ -114,6 +106,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		this.ps.setString(7, i.getCategoria());
 		this.ps.setString(8, i.getMateriales());
 		this.ps.executeUpdate();
+		this.ps.close();
 	}
 
 	@Override
@@ -127,6 +120,8 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 
 			incidencias.add((this.rs.getInt("id")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return incidencias;
 	}
 
@@ -171,6 +166,8 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 
 			arrayToReturn.add((this.rs.getString("descripcion")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return arrayToReturn;
 	}
 

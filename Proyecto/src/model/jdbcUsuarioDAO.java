@@ -38,28 +38,19 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.crypto_controller = new crypto_controller();
 	}
 
-	/**
-	 * cierra la conexión con la base de datos
-	 *
-	 * @throws SQLException si ha habido una excepción SQL
-	 */
-	public void cerrarBD() throws SQLException {
-		this.ps.close();
-		this.rs.close();
-		this.connect.close();
-
-	}
 
 	@Override
 	public int comprobarExistencia(usuarioDTO user) throws SQLException {
 		int rol = 0;
-		this.ps = this.connect.prepareStatement("select * from usuarios where user = ? and password = ?");
+		this.ps = this.connect.prepareStatement("SELECT * FROM usuarios WHERE user = ? AND password = ?");
 		this.ps.setString(1, user.getUser());
 		this.ps.setString(2, user.getPassword());
 		this.rs = this.ps.executeQuery();
-		if (this.rs.next()) {
+		while (this.rs.next()) {
 			rol = this.rs.getInt("rol");
 		}
+		this.ps.close();
+		this.rs.close();
 		return rol;
 	}
 
@@ -76,6 +67,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.setString(6, user.getTelefono());
 		this.ps.setString(7, user.getDireccion());
 		this.ps.executeUpdate();
+		this.ps.close();
 	}
 
 	@Override
@@ -93,7 +85,6 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.setString(6, user.getTelefono());
 		this.ps.setString(7, user.getDireccion());
 		this.ps.setInt(8, user.getId());
-
 		this.ps.executeUpdate();
 		this.ps.close();
 	}
@@ -102,14 +93,16 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	public String devolverNombre(usuarioDTO user) throws SQLException {
 		String nombre = "";
 		String apellidos = "";
-		this.ps = this.connect.prepareStatement("select * from usuarios where user = ? and password = ?");
+		this.ps = this.connect.prepareStatement("SELECT * FROM usuarios WHERE user = ? AND password = ?");
 		this.ps.setString(1, user.getUser());
 		this.ps.setString(2, user.getPassword());
 		this.rs = this.ps.executeQuery();
-		if (this.rs.next()) {
+		while (this.rs.next()) {
 			nombre = this.rs.getString("nombre");
 			apellidos = this.rs.getString("apellidos");
 		}
+		this.ps.close();
+		this.rs.close();
 		return nombre.concat(" ").concat(apellidos);
 	}
 
@@ -125,6 +118,8 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 					this.rs.getString("nombre"), this.rs.getString("apellidos"), this.rs.getString("telefono"),
 					this.rs.getString("direccion")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return usuarios;
 	}
 
@@ -172,15 +167,16 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 	public String devolverNombre(int id) throws SQLException {
 		String nombre = "";
 		String apellidos = "";
-		this.ps = this.connect.prepareStatement("select nombre, apellidos from usuarios where id = ?");
+		this.ps = this.connect.prepareStatement("SELECT nombre, apellidos FROM usuarios WHERE id = ?");
 		this.ps.setInt(1, id);
 
 		this.rs = this.ps.executeQuery();
-		if (this.rs.next()) {
+		while (this.rs.next()) {
 			nombre = this.rs.getString("nombre");
 			apellidos = this.rs.getString("apellidos");
 		}
-
+		this.ps.close();
+		this.rs.close();
 		return nombre.concat(" ").concat(apellidos);
 
 	}
@@ -196,6 +192,8 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 			incidencias.add((this.rs.getString("user")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return incidencias;
 	}
 
@@ -223,7 +221,8 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		while (this.rs.next()) {
 			encontrado = true;
 		}
-
+		this.ps.close();
+		this.rs.close();
 		return encontrado;
 
 	}

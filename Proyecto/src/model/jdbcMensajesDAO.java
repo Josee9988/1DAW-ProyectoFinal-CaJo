@@ -29,17 +29,6 @@ public class jdbcMensajesDAO implements mensajesDAO {
 		this.connect = Conexion.getInstance().conectar();
 	}
 
-	/**
-	 * cerrarBD cierra la conexión a la base de datos
-	 *
-	 * @throws SQLException excepción de tipo SQL
-	 */
-	public void cerrarBD() throws SQLException {
-		this.ps.close();
-		this.rs.close();
-		this.connect.close();
-	}
-
 	@Override
 	public ArrayList<mensajesDTO> leerMensajes(int user, int rol) throws SQLException {
 		ArrayList<mensajesDTO> aux = new ArrayList<>();
@@ -56,6 +45,8 @@ public class jdbcMensajesDAO implements mensajesDAO {
 					this.rs.getInt("incidencia"), this.rs.getDate("fecha"), this.rs.getInt("id_emisor"),
 					this.rs.getInt("id_receptor")));
 		}
+		this.ps.close();
+		this.rs.close();
 		return aux;
 	}
 
@@ -85,8 +76,6 @@ public class jdbcMensajesDAO implements mensajesDAO {
 		this.ps.setInt(6, m.getIncidencia());
 		this.ps.setInt(7, m.getId());
 		this.ps.executeUpdate();
-		this.ps.close();
-
 		this.ps.close();
 	}
 
