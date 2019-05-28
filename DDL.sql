@@ -86,6 +86,6 @@ CREATE TABLE `usuarios` (
 
 
 
-/*	INSERTAMOS AL MENOS UN USUARIO ROOT CON PASSWORD 1234 */
+/*	INSERTAMOS AL MENOS UN USUARIO ROOT CON PASSWORD 123456 */
 INSERT INTO `usuarios` (user,password,rol,nombre,apellidos,telefono,direccion)
-VALUES ("root", "e01064882b3febf97916c7df6e33b4b2", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");
+VALUES ("root", "a40d8205ed80c785d262e31d1b74f7c6", 4, "Administrador", "Admin", 966521942, "CIPFBatoi, Alcoy, Alicante");

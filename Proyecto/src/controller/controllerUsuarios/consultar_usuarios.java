@@ -34,6 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcUsuarioDAO;
 
@@ -66,6 +67,8 @@ public class consultar_usuarios {
 	private TextField fecha_encabezado;
 	@FXML
 	private TextField filtro;
+	@FXML
+	private Text textoError;
 
 	private Stage agregar_usuarios;
 	private Parent root1;
@@ -331,23 +334,27 @@ public class consultar_usuarios {
 	 */
 	public void eliminarUsuario() throws IOException { // boton eliminar
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
-			// creamos la escena
-			this.confirmacion_eliminacion = new Stage();
-			this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
-					this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
-			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
-			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
-					.<confirmar_controller>getController();
-					this.sceneEliminacion = new Scene(this.rootEliminacion);
-					this.controller_confirmar_controller.inicializar(0,
-							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
-					// al
-					// método
-					// inicializar
-					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-					this.confirmacion_eliminacion.setTitle("Eliminar usuario"); // ponemos el título de la ventana
-					this.confirmacion_eliminacion.show();
+			if (!this.tabla.getSelectionModel().getSelectedItem().getUser().equals("root")) {
+				// creamos la escena
+				this.confirmacion_eliminacion = new Stage();
+				this.fxmlLoaderagregar_eliminacion = new FXMLLoader(
+						this.getClass().getResource("/view/confirmacionEliminacion.fxml"));
+				this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
+				this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
+						.<confirmar_controller>getController();
+						this.sceneEliminacion = new Scene(this.rootEliminacion);
+						this.controller_confirmar_controller.inicializar(0,
+								this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos
+						// al
+						// método
+						// inicializar
+						this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+						this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+						this.confirmacion_eliminacion.setTitle("Eliminar usuario"); // ponemos el título de la ventana
+						this.confirmacion_eliminacion.show();
+			} else {
+				this.textoError.setText("No se puede eliminar al usuario 'root'");
+			}
 		}
 	}
 

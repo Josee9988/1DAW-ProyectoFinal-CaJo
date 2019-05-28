@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -45,5 +46,24 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <TextFlow layoutX="242.0" layoutY="4.0" prefHeight="57.0" prefWidth="423.0">
+         <children>
+            <Text fx:id="textoError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="454.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.03365384615384615">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="BLACK" offset="0.007407407407407408" />
+                        <Stop color="RED" offset="0.4703703703703704" />
+                        <Stop color="RED" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="Ubuntu Bold Italic" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
    </children>
 </Pane>
