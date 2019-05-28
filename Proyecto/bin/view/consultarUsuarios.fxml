@@ -6,14 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1024.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUsuarios.consultar_usuarios">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1024.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerUsuarios.consultar_usuarios">
    <children>
-      <Label layoutX="358.0" layoutY="25.0" text="Consultar Usuarios">
+      <Label layoutX="386.0" layoutY="23.0" text="Consultar Usuarios">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tabla" layoutX="18.0" layoutY="71.0" prefHeight="446.0" prefWidth="985.0">
+      <TableView fx:id="tabla" layoutX="20.0" layoutY="120.0" prefHeight="446.0" prefWidth="985.0">
         <columns>
        	 <TableColumn fx:id="id" prefWidth="60.01005935668945" text="ID" />
           <TableColumn fx:id="usuario" onEditCommit="#editModificarUsuario" prefWidth="116.0" text="Usuario" />
@@ -25,12 +25,12 @@
             <TableColumn fx:id="direccion" minWidth="4.1995849609375" onEditCommit="#editModificarDireccion" prefWidth="173.0" text="Direccion" />
         </columns>
       </TableView>
-      <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
+      <TextField fx:id="usuario_encabezado" layoutX="789.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
-      <Button layoutX="36.0" layoutY="528.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="36.0" prefWidth="272.0" text="Agregar usuario" />
-      <Button layoutX="376.0" layoutY="528.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="272.0" text="Modificar usuario" />
-      <Button layoutX="713.0" layoutY="528.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="36.0" prefWidth="274.0" text="Eliminar usuario" />
-      <Button layoutX="666.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
+      <Button layoutX="38.0" layoutY="577.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="36.0" prefWidth="272.0" text="Agregar usuario" />
+      <Button layoutX="378.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="272.0" text="Modificar usuario" />
+      <Button layoutX="715.0" layoutY="577.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="36.0" prefWidth="274.0" text="Eliminar usuario" />
+      <Button layoutX="727.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
             <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,5 +39,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <TextField fx:id="filtro" layoutX="20.0" layoutY="87.0" onAction="#commitFIltro" prefHeight="25.0" prefWidth="985.0" promptText="Buscar elemento en nombre de usuario, nombre o apellidos." />
    </children>
 </Pane>

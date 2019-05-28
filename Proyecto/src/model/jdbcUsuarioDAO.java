@@ -227,4 +227,26 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 
 	}
 
+	public ArrayList<usuarioDTO> filtrar(String texto) throws SQLException, InvalidKeyException,
+	IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+		ArrayList<usuarioDTO> usuarios = new ArrayList<>();
+
+		this.ps = this.connect
+				.prepareStatement("SELECT * FROM usuarios WHERE user LIKE ? OR nombre LIKE ? OR apellidos LIKE ?");
+		this.ps.setString(1, "%" + texto + "%");
+		this.ps.setString(2, "%" + texto + "%");
+		this.ps.setString(3, "%" + texto + "%");
+		this.rs = this.ps.executeQuery();
+		while (this.rs.next()) {
+			usuarios.add(new usuarioDTO(this.rs.getInt("id"), this.rs.getString("user"),
+					this.crypto_controller.decrypt(this.rs.getString("password")), this.rs.getInt("rol"),
+					this.rs.getString("nombre"), this.rs.getString("apellidos"), this.rs.getString("telefono"),
+					this.rs.getString("direccion")));
+		}
+		this.ps.close();
+		this.rs.close();
+
+		return usuarios;
+	}
+
 }

@@ -64,6 +64,8 @@ public class consultar_usuarios {
 	private TextField usuario_encabezado;
 	@FXML
 	private TextField fecha_encabezado;
+	@FXML
+	private TextField filtro;
 
 	private Stage agregar_usuarios;
 	private Parent root1;
@@ -367,6 +369,13 @@ public class consultar_usuarios {
 	}
 
 	// ######################### MODIFICACIONES #########################
+	@FXML
+	public void commitFIltro() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
+	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+		this.tabla.getItems().clear(); // borramos todos los datos
+		this.tabla.getItems().addAll(this.bdusuarios.filtrar(this.filtro.getText()));
+	}
+
 	@FXML
 	/**
 	 * editModificarUsuario si se ha hecho doble click en una celda
