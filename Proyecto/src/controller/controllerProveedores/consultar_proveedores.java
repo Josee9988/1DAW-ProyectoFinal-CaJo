@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import model.jdbcProveedoresDAO;
@@ -64,6 +65,8 @@ public class consultar_proveedores {
 	private Button eliminarP;
 	@FXML
 	private TextField filtro;
+	@FXML
+	private Text textoError;
 
 	private String nombreCompleto;
 
@@ -83,6 +86,13 @@ public class consultar_proveedores {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up modificacion manual
+	private Stage stageManual;
+	private Parent rootManual;
+	private Scene sceneManual;
+	private FXMLLoader fxmlLoaderagregar_manual;
+	private modificar_proveedor controller_proveedor_manual;
 
 	/**
 	 * consultar_proveedores constructor default inicializa valores necesarios
@@ -240,6 +250,34 @@ public class consultar_proveedores {
 	}
 
 	// ##### MODIFICACIONES
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void modificarProveedorManual() throws SQLException, IOException {
+		proveedorDTO proveedor = this.tabla.getSelectionModel().getSelectedItem();
+		if(proveedor != null) {
+			this.stageManual = new Stage();
+			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarProveedor.fxml"));
+			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
+			this.sceneManual = new Scene(this.rootManual);
+			this.controller_proveedor_manual = this.fxmlLoaderagregar_manual.<modificar_proveedor>getController();
+			this.controller_proveedor_manual.inicializar(proveedor);
+			this.stageManual.setScene(this.sceneManual);
+			this.stageManual.getIcons().add(this.icon); // agregamos el icono
+			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.stageManual.show();
+			this.textoError.setText("");
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
+	
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a

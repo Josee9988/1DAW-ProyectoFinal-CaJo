@@ -96,6 +96,13 @@ public class consultar_mensajes {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up modificacion manual
+	private Stage stageManual;
+	private Parent rootManual;
+	private Scene sceneManual;
+	private FXMLLoader fxmlLoaderagregar_manual;
+	private modificar_mensajes controller_mensaje_manual;
 
 	/**
 	 * consultar_mensajes constructor default que inicializa valores
@@ -342,6 +349,26 @@ public class consultar_mensajes {
 	}
 
 	// MODIFICACIONES
+	
+	public void modificarMensajeManual () throws SQLException, IOException {
+		mensajesDTO mensaje = this.tabla.getSelectionModel().getSelectedItem();
+		if(mensaje != null) {
+			this.stageManual = new Stage();
+			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarMensaje.fxml"));
+			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
+			this.sceneManual = new Scene(this.rootManual);
+			this.controller_mensaje_manual = this.fxmlLoaderagregar_manual.<modificar_mensajes>getController();
+			this.controller_mensaje_manual.inicializarMensajes(mensaje);
+			this.stageManual.setScene(this.sceneManual);
+			this.stageManual.getIcons().add(this.icon); // agregamos el icono
+			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.stageManual.show();
+			this.textoError.setText("");
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
+	
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a

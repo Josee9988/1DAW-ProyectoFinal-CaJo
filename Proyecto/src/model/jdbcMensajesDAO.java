@@ -68,14 +68,11 @@ public class jdbcMensajesDAO implements mensajesDAO {
 	@Override
 	public void modificarMensaje(mensajesDTO m) throws SQLException {
 		this.ps = this.connect.prepareStatement(
-				"UPDATE mensajes SET asunto = ?, cuerpo = ?, fecha = ?, id_emisor = ?, id_receptor = ?, incidencia = ? WHERE id = ?");
+				"UPDATE mensajes SET asunto = ?, cuerpo = ?, incidencia = ? WHERE id = ?");
 		this.ps.setString(1, m.getAsunto());
 		this.ps.setString(2, m.getCuerpo());
-		this.ps.setDate(3, m.getFecha());
-		this.ps.setInt(4, m.getEmisor());
-		this.ps.setInt(5, m.getReceptor());
-		this.ps.setInt(6, m.getIncidencia());
-		this.ps.setInt(7, m.getId());
+		this.ps.setInt(3, m.getIncidencia());
+		this.ps.setInt(4, m.getId());
 		this.ps.executeUpdate();
 		this.ps.close();
 	}

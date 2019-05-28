@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcUbicacionDAO;
 
@@ -49,6 +50,8 @@ public class consultar_ubicaciones {
 	private TextField fecha_encabezado;
 	@FXML
 	private TextField filtro;
+	@FXML
+	private Text textoError;
 
 	private Stage agregar_ubicacion;
 	private Parent root1;
@@ -64,6 +67,13 @@ public class consultar_ubicaciones {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up modificacion manual
+	private Stage stageManual;
+	private Parent rootManual;
+	private Scene sceneManual;
+	private FXMLLoader fxmlLoaderagregar_manual;
+	private modificar_ubicacion controller_ubicacion_manual;
 
 	/**
 	 * consultar_ubicaciones constructor default que inicializa variables.
@@ -206,6 +216,34 @@ public class consultar_ubicaciones {
 	}
 
 	// #####MODIFICACIONES
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void modificarUbicacionManual() throws SQLException, IOException {
+		ubicacionDTO ubicacion = this.tabla.getSelectionModel().getSelectedItem();
+		if(ubicacion != null) {
+			this.stageManual = new Stage();
+			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarUbicacion.fxml"));
+			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
+			this.sceneManual = new Scene(this.rootManual);
+			this.controller_ubicacion_manual = this.fxmlLoaderagregar_manual.<modificar_ubicacion>getController();
+			this.controller_ubicacion_manual.inicializar(ubicacion);
+			this.stageManual.setScene(this.sceneManual);
+			this.stageManual.getIcons().add(this.icon); // agregamos el icono
+			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.stageManual.show();
+			this.textoError.setText("");
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
+	
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a

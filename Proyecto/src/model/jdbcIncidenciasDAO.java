@@ -70,17 +70,16 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		boolean resultado;
 		int n = 0;
 		this.ps = this.connect.prepareStatement(
-				"UPDATE incidencias SET usuario = ?, descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id = ?");
+				"UPDATE incidencias SET descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id = ?");
 
-		this.ps.setString(1, incidencia.getUsuario());
-		this.ps.setString(2, incidencia.getDescripcion());
-		this.ps.setString(3, incidencia.getElemento());
-		this.ps.setInt(4, incidencia.getUbicacionI());
-		this.ps.setDate(5, incidencia.getFecha());
-		this.ps.setString(6, incidencia.getUrgencia());
-		this.ps.setString(7, incidencia.getCategoria());
-		this.ps.setString(8, incidencia.getMateriales());
-		this.ps.setInt(9, incidencia.getId());
+		this.ps.setString(1, incidencia.getDescripcion());
+		this.ps.setString(2, incidencia.getElemento());
+		this.ps.setInt(3, incidencia.getUbicacionI());
+		this.ps.setDate(4, incidencia.getFecha());
+		this.ps.setString(5, incidencia.getUrgencia());
+		this.ps.setString(6, incidencia.getCategoria());
+		this.ps.setString(7, incidencia.getMateriales());
+		this.ps.setInt(8, incidencia.getId());
 
 		n = this.ps.executeUpdate();
 

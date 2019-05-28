@@ -16,7 +16,6 @@ import java.util.Date;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
 import controller.controllerUtilidades.agregar_combobox;
 import controller.controllerUtilidades.confirmar_controller;
 import dto.usuarioDTO;
@@ -96,6 +95,13 @@ public class consultar_usuarios {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up modificacion manual
+	private Stage stageManual;
+	private Parent rootManual;
+	private Scene sceneManual;
+	private FXMLLoader fxmlLoaderagregar_manual;
+	private modificar_usuario controller_usuario_manual;
 
 	/**
 	 * consultar_usuarios constructor parametrizado que inicializa variables.
@@ -384,6 +390,34 @@ public class consultar_usuarios {
 	 * encontrados en la base de datos. Es un filtro que se aplica a campos
 	 * específicos
 	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	public void modificarUsuarioManual() throws SQLException, IOException {
+		usuarioDTO usuario = this.tabla.getSelectionModel().getSelectedItem();
+		if(usuario != null) {
+			this.stageManual = new Stage();
+			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarUser.fxml"));
+			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
+			this.sceneManual = new Scene(this.rootManual);
+			this.controller_usuario_manual = this.fxmlLoaderagregar_manual.<modificar_usuario>getController();
+			this.controller_usuario_manual.inicializar(usuario);
+			this.stageManual.setScene(this.sceneManual);
+			this.stageManual.getIcons().add(this.icon); // agregamos el icono
+			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.stageManual.show();
+			this.textoError.setText("");
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
+	
+	@FXML
+	/**
+	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
+	 * borrar todos los datos de la base de datos y reemplazarlos por los elementos
+	 * encontrados en la base de datos. Es un filtro que se aplica a campos
+	 * específicos
+	 *
 	 * @throws InvalidKeyException       si la key de la encriptación falla
 	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
@@ -523,7 +557,7 @@ public class consultar_usuarios {
 			if (this.tabla.getSelectionModel().getSelectedItem().getId() == this.idselected) {// si correcto
 				this.usuarioSelected.setDireccion(edditedCell.getNewValue().toString());
 			}
+			
 		}
 	}
-
 }

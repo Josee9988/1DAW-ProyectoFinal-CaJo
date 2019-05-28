@@ -113,6 +113,13 @@ public class consultar_incidencias {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up modificacion manual
+	private Stage stageManual;
+	private Parent rootManual;
+	private Scene sceneManual;
+	private FXMLLoader fxmlLoaderagregar_manual;
+	private modificar_incidencia controller_incidencia_manual;
 
 	/**
 	 * consultar_incidencias constructor default el cual inicializa valores
@@ -501,6 +508,34 @@ public class consultar_incidencias {
 	}
 
 	// MODIFICACIONES
+	
+	/**
+	 * modificarIncidenciaManual abre una pestaña de modificacion con un botón modificar 
+	 * con todos los datos ya introducidos
+	 *
+	 * @throws SQLException si ha habido una excepción SQL
+	 * @param IOExcepcion si ha habido una excepción IO
+	 */
+	@FXML
+	public void modificarIncidenciaManual() throws SQLException, IOException {
+		incidenciaDTO incidencias = this.tabla.getSelectionModel().getSelectedItem();
+		if(incidencias != null) {
+			this.stageManual = new Stage();
+			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarIncidencia.fxml"));
+			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
+			this.sceneManual = new Scene(this.rootManual);
+			this.controller_incidencia_manual = this.fxmlLoaderagregar_manual.<modificar_incidencia>getController();
+			this.controller_incidencia_manual.inicializar(incidencias);
+			this.stageManual.setScene(this.sceneManual);
+			this.stageManual.getIcons().add(this.icon); // agregamos el icono
+			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.stageManual.show();
+			this.textoError.setText("");
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
+	
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a

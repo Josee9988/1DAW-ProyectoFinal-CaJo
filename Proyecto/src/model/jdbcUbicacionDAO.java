@@ -42,9 +42,7 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 	}
 
 	@Override
-	public boolean modificarUbicacion(ubicacionDTO ubicacion) throws SQLException {
-		boolean resultado = false;
-		int n = 0;
+	public void modificarUbicacion(ubicacionDTO ubicacion) throws SQLException {
 		this.ps = this.connect.prepareStatement(
 				"UPDATE ubicaciones SET nombre = ?, descripcion = ?, edificio = ?, planta = ?  WHERE id = ?");
 		this.ps.setString(1, ubicacion.getNombre());
@@ -52,15 +50,8 @@ public class jdbcUbicacionDAO implements ubicacionDAO {
 		this.ps.setString(3, ubicacion.getEdificio());
 		this.ps.setString(4, ubicacion.getPlanta());
 		this.ps.setInt(5, ubicacion.getId());
-		n = this.ps.executeUpdate();
-
-		if (n == 1) {
-			resultado = true;
-		} else {
-			resultado = false;
-		}
+		this.ps.executeUpdate();
 		this.ps.close();
-		return resultado;
 	}
 
 	@Override

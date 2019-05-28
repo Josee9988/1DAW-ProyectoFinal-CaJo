@@ -23,6 +23,11 @@ public interface usuarioDAO {
 	 * @param user el usuario a comprobar
 	 * @return rol devuelve el rol (int)
 	 * @throws SQLException si ha habido una excepción SQL
+	 * @throws NoSuchPaddingException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws BadPaddingException 
+	 * @throws IllegalBlockSizeException 
+	 * @throws InvalidKeyException 
 	 */
 	int comprobarExistencia(usuarioDTO user) throws SQLException;
 

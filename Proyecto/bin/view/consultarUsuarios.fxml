@@ -29,7 +29,7 @@
       <TextField fx:id="usuario_encabezado" layoutX="789.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <Button layoutX="38.0" layoutY="577.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="36.0" prefWidth="272.0" text="Agregar usuario" />
-      <Button layoutX="378.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="272.0" text="Modificar usuario" />
+      <Button layoutX="378.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="36.0" prefWidth="179.0" text="Modificar usuario" />
       <Button layoutX="715.0" layoutY="577.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="36.0" prefWidth="274.0" text="Eliminar usuario" />
       <Button layoutX="727.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
@@ -65,5 +65,6 @@
             </Text>
          </children>
       </TextFlow>
+      <Button fx:id="modificarUsuarioManual" layoutX="566.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarUsuarioManual" prefHeight="36.0" prefWidth="111.0" text="Manual" />
    </children>
 </Pane>

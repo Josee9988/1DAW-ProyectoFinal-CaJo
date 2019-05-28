@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -25,7 +26,7 @@
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="30.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <Button fx:id="agregarP" layoutX="13.0" layoutY="591.0" mnemonicParsing="false" onAction="#agregarProveedor" prefHeight="33.0" prefWidth="275.0" text="Agregar proveedor" />
-      <Button fx:id="modificarP" layoutX="312.0" layoutY="591.0" mnemonicParsing="false" onAction="#modificarProveedor" prefHeight="33.0" prefWidth="298.0" text="Modificar proveedor" />
+      <Button fx:id="modificarP" layoutX="312.0" layoutY="591.0" mnemonicParsing="false" onAction="#modificarProveedor" prefHeight="33.0" prefWidth="158.0" text="Modificar proveedor" />
       <Button fx:id="eliminarP" layoutX="635.0" layoutY="591.0" mnemonicParsing="false" onAction="#eliminarProveedor" prefHeight="33.0" prefWidth="298.0" text="Eliminar proveedor" />
       <Button layoutX="667.0" layoutY="18.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
@@ -42,5 +43,21 @@
          </font>
       </Label>
       <TextField fx:id="filtro" layoutX="92.0" layoutY="90.0" onAction="#commitFIltro" prefHeight="25.0" prefWidth="840.0" promptText="Buscar elementos en nombre o contacto" />
+      <Text fx:id="textoError" layoutX="250.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="454.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.03365384615384615">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="0.007407407407407408" />
+                  <Stop color="RED" offset="0.4703703703703704" />
+                  <Stop color="RED" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="Ubuntu Bold Italic" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="modificarProveedorManual" layoutX="474.0" layoutY="591.0" mnemonicParsing="false" onAction="#modificarProveedorManual" prefHeight="33.0" prefWidth="131.0" text="Manual" />
    </children>
 </Pane>

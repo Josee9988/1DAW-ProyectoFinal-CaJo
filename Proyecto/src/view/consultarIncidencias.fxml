@@ -30,7 +30,7 @@
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="21.0" layoutY="21.0" prefHeight="37.0" prefWidth="200.0" />
       <Button fx:id="agregarI" layoutX="20.0" layoutY="578.0" mnemonicParsing="false" onAction="#agregarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Agregar incidencia" />
-      <Button layoutX="334.0" layoutY="578.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Modificar inidencia" />
+      <Button layoutX="334.0" layoutY="578.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="36.0" prefWidth="150.0" text="Modificar inidencia" />
       <Button fx:id="resolverI" layoutX="655.0" layoutY="578.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Resolver incidencia" />
       <Button layoutX="672.0" layoutY="20.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
@@ -66,5 +66,6 @@
          </font>
       </Label>
       <TextField fx:id="filtro" layoutX="99.0" layoutY="84.0" onAction="#commitFIltro" prefHeight="25.0" prefWidth="829.0" promptText="Buscar elementos en Usuario o descripción" />
+      <Button fx:id="modificarIncidenciaManual" layoutX="496.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarIncidenciaManual" prefHeight="38.0" prefWidth="117.0" text="Manual" />
    </children>
 </Pane>

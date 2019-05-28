@@ -52,7 +52,7 @@ public interface ubicacionDAO {
 	 * @return devuelve un booleano de si todo ha ido bien o no
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
-	boolean modificarUbicacion(ubicacionDTO ubicacion) throws SQLException;
+	void modificarUbicacion(ubicacionDTO ubicacion) throws SQLException;
 
 	/**
 	 * leerNombresUbicaciones lee todos los nombres de las ubicaciones y las va

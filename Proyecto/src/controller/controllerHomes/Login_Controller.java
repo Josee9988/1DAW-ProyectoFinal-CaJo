@@ -159,7 +159,7 @@ public class Login_Controller {
 				this.timeline.play();
 				break;
 
-			case 2: // jefedepartamento
+			case 2: // jefe_departamento
 				this.controllerJefeDepartamento.recibirParametros(
 						this.users.devolverNombre(new usuarioDTO(this.user.getText(), passwordencriptada)),
 						this.users.comprobarExistencia(new usuarioDTO(this.user.getText(), passwordencriptada)));
