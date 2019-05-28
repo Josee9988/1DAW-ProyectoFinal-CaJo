@@ -342,9 +342,25 @@ public class consultar_mensajes {
 	 */
 	public void commitFIltro() throws SQLException {
 		String nombreCompletoArray[] = this.nombreCompleto.split(" ");
+		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
+
 		this.tabla.getItems().clear(); // borramos todos los datos
-		this.tabla.getItems().addAll(this.bdmensajes.filtrar(this.filtro.getText(),
+
+		mensajesToAdd.addAll(this.bdmensajes.filtrar(this.filtro.getText(),
 				this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), this.rol));
+		for (mensajesDTO i : mensajesToAdd) {
+			if (this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).length() > 64) {
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).substring(0, 64));
+
+			} else {
+				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()));
+
+			}
+			i.setEmisorS(this.jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
+			i.setReceptorS(this.jdbcUsuarioDAO.devolverNombre(i.getReceptor()));
+		}
+
+		this.tabla.getItems().addAll(mensajesToAdd);
 	}
 
 	@FXML

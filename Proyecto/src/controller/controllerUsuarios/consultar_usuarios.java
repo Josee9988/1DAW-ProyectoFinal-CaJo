@@ -366,6 +366,7 @@ public class consultar_usuarios {
 	public void eliminarUsuarioBD(int id) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
 	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
 		this.bdusuarios.eliminarUsuario(id); // lo eliminamos en la bd
+		// this.tabla.getItems().remove(this.usuarioSelected);
 	}
 
 	// ######################### MODIFICACIONES #########################
