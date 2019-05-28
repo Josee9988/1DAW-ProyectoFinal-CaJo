@@ -141,7 +141,6 @@ public class consultar_mensajes {
 		// como el nombre al que corresponden esas ids
 		String nombreCompletoArray[] = nombreCompleto.split(" ");
 		ArrayList<mensajesDTO> mensajesToAdd = new ArrayList<>();
-		// this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0],
 		// nombreCompletoArray[1]); // conseguimos id
 
 		mensajesToAdd.addAll(this.bdmensajes
@@ -334,7 +333,7 @@ public class consultar_mensajes {
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
 	 *
-	 * @throws SQLException
+	 * @throws SQLException si ha habido una excepción de tipo SQL
 	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos

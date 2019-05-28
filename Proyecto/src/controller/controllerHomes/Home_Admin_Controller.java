@@ -85,8 +85,9 @@ public class Home_Admin_Controller {
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 	}
 
+
 	/**
-	 * recibirParametros recibe los parametros necesarios para inicializar varias
+	 * recibirParametros recibe los parametros necesarios para inicializar varios
 	 * textfields
 	 *
 	 * @param nombreCompleto nombre + apellidos en un string

@@ -492,7 +492,7 @@ public class consultar_incidencias {
 	 * restart borra todos los elementos del tableview y vuelve a rellenarla con los
 	 * datos de la base de datos
 	 *
-	 * @throws SQLException
+	 * @throws SQLException si ha habido una excepción de tipo SQL
 	 */
 	public void restart() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos

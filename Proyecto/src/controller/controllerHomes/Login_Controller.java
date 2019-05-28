@@ -137,7 +137,6 @@ public class Login_Controller {
 	private void iniciarSesion(ActionEvent event) throws IOException, SQLException, InvalidKeyException,
 	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
-
 		// vemos si están vacios los campos o no.
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {
 			passwordencriptada = this.crypto_controller.encrypt(this.passwordField.getText());
