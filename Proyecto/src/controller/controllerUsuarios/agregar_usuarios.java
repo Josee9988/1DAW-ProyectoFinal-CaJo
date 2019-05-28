@@ -98,8 +98,12 @@ public class agregar_usuarios {
 			if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
 				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
 			} else {
-				this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
-				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				if (this.password.getText().length() < 6) {
+					this.textoError.setText("La contraseña debe superar los 6 carácteres");
+				} else {
+					this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
+					this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				}
 			}
 		} else {
 			this.textoError.setText("ERROR!: Rellene todos los campos");
