@@ -86,13 +86,6 @@ public class consultar_proveedores {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
-	
-	// pop up modificacion manual
-	private Stage stageManual;
-	private Parent rootManual;
-	private Scene sceneManual;
-	private FXMLLoader fxmlLoaderagregar_manual;
-	private modificar_proveedor controller_proveedor_manual;
 
 	/**
 	 * consultar_proveedores constructor default inicializa valores necesarios
@@ -262,22 +255,23 @@ public class consultar_proveedores {
 	public void modificarProveedorManual() throws SQLException, IOException {
 		proveedorDTO proveedor = this.tabla.getSelectionModel().getSelectedItem();
 		if(proveedor != null) {
-			this.stageManual = new Stage();
-			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarProveedor.fxml"));
-			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
-			this.sceneManual = new Scene(this.rootManual);
-			this.controller_proveedor_manual = this.fxmlLoaderagregar_manual.<modificar_proveedor>getController();
-			this.controller_proveedor_manual.inicializar(proveedor);
-			this.stageManual.setScene(this.sceneManual);
-			this.stageManual.getIcons().add(this.icon); // agregamos el icono
-			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
-			this.stageManual.show();
-			this.textoError.setText("");
+			// creamos la escena
+			this.agregar_proveedor = new Stage();
+			this.fxmlLoaderagregar_proveedor = new FXMLLoader(
+					this.getClass().getResource("/view/agregarProveedor.fxml"));
+			this.root1 = (Parent) this.fxmlLoaderagregar_proveedor.load();
+			this.controller_agregar_proveedor = this.fxmlLoaderagregar_proveedor.<agregar_proveedor>getController();
+			this.scene1 = new Scene(this.root1);
+			this.controller_agregar_proveedor.inicializar(proveedor); // llamamos al método inicializar
+			this.agregar_proveedor.setScene(this.scene1);
+			this.agregar_proveedor.getIcons().add(this.icon); // agregamos el icono
+			this.agregar_proveedor.setTitle("Agregar Proveedor"); // ponemos el título de la ventana
+			this.agregar_proveedor.show();
 		}else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}
-	
+
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
