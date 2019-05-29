@@ -39,6 +39,7 @@ public class modificar_usuario {
 	private Button modificarUsuarioManual;
 	@FXML
 	private Text textoError;
+	@FXML
 
 	private Stage stage;
 	private usuarioDTO usuarioDTO;
@@ -57,13 +58,13 @@ public class modificar_usuario {
 	 * inicializar método que inicializa los ComboBox
 	 */
 	public void inicializar(usuarioDTO u) {
+
 		ObservableList<String> roles = FXCollections.observableArrayList("Profesor", "Jefe Dpto.", "Mantenimiento",
 				"Admin");
 		this.rol.setItems(roles);
 		this.rol.setEditable(false);
 		this.rol.getSelectionModel().select(0);
 		this.id = u.getId();
-
 		this.usuario.setText(u.getUser());
 		this.password.setText(u.getPassword());
 		this.nombre.setText(u.getNombre());
@@ -84,7 +85,7 @@ public class modificar_usuario {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void modificarUsuarioManual() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.usuarioDTO.setId(this.id);
 		this.usuarioDTO.setUser(this.usuario.getText());
 		this.usuarioDTO.setPassword(this.password.getText());

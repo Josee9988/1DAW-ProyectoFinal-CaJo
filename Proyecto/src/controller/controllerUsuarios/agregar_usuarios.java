@@ -44,6 +44,10 @@ public class agregar_usuarios {
 	private Button agregarusuario;
 	@FXML
 	private Text textoError;
+	@FXML
+	private Text labelTop;
+
+	private boolean agregacion;
 
 	private Stage stage;
 	private usuarioDTO usuarioDTO;
@@ -55,6 +59,7 @@ public class agregar_usuarios {
 	public agregar_usuarios() {
 		this.usuarioDTO = new usuarioDTO();
 		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
+		this.agregacion = false;
 	}
 
 	/**
@@ -66,7 +71,29 @@ public class agregar_usuarios {
 		this.rol.setItems(roles);
 		this.rol.setEditable(false);
 		this.rol.getSelectionModel().select(0);
+	}
 
+	/**
+	 * inicializar para modificar
+	 *
+	 * @param u recibe el objeto usuarioDTO seleccionado
+	 */
+	public void inicializar(usuarioDTO u) {
+		this.labelTop.setText("Modificar usuario");
+		this.agregarusuario.setText("Modificar usuario");
+		ObservableList<String> roles = FXCollections.observableArrayList("Profesor", "Jefe Dpto.", "Mantenimiento",
+				"Admin");
+		this.rol.setItems(roles);
+		this.rol.setEditable(false);
+		this.rol.getSelectionModel().select(0);
+		this.agregacion = false;
+		this.usuarioDTO.setId(u.getId());
+		this.usuario.setText(u.getUser());
+		this.password.setText(u.getPassword());
+		this.nombre.setText(u.getNombre());
+		this.apellidos.setText(u.getApellidos());
+		this.direccion.setText(u.getDireccion());
+		this.telefono.setText(u.getTelefono());
 	}
 
 	@FXML
@@ -91,23 +118,36 @@ public class agregar_usuarios {
 		this.usuarioDTO.setRol(this.traducirComboBox(this.usuarioDTO.getRolS()));
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 
+
 		// si los campos importantes no están vacios lo hará, de otra manera no lo
 		// agregará
 		if (!(this.usuario.getText().isEmpty() || this.password.getText().isEmpty() || this.nombre.getText().isEmpty()
 				|| this.apellidos.getText().isEmpty())) {
-			if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
-				this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
-			} else {
+			if (this.agregacion == false) {// si es una modificación
 				if (this.password.getText().length() < 6) {
 					this.textoError.setText("La contraseña debe superar los 6 carácteres");
 				} else {
-					this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
+					this.jdbcUsuarioDAO.modificarUsuario(this.usuarioDTO);// lo agrega en la base de datos
 					this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				}
+			} else { // si es para agregar
+				if (this.jdbcUsuarioDAO.userEncontrado(this.usuarioDTO.getUser())) {
+					this.textoError.setText("ERROR!: Ese usuario ya existe, escoja uno distinto...");
+				} else {
+					if (this.password.getText().length() < 6) {
+						this.textoError.setText("La contraseña debe superar los 6 carácteres");
+					} else {
+						this.jdbcUsuarioDAO.crearUsuario(this.usuarioDTO);// lo agrega en la base de datos
+						this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+
+					}
+				}
 			}
+
 		} else {
 			this.textoError.setText("ERROR!: Rellene todos los campos");
 		}
+
 	}
 
 	/**

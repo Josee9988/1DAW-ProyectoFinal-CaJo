@@ -8,7 +8,7 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUsuarios.agregar_usuarios">
    <children>
-      <Text fill="WHITE" layoutX="182.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Usuario" wrappingWidth="237.5869140625">
+      <Text fx:id="labelTop" fill="WHITE" layoutX="182.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Usuario" wrappingWidth="237.5869140625">
          <font>
             <Font name="Ubuntu Bold" size="29.0" />
          </font>
