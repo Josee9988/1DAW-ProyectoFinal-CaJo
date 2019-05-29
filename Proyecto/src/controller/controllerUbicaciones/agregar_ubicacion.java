@@ -28,10 +28,13 @@ public class agregar_ubicacion {
 	private Button agregarUbicacion;
 	@FXML
 	private Text textoError;
+	@FXML
+	private Text textoTop;
 
 	private Stage stage;
 	private ubicacionDTO ubicacionDTO;
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+	private int id;
 
 	/**
 	 * agregar_ubicacion constructor default que inicializa la clase
@@ -40,7 +43,22 @@ public class agregar_ubicacion {
 	public agregar_ubicacion() {
 		this.ubicacionDTO = new ubicacionDTO();
 		this.jdbcUbicacionDAO = new jdbcUbicacionDAO();
+		this.id = 0;
 
+	}
+
+	/**
+	 * agregar_ubicacion constructor default que inicializa la clase
+	 * consultar_ubicaciones
+	 */
+	public void inicializar(ubicacionDTO u) {
+		this.id = u.getId();
+		this.textoTop.setText("Modificar ubicacion");
+		this.agregarUbicacion.setText("Modificar ubicación");
+		this.nombre.setText(u.getNombre());
+		this.descripcion.setText(u.getDescripcion());
+		this.edificio.setText(u.getEdificio());
+		this.planta.setText(u.getPlanta());
 	}
 
 	@FXML
@@ -63,8 +81,15 @@ public class agregar_ubicacion {
 				|| this.planta.getText().isEmpty()) {
 			this.textoError.setText("Rellena todos los campos");
 		} else {
-			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-			this.jdbcUbicacionDAO.agregarUbicacion(this.ubicacionDTO);
+			if (this.id != 0) { // si es una modificacion
+				this.ubicacionDTO.setId(this.id);
+				this.jdbcUbicacionDAO.modificarUbicacion(this.ubicacionDTO);
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+
+			} else {
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.jdbcUbicacionDAO.agregarUbicacion(this.ubicacionDTO);
+			}
 		}
 	}
 

@@ -398,18 +398,6 @@ public class consultar_usuarios {
 			this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
 			this.agregar_usuarios.setTitle("Agregar Usuario"); // ponemos el título de la ventana
 			this.agregar_usuarios.show();
-			/*
-			 * this.stageManual = new Stage(); this.fxmlLoaderagregar_manual = new
-			 * FXMLLoader(this.getClass().getResource("/view/modificarUser.fxml"));
-			 * this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
-			 * this.sceneManual = new Scene(this.rootManual); this.controller_usuario_manual
-			 * = this.fxmlLoaderagregar_manual.<modificar_usuario>getController();
-			 * this.controller_usuario_manual.inicializar(usuario);
-			 * this.stageManual.setScene(this.sceneManual);
-			 * this.stageManual.getIcons().add(this.icon); // agregamos el icono
-			 * this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la
-			 * ventana this.stageManual.show();
-			 */
 			this.textoError.setText("");
 		}else {
 			this.textoError.setText("Nada seleccionado");

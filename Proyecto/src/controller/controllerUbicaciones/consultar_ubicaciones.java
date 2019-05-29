@@ -67,13 +67,7 @@ public class consultar_ubicaciones {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
-	
-	// pop up modificacion manual
-	private Stage stageManual;
-	private Parent rootManual;
-	private Scene sceneManual;
-	private FXMLLoader fxmlLoaderagregar_manual;
-	private modificar_ubicacion controller_ubicacion_manual;
+
 
 	/**
 	 * consultar_ubicaciones constructor default que inicializa variables.
@@ -228,22 +222,22 @@ public class consultar_ubicaciones {
 	public void modificarUbicacionManual() throws SQLException, IOException {
 		ubicacionDTO ubicacion = this.tabla.getSelectionModel().getSelectedItem();
 		if(ubicacion != null) {
-			this.stageManual = new Stage();
-			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarUbicacion.fxml"));
-			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
-			this.sceneManual = new Scene(this.rootManual);
-			this.controller_ubicacion_manual = this.fxmlLoaderagregar_manual.<modificar_ubicacion>getController();
-			this.controller_ubicacion_manual.inicializar(ubicacion);
-			this.stageManual.setScene(this.sceneManual);
-			this.stageManual.getIcons().add(this.icon); // agregamos el icono
-			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
-			this.stageManual.show();
-			this.textoError.setText("");
+			// creamos la escena
+			this.agregar_ubicacion = new Stage();
+			this.fxmlLoaderagregar_ubicacion = new FXMLLoader(
+					this.getClass().getResource("/view/agregarUbicacion.fxml"));
+			this.root1 = (Parent) this.fxmlLoaderagregar_ubicacion.load();
+			this.scene1 = new Scene(this.root1);
+			// inicializar
+			this.agregar_ubicacion.setScene(this.scene1);
+			this.agregar_ubicacion.getIcons().add(this.icon); // agregamos el icono
+			this.agregar_ubicacion.setTitle("Agregar Ubicación"); // ponemos el título de la ventana
+			this.agregar_ubicacion.show();
 		}else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}
-	
+
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a
