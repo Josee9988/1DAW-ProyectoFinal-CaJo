@@ -99,9 +99,10 @@ public class agregar_incidencia {
 
 	/**
 	 * inicializar inicializa los ComboBox llamando a las baes de datos de
-	 * ubicaciones para poner seleccionarlas en el ComboBox
+	 * ubicaciones para poner seleccionarlas en el ComboBox. Es la que se llama al
+	 * modificar
 	 *
-	 * @param nombreCompleto nombre y apellidos del usuario logeado
+	 * @param incidenciaDTO i objeto de tipo incidencia seleccionado para modificar
 	 * @throws SQLException por si ha habido una excepción SQL
 	 */
 	public void inicializar(incidenciaDTO i) throws SQLException {
@@ -139,7 +140,7 @@ public class agregar_incidencia {
 	/**
 	 * agregarincidencia tras recibir los datos introducidos por el usuario desde
 	 * TextFields y ComboBox, rellenamos un objeto incideciaDTO y se lo pasamos a la
-	 * base de datos
+	 * base de datos para agregar o modificar
 	 *
 	 * @throws SQLException por si ha habido una excepción SQL
 	 */

@@ -50,6 +50,9 @@ public class agregar_ubicacion {
 	/**
 	 * agregar_ubicacion constructor default que inicializa la clase
 	 * consultar_ubicaciones
+	 *
+	 * @param u ubicacionDTO objeto de tipo ubicacionDTO que hemos seleccionado que
+	 *          se utiliza para modificar los datos.
 	 */
 	public void inicializar(ubicacionDTO u) {
 		this.id = u.getId();

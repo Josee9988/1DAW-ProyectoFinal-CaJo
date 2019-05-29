@@ -61,7 +61,10 @@ public class agregar_proveedor {
 	}
 
 	/**
-	 * inicializar método que inicializa los ComboBox. inicializar de modificación
+	 * método inicializar que inicializa variables y pone los textos pertinentes en
+	 * Texts, TextFields y ComboBox
+	 * 
+	 * @param p proveedorDTO objeto proveedorDTO a modificar
 	 */
 	public void inicializar(proveedorDTO p) {
 		this.agregarproveedor.setText("Modificar proveedor");

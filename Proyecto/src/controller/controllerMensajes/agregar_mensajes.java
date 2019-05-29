@@ -65,7 +65,7 @@ public class agregar_mensajes {
 	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes si es para
 	 * modificación
 	 *
-	 * @param nombrecompleto nombre + apellidos de el usuario logeado
+	 * @param mensajesDTO m objeto mensajesDTO para modificar un mensaje
 	 * @throws SQLException excepción SQL
 	 */
 	public void inicializarMensajes(mensajesDTO m) throws SQLException {
