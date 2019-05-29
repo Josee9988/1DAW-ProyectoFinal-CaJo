@@ -8,7 +8,7 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMensajes.agregar_mensajes">
    <children>
-      <Label layoutX="212.0" layoutY="34.0" text="Crear Mensaje" textFill="WHITE">
+      <Label fx:id="textoTop" layoutX="212.0" layoutY="34.0" text="Crear Mensaje" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>

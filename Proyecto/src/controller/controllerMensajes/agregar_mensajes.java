@@ -35,6 +35,8 @@ public class agregar_mensajes {
 	private Button agregarmensaje;
 	@FXML
 	private Text textoError;
+	@FXML
+	private Text textoTop;
 
 	private ObservableList<String> incidenciaBox;
 	private ObservableList<String> destinatarioBox;
@@ -67,6 +69,8 @@ public class agregar_mensajes {
 	 * @throws SQLException excepción SQL
 	 */
 	public void inicializarMensajes(mensajesDTO m) throws SQLException {
+		this.textoTop.setText("Modificar mensaje");
+		this.agregarmensaje.setText("Modificar mensaje");
 		this.id = m.getId();
 		this.destinatario.setDisable(true);
 		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidencias());
@@ -138,8 +142,8 @@ public class agregar_mensajes {
 			this.mensajesDTO.setEmisor(idEmisor);
 			this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 
-			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty() || this.incidencia.getValue().equals("")
-					|| this.destinatario.getValue().equals("")) {
+			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
+					|| this.incidencia.getValue().equals("") || this.destinatario.getValue().equals("")) {
 				this.textoError.setText("Rellena todos los campos");
 
 			} else {

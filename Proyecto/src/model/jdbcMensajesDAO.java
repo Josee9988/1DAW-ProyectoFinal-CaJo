@@ -67,8 +67,8 @@ public class jdbcMensajesDAO implements mensajesDAO {
 
 	@Override
 	public void modificarMensaje(mensajesDTO m) throws SQLException {
-		this.ps = this.connect.prepareStatement(
-				"UPDATE mensajes SET asunto = ?, cuerpo = ?, incidencia = ? WHERE id = ?");
+		this.ps = this.connect
+				.prepareStatement("UPDATE mensajes SET asunto = ?, cuerpo = ?, incidencia = ? WHERE id = ?");
 		this.ps.setString(1, m.getAsunto());
 		this.ps.setString(2, m.getCuerpo());
 		this.ps.setInt(3, m.getIncidencia());

@@ -42,6 +42,8 @@ public class agregar_incidencia {
 	private Button agregarincidencia;
 	@FXML
 	private Text textoError;
+	@FXML
+	private Text textoTop;
 
 	private Stage stage;
 
@@ -50,6 +52,7 @@ public class agregar_incidencia {
 	private incidenciaDTO incidenciaDTO;
 	private jdbcUsuarioDAO jdbcUsuarioDAO;
 	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
+	private int id;
 
 	/**
 	 * agregar_incidencia constructor default que inicializa variables
@@ -60,6 +63,7 @@ public class agregar_incidencia {
 		this.incidenciaDTO = new incidenciaDTO();
 		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
 		this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
+		this.id = 0;
 	}
 
 	/**
@@ -91,6 +95,43 @@ public class agregar_incidencia {
 		this.ubicacion.setItems(ubicacionBox);
 		this.ubicacion.setEditable(false);
 		this.ubicacion.getSelectionModel().select(0);
+	}
+
+	/**
+	 * inicializar inicializa los ComboBox llamando a las baes de datos de
+	 * ubicaciones para poner seleccionarlas en el ComboBox
+	 *
+	 * @param nombreCompleto nombre y apellidos del usuario logeado
+	 * @throws SQLException por si ha habido una excepción SQL
+	 */
+	public void inicializar(incidenciaDTO i) throws SQLException {
+		this.agregarincidencia.setText("Modificar incidencia");
+		this.textoTop.setText("Modificar incidencia");
+		ObservableList<String> ubicacionBox = FXCollections
+				.observableArrayList(this.jdbcUbicacionDAO.leerNombresUbicaciones());
+		ObservableList<String> categoriaArray = FXCollections.observableArrayList("Hardware", "Software", "Otros");
+		ObservableList<String> urgenciaArray = FXCollections.observableArrayList("Alta", "Media", "Baja",
+				"Indiferente");
+
+		this.descripcion.setText(i.getDescripcion());
+		this.materiales.setText(i.getMateriales());
+		this.elemento.setText(i.getElemento());
+		this.id = i.getId();
+
+		// urgencia
+		this.urgencia.setItems(urgenciaArray);
+		this.urgencia.setEditable(false);
+		this.urgencia.getSelectionModel().select(3);
+
+		// categoría
+		this.categoria.setItems(categoriaArray);
+		this.categoria.setEditable(false);
+		this.categoria.getSelectionModel().select(2);
+
+		// ubicación
+		this.ubicacion.setItems(ubicacionBox);
+		this.ubicacion.setEditable(false);
+		this.ubicacion.getSelectionModel().select(0);
 
 	}
 
@@ -105,7 +146,6 @@ public class agregar_incidencia {
 	public void agregarincidencia() throws SQLException {
 		String[] nombreYapellidos = this.nombreCompleto.split(" ");
 
-		this.incidenciaDTO.setUsuario(this.jdbcUsuarioDAO.leerUsuario(nombreYapellidos[0], nombreYapellidos[1]));
 		this.incidenciaDTO.setDescripcion(this.descripcion.getText());
 		this.incidenciaDTO.setElemento(this.elemento.getText());
 
@@ -127,10 +167,22 @@ public class agregar_incidencia {
 		if (this.descripcion.getText().isEmpty() || this.elemento.getText().isEmpty()) {
 			this.textoError.setText("Rellena todos los campos");
 		} else {
-			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-			this.incidenciaDTO
-			.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
-			this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
+			if (this.id != 0) {// si es una modificación
+				this.incidenciaDTO
+						.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
+				this.incidenciaDTO.setId(this.id);
+				this.jdbcIncidenciasDAO.modificarIncidencia(this.incidenciaDTO);
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+
+			} else {// si es una agregación normal
+				this.incidenciaDTO
+						.setUsuario(this.jdbcUsuarioDAO.leerUsuario(nombreYapellidos[0], nombreYapellidos[1]));
+
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.incidenciaDTO
+						.setUbicacionI(this.jdbcUbicacionDAO.obtenerIdUbicacion(this.incidenciaDTO.getUbicacion()));
+				this.jdbcIncidenciasDAO.crearIncidencia(this.incidenciaDTO);
+			}
 		}
 	}
 

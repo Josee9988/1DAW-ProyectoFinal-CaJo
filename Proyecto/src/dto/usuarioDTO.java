@@ -138,7 +138,6 @@ public class usuarioDTO {
 		this(u.user, u.password, u.rol, u.rolS, u.nombre, u.apellidos, u.telefono, u.direccion);
 	}
 
-
 	/**
 	 * clonar constructor clonar
 	 *

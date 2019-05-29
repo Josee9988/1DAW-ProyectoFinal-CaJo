@@ -207,13 +207,13 @@ public class consultar_proveedores {
 			this.rootEliminacion = (Parent) this.fxmlLoaderagregar_eliminacion.load();
 			this.controller_confirmar_controller = this.fxmlLoaderagregar_eliminacion
 					.<confirmar_controller>getController();
-					this.sceneEliminacion = new Scene(this.rootEliminacion);
-					this.controller_confirmar_controller.inicializar(2,
-							this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
-					this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
-					this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
-					this.confirmacion_eliminacion.setTitle("Eliminar proveedor"); // ponemos el título de la ventana
-					this.confirmacion_eliminacion.show();
+			this.sceneEliminacion = new Scene(this.rootEliminacion);
+			this.controller_confirmar_controller.inicializar(2,
+					this.tabla.getSelectionModel().getSelectedItem().getId()); // llamamos al método inicializar
+			this.confirmacion_eliminacion.setScene(this.sceneEliminacion);
+			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
+			this.confirmacion_eliminacion.setTitle("Eliminar proveedor"); // ponemos el título de la ventana
+			this.confirmacion_eliminacion.show();
 		}
 	}
 
@@ -235,7 +235,7 @@ public class consultar_proveedores {
 	 * @throws SQLException si ha habido alguna excepción de tipo SQL
 	 */
 	public void restart() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		this.inicializar(this.nombreCompleto, this.rol);
 		// this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
@@ -254,7 +254,7 @@ public class consultar_proveedores {
 	 */
 	public void modificarProveedorManual() throws SQLException, IOException {
 		proveedorDTO proveedor = this.tabla.getSelectionModel().getSelectedItem();
-		if(proveedor != null) {
+		if (proveedor != null) {
 			// creamos la escena
 			this.agregar_proveedor = new Stage();
 			this.fxmlLoaderagregar_proveedor = new FXMLLoader(
@@ -267,7 +267,7 @@ public class consultar_proveedores {
 			this.agregar_proveedor.getIcons().add(this.icon); // agregamos el icono
 			this.agregar_proveedor.setTitle("Agregar Proveedor"); // ponemos el título de la ventana
 			this.agregar_proveedor.show();
-		}else {
+		} else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}

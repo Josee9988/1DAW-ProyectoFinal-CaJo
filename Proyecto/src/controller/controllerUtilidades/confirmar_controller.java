@@ -75,7 +75,7 @@ public class confirmar_controller {
 	 * @throws SQLException              si ha habido una excepción SQL
 	 */
 	public void eliminar() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException,
-	NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
+			NoSuchAlgorithmException, NoSuchPaddingException, SQLException {
 		if (this.clase == 0) { // usuario
 			this.consultar_usuarios = new consultar_usuarios();
 			this.consultar_usuarios.eliminarUsuarioBD(this.idSeleccionada);

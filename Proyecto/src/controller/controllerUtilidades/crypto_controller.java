@@ -95,7 +95,7 @@ public class crypto_controller {
 	 * @throws BadPaddingException       por si el formato no es el correcto
 	 */
 	public String encrypt(String text) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-	IllegalBlockSizeException, BadPaddingException {
+			IllegalBlockSizeException, BadPaddingException {
 		javax.crypto.Cipher cipher = this.getCipher("!6w", "9x50", "9F17A", "9AXf", true);
 		return this.toHexString(cipher.doFinal(text.getBytes()));
 	}
@@ -113,7 +113,7 @@ public class crypto_controller {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	public String decrypt(String text) throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException,
-	NoSuchAlgorithmException, NoSuchPaddingException {
+			NoSuchAlgorithmException, NoSuchPaddingException {
 		javax.crypto.Cipher cipher = this.getCipher("!6w", "9x50", "9F17A", "9AXf", false);
 		String decrypted = new String(cipher.doFinal(crypto_controller.hexToByte(text)));
 		return decrypted;

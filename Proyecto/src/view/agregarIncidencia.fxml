@@ -8,7 +8,7 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.agregar_incidencia">
    <children>
-      <Text fill="WHITE" layoutX="163.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Incidencia" wrappingWidth="274.5869140625">
+      <Text fx:id="textoTop" fill="WHITE" layoutX="158.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Incidencia" wrappingWidth="342.5869140625">
          <font>
             <Font name="Ubuntu Bold" size="29.0" />
          </font>
@@ -58,7 +58,7 @@
          </font>
       </Label>
       <ComboBox fx:id="ubicacion" layoutX="46.0" layoutY="351.0" prefHeight="25.0" prefWidth="147.0" promptText="ubicacion" />
-      <TextFlow layoutX="12.0" layoutY="7.0" prefHeight="33.0" prefWidth="577.0">
+      <TextFlow layoutX="23.0" layoutY="5.0" prefHeight="33.0" prefWidth="577.0">
          <children>
             <Text fx:id="textoError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.719970703125">
                <fill>

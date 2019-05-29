@@ -108,7 +108,7 @@ public class agregar_usuarios {
 	 * @throws NoSuchPaddingException   por si el formateo de la key no es correcta
 	 */
 	public void agregarusuario() throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		this.usuarioDTO.setUser(this.usuario.getText());
 		this.usuarioDTO.setPassword(this.password.getText());
 		this.usuarioDTO.setNombre(this.nombre.getText());
@@ -117,7 +117,6 @@ public class agregar_usuarios {
 		this.usuarioDTO.setApellidos(this.apellidos.getText());
 		this.usuarioDTO.setRol(this.traducirComboBox(this.usuarioDTO.getRolS()));
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
-
 
 		// si los campos importantes no están vacios lo hará, de otra manera no lo
 		// agregará

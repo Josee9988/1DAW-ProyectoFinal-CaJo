@@ -22,12 +22,12 @@ public interface usuarioDAO {
 	 *
 	 * @param user el usuario a comprobar
 	 * @return rol devuelve el rol (int)
-	 * @throws SQLException si ha habido una excepción SQL
-	 * @throws NoSuchPaddingException 
-	 * @throws NoSuchAlgorithmException 
-	 * @throws BadPaddingException 
-	 * @throws IllegalBlockSizeException 
-	 * @throws InvalidKeyException 
+	 * @throws SQLException              si ha habido una excepción SQL
+	 * @throws NoSuchPaddingException
+	 * @throws NoSuchAlgorithmException
+	 * @throws BadPaddingException
+	 * @throws IllegalBlockSizeException
+	 * @throws InvalidKeyException
 	 */
 	int comprobarExistencia(usuarioDTO user) throws SQLException;
 
@@ -44,7 +44,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	void crearUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 	/**
 	 * modificarUsuario modifica el usuario
@@ -59,7 +59,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	void modificarUsuario(usuarioDTO user) throws SQLException, InvalidKeyException, NoSuchAlgorithmException,
-	NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
 
 	/**
 	 * devolverNombre devuelve el nombre de un usuario
@@ -85,7 +85,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	ArrayList<usuarioDTO> leerUsuarios() throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
 
 	/**
 	 * eliminarUsuario elimina un usuario a través de una ID
@@ -158,7 +158,7 @@ public interface usuarioDAO {
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
 	ArrayList<usuarioDTO> filtrar(String texto) throws SQLException, InvalidKeyException, IllegalBlockSizeException,
-	BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
+			BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException;
 
 	/**
 	 * userEncontrado busca en la base de datos un usuario en concreto recibido por
