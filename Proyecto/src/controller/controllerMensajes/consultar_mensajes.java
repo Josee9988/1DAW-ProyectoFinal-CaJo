@@ -96,13 +96,6 @@ public class consultar_mensajes {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
-	
-	// pop up modificacion manual
-	private Stage stageManual;
-	private Parent rootManual;
-	private Scene sceneManual;
-	private FXMLLoader fxmlLoaderagregar_manual;
-	private modificar_mensajes controller_mensaje_manual;
 
 	/**
 	 * consultar_mensajes constructor default que inicializa valores
@@ -349,26 +342,25 @@ public class consultar_mensajes {
 	}
 
 	// MODIFICACIONES
-	
+
 	public void modificarMensajeManual () throws SQLException, IOException {
 		mensajesDTO mensaje = this.tabla.getSelectionModel().getSelectedItem();
 		if(mensaje != null) {
-			this.stageManual = new Stage();
-			this.fxmlLoaderagregar_manual = new FXMLLoader(getClass().getResource("/view/modificarMensaje.fxml"));
-			this.rootManual = (Parent) this.fxmlLoaderagregar_manual.load();
-			this.sceneManual = new Scene(this.rootManual);
-			this.controller_mensaje_manual = this.fxmlLoaderagregar_manual.<modificar_mensajes>getController();
-			this.controller_mensaje_manual.inicializarMensajes(mensaje);
-			this.stageManual.setScene(this.sceneManual);
-			this.stageManual.getIcons().add(this.icon); // agregamos el icono
-			this.stageManual.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
-			this.stageManual.show();
-			this.textoError.setText("");
+			this.agregar_mensaje = new Stage();
+			this.fxmlLoaderagregar_mensaje = new FXMLLoader(this.getClass().getResource("/view/agregarMensaje.fxml"));
+			this.root1 = (Parent) this.fxmlLoaderagregar_mensaje.load();
+			this.controller_agregar_mensajes = this.fxmlLoaderagregar_mensaje.<agregar_mensajes>getController();
+			this.scene1 = new Scene(this.root1);
+			this.controller_agregar_mensajes.inicializarMensajes(mensaje); // llamamos al método inicializar
+			this.agregar_mensaje.setScene(this.scene1);
+			this.agregar_mensaje.getIcons().add(this.icon); // agregamos el icono
+			this.agregar_mensaje.setTitle("Agregar Mensaje"); // ponemos el título de la ventana
+			this.agregar_mensaje.show();
 		}else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}
-	
+
 	@FXML
 	/**
 	 * commitFIltro cuando se ha pulsado intro en nuestro TextField procederá a

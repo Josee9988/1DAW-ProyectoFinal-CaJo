@@ -45,6 +45,7 @@ public class agregar_mensajes {
 	private jdbcIncidenciasDAO incidencias;
 	private jdbcMensajesDAO jdbcMensajesDAO;
 	private mensajesDTO mensajesDTO;
+	private int id;
 
 	/**
 	 * agregar_mensajes constructor default que inicializa variables
@@ -55,6 +56,28 @@ public class agregar_mensajes {
 		this.incidencias = new jdbcIncidenciasDAO();
 		this.mensajesDTO = new mensajesDTO();
 		this.jdbcMensajesDAO = new jdbcMensajesDAO();
+		this.id = 0;
+	}
+
+	/**
+	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes si es para
+	 * modificación
+	 *
+	 * @param nombrecompleto nombre + apellidos de el usuario logeado
+	 * @throws SQLException excepción SQL
+	 */
+	public void inicializarMensajes(mensajesDTO m) throws SQLException {
+		this.id = m.getId();
+		this.destinatario.setDisable(true);
+		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidencias());
+
+		this.incidencia.setItems(this.incidenciaBox);
+		this.incidencia.setEditable(false);
+		this.incidencia.getSelectionModel().select(0);
+		this.incidencia.getStyleClass().add("center-aligned");// clase del css para centrar combobox
+
+		this.asunto.setText(m.getAsunto());
+		this.cuerpo.setText(m.getCuerpo());
 	}
 
 	/**
@@ -96,22 +119,35 @@ public class agregar_mensajes {
 
 		this.mensajesDTO.setIncidencia(this.incidencias.obtenerId(this.incidencia.getValue())); // añadimos
 		// incidencia
-		this.mensajesDTO.setReceptor(this.bdusuario.devolverId(this.destinatario.getValue())); // añadimos
-		// receptor
-		String[] nombreYapellidos = this.nombrecompleto.split(" ");
-		int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
-		this.mensajesDTO.setEmisor(idEmisor);
-		this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 
-		if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty() || this.incidencia.getValue().equals("")
-				|| this.destinatario.getValue().equals("")) {
-			this.textoError.setText("Rellena todos los campos");
+		if (this.id != 0) {// si es una modificación..
+			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
+					|| this.incidencia.getValue().equals("")) {
+				this.textoError.setText("Rellena todos los campos");
+			} else {
+				this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.mensajesDTO.setId(this.id);
+				this.jdbcMensajesDAO.modificarMensaje(this.mensajesDTO);
+			}
+		} else { // si es una agregación
+			this.mensajesDTO.setReceptor(this.bdusuario.devolverId(this.destinatario.getValue())); // añadimos
+			// receptor
+			String[] nombreYapellidos = this.nombrecompleto.split(" ");
+			int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
+			this.mensajesDTO.setEmisor(idEmisor);
+			this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 
-		} else {
-			this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
-			this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);
+			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty() || this.incidencia.getValue().equals("")
+					|| this.destinatario.getValue().equals("")) {
+				this.textoError.setText("Rellena todos los campos");
+
+			} else {
+				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
+				this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);
+			}
+
 		}
-
 	}
 
 }
