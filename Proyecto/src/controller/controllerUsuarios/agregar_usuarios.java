@@ -66,6 +66,7 @@ public class agregar_usuarios {
 	 * inicializar método que inicializa los ComboBox
 	 */
 	public void inicializar() {
+		this.agregacion = true;
 		ObservableList<String> roles = FXCollections.observableArrayList("Profesor", "Jefe Dpto.", "Mantenimiento",
 				"Admin");
 		this.rol.setItems(roles);
@@ -115,7 +116,7 @@ public class agregar_usuarios {
 		this.usuarioDTO.setDireccion(this.direccion.getText());
 		this.usuarioDTO.setTelefono(this.telefono.getText());
 		this.usuarioDTO.setApellidos(this.apellidos.getText());
-		this.usuarioDTO.setRol(this.traducirComboBox(this.usuarioDTO.getRolS()));
+		this.usuarioDTO.setRol(this.traducirComboBox(rol.getValue()));
 		this.stage = (Stage) this.agregarusuario.getScene().getWindow(); // seleccionamos la escena actual
 
 		// si los campos importantes no están vacios lo hará, de otra manera no lo
