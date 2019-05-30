@@ -98,7 +98,7 @@ public class jdbcMensajesDAO implements mensajesDAO {
 		ArrayList<mensajesDTO> aux = new ArrayList<>();
 		if (usuario.getRol() == 1 || usuario.getRol() == 2) {
 			this.ps = this.connect.prepareStatement(
-					"SELECT * FROM mensajes WHERE (id_emisor = ? OR id_receptor = ?) AND (asunto LIKE ? OR cuerpo LIKE ?");
+					"SELECT * FROM mensajes WHERE (id_emisor = ? OR id_receptor = ?) AND (asunto LIKE ? OR cuerpo LIKE ?)");
 			this.ps.setInt(1, usuario.getId());
 			this.ps.setInt(2, usuario.getId());
 			this.ps.setString(3, "%" + texto + "%");

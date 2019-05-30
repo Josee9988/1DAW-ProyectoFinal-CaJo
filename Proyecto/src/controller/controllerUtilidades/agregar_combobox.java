@@ -12,6 +12,7 @@ import java.util.Arrays;
 import controller.controllerIncidencias.consultar_incidencias;
 import controller.controllerMensajes.consultar_mensajes;
 import controller.controllerUsuarios.consultar_usuarios;
+import dto.usuarioDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
+import model.jdbcUsuarioDAO;
 
 public class agregar_combobox {
 	@FXML
@@ -36,6 +38,7 @@ public class agregar_combobox {
 	// dos ocasiones los ponemos
 	private jdbcIncidenciasDAO jdbcIncidenciasDAO;
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+	private jdbcUsuarioDAO jdbcUsuariosDAO;
 	private consultar_incidencias consultar_incidencias;
 	private consultar_mensajes consultar_mensajes;
 	private consultar_usuarios consultar_usuarios;
@@ -60,16 +63,19 @@ public class agregar_combobox {
 	 *             y se rellena con categorías
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
-	public void inicializar(int tipo) throws SQLException {
+	public void inicializar(int tipo, String nombreCompleto) throws SQLException {
 		this.tipo = tipo;
 		ObservableList<String> comboBox = null;
 		ArrayList<String> ArrayToCombo = null;
 		if (tipo == 0) {// si es una incidencia...
 			this.texto.setText("Agregue incidencia");
 			this.aplicarBoton.setText("Aplicar incidencia");
+			this.jdbcUsuariosDAO = new jdbcUsuarioDAO();
 			this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 			// agregamos descripciones al combobox
-			ArrayToCombo = this.jdbcIncidenciasDAO.leerDescripcionesIncidencias();
+			ArrayToCombo = this.jdbcIncidenciasDAO.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
+					this.jdbcUsuariosDAO.obtenerUser(nombreCompleto),
+					this.jdbcUsuariosDAO.obtenerRol(nombreCompleto)));
 		} else if (tipo == 1) {// si es una ubicación
 			this.texto.setText("Agregue ubicación");
 			this.aplicarBoton.setText("Aplicar ubicación");

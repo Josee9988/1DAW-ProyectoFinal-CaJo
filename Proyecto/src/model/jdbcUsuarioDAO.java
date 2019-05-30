@@ -37,7 +37,21 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.connect = Conexion.getInstance().conectar();
 		this.crypto_controller = new crypto_controller();
 	}
-
+	
+	@Override
+	public int obtenerRol(String nombreCompleto) throws SQLException {
+		int rol = 0;
+		this.ps = this.connect.prepareStatement("SELECT rol FROM usuarios WHERE nombre = ? AND apellidos = ?");
+		this.ps.setString(1, nombreCompleto.split(" ")[0]);
+		this.ps.setString(2, nombreCompleto.split(" ")[1]);
+		this.rs = this.ps.executeQuery();
+		this.rs.next();
+		rol = this.rs.getInt("rol");
+		this.ps.close();
+		this.rs.close();
+		return rol;
+	}
+	
 	@Override
 	public int comprobarExistencia(usuarioDTO user) throws SQLException {
 		int rol = 0;
@@ -210,6 +224,20 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.rs.close();
 		return usuario;
 	}
+	
+	@Override
+	public String obtenerUser(String nombrecompleto) throws SQLException {
+		String user = "";
+		this.ps = this.connect.prepareStatement("SELECT user FROM usuarios WHERE nombre = ? and apellidos = ?");
+		this.ps.setString(1, nombrecompleto.split(" ")[0]);
+		this.ps.setString(2, nombrecompleto.split(" ")[1]);
+		this.rs = this.ps.executeQuery();
+		this.rs.next();
+		user = this.rs.getString("user");
+		this.ps.close();
+		this.rs.close();
+		return user;
+	}
 
 	@Override
 	public boolean userEncontrado(String user) throws SQLException {
@@ -224,7 +252,6 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.ps.close();
 		this.rs.close();
 		return encontrado;
-
 	}
 
 	@Override

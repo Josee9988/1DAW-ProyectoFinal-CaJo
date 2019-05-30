@@ -169,4 +169,24 @@ public interface usuarioDAO {
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	boolean userEncontrado(String user) throws SQLException;
+
+	/**
+	 * obtenerUser busca en la base de datos un usuario en concreto recibiendo por
+	 * parámetro el nombre completo
+	 * 
+	 * @param nombre completo a buscar
+	 * @return devuelve el username
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	String obtenerUser(String nombrecompleto) throws SQLException;
+
+	/**
+	 * obtenerRol busca en la base de datos el rol de usuario en concreto, recibiendo por
+	 * parámetro el nombre completo
+	 * 
+	 * @param nombre completo a buscar
+	 * @return devuelve el rol
+	 * @throws SQLException si ha habido una excepción SQL
+	 */
+	int obtenerRol(String nombreCompleto) throws SQLException;
 }

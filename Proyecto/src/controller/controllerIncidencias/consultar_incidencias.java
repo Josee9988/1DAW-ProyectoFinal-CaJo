@@ -35,6 +35,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.jdbcIncidenciasDAO;
 import model.jdbcUbicacionDAO;
+import model.jdbcUsuarioDAO;
 
 public class consultar_incidencias {
 
@@ -76,6 +77,7 @@ public class consultar_incidencias {
 	private TextField filtro;
 
 	private jdbcUbicacionDAO jdbcUbicacionDAO;
+	private jdbcUsuarioDAO jdbcUsuarioDAO;
 
 	private int idselected;
 	private incidenciaDTO incidenciaSelected;
@@ -121,6 +123,7 @@ public class consultar_incidencias {
 		this.tabla = new TableView<>();
 		this.bdincidencias = new jdbcIncidenciasDAO();
 		this.incidenciaSelected = new incidenciaDTO();
+		this.jdbcUsuarioDAO = new jdbcUsuarioDAO();
 		this.idselected = -1;
 		this.icon = new Image(this.getClass().getResourceAsStream("/view/jc-favicon.png"));
 		this.nombreCompleto = "";
@@ -162,14 +165,15 @@ public class consultar_incidencias {
 			this.textoError.setText("Sin ubicaciones no se pueden agregar incidencias");
 			this.agregarI.setVisible(false);
 		}
-
+			
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
 		arrayIncidenciaToAdd.addAll(
-				this.bdincidencias.leerIncidencias(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number)));
+				this.bdincidencias.leerIncidencias(new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(nombreCompleto), this.rol_number)));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
-		}
-		this.tabla.getItems().addAll(arrayIncidenciaToAdd);
+		}		
+		this.tabla.getItems().clear();
+		this.tabla.getItems().addAll(arrayIncidenciaToAdd);	
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
@@ -216,7 +220,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(1);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(1,nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -274,7 +278,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(3);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(3,nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -305,7 +309,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(4);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(4,nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -522,7 +526,7 @@ public class consultar_incidencias {
 			this.controller_agregar_incidencia.inicializar(incidencias); // llamamos al método inicializar
 			this.agregar_incidencia.setScene(this.scene1);
 			this.agregar_incidencia.getIcons().add(this.icon); // agregamos el icono
-			this.agregar_incidencia.setTitle("Proyecto Jose Carlos"); // ponemos el título de la ventana
+			this.agregar_incidencia.setTitle("Modificar Incidencia"); // ponemos el título de la ventana
 			this.agregar_incidencia.show();
 		} else {
 			this.textoError.setText("Nada seleccionado");
@@ -542,7 +546,7 @@ public class consultar_incidencias {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
 		arrayIncidenciaToAdd.addAll(this.bdincidencias
-				.filtrar(new usuarioDTO(this.usuario_encabezado.getText(), this.rol_number), this.filtro.getText()));
+				.filtrar(new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(this.nombreCompleto), this.rol_number), this.filtro.getText()));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
 		}

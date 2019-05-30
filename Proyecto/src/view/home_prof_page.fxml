@@ -11,7 +11,7 @@
    <children>
       <Button layoutX="79.0" layoutY="142.0" mnemonicParsing="false" onAction="#administrarIncidencias" prefHeight="27.0" prefWidth="338.0" text="Mis incidencias" />
       <Button layoutX="79.0" layoutY="193.0" mnemonicParsing="false" onAction="#consultarProveedores" prefHeight="27.0" prefWidth="338.0" text="Consultar Proveedores" />
-      <Label layoutX="188.0" layoutY="58.0" text="Menu de opciones">
+      <Label layoutX="188.0" layoutY="58.0" text="Menu de opciones" textFill="WHITE">
          <font>
             <Font name="Tamil Sangam MN" size="29.0" />
          </font>

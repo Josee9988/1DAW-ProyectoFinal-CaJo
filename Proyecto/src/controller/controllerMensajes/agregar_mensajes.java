@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 
 import dto.mensajesDTO;
+import dto.usuarioDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,18 +69,17 @@ public class agregar_mensajes {
 	 * @param mensajesDTO m objeto mensajesDTO para modificar un mensaje
 	 * @throws SQLException excepción SQL
 	 */
-	public void inicializarMensajes(mensajesDTO m) throws SQLException {
+	public void inicializarMensajes(mensajesDTO m, int rolUsuario, String nombrecompleto) throws SQLException {
 		this.textoTop.setText("Modificar mensaje");
 		this.agregarmensaje.setText("Modificar mensaje");
-		this.id = m.getId();
 		this.destinatario.setDisable(true);
-		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidencias());
-
+		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
+				this.bdusuario.obtenerUser(nombrecompleto),rolUsuario)));
 		this.incidencia.setItems(this.incidenciaBox);
 		this.incidencia.setEditable(false);
 		this.incidencia.getSelectionModel().select(0);
 		this.incidencia.getStyleClass().add("center-aligned");// clase del css para centrar combobox
-
+		this.id = m.getId();
 		this.asunto.setText(m.getAsunto());
 		this.cuerpo.setText(m.getCuerpo());
 	}
@@ -90,17 +90,17 @@ public class agregar_mensajes {
 	 * @param nombrecompleto nombre + apellidos de el usuario logeado
 	 * @throws SQLException excepción SQL
 	 */
-	public void inicializarMensajes(String nombrecompleto) throws SQLException {
+	public void inicializarMensajes(String nombrecompleto, int rolUsuario) throws SQLException {
 		this.nombrecompleto = nombrecompleto;
 
-		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidencias());
+		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
+				this.bdusuario.obtenerUser(nombrecompleto),rolUsuario)));
 		this.destinatarioBox = FXCollections.observableArrayList(this.bdusuario.leerDestinatarios());
 
 		this.incidencia.setItems(this.incidenciaBox);
 		this.incidencia.setEditable(false);
 		this.incidencia.getSelectionModel().select(0);
 		this.incidencia.getStyleClass().add("center-aligned");// clase del css para centrar combobox
-
 		this.destinatario.setItems(this.destinatarioBox);
 		this.destinatario.setEditable(false);
 		this.destinatario.getSelectionModel().select(0);
@@ -120,10 +120,7 @@ public class agregar_mensajes {
 		// Ponemos la fecha actual
 		java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		this.mensajesDTO.setFecha(sqlDate);
-
 		this.mensajesDTO.setIncidencia(this.incidencias.obtenerId(this.incidencia.getValue())); // añadimos
-		// incidencia
-
 		if (this.id != 0) {// si es una modificación..
 			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
 					|| this.incidencia.getValue().equals("")) {
@@ -141,11 +138,9 @@ public class agregar_mensajes {
 			int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
 			this.mensajesDTO.setEmisor(idEmisor);
 			this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
-
 			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
 					|| this.incidencia.getValue().equals("") || this.destinatario.getValue().equals("")) {
 				this.textoError.setText("Rellena todos los campos");
-
 			} else {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				this.jdbcMensajesDAO.crearMensaje(this.mensajesDTO);

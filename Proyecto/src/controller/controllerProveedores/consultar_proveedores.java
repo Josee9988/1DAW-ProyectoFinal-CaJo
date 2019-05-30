@@ -67,6 +67,8 @@ public class consultar_proveedores {
 	private TextField filtro;
 	@FXML
 	private Text textoError;
+	@FXML
+	private Button modificarProveedorManual;
 
 	private String nombreCompleto;
 
@@ -115,6 +117,7 @@ public class consultar_proveedores {
 		this.contacto.setCellValueFactory(new PropertyValueFactory<>("Contacto"));
 		this.direccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
 		this.valoracion.setCellValueFactory(new PropertyValueFactory<>("Valoracion"));
+		this.tabla.getItems().clear();
 		this.tabla.getItems().addAll(this.bdproveedores.leerProveedores());
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
@@ -126,8 +129,14 @@ public class consultar_proveedores {
 			this.agregarP.setVisible(false);
 			this.modificarP.setVisible(false);
 			this.eliminarP.setVisible(false);
+			this.modificarProveedorManual.setVisible(false);
+			this.id.setEditable(false);
+			this.nombre.setEditable(false);
+			this.contacto.setEditable(false);
+			this.direccion.setEditable(false);
+			this.valoracion.setEditable(false);
 		}
-
+		
 		this.tabla.setEditable(true);// hacemos la tabla entera editable
 
 		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y
@@ -265,7 +274,7 @@ public class consultar_proveedores {
 			this.controller_agregar_proveedor.inicializar(proveedor); // llamamos al método inicializar
 			this.agregar_proveedor.setScene(this.scene1);
 			this.agregar_proveedor.getIcons().add(this.icon); // agregamos el icono
-			this.agregar_proveedor.setTitle("Agregar Proveedor"); // ponemos el título de la ventana
+			this.agregar_proveedor.setTitle("Modificar Proveedor"); // ponemos el título de la ventana
 			this.agregar_proveedor.show();
 		} else {
 			this.textoError.setText("Nada seleccionado");

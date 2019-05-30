@@ -67,6 +67,7 @@ public class consultar_ubicaciones {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	private agregar_ubicacion modificarManulal;
 
 	/**
 	 * consultar_ubicaciones constructor default que inicializa variables.
@@ -226,11 +227,14 @@ public class consultar_ubicaciones {
 			this.fxmlLoaderagregar_ubicacion = new FXMLLoader(
 					this.getClass().getResource("/view/agregarUbicacion.fxml"));
 			this.root1 = (Parent) this.fxmlLoaderagregar_ubicacion.load();
+			this.modificarManulal = this.fxmlLoaderagregar_ubicacion
+					.<agregar_ubicacion>getController();
+			this.modificarManulal.inicializar(ubicacion);
 			this.scene1 = new Scene(this.root1);
 			// inicializar
 			this.agregar_ubicacion.setScene(this.scene1);
 			this.agregar_ubicacion.getIcons().add(this.icon); // agregamos el icono
-			this.agregar_ubicacion.setTitle("Agregar Ubicación"); // ponemos el título de la ventana
+			this.agregar_ubicacion.setTitle("Modificar Ubicación"); // ponemos el título de la ventana
 			this.agregar_ubicacion.show();
 		} else {
 			this.textoError.setText("Nada seleccionado");

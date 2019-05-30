@@ -8,11 +8,6 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerUbicaciones.agregar_ubicacion">
    <children>
-      <Text fx:id="textoTop" fill="WHITE" layoutX="170.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Ubicación" wrappingWidth="261.0">
-         <font>
-            <Font name="Ubuntu Bold" size="29.0" />
-         </font>
-      </Text>
       <Label layoutX="121.0" layoutY="104.0" text="Nombre" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
@@ -42,7 +37,7 @@
          </font>
       </Button>
       <TextField fx:id="edificio" layoutX="64.0" layoutY="240.0" prefHeight="30.0" prefWidth="180.0" promptText="edificio" />
-      <TextFlow layoutX="23.0" layoutY="11.0" prefHeight="33.0" prefWidth="577.0">
+      <TextFlow layoutX="210.0" layoutY="33.0" prefHeight="33.0" prefWidth="577.0">
          <children>
             <Text fx:id="textoError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.719970703125">
                <fill>
@@ -61,5 +56,10 @@
             </Text>
          </children>
       </TextFlow>
+      <Text fx:id="textoTop" fill="WHITE" layoutX="157.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Ubicación" wrappingWidth="326.70751953125">
+         <font>
+            <Font name="Ubuntu Bold" size="29.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

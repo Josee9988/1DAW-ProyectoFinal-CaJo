@@ -8,11 +8,6 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerProveedores.agregar_proveedor">
    <children>
-      <Text fx:id="textoTop" fill="WHITE" layoutX="166.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Proveedor" wrappingWidth="269.0">
-         <font>
-            <Font name="Ubuntu Bold" size="29.0" />
-         </font>
-      </Text>
       <Label layoutX="121.0" layoutY="104.0" text="Nombre" textFill="WHITE">
          <font>
             <Font name="Ubuntu Bold Italic" size="18.0" />
@@ -42,8 +37,13 @@
          </font>
       </Button>
       <ComboBox fx:id="valoracion" layoutX="63.0" layoutY="243.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextFlow layoutX="33.0" layoutY="21.0" prefHeight="33.0" prefWidth="577.0">
+      <TextFlow layoutX="189.0" layoutY="55.0" prefHeight="33.0" prefWidth="577.0">
          <children>
+            <Text fx:id="textoTop" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Proveedor" wrappingWidth="414.0">
+               <font>
+                  <Font name="Ubuntu Bold" size="29.0" />
+               </font>
+            </Text>
             <Text fx:id="textoError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.719970703125">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0" startX="0.03365384615384615">

@@ -71,7 +71,6 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		int n = 0;
 		this.ps = this.connect.prepareStatement(
 				"UPDATE incidencias SET descripcion = ?, elemento = ?, ubicacion = ?, fecha = ?, urgencia = ?, categoria = ?, materiales = ? WHERE id = ?");
-
 		this.ps.setString(1, incidencia.getDescripcion());
 		this.ps.setString(2, incidencia.getElemento());
 		this.ps.setInt(3, incidencia.getUbicacionI());
@@ -155,14 +154,16 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 	}
 
 	@Override
-	public ArrayList<String> leerDescripcionesIncidencias() throws SQLException {
+	public ArrayList<String> leerDescripcionesIncidenciasEspecificas(usuarioDTO u) throws SQLException {
 		ArrayList<String> arrayToReturn = new ArrayList<>();
-
-		this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias");
-
+		if(u.getRol()==1 || u.getRol() == 2) {
+			this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias where usuario = ?");
+			this.ps.setString(1,u.getUser());
+		}else {
+			this.ps = this.connect.prepareStatement("SELECT descripcion FROM incidencias");
+		}
 		this.rs = this.ps.executeQuery();
 		while (this.rs.next()) {
-
 			arrayToReturn.add((this.rs.getString("descripcion")));
 		}
 		this.ps.close();
@@ -175,7 +176,7 @@ public class jdbcIncidenciasDAO implements incidenciasDAO {
 		ArrayList<incidenciaDTO> incidencias = new ArrayList<>();
 		if (u.getRol() == 1 || u.getRol() == 2) {
 			this.ps = this.connect.prepareStatement(
-					"SELECT * FROM incidencias WHERE usuario = ? AND (usuario LIKE ? OR descripcion LIKE ?");
+					"SELECT * FROM incidencias WHERE usuario = ? AND (usuario LIKE ? OR descripcion LIKE ?)");
 			this.ps.setString(1, u.getUser());
 			this.ps.setString(2, "%" + texto + "%");
 			this.ps.setString(3, "%" + texto + "%");
