@@ -8,11 +8,6 @@
 
 <Pane fx:id="paneBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="600.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMensajes.agregar_mensajes">
    <children>
-      <Label fx:id="textoTop" layoutX="212.0" layoutY="34.0" text="Crear Mensaje" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
       <TextArea fx:id="cuerpo" layoutX="24.0" layoutY="124.0" prefHeight="94.0" prefWidth="552.0" promptText="cuerpo" />
       <TextField fx:id="asunto" layoutX="24.0" layoutY="79.0" prefHeight="32.0" prefWidth="552.0" promptText="asunto" />
       <ComboBox fx:id="incidencia" layoutX="24.0" layoutY="269.0" prefHeight="32.0" prefWidth="224.0" promptText="Incidencia" />
@@ -51,5 +46,10 @@
             </Text>
          </children>
       </TextFlow>
+      <Text fx:id="textoTop" fill="WHITE" layoutX="187.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar mensaje">
+         <font>
+            <Font name="Ubuntu Bold" size="28.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
