@@ -81,7 +81,14 @@ public class agregar_mensajes {
 		this.incidencia.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 		this.id = m.getId();
 		this.asunto.setText(m.getAsunto());
-		this.cuerpo.setText(m.getCuerpo());
+		this.cuerpo.setText(m.getCuerpo());	
+		if(this.incidencia.getValue() == null) {
+			this.textoError.setText("No existen incidencias, no se pueden modificar mensajes, pierden valor");
+			this.agregarmensaje.setVisible(false);
+		}else if (this.destinatario.getValue() == null) {
+			this.textoError.setText("No existen usuarios destinatarios");
+			this.agregarmensaje.setVisible(false);
+		}
 	}
 
 	/**
@@ -105,6 +112,13 @@ public class agregar_mensajes {
 		this.destinatario.setEditable(false);
 		this.destinatario.getSelectionModel().select(0);
 		this.destinatario.getStyleClass().add("center-aligned");// clase del css para centrar combobox
+		if(this.incidencia.getValue() == null) {
+			this.textoError.setText("No existen incidencias, no se pueden crear mensajes");
+			this.agregarmensaje.setVisible(false);
+		}else if (this.destinatario.getValue() == null) {
+			this.textoError.setText("No existen usuarios destinatarios");
+			this.agregarmensaje.setVisible(false);
+		}
 	}
 
 	@FXML
@@ -122,9 +136,8 @@ public class agregar_mensajes {
 		this.mensajesDTO.setFecha(sqlDate);
 		this.mensajesDTO.setIncidencia(this.incidencias.obtenerId(this.incidencia.getValue())); // añadimos
 		if (this.id != 0) {// si es una modificación..
-			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
-					|| this.incidencia.getValue().equals("")) {
-				this.textoError.setText("Rellena todos los campos");
+			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()) {
+					this.textoError.setText("Rellena todos los campos");
 			} else {
 				this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
@@ -138,8 +151,7 @@ public class agregar_mensajes {
 			int idEmisor = this.bdusuario.devolverId(nombreYapellidos[0], nombreYapellidos[1]); // añadimos emisor
 			this.mensajesDTO.setEmisor(idEmisor);
 			this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
-			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()
-					|| this.incidencia.getValue().equals("") || this.destinatario.getValue().equals("")) {
+			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()) {
 				this.textoError.setText("Rellena todos los campos");
 			} else {
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
