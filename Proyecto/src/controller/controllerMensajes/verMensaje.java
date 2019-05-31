@@ -23,10 +23,19 @@ public class verMensaje {
 	
 	private jdbcUsuarioDAO bdusuario;
 	
+	
+	/**
+	 * contructor que inicializa el jdbc de mensajes
+	 */
 	public verMensaje() {
 		this.bdusuario = new jdbcUsuarioDAO();
 	}
 	
+	/**
+	 * se visializa un mensaje que se recibe por parametro
+	 * @param objeto mensaje a visualizar
+	 * @throws SQLException
+	 */
 	public void inicializar(mensajesDTO m) throws SQLException {
 		this.cuerpo.setEditable(false);
 		this.emisor.setEditable(false);
