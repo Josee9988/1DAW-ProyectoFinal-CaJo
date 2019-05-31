@@ -388,17 +388,21 @@ public class consultar_usuarios {
 	public void modificarUsuarioManual() throws SQLException, IOException {
 		usuarioDTO usuario = this.tabla.getSelectionModel().getSelectedItem();
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
-			this.agregar_usuarios = new Stage();
-			this.fxmlLoaderagregar_usuarios = new FXMLLoader(this.getClass().getResource("/view/agregarUser.fxml"));
-			this.root1 = (Parent) this.fxmlLoaderagregar_usuarios.load();
-			this.controller_agregar_usuarios = this.fxmlLoaderagregar_usuarios.<agregar_usuarios>getController();
-			this.scene1 = new Scene(this.root1);
-			this.controller_agregar_usuarios.inicializar(usuario); // llamamos al método inicializar
-			this.agregar_usuarios.setScene(this.scene1);
-			this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
-			this.agregar_usuarios.setTitle("Modificar Usuario"); // ponemos el título de la ventana
-			this.agregar_usuarios.show();
-			this.textoError.setText("");
+			if (!this.tabla.getSelectionModel().getSelectedItem().getUser().equals("root")) {
+				this.agregar_usuarios = new Stage();
+				this.fxmlLoaderagregar_usuarios = new FXMLLoader(this.getClass().getResource("/view/agregarUser.fxml"));
+				this.root1 = (Parent) this.fxmlLoaderagregar_usuarios.load();
+				this.controller_agregar_usuarios = this.fxmlLoaderagregar_usuarios.<agregar_usuarios>getController();
+				this.scene1 = new Scene(this.root1);
+				this.controller_agregar_usuarios.inicializar(usuario); // llamamos al método inicializar
+				this.agregar_usuarios.setScene(this.scene1);
+				this.agregar_usuarios.getIcons().add(this.icon); // agregamos el icono
+				this.agregar_usuarios.setTitle("Modificar Usuario"); // ponemos el título de la ventana
+				this.agregar_usuarios.show();
+				this.textoError.setText("");
+			}else {
+				this.textoError.setText("No se puede modificar al usuario 'root'");
+			}
 		} else {
 			this.textoError.setText("Nada seleccionado");
 		}
