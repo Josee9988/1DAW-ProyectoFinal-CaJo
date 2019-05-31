@@ -96,6 +96,13 @@ public class consultar_mensajes {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
+	
+	// pop up de ver un mensaje
+	private Stage stageVerMensaje;
+	private Parent rootVerMensaje;
+	private Scene sceneVerMensaje;
+	private FXMLLoader fxmlLoaderVerMensaje;
+	private verMensaje verMensajeController;
 
 	/**
 	 * consultar_mensajes constructor default que inicializa valores
@@ -218,6 +225,30 @@ public class consultar_mensajes {
 		}); // fin doble click en las columnas que queremos para abrir views
 
 	}
+	
+	@FXML
+	/**
+	 * verMensaje agrega un mensaje, desde una view
+	 *
+	 * @throws IOException  si ha habido una excepción IO
+	 * @throws SQLException si ha habido alguna excepción de tipo SQL
+	 */
+	public void verMensaje() throws IOException, SQLException {
+		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
+			this.stageVerMensaje =  new Stage();
+			this.fxmlLoaderVerMensaje = new FXMLLoader(this.getClass().getResource("/view/verMensaje.fxml"));
+			this.rootVerMensaje = (Parent) this.fxmlLoaderVerMensaje.load();
+			this.verMensajeController = this.fxmlLoaderVerMensaje.<verMensaje>getController();
+			this.sceneVerMensaje = new Scene(this.rootVerMensaje);
+			this.verMensajeController.inicializar(this.tabla.getSelectionModel().getSelectedItem()); // llamamos al método inicializar
+			this.stageVerMensaje.setScene(this.sceneVerMensaje);
+			this.stageVerMensaje.getIcons().add(this.icon); // agregamos el icono
+			this.stageVerMensaje.setTitle("Ver Mensaje"); // ponemos el título de la ventana
+			this.stageVerMensaje.show();
+		}else {
+			this.textoError.setText("Nada seleccionado");
+		}
+	}
 
 	@FXML
 	/**
@@ -306,6 +337,8 @@ public class consultar_mensajes {
 			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
 			this.confirmacion_eliminacion.setTitle("Eliminar mensaje"); // ponemos el título de la ventana
 			this.confirmacion_eliminacion.show();
+		}else {
+			this.textoError.setText("Nada seleccionado");
 		}
 	}
 
