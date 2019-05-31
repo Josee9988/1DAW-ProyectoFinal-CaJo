@@ -281,26 +281,15 @@ public class consultar_mensajes {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.mensajesSelected.setId(this.idselected); // id no cambiará
-			if (this.mensajesSelected.getAsunto().equals("")) {
+			if (this.mensajesSelected.getAsunto().isEmpty()) {
 				this.mensajesSelected.setAsunto(this.tabla.getSelectionModel().getSelectedItem().getAsunto());
 			}
-			if (this.mensajesSelected.getCuerpo().equals("")) {
+			if (this.mensajesSelected.getCuerpo().isEmpty()) {
 				this.mensajesSelected.setCuerpo(this.tabla.getSelectionModel().getSelectedItem().getCuerpo());
 			}
-			if (this.mensajesSelected.getIncidencia() == 0) {
-				this.mensajesSelected.setIncidencia(this.tabla.getSelectionModel().getSelectedItem().getIncidencia());
-			}
-			if (this.mensajesSelected.getEmisor() == 0) {
-				this.mensajesSelected.setEmisor(this.tabla.getSelectionModel().getSelectedItem().getEmisor());
-			}
-			if (this.mensajesSelected.getReceptor() == 0) {
-				this.mensajesSelected.setReceptor(this.tabla.getSelectionModel().getSelectedItem().getReceptor());
-			}
-
 			if (consultar_mensajes.incidenciaCombo != -1) {
 				this.mensajesSelected.setIncidencia(consultar_mensajes.incidenciaCombo);
 			}
-
 			this.bdmensajes.modificarMensaje(this.mensajesSelected);
 			this.idselected = -1;
 			consultar_mensajes.incidenciaCombo = -1;

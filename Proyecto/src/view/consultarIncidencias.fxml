@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<Pane fx:id="paneBG" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.consultar_incidencias">
+<Pane fx:id="paneBG" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="946.0" stylesheets="@buttonhover.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerIncidencias.consultar_incidencias">
    <children>
       <Label layoutX="342.0" layoutY="27.0" text="Consultar Incidencias" textFill="WHITE">
          <font>
@@ -29,9 +36,9 @@
       </TableView>
       <TextField fx:id="usuario_encabezado" layoutX="729.0" layoutY="19.0" prefHeight="37.0" prefWidth="200.0" />
       <TextField fx:id="fecha_encabezado" layoutX="21.0" layoutY="21.0" prefHeight="37.0" prefWidth="200.0" />
-      <Button fx:id="agregarI" layoutX="20.0" layoutY="578.0" mnemonicParsing="false" onAction="#agregarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Agregar incidencia" />
-      <Button layoutX="334.0" layoutY="578.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="36.0" prefWidth="150.0" text="Modificar inidencia" />
-      <Button fx:id="resolverI" layoutX="655.0" layoutY="578.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Resolver incidencia" />
+      <Button fx:id="agregarI" layoutX="21.0" layoutY="616.0" mnemonicParsing="false" onAction="#agregarIncidencia" prefHeight="36.0" prefWidth="272.0" text="Agregar incidencia" />
+      <Button layoutX="345.0" layoutY="614.0" mnemonicParsing="false" onAction="#modificarIncidencia" prefHeight="39.0" prefWidth="109.0" text="Automatica" />
+      <Button fx:id="resolverI" layoutX="655.0" layoutY="616.0" mnemonicParsing="false" onAction="#eliminarIncidencia" prefHeight="36.0" prefWidth="274.0" text="Resolver incidencia" />
       <Button layoutX="672.0" layoutY="20.0" mnemonicParsing="false" onAction="#restart" prefHeight="14.0" prefWidth="17.0">
          <graphic>
             <ImageView id="restart" fitHeight="29.0" fitWidth="30.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
@@ -66,6 +73,10 @@
          </font>
       </Label>
       <TextField fx:id="filtro" layoutX="99.0" layoutY="84.0" onAction="#commitFIltro" prefHeight="25.0" prefWidth="829.0" promptText="Buscar elementos en Usuario o descripción" />
-      <Button fx:id="modificarIncidenciaManual" layoutX="496.0" layoutY="577.0" mnemonicParsing="false" onAction="#modificarIncidenciaManual" prefHeight="38.0" prefWidth="117.0" text="Manual" />
+      <Button fx:id="modificarIncidenciaManual" layoutX="473.0" layoutY="614.0" mnemonicParsing="false" onAction="#modificarIncidenciaManual" prefHeight="39.0" prefWidth="117.0" text="Manual" />
+      <Text fill="WHITE" layoutX="407.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modificacion">
+         <font>
+            <Font name="LKLUG" size="17.0" />
+         </font></Text>
    </children>
 </Pane>

@@ -273,25 +273,22 @@ public class consultar_usuarios {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.usuarioSelected.setId(this.idselected); // id no cambiará
-			if (this.usuarioSelected.getUser().equals("")) {
+			if (this.usuarioSelected.getUser().isEmpty()) {
 				this.usuarioSelected.setUser(this.tabla.getSelectionModel().getSelectedItem().getUser());
 			}
-			if (this.usuarioSelected.getPassword().equals("")) {
+			if (this.usuarioSelected.getPassword().isEmpty()) {
 				this.usuarioSelected.setPassword(this.tabla.getSelectionModel().getSelectedItem().getPassword());
 			}
-			if (this.usuarioSelected.getRol() == 0) {
-				this.usuarioSelected.setRol(this.tabla.getSelectionModel().getSelectedItem().getRol());
-			}
-			if (this.usuarioSelected.getNombre().equals("")) {
+			if (this.usuarioSelected.getNombre().isEmpty()) {
 				this.usuarioSelected.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
 			}
-			if (this.usuarioSelected.getApellidos().equals("")) {
+			if (this.usuarioSelected.getApellidos().isEmpty()) {
 				this.usuarioSelected.setApellidos(this.tabla.getSelectionModel().getSelectedItem().getApellidos());
 			}
-			if (this.usuarioSelected.getTelefono().equals("")) {
+			if (this.usuarioSelected.getTelefono().isEmpty()) {
 				this.usuarioSelected.setTelefono(this.tabla.getSelectionModel().getSelectedItem().getTelefono());
 			}
-			if (this.usuarioSelected.getDireccion().equals("")) {
+			if (this.usuarioSelected.getDireccion().isEmpty()) {
 				this.usuarioSelected.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 			}
 

@@ -140,16 +140,16 @@ public class consultar_ubicaciones {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.ubicacionDTO.setId(this.idselected); // id no cambiará
-			if (this.ubicacionDTO.getNombre().equals("")) {
+			if (this.ubicacionDTO.getNombre().isEmpty()) {
 				this.ubicacionDTO.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
 			}
-			if (this.ubicacionDTO.getDescripcion().equals("")) {
+			if (this.ubicacionDTO.getDescripcion().isEmpty()) {
 				this.ubicacionDTO.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
-			if (this.ubicacionDTO.getEdificio().equals("")) {
+			if (this.ubicacionDTO.getEdificio().isEmpty()) {
 				this.ubicacionDTO.setEdificio(this.tabla.getSelectionModel().getSelectedItem().getEdificio());
 			}
-			if (this.ubicacionDTO.getPlanta().equals("")) {
+			if (this.ubicacionDTO.getPlanta().isEmpty()) {
 				this.ubicacionDTO.setPlanta(this.tabla.getSelectionModel().getSelectedItem().getPlanta());
 			}
 			this.idselected = -1;

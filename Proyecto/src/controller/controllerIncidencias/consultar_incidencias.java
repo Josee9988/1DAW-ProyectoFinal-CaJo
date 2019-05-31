@@ -357,26 +357,26 @@ public class consultar_incidencias {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.incidenciaSelected.setId(this.idselected); // id no cambiará
-			if (this.incidenciaSelected.getUsuario().equals("")) {
+			if (this.incidenciaSelected.getUsuario().isEmpty()) {
 				this.incidenciaSelected.setUsuario(this.tabla.getSelectionModel().getSelectedItem().getUsuario());
 			}
-			if (this.incidenciaSelected.getDescripcion().equals("")) {
+			if (this.incidenciaSelected.getDescripcion().isEmpty()) {
 				this.incidenciaSelected
 						.setDescripcion(this.tabla.getSelectionModel().getSelectedItem().getDescripcion());
 			}
-			if (this.incidenciaSelected.getElemento().equals("")) {
+			if (this.incidenciaSelected.getElemento().isEmpty()) {
 				this.incidenciaSelected.setElemento(this.tabla.getSelectionModel().getSelectedItem().getElemento());
 			}
-			if (this.incidenciaSelected.getUrgencia().equals("")) {
+			if (this.incidenciaSelected.getUrgencia().isEmpty()) {
 				this.incidenciaSelected.setUrgencia(this.tabla.getSelectionModel().getSelectedItem().getUrgencia());
 			}
-			if (this.incidenciaSelected.getCategoria().equals("")) {
+			if (this.incidenciaSelected.getCategoria().isEmpty()) {
 				this.incidenciaSelected.setCategoria(this.tabla.getSelectionModel().getSelectedItem().getCategoria());
 			}
-			if (this.incidenciaSelected.getMateriales().equals("")) {
+			if (this.incidenciaSelected.getMateriales().isEmpty()) {
 				this.incidenciaSelected.setMateriales(this.tabla.getSelectionModel().getSelectedItem().getMateriales());
 			}
-			if (this.incidenciaSelected.getUbicacion().equals("")) {
+			if (this.incidenciaSelected.getUbicacion().isEmpty()) {
 				this.incidenciaSelected.setUbicacion(this.tabla.getSelectionModel().getSelectedItem().getUbicacion());
 			}
 			if (consultar_incidencias.fechaSelected == null) {

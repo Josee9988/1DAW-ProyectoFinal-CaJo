@@ -179,16 +179,13 @@ public class consultar_proveedores {
 		// Si un valor no se ha modificado cogerá el que estaba en la fila.
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
 			this.proveedorDTO.setId(this.idselected); // id no cambiará
-			if (this.proveedorDTO.getNombre().equals("")) {
+			if (this.proveedorDTO.getNombre().isEmpty()) {
 				this.proveedorDTO.setNombre(this.tabla.getSelectionModel().getSelectedItem().getNombre());
 			}
-			if (this.proveedorDTO.getContacto().equals("")) {
+			if (this.proveedorDTO.getContacto().isEmpty()) {
 				this.proveedorDTO.setContacto(this.tabla.getSelectionModel().getSelectedItem().getContacto());
 			}
-			if (this.proveedorDTO.getValoracion() == 0) {
-				this.proveedorDTO.setValoracion(this.tabla.getSelectionModel().getSelectedItem().getValoracion());
-			}
-			if (this.proveedorDTO.getDireccion().equals("")) {
+			if (this.proveedorDTO.getDireccion().isEmpty()) {
 				this.proveedorDTO.setDireccion(this.tabla.getSelectionModel().getSelectedItem().getDireccion());
 			}
 			this.idselected = -1;
