@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<TitledPane fx:id="visionMensaje" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="untitled" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMensajes.verMensaje">
+  <content>
+    <AnchorPane fx:id="paneBG" minHeight="0.0" minWidth="0.0" prefHeight="321.0" prefWidth="598.0" stylesheets="@buttonhover.css">
+         <children>
+            <TextArea fx:id="cuerpo" layoutX="14.0" layoutY="114.0" prefHeight="236.0" prefWidth="571.0" />
+            <TextArea fx:id="emisor" layoutX="81.0" layoutY="14.0" prefHeight="32.0" prefWidth="200.0" />
+            <TextArea fx:id="receptor" layoutX="367.0" layoutY="14.0" prefHeight="42.0" prefWidth="217.0" />
+            <Text fill="WHITE" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="De:" />
+            <TextArea fx:id="asunto" layoutX="90.0" layoutY="65.0" prefHeight="42.0" prefWidth="495.0" />
+            <Text fill="WHITE" layoutX="321.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para:" />
+            <Text fill="WHITE" layoutX="28.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto: " />
+         </children>
+      </AnchorPane>
+  </content>
+</TitledPane>

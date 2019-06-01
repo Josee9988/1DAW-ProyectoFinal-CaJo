@@ -126,9 +126,9 @@ public class agregar_usuarios {
 			if (this.agregacion == false) {// si es una modificación
 				if (this.password.getText().length() < 6) {
 					this.textoError.setText("La contraseña debe superar los 6 carácteres");
-				}else if(this.usuario.getText().equals("root")){
+				} else if (this.usuario.getText().equals("root")) {
 					this.textoError.setText("El usuario root no se puede modificar");
-				}else {
+				} else {
 					this.jdbcUsuarioDAO.modificarUsuario(this.usuarioDTO);// lo agrega en la base de datos
 					this.stage.close(); // cerramos la ventana actual para pasar a la siguiente
 				}

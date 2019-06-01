@@ -102,7 +102,7 @@ public class agregar_incidencia {
 	 * ubicaciones para poner seleccionarlas en el ComboBox. Es la que se llama al
 	 * modificar
 	 *
-	 * @param incidenciaDTO i objeto de tipo incidencia seleccionado para modificar
+	 * @param i incidenciaDTO objeto de tipo incidencia seleccionado para modificar
 	 * @throws SQLException por si ha habido una excepción SQL
 	 */
 	public void inicializar(incidenciaDTO i) throws SQLException {

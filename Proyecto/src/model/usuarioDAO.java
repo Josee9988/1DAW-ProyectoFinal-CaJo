@@ -147,7 +147,7 @@ public interface usuarioDAO {
 	 * filtrar es llamado por la clase consultar correspondiente y busca los
 	 * elementos con un like y devolverá un arraylist con todos los objetos
 	 * encontrados * @param texto texto a buscar en diferentes campos
-	 * 
+	 *
 	 * @return devuelve un arrayList con todos los objetos encontrados
 	 * @throws SQLException              si ha habido una excepción SQL
 	 * @throws IllegalBlockSizeException por si el tamaño no es el correcto (será
@@ -163,7 +163,7 @@ public interface usuarioDAO {
 	/**
 	 * userEncontrado busca en la base de datos un usuario en concreto recibido por
 	 * parámetro
-	 * 
+	 *
 	 * @param user el usuario a buscar
 	 * @return devuelve true si lo ha encontrado o false si no existe
 	 * @throws SQLException si ha habido una excepción SQL
@@ -173,18 +173,18 @@ public interface usuarioDAO {
 	/**
 	 * obtenerUser busca en la base de datos un usuario en concreto recibiendo por
 	 * parámetro el nombre completo
-	 * 
-	 * @param nombre completo a buscar
+	 *
+	 * @param nombrecompleto completo a buscar
 	 * @return devuelve el username
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	String obtenerUser(String nombrecompleto) throws SQLException;
 
 	/**
-	 * obtenerRol busca en la base de datos el rol de usuario en concreto, recibiendo por
-	 * parámetro el nombre completo
-	 * 
-	 * @param nombre completo a buscar
+	 * obtenerRol busca en la base de datos el rol de usuario en concreto,
+	 * recibiendo por parámetro el nombre completo
+	 *
+	 * @param nombreCompleto completo a buscar
 	 * @return devuelve el rol
 	 * @throws SQLException si ha habido una excepción SQL
 	 */

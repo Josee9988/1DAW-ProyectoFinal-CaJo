@@ -206,7 +206,7 @@ public class consultar_usuarios {
 								.<agregar_combobox>getController();
 						consultar_usuarios.this.scene2 = new Scene(consultar_usuarios.this.root2);
 						try {
-							consultar_usuarios.this.controller_agregar_combo.inicializar(2,nombreCompleto);
+							consultar_usuarios.this.controller_agregar_combo.inicializar(2, nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -397,7 +397,7 @@ public class consultar_usuarios {
 				this.agregar_usuarios.setTitle("Modificar Usuario"); // ponemos el título de la ventana
 				this.agregar_usuarios.show();
 				this.textoError.setText("");
-			}else {
+			} else {
 				this.textoError.setText("No se puede modificar al usuario 'root'");
 			}
 		} else {

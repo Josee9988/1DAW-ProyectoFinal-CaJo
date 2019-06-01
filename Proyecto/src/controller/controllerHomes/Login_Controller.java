@@ -133,8 +133,8 @@ public class Login_Controller {
 	 * @throws NoSuchAlgorithmException  si no existe el algoritmo seleccionado
 	 * @throws NoSuchPaddingException    por si el formateo de la key no es correcta
 	 */
-	private void iniciarSesion() throws IOException, SQLException, InvalidKeyException,
-	NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	private void iniciarSesion() throws IOException, SQLException, InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		String passwordencriptada = "";
 		// vemos si están vacios los campos o no.
 		if (!this.user.getText().isEmpty() && !this.passwordField.getText().isEmpty()) {

@@ -78,8 +78,8 @@ public interface incidenciasDAO {
 	int obtenerId(String descripcion) throws SQLException;
 
 	/**
-	 * leerDescripcionesIncidenciasEspecificas lee las descripciones y las guarda en un
-	 * ArrayList
+	 * leerDescripcionesIncidenciasEspecificas lee las descripciones y las guarda en
+	 * un ArrayList
 	 *
 	 * @return devuelve un ArrayList de tipo string con las descripciones de las
 	 *         incidencias

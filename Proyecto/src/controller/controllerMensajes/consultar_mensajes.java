@@ -96,7 +96,7 @@ public class consultar_mensajes {
 	private Scene sceneEliminacion;
 	private FXMLLoader fxmlLoaderagregar_eliminacion;
 	private confirmar_controller controller_confirmar_controller;
-	
+
 	// pop up de ver un mensaje
 	private Stage stageVerMensaje;
 	private Parent rootVerMensaje;
@@ -163,7 +163,7 @@ public class consultar_mensajes {
 			i.setEmisorS(this.jdbcUsuarioDAO.devolverNombre(i.getEmisor()));
 			i.setReceptorS(this.jdbcUsuarioDAO.devolverNombre(i.getReceptor()));
 		}
-		
+
 		this.tabla.getItems().clear();
 		this.tabla.getItems().addAll(mensajesToAdd);
 
@@ -209,7 +209,7 @@ public class consultar_mensajes {
 								.<agregar_combobox>getController();
 						consultar_mensajes.this.scene2 = new Scene(consultar_mensajes.this.root2);
 						try {
-							consultar_mensajes.this.controller_agregar_combo.inicializar(0,nombreCompleto);
+							consultar_mensajes.this.controller_agregar_combo.inicializar(0, nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -225,7 +225,7 @@ public class consultar_mensajes {
 		}); // fin doble click en las columnas que queremos para abrir views
 
 	}
-	
+
 	@FXML
 	/**
 	 * verMensaje agrega un mensaje, desde una view
@@ -235,17 +235,19 @@ public class consultar_mensajes {
 	 */
 	public void verMensaje() throws IOException, SQLException {
 		if (this.tabla.getSelectionModel().getSelectedItem() != null) {
-			this.stageVerMensaje =  new Stage();
+			this.stageVerMensaje = new Stage();
 			this.fxmlLoaderVerMensaje = new FXMLLoader(this.getClass().getResource("/view/verMensaje.fxml"));
 			this.rootVerMensaje = (Parent) this.fxmlLoaderVerMensaje.load();
 			this.verMensajeController = this.fxmlLoaderVerMensaje.<verMensaje>getController();
 			this.sceneVerMensaje = new Scene(this.rootVerMensaje);
-			this.verMensajeController.inicializar(this.tabla.getSelectionModel().getSelectedItem()); // llamamos al método inicializar
+			this.verMensajeController.inicializar(this.tabla.getSelectionModel().getSelectedItem()); // llamamos al
+																										// método
+																										// inicializar
 			this.stageVerMensaje.setScene(this.sceneVerMensaje);
 			this.stageVerMensaje.getIcons().add(this.icon); // agregamos el icono
 			this.stageVerMensaje.setTitle("Ver Mensaje"); // ponemos el título de la ventana
 			this.stageVerMensaje.show();
-		}else {
+		} else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}
@@ -263,7 +265,8 @@ public class consultar_mensajes {
 		this.root1 = (Parent) this.fxmlLoaderagregar_mensaje.load();
 		this.controller_agregar_mensajes = this.fxmlLoaderagregar_mensaje.<agregar_mensajes>getController();
 		this.scene1 = new Scene(this.root1);
-		this.controller_agregar_mensajes.inicializarMensajes(this.nombreCompleto,this.rol); // llamamos al método inicializar
+		this.controller_agregar_mensajes.inicializarMensajes(this.nombreCompleto, this.rol); // llamamos al método
+																								// inicializar
 		this.agregar_mensaje.setScene(this.scene1);
 		this.agregar_mensaje.getIcons().add(this.icon); // agregamos el icono
 		this.agregar_mensaje.setTitle("Agregar Mensaje"); // ponemos el título de la ventana
@@ -326,7 +329,7 @@ public class consultar_mensajes {
 			this.confirmacion_eliminacion.getIcons().add(this.icon); // agregamos el icono
 			this.confirmacion_eliminacion.setTitle("Eliminar mensaje"); // ponemos el título de la ventana
 			this.confirmacion_eliminacion.show();
-		}else {
+		} else {
 			this.textoError.setText("Nada seleccionado");
 		}
 	}
@@ -374,7 +377,9 @@ public class consultar_mensajes {
 			this.root1 = (Parent) this.fxmlLoaderagregar_mensaje.load();
 			this.controller_agregar_mensajes = this.fxmlLoaderagregar_mensaje.<agregar_mensajes>getController();
 			this.scene1 = new Scene(this.root1);
-			this.controller_agregar_mensajes.inicializarMensajes(mensaje,this.rol,this.nombreCompleto); // llamamos al método inicializar
+			this.controller_agregar_mensajes.inicializarMensajes(mensaje, this.rol, this.nombreCompleto); // llamamos al
+																											// método
+																											// inicializar
 			this.agregar_mensaje.setScene(this.scene1);
 			this.agregar_mensaje.getIcons().add(this.icon); // agregamos el icono
 			this.agregar_mensaje.setTitle("Modificar Mensaje"); // ponemos el título de la ventana
@@ -401,7 +406,7 @@ public class consultar_mensajes {
 
 		mensajesToAdd.addAll(this.bdmensajes.filtrar(this.filtro.getText(), new usuarioDTO(
 				this.jdbcUsuarioDAO.devolverId(nombreCompletoArray[0], nombreCompletoArray[1]), this.rol)));
-		
+
 		for (mensajesDTO i : mensajesToAdd) {
 			if (this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).length() > 64) {
 				i.setIncidenciaS(this.jdbcIncidenciasDAO.obtenerNombreIncidencia(i.getIncidencia()).substring(0, 64));

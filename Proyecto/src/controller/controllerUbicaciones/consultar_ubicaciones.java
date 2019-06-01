@@ -227,8 +227,7 @@ public class consultar_ubicaciones {
 			this.fxmlLoaderagregar_ubicacion = new FXMLLoader(
 					this.getClass().getResource("/view/agregarUbicacion.fxml"));
 			this.root1 = (Parent) this.fxmlLoaderagregar_ubicacion.load();
-			this.modificarManulal = this.fxmlLoaderagregar_ubicacion
-					.<agregar_ubicacion>getController();
+			this.modificarManulal = this.fxmlLoaderagregar_ubicacion.<agregar_ubicacion>getController();
 			this.modificarManulal.inicializar(ubicacion);
 			this.scene1 = new Scene(this.root1);
 			// inicializar

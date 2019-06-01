@@ -74,8 +74,7 @@ public class agregar_combobox {
 			this.jdbcIncidenciasDAO = new jdbcIncidenciasDAO();
 			// agregamos descripciones al combobox
 			ArrayToCombo = this.jdbcIncidenciasDAO.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
-					this.jdbcUsuariosDAO.obtenerUser(nombreCompleto),
-					this.jdbcUsuariosDAO.obtenerRol(nombreCompleto)));
+					this.jdbcUsuariosDAO.obtenerUser(nombreCompleto), this.jdbcUsuariosDAO.obtenerRol(nombreCompleto)));
 		} else if (tipo == 1) {// si es una ubicación
 			this.texto.setText("Agregue ubicación");
 			this.aplicarBoton.setText("Aplicar ubicación");

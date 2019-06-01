@@ -136,7 +136,7 @@ public class consultar_proveedores {
 			this.direccion.setEditable(false);
 			this.valoracion.setEditable(false);
 		}
-		
+
 		this.tabla.setEditable(true);// hacemos la tabla entera editable
 
 		// Hacemos todos los campos editables menos "id". Porque es un autoincrement y

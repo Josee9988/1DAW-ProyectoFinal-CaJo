@@ -55,7 +55,7 @@ public class Conexion {
 		try {
 			Conexion = DriverManager.getConnection(
 					"jdbc:mysql://127.0.0.1:3306/m_proyectodaw?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC",
-					"m", "1234");
+					"root", "1234");
 		} catch (SQLException e) {
 			System.out.println(e.toString());
 		}

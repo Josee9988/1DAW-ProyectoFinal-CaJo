@@ -37,7 +37,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.connect = Conexion.getInstance().conectar();
 		this.crypto_controller = new crypto_controller();
 	}
-	
+
 	@Override
 	public int obtenerRol(String nombreCompleto) throws SQLException {
 		int rol = 0;
@@ -51,7 +51,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.rs.close();
 		return rol;
 	}
-	
+
 	@Override
 	public int comprobarExistencia(usuarioDTO user) throws SQLException {
 		int rol = 0;
@@ -224,7 +224,7 @@ public class jdbcUsuarioDAO implements usuarioDAO {
 		this.rs.close();
 		return usuario;
 	}
-	
+
 	@Override
 	public String obtenerUser(String nombrecompleto) throws SQLException {
 		String user = "";

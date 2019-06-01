@@ -66,26 +66,26 @@ public class agregar_mensajes {
 	 * inicializarMensajes inicializamos los mensajes. los ComboBoxes si es para
 	 * modificación
 	 *
-	 * @param mensajesDTO m objeto mensajesDTO para modificar un mensaje
+	 * @param m mensajesDTO objeto mensajesDTO para modificar un mensaje
 	 * @throws SQLException excepción SQL
 	 */
 	public void inicializarMensajes(mensajesDTO m, int rolUsuario, String nombrecompleto) throws SQLException {
 		this.textoTop.setText("Modificar mensaje");
 		this.agregarmensaje.setText("Modificar mensaje");
 		this.destinatario.setDisable(true);
-		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
-				this.bdusuario.obtenerUser(nombrecompleto),rolUsuario)));
+		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(
+				new usuarioDTO(this.bdusuario.obtenerUser(nombrecompleto), rolUsuario)));
 		this.incidencia.setItems(this.incidenciaBox);
 		this.incidencia.setEditable(false);
 		this.incidencia.getSelectionModel().select(0);
 		this.incidencia.getStyleClass().add("center-aligned");// clase del css para centrar combobox
 		this.id = m.getId();
 		this.asunto.setText(m.getAsunto());
-		this.cuerpo.setText(m.getCuerpo());	
-		if(this.incidencia.getValue() == null) {
+		this.cuerpo.setText(m.getCuerpo());
+		if (this.incidencia.getValue() == null) {
 			this.textoError.setText("No existen incidencias, no se pueden modificar mensajes, pierden valor");
 			this.agregarmensaje.setVisible(false);
-		}else if (this.destinatario.getValue() == null) {
+		} else if (this.destinatario.getValue() == null) {
 			this.textoError.setText("No existen usuarios destinatarios");
 			this.agregarmensaje.setVisible(false);
 		}
@@ -100,8 +100,8 @@ public class agregar_mensajes {
 	public void inicializarMensajes(String nombrecompleto, int rolUsuario) throws SQLException {
 		this.nombrecompleto = nombrecompleto;
 
-		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(new usuarioDTO(
-				this.bdusuario.obtenerUser(nombrecompleto),rolUsuario)));
+		this.incidenciaBox = FXCollections.observableArrayList(this.incidencias.leerDescripcionesIncidenciasEspecificas(
+				new usuarioDTO(this.bdusuario.obtenerUser(nombrecompleto), rolUsuario)));
 		this.destinatarioBox = FXCollections.observableArrayList(this.bdusuario.leerDestinatarios());
 
 		this.incidencia.setItems(this.incidenciaBox);
@@ -112,10 +112,10 @@ public class agregar_mensajes {
 		this.destinatario.setEditable(false);
 		this.destinatario.getSelectionModel().select(0);
 		this.destinatario.getStyleClass().add("center-aligned");// clase del css para centrar combobox
-		if(this.incidencia.getValue() == null) {
+		if (this.incidencia.getValue() == null) {
 			this.textoError.setText("No existen incidencias, no se pueden crear mensajes");
 			this.agregarmensaje.setVisible(false);
-		}else if (this.destinatario.getValue() == null) {
+		} else if (this.destinatario.getValue() == null) {
 			this.textoError.setText("No existen usuarios destinatarios");
 			this.agregarmensaje.setVisible(false);
 		}
@@ -137,7 +137,7 @@ public class agregar_mensajes {
 		this.mensajesDTO.setIncidencia(this.incidencias.obtenerId(this.incidencia.getValue())); // añadimos
 		if (this.id != 0) {// si es una modificación..
 			if (this.asunto.getText().isEmpty() || this.cuerpo.getText().isEmpty()) {
-					this.textoError.setText("Rellena todos los campos");
+				this.textoError.setText("Rellena todos los campos");
 			} else {
 				this.stage = (Stage) this.agregarmensaje.getScene().getWindow(); // seleccionamos la escena actual
 				this.stage.close(); // cerramos la ventana actual para pasar a la siguiente

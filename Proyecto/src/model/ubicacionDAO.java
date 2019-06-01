@@ -49,7 +49,6 @@ public interface ubicacionDAO {
 	 * modificarUbicacion modifica una ubicación a partir de un objeto ubicacionDTO
 	 *
 	 * @param ubicacion recibe el objeto ubicacionDTO
-	 * @return devuelve un booleano de si todo ha ido bien o no
 	 * @throws SQLException si ha habido una excepción SQL
 	 */
 	void modificarUbicacion(ubicacionDTO ubicacion) throws SQLException;

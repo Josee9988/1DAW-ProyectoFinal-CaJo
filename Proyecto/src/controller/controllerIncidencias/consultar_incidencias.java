@@ -165,15 +165,15 @@ public class consultar_incidencias {
 			this.textoError.setText("Sin ubicaciones no se pueden agregar incidencias");
 			this.agregarI.setVisible(false);
 		}
-			
+
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
-		arrayIncidenciaToAdd.addAll(
-				this.bdincidencias.leerIncidencias(new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(nombreCompleto), this.rol_number)));
+		arrayIncidenciaToAdd.addAll(this.bdincidencias
+				.leerIncidencias(new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(nombreCompleto), this.rol_number)));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
-		}		
+		}
 		this.tabla.getItems().clear();
-		this.tabla.getItems().addAll(arrayIncidenciaToAdd);	
+		this.tabla.getItems().addAll(arrayIncidenciaToAdd);
 		this.date = new Date();
 		this.usuario_encabezado.setText(nombreCompleto);
 		this.fecha_encabezado.setText(new SimpleDateFormat("dd-MM-yyyy").format(this.date));
@@ -220,7 +220,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(1,nombreCompleto);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(1, nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -278,7 +278,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(3,nombreCompleto);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(3, nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -309,7 +309,7 @@ public class consultar_incidencias {
 								.<agregar_combobox>getController();
 						consultar_incidencias.this.scene3 = new Scene(consultar_incidencias.this.root3);
 						try {
-							consultar_incidencias.this.controller_agregar_combobox.inicializar(4,nombreCompleto);
+							consultar_incidencias.this.controller_agregar_combobox.inicializar(4, nombreCompleto);
 						} catch (SQLException e) {
 							System.out.println(e.toString());
 						} // llamamos al método inicializar
@@ -511,7 +511,7 @@ public class consultar_incidencias {
 	 * modificar con todos los datos ya introducidos
 	 *
 	 * @throws SQLException si ha habido una excepción SQL
-	 * @param IOExcepcion si ha habido una excepción IO
+	 * @throws IOExcepcion  si ha habido una excepción IO
 	 */
 	@FXML
 	public void modificarIncidenciaManual() throws SQLException, IOException {
@@ -545,8 +545,9 @@ public class consultar_incidencias {
 	public void commitFIltro() throws SQLException {
 		this.tabla.getItems().clear(); // borramos todos los datos
 		ArrayList<incidenciaDTO> arrayIncidenciaToAdd = new ArrayList<>();
-		arrayIncidenciaToAdd.addAll(this.bdincidencias
-				.filtrar(new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(this.nombreCompleto), this.rol_number), this.filtro.getText()));
+		arrayIncidenciaToAdd.addAll(this.bdincidencias.filtrar(
+				new usuarioDTO(this.jdbcUsuarioDAO.obtenerUser(this.nombreCompleto), this.rol_number),
+				this.filtro.getText()));
 		for (incidenciaDTO i : arrayIncidenciaToAdd) {
 			i.setUbicacion(this.jdbcUbicacionDAO.devolverNombre(i.getUbicacionI()));
 		}
