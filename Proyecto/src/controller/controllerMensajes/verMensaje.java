@@ -1,5 +1,11 @@
 package controller.controllerMensajes;
 
+/**
+ * @author Jose_Gracia_Berenguer, Carlos Robles
+ * @version Jun 3, 2019
+ * @param args Recibe los datos del programa
+ */
+
 import java.sql.SQLException;
 
 import dto.mensajesDTO;
@@ -32,7 +38,7 @@ public class verMensaje {
 
 	/**
 	 * se visializa un mensaje que se recibe por parametro
-	 * 
+	 *
 	 * @param m mensaje a visualizar
 	 * @throws SQLException
 	 */
