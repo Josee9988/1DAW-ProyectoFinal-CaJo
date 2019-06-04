@@ -70,6 +70,8 @@ Es posible que si se quiere modificar el software se requiera cambiar el *Build 
 
 - [Memoria](/Memoria/Memoria.pdf)
 
+- [UML](/UML/UML.png)
+
 - [JavaDoc](/Proyecto/doc)
 
 - [Licencia de uso](LICENSE.txt)
