@@ -15,6 +15,12 @@
 
 ---
 
+## **Página de presentación** 🌐
+
+- [Página con la presentación del proyecto](https://josee9988.github.io/1DAW-ProyectoFinal-CaJo/Presentacion/index.html)
+
+---
+
 ## **Instrucciones básicas de uso** 🔩⚙️
 
 Para poder ejecutar el software es necesario tener **Java** instalado.
