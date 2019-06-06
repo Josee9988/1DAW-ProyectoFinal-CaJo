@@ -2,10 +2,10 @@
 
 - En este repositorio encontraremos el proyecto que hemos tenido que realizar compuesto por las asignaturas de **Programación**, **Bases de datos** y **Entornos de Desarrollo**
 
-- El proyecto se presentó el *14/02/2019* y la entrega se efectuó el *06/06/2019*.
+- El proyecto se presentó el *14/02/2019* y la entrega y presentación fue el *06/06/2019*.
 
 - Consistió de una primera fase símplemente de análisis y documentación.
-- Y una segunda parte la cual comenzó en el *09/05/2019* en la cual ya comenzamos a desarrollar el software en java.
+- Y una segunda parte la cual comenzó en el *09/05/2019* en la cual ya comenzamos a desarrollar el software en java, es decir tuvimos unos 28 días para crear el software.
 
 - El proyecto está realizado por [@Josee9988](https://github.com/Josee9988), y [@Wanikoko](https://github.com/Wanikoko)
 
@@ -15,9 +15,10 @@
 
 ---
 
-## **Página de presentación** 🌐
+## **Páginas de presentación y JavaDoc** 🌐
 
 - [Página con la presentación del proyecto](https://josee9988.github.io/1DAW-ProyectoFinal-CaJo/Presentacion/index.html)
+- [Página con el JavaDoc](https://josee9988.github.io/1DAW-ProyectoFinal-CaJo/Proyecto/doc/Principal.html)
 
 ---
 
